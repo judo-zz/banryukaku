@@ -3,7 +3,7 @@
  * Manages investigationLevel, search routing, and level-up effects.
  */
 
-const ARG = (() => {
+var ARG = (() => {
   const STORAGE_KEY = 'br_level';
   const FLAGS_KEY   = 'br_flags';
 
@@ -153,7 +153,7 @@ const ARG = (() => {
 
 // ─── Search index ──────────────────────────────────────────────────────────
 
-const SEARCH_INDEX = {
+var SEARCH_INDEX = {
   'ゆめ':          'hidden/yume-rireki.html',
   '夢':            'hidden/yume-rireki.html',
   '黒瀬':          'hidden/kurose-shiji.html',
