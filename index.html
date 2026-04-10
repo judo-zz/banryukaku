@@ -92,8 +92,8 @@
     <div class="hero__content">
 
       <!-- 上部タグライン -->
-      <p class="hero__tagline font-cyber flicker-blue" aria-label="秋葉原・完全会員制">
-        AKIHABARA // PRIVATE LOUNGE // MEMBERS ONLY
+      <p class="hero__tagline font-cyber flicker-blue" aria-label="秋葉原・コンセプトカフェ">
+        AKIHABARA // CONCEPT CAFE // EST. 2024
       </p>
 
       <!-- メインタイトル -->
@@ -110,10 +110,10 @@
 
       <!-- キャッチコピー -->
       <p class="hero__catch font-display">
-        龍が宿る夜、あなただけのために。
+        サイバーチャイナの世界で、とびっきりの癒やしをあなたに。
       </p>
       <p class="hero__catch-sub">
-        この扉の向こうは、日常ではない。
+        秋葉原の路地裏に隠れた、おしゃれな中華テーマカフェ。
       </p>
 
       <!-- CTAボタン -->
@@ -160,15 +160,15 @@
       <div class="concept__grid">
         <div class="concept__text">
           <p class="concept__lead font-display">
-            蟠龍閣は、秋葉原の喧騒の奥、選ばれた者だけが辿り着く高級コンセプトカフェです。
+            蟠龍閣は、秋葉原に2024年オープンした中華テーマのコンセプトカフェです。
           </p>
           <p>
-            厳選されたキャストが、あなたの時間を非日常へと誘います。個室完備、完全予約制。
-            龍の守護のもと、至高のひとときを。
+            チャイナドレスをまとったキャストが、笑顔でお出迎え。
+            ここだけのオリジナルドリンクやフードと一緒に、非日常のひとときをお楽しみください。
           </p>
           <p>
-            <strong class="text-gold">初回は紹介制のみ</strong>となっております。
-            ご友人の紹介カードをお持ちの方は、ご予約フォームよりお申し込みください。
+            <strong class="text-gold">完全予約制</strong>で、ゆったりとした空間をご提供しています。
+            はじめてのお客様も大歓迎！まずはお気軽にご予約フォームよりどうぞ。
           </p>
         </div>
 
@@ -176,18 +176,18 @@
         <div class="concept__pillars">
           <div class="pillar">
             <div class="pillar__icon font-cyber" aria-hidden="true">龍</div>
-            <h3 class="pillar__title font-display">守護と秘匿</h3>
-            <p class="pillar__text">お客様の情報は一切外部に漏れません。蟠龍の誓い。</p>
+            <h3 class="pillar__title font-display">中華テーマの世界観</h3>
+            <p class="pillar__text">チャイナドレス・赤提灯・ネオン。秋葉原とチャイナが融合した唯一無二の空間。</p>
           </div>
           <div class="pillar">
             <div class="pillar__icon font-cyber" aria-hidden="true">華</div>
-            <h3 class="pillar__title font-display">絢爛と品格</h3>
-            <p class="pillar__text">ネオンと金の空間。キャストはすべて、龍の加護を受けた存在。</p>
+            <h3 class="pillar__title font-display">こだわりのドリンク</h3>
+            <p class="pillar__text">オリジナルカクテルからソフトドリンクまで。映えるビジュアルにもこだわっています。</p>
           </div>
           <div class="pillar">
             <div class="pillar__icon font-cyber" aria-hidden="true">縁</div>
-            <h3 class="pillar__title font-display">縁と運命</h3>
-            <p class="pillar__text">ここに導かれたことに、意味がある。偶然は存在しない。</p>
+            <h3 class="pillar__title font-display">アットホームな雰囲気</h3>
+            <p class="pillar__text">はじめての方でも安心。キャスト全員が笑顔でお出迎えします。</p>
           </div>
         </div>
       </div>
@@ -203,7 +203,7 @@
 
       <div class="section-header">
         <p class="section-label font-cyber text-gold">— CAST —</p>
-        <h2 class="section-title font-display">龍の巫女たち</h2>
+        <h2 class="section-title font-display">キャスト紹介</h2>
       </div>
 
       <!-- キャストサムネイル（3名プレビュー） -->
@@ -371,6 +371,29 @@
 
   <script src="main.js"></script>
   <script src="assets/js/effects.js"></script>
+  <script>
+  // ── SCROLL-IN ANIMATION ───────────────────────────────────
+  // セクション要素がビューポートに入ったら .is-visible を付与してフェードイン
+  (function () {
+    var targets = document.querySelectorAll(
+      '.section-header, .concept__text, .concept__pillars, .cast-preview__grid, .reserve__notice, .reserve-form'
+    );
+    if (!targets.length || !window.IntersectionObserver) {
+      // IntersectionObserver 非対応：即時表示
+      targets.forEach(function (el) { el.classList.add('is-visible'); });
+      return;
+    }
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    targets.forEach(function (el) { observer.observe(el); });
+  }());
+  </script>
   <script>
   // ── TOP PAGE ARG INIT ────────────────────────────────────
   document.addEventListener('DOMContentLoaded', () => {

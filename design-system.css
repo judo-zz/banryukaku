@@ -47,53 +47,53 @@
   --space-12:  6rem;       /* 96px */
   --space-16:  8rem;       /* 128px */
 
-  /* --- Level 0 カラーパレット（高級コンカフェ・表の顔） --- */
-  --bg-primary:       #0A0A0F;   /* 深夜の黒 */
-  --bg-secondary:     #12121A;   /* カード背景 */
-  --bg-overlay:       rgba(10, 10, 15, 0.85);
+  /* --- Level 0 カラーパレット（コンカフェ・表の顔 — 深紫×ピンク×ラベンダー） --- */
+  --bg-primary:       #17083A;   /* 深インディゴパープル */
+  --bg-secondary:     #22104E;   /* カード背景 */
+  --bg-overlay:       rgba(23, 8, 58, 0.88);
 
-  --color-crimson:    #8B0000;   /* 深紅 — 看板・アクセント */
-  --color-crimson-lt: #C0392B;   /* 明るい深紅 */
-  --color-gold:       #C9A84C;   /* 金 — 主要アクセント */
+  --color-crimson:    #C2508A;   /* Lv0はピンク。Lv1以降で赤に染まる */
+  --color-crimson-lt: #F080B8;   /* ライトピンク */
+  --color-gold:       #C9A84C;   /* 金 — 主要アクセント（変わらない） */
   --color-gold-lt:    #E8C97A;   /* 明るい金 */
   --color-gold-dk:    #8B6914;   /* 暗い金 */
-  --color-neon-blue:  #00B4D8;   /* ネオンブルー */
-  --color-neon-blue2: #0096C7;   /* やや深いブルー */
-  --color-neon-cyan:  #90E0EF;   /* サイアン（ハイライト） */
+  --color-neon-blue:  #9B7CF7;   /* ラベンダー（Lv0のサイバーカラー） */
+  --color-neon-blue2: #7B63F7;   /* 深ラベンダー */
+  --color-neon-cyan:  #E0BBFF;   /* ライトラベンダー */
 
-  --color-text-primary:   #F5ECD7;  /* クリーム（主要テキスト） */
-  --color-text-secondary: #A89070;  /* 金茶（補助テキスト） */
-  --color-text-muted:     #5A4E3C;  /* 暗い金茶（抑えたテキスト） */
-  --color-border:         rgba(201, 168, 76, 0.25);  /* 金の罫線（薄） */
-  --color-border-strong:  rgba(201, 168, 76, 0.6);   /* 金の罫線（強） */
+  --color-text-primary:   #F5ECD7;  /* クリーム（変わらない） */
+  --color-text-secondary: #D4A8E8;  /* ラベンダーがかった補助テキスト */
+  --color-text-muted:     #8060A0;  /* ミュートパープル */
+  --color-border:         rgba(180, 120, 230, 0.28);  /* 紫の罫線（薄） */
+  --color-border-strong:  rgba(180, 120, 230, 0.6);   /* 紫の罫線（強） */
 
   /* --- ネオングロー効果 --- */
   --glow-gold:    0 0 8px rgba(201, 168, 76, 0.8),
                   0 0 20px rgba(201, 168, 76, 0.4),
                   0 0 40px rgba(201, 168, 76, 0.2);
 
-  --glow-blue:    0 0 8px rgba(0, 180, 216, 0.9),
-                  0 0 20px rgba(0, 180, 216, 0.5),
-                  0 0 40px rgba(0, 180, 216, 0.2);
+  --glow-blue:    0 0 8px rgba(155, 124, 247, 0.9),
+                  0 0 20px rgba(155, 124, 247, 0.5),
+                  0 0 40px rgba(155, 124, 247, 0.2);
 
-  --glow-crimson: 0 0 8px rgba(139, 0, 0, 0.9),
-                  0 0 20px rgba(192, 57, 43, 0.5),
-                  0 0 40px rgba(139, 0, 0, 0.2);
+  --glow-crimson: 0 0 8px rgba(194, 80, 138, 0.9),
+                  0 0 20px rgba(240, 128, 184, 0.5),
+                  0 0 40px rgba(194, 80, 138, 0.2);
 
   --glow-text-gold:    0 0 6px rgba(201, 168, 76, 0.9),
                        0 0 16px rgba(201, 168, 76, 0.5);
 
-  --glow-text-blue:    0 0 6px rgba(0, 180, 216, 1),
-                       0 0 16px rgba(0, 180, 216, 0.6);
+  --glow-text-blue:    0 0 6px rgba(155, 124, 247, 1),
+                       0 0 16px rgba(155, 124, 247, 0.6);
 
-  --glow-text-crimson: 0 0 6px rgba(192, 57, 43, 0.9),
-                       0 0 16px rgba(139, 0, 0, 0.5);
+  --glow-text-crimson: 0 0 6px rgba(240, 128, 184, 0.9),
+                       0 0 16px rgba(194, 80, 138, 0.5);
 
   /* --- グラデーション --- */
-  --grad-hero:    linear-gradient(160deg, #1A0505 0%, #0A0A0F 50%, #050D1A 100%);
+  --grad-hero:    linear-gradient(160deg, #3D1060 0%, #17083A 55%, #0A1040 100%);
   --grad-gold:    linear-gradient(135deg, #C9A84C 0%, #E8C97A 50%, #C9A84C 100%);
-  --grad-panel:   linear-gradient(180deg, rgba(18,18,26,0.9) 0%, rgba(10,10,15,0.95) 100%);
-  --grad-crimson: linear-gradient(135deg, #3D0000 0%, #1A0505 100%);
+  --grad-panel:   linear-gradient(180deg, rgba(34,16,78,0.9) 0%, rgba(23,8,58,0.95) 100%);
+  --grad-crimson: linear-gradient(135deg, #4D1040 0%, #2A0828 100%);
 
   /* --- ボーダー半径 --- */
   --radius-sm:  4px;
@@ -111,15 +111,20 @@
    JavaScriptでcookieまたはlocalStorageで管理する
    ================================================================ */
 
-/* Lv1: ネオンブルーが弱くなり始め、金の比重が増す */
+/* Lv1: 汚染開始。ピンクが赤に滲み始め、背景が暗化。スキャンライン出現 */
 body.lv1 {
-  --color-neon-blue:  #007A94;
+  --bg-primary:       #100426;   /* 深みが増す */
+  --bg-secondary:     #180838;
+  --color-crimson:    #A02060;   /* ピンク→赤へ移行中 */
+  --color-crimson-lt: #D03080;
+  --color-neon-blue:  #6050D0;   /* ラベンダー→青へ */
   --color-gold:       #D4AF37;
   --color-gold-lt:    #F0C84A;
-  --bg-primary:       #080810;
+  --color-border:     rgba(160, 32, 96, 0.3);
+  --grad-hero: linear-gradient(160deg, #280530 0%, #100426 55%, #060B1F 100%);
 }
 
-/* Lv2: 深紅が暗くなり、金がより支配的に */
+/* Lv2: 完全汚染。ピンクが消え深紅に。背景は黒に近い */
 body.lv2 {
   --color-neon-blue:  #003D4D;
   --color-crimson:    #5C0000;
@@ -130,6 +135,8 @@ body.lv2 {
   --bg-secondary:     #0A0A0E;
   --color-text-primary:   #E8D5A3;
   --color-text-secondary: #C9A84C;
+  --color-border:     rgba(201, 168, 76, 0.25);
+  --grad-hero: linear-gradient(160deg, #1A0505 0%, #060608 55%, #030A14 100%);
 }
 
 /* Lv3: ネオンブルーはほぼ消え、金と黒の世界へ */
@@ -369,15 +376,23 @@ body {
   position: absolute;
   inset: 0;
   background: transparent;
+  /* Lv0: グリッチ無効 */
+  animation: none;
+  display: none;
 }
 
-.glitch-text::before {
+/* Lv1以降: グリッチ有効化 */
+body.lv1 .glitch-text::before,
+body.lv2 .glitch-text::before {
+  display: block;
   color: var(--color-neon-blue);
   animation: glitch-main 4s infinite;
   animation-delay: 0.5s;
 }
 
-.glitch-text::after {
+body.lv1 .glitch-text::after,
+body.lv2 .glitch-text::after {
+  display: block;
   color: var(--color-crimson-lt);
   animation: glitch-sub 4s infinite;
   animation-delay: 1s;
@@ -387,6 +402,7 @@ body {
 body.lv3 .glitch-text::before,
 body.lv4 .glitch-text::before,
 body.lv5 .glitch-text::before {
+  display: block;
   animation-duration: 1.5s;
   color: var(--color-gold);
 }
@@ -394,6 +410,7 @@ body.lv5 .glitch-text::before {
 body.lv3 .glitch-text::after,
 body.lv4 .glitch-text::after,
 body.lv5 .glitch-text::after {
+  display: block;
   animation-duration: 2s;
   color: var(--color-gold-dk);
 }
@@ -407,6 +424,26 @@ body.lv5 .glitch-text::after {
   inset: 0;
   pointer-events: none;
   z-index: 9999;
+  /* Lv0: スキャンライン完全非表示 */
+  display: none;
+}
+
+/* Lv1: スキャンライン出現（薄く） */
+body.lv1 .scanline-overlay {
+  display: block;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.04) 2px,
+    rgba(0, 0, 0, 0.04) 4px
+  );
+  opacity: 0.5;
+}
+
+/* Lv2: 強くなる */
+body.lv2 .scanline-overlay {
+  display: block;
   background: repeating-linear-gradient(
     0deg,
     transparent,
@@ -414,9 +451,13 @@ body.lv5 .glitch-text::after {
     rgba(0, 0, 0, 0.08) 2px,
     rgba(0, 0, 0, 0.08) 4px
   );
+  opacity: 1;
 }
 
-.scanline-overlay::after {
+body.lv2 .scanline-overlay::after,
+body.lv3 .scanline-overlay::after,
+body.lv4 .scanline-overlay::after,
+body.lv5 .scanline-overlay::after {
   content: '';
   position: absolute;
   inset: 0;
@@ -449,6 +490,16 @@ body.lv5 .scanline-overlay::after {
   pointer-events: none;
   z-index: 0;
   overflow: hidden;
+  /* Lv0: 龍の鱗なし */
+  display: none;
+}
+
+/* Lv2以降: 龍の鱗出現 */
+body.lv2 .dragon-scale-bg,
+body.lv3 .dragon-scale-bg,
+body.lv4 .dragon-scale-bg,
+body.lv5 .dragon-scale-bg {
+  display: block;
 }
 
 .dragon-scale-bg::before {
@@ -468,8 +519,22 @@ body.lv5 .scanline-overlay::after {
    NEON FLICKER UTILITIES
    ================================================================ */
 
-.flicker-gold { animation: neon-flicker 6s infinite; }
-.flicker-blue { animation: neon-flicker-blue 5s infinite; }
+/* Lv0: フリッカーなし */
+.flicker-gold { animation: none; }
+.flicker-blue { animation: none; }
+
+/* Lv1以降: フリッカー有効化 */
+body.lv1 .flicker-gold,
+body.lv2 .flicker-gold,
+body.lv3 .flicker-gold,
+body.lv4 .flicker-gold,
+body.lv5 .flicker-gold { animation: neon-flicker 6s infinite; }
+
+body.lv1 .flicker-blue,
+body.lv2 .flicker-blue,
+body.lv3 .flicker-blue,
+body.lv4 .flicker-blue,
+body.lv5 .flicker-blue { animation: neon-flicker-blue 5s infinite; }
 
 /* ================================================================
    REDUCED MOTION FALLBACK

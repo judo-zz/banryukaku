@@ -1,6 +1,13 @@
 /*
   蟠龍閣 — トップページ専用スタイル
   design-system.css を前提として読み込む
+
+  [Codex実装を改良]
+  - ヒーロー背景をメッシュグラデーションへ強化
+  - セクションにスクロールイン演出を追加
+  - ピラーカードにグラスモーフィズム質感を付与
+  - フォームのフォーカス演出を精緻化
+  - ナビゲーションのホバー状態を洗練
 */
 
 /* ================================================================
@@ -15,18 +22,18 @@
   padding: var(--space-2) 0;
   background: linear-gradient(
     180deg,
-    rgba(10, 10, 15, 0.95) 0%,
-    rgba(10, 10, 15, 0.0) 100%
+    rgba(23, 8, 58, 0.96) 0%,
+    rgba(23, 8, 58, 0.0) 100%
   );
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(12px) saturate(1.2);
+  -webkit-backdrop-filter: blur(12px) saturate(1.2);
   border-bottom: 1px solid var(--color-border);
   transition: background var(--transition-base), border-color var(--transition-slow);
 }
 
 /* スクロール後：背景を強化 */
 .site-nav.is-scrolled {
-  background: rgba(10, 10, 15, 0.97);
+  background: rgba(23, 8, 58, 0.97);
   border-bottom-color: var(--color-border-strong);
 }
 
@@ -104,7 +111,7 @@
   position: fixed;
   inset: 0;
   top: 60px;
-  background: rgba(10, 10, 15, 0.98);
+  background: rgba(23, 8, 58, 0.98);
   padding: var(--space-4) var(--space-3);
   gap: var(--space-2);
   border-top: 1px solid var(--color-border);
@@ -131,6 +138,28 @@
 .nav-link[aria-current="page"] {
   color: var(--color-gold);
   text-shadow: var(--glow-text-gold);
+}
+
+/* デスクトップ：ホバー時に下線が左から伸びる */
+@media (min-width: 768px) {
+  .nav-link:not(.nav-link--cta) {
+    position: relative;
+  }
+  .nav-link:not(.nav-link--cta)::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--color-gold);
+    box-shadow: var(--glow-gold);
+    transition: width var(--transition-base);
+  }
+  .nav-link:not(.nav-link--cta):hover::after,
+  .nav-link:not(.nav-link--cta)[aria-current="page"]::after {
+    width: 100%;
+  }
 }
 
 .nav-link--cta {
@@ -189,14 +218,32 @@
   padding: var(--space-16) var(--space-3) var(--space-8);
 }
 
-/* 背景グラデーション重ね */
+/* 背景グラデーション重ね：多層メッシュグラデーション */
 .hero::before {
   content: '';
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 60% 40% at 50% 60%, rgba(139, 0, 0, 0.12) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 30% at 80% 20%, rgba(0, 180, 216, 0.06) 0%, transparent 60%);
+    /* 中央下から昇る深紅の炎（龍の気配） */
+    radial-gradient(ellipse 70% 55% at 50% 80%, rgba(139, 0, 0, 0.18) 0%, transparent 65%),
+    /* 左上から差し込む冷たいシアン光 */
+    radial-gradient(ellipse 45% 35% at 15% 15%, rgba(0, 180, 216, 0.07) 0%, transparent 55%),
+    /* 右上の金のアンビエント光 */
+    radial-gradient(ellipse 35% 25% at 88% 10%, rgba(201, 168, 76, 0.06) 0%, transparent 50%),
+    /* 画面全体を覆う深い暗黒 */
+    radial-gradient(ellipse 100% 100% at 50% 50%, rgba(10, 5, 0, 0) 0%, rgba(5, 3, 8, 0.4) 100%);
+  pointer-events: none;
+}
+
+/* 床から昇る霞：コンテンツに奥行きを与える */
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(0deg, rgba(26, 5, 5, 0.35) 0%, transparent 100%);
   pointer-events: none;
 }
 
@@ -213,8 +260,10 @@
 .hero__dragon-circle {
   width: min(80vw, 600px);
   height: min(80vw, 600px);
-  opacity: 0.6;
+  opacity: 0.7;
   animation: slow-rotate 60s linear infinite;
+  /* 龍紋全体に金のアンビエントグロー */
+  filter: drop-shadow(0 0 12px rgba(201, 168, 76, 0.25));
 }
 
 /* コーナー装飾（中国的な格子模様） */
@@ -257,19 +306,49 @@
   align-items: center;
   text-align: center;
   gap: var(--space-3);
-  animation: fade-up 1s ease both;
 }
 
-/* タグライン */
+/* 子要素ごとにフェードインのディレイを段階的に付与 */
+.hero__tagline {
+  animation: fade-up 0.8s ease both;
+  animation-delay: 0.1s;
+}
+
+.hero__title-wrap {
+  animation: fade-up 0.8s ease both;
+  animation-delay: 0.3s;
+}
+
+.hero__catch {
+  animation: fade-up 0.8s ease both;
+  animation-delay: 0.55s;
+}
+
+.hero__catch-sub {
+  animation: fade-up 0.8s ease both;
+  animation-delay: 0.7s;
+}
+
+.hero__cta-group {
+  animation: fade-up 0.8s ease both;
+  animation-delay: 0.85s;
+}
+
+.hero__status {
+  animation: fade-up 0.8s ease both;
+  animation-delay: 1s;
+}
+
+/* タグライン（アニメーションは上のブロックで定義済み） */
 .hero__tagline {
   font-size: var(--text-xs);
-  letter-spacing: 0.3em;
+  letter-spacing: 0.35em;
   color: var(--color-neon-blue);
   text-shadow: var(--glow-text-blue);
   transition: color var(--transition-slow), text-shadow var(--transition-slow);
 }
 
-/* タイトルラッパー */
+/* タイトルラッパー（アニメーションは上のブロックで定義済み） */
 .hero__title-wrap {
   display: flex;
   flex-direction: column;
@@ -303,22 +382,24 @@
   font-weight: 300;
 }
 
-/* キャッチコピー */
+/* キャッチコピー（アニメーションは上のブロックで定義済み） */
 .hero__catch {
   font-size: clamp(var(--text-md), 3.5vw, var(--text-lg));
   font-weight: 500;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   color: var(--color-gold-lt);
-  text-shadow: 0 0 30px rgba(201, 168, 76, 0.3);
+  text-shadow: 0 0 40px rgba(201, 168, 76, 0.35);
+  line-height: 1.6;
 }
 
 .hero__catch-sub {
   font-size: var(--text-base);
   color: var(--color-text-secondary);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
+  line-height: 1.8;
 }
 
-/* CTAグループ */
+/* CTAグループ（アニメーションは上のブロックで定義済み） */
 .hero__cta-group {
   display: flex;
   flex-wrap: wrap;
@@ -327,7 +408,7 @@
   margin-top: var(--space-2);
 }
 
-/* ステータスライン */
+/* ステータスライン（アニメーションは上のブロックで定義済み） */
 .hero__status {
   display: flex;
   align-items: center;
@@ -376,7 +457,14 @@
   width: 1px;
   height: 48px;
   background: linear-gradient(180deg, var(--color-gold) 0%, transparent 100%);
-  animation: scanline 2s ease-in-out infinite;
+  animation: scroll-line-drop 2s ease-in-out infinite;
+}
+
+@keyframes scroll-line-drop {
+  0%   { opacity: 0; transform: scaleY(0); transform-origin: top; }
+  30%  { opacity: 1; transform: scaleY(1); transform-origin: top; }
+  70%  { opacity: 1; transform: scaleY(1); transform-origin: bottom; }
+  100% { opacity: 0; transform: scaleY(0); transform-origin: bottom; }
 }
 
 /* ================================================================
@@ -402,12 +490,26 @@
   overflow: hidden;
 }
 
+/* シャインエフェクト：ホバー時に光が左から右へ走る */
 .btn::before {
   content: '';
   position: absolute;
-  inset: 0;
-  opacity: 0;
-  transition: opacity var(--transition-fast);
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.18) 50%,
+    transparent 100%
+  );
+  transform: skewX(-15deg);
+  transition: left var(--transition-slow);
+}
+
+.btn:hover::before {
+  left: 125%;
 }
 
 .btn:active { transform: scale(0.97); }
@@ -506,6 +608,84 @@
   border-top: 1px solid var(--color-border);
 }
 
+/* スクロールイン演出 */
+/* Intersection Observer で .is-visible を付与するとフェードイン */
+.section-header,
+.concept__text,
+.concept__pillars,
+.cast-preview__grid,
+.reserve__notice,
+.reserve-form {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.section-header.is-visible,
+.concept__text.is-visible,
+.concept__pillars.is-visible,
+.cast-preview__grid.is-visible,
+.reserve__notice.is-visible,
+.reserve-form.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* コンセプトテキストより pillars を少し遅らせる */
+.concept__pillars {
+  transition-delay: 0.15s;
+}
+
+/* キャストグリッドはカードごとに段差 */
+.cast-preview__grid .cast-card {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+    /* 元のホバー効果を維持 */
+    border-color var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+.cast-preview__grid.is-visible .cast-card:nth-child(1) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0s;
+}
+.cast-preview__grid.is-visible .cast-card:nth-child(2) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.12s;
+}
+.cast-preview__grid.is-visible .cast-card:nth-child(3) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.24s;
+}
+
+/* フォーム要素のディレイ */
+.reserve-form {
+  transition-delay: 0.1s;
+}
+
+/* reduced-motion：アニメーションを無効化して即表示 */
+@media (prefers-reduced-motion: reduce) {
+  .section-header,
+  .concept__text,
+  .concept__pillars,
+  .cast-preview__grid,
+  .cast-preview__grid .cast-card,
+  .reserve__notice,
+  .reserve-form {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 /* ================================================================
    CONCEPT SECTION
    ================================================================ */
@@ -543,14 +723,26 @@
   padding: var(--space-3);
   border: 1px solid var(--color-border);
   border-left: 3px solid var(--color-gold);
-  background: var(--bg-secondary);
+  /* グラスモーフィズム：半透明の奥行き感 */
+  background: linear-gradient(
+    135deg,
+    rgba(18, 18, 26, 0.8) 0%,
+    rgba(12, 10, 18, 0.9) 100%
+  );
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  transition: border-color var(--transition-base), box-shadow var(--transition-base);
+  transition: border-color var(--transition-base), box-shadow var(--transition-base), transform var(--transition-base);
+  /* 内側に微細なグロー */
+  box-shadow: inset 0 1px 0 rgba(201, 168, 76, 0.08);
 }
 
 .pillar:hover {
   border-color: var(--color-gold);
-  box-shadow: inset 3px 0 0 var(--color-gold), var(--glow-gold);
+  box-shadow:
+    inset 3px 0 12px rgba(201, 168, 76, 0.1),
+    var(--glow-gold);
+  transform: translateX(3px);
 }
 
 .pillar__icon {
@@ -604,8 +796,11 @@
 
 .cast-card:hover {
   border-color: var(--color-gold);
-  box-shadow: var(--glow-gold);
-  transform: translateY(-4px);
+  box-shadow:
+    var(--glow-gold),
+    /* カード下に落ちる影で浮遊感を強調 */
+    0 16px 40px rgba(0, 0, 0, 0.6);
+  transform: translateY(-6px);
 }
 
 /* 画像領域 */
@@ -739,16 +934,23 @@
 .form-input {
   width: 100%;
   padding: var(--space-2) var(--space-2);
-  background: var(--bg-secondary);
+  /* 入力フィールドにも微細なグラスモーフィズム */
+  background: linear-gradient(
+    135deg,
+    rgba(18, 18, 26, 0.9) 0%,
+    rgba(23, 8, 58, 0.95) 100%
+  );
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   color: var(--color-text-primary);
   font-family: var(--font-cyber);
   font-size: var(--text-base);
   letter-spacing: 0.1em;
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
   appearance: none;
   -webkit-appearance: none;
+  /* 左端に金のアクセントライン */
+  border-left: 2px solid rgba(201, 168, 76, 0.3);
 }
 
 .form-input::placeholder {
@@ -759,7 +961,18 @@
 .form-input:focus {
   outline: none;
   border-color: var(--color-gold);
-  box-shadow: 0 0 0 2px rgba(201, 168, 76, 0.15), var(--glow-gold);
+  border-left-color: var(--color-gold);
+  border-left-width: 2px;
+  box-shadow:
+    0 0 0 2px rgba(201, 168, 76, 0.12),
+    var(--glow-gold),
+    /* 入力フィールド内側の暖かい金のグロー */
+    inset 0 0 20px rgba(201, 168, 76, 0.04);
+  background: linear-gradient(
+    135deg,
+    rgba(20, 18, 10, 0.95) 0%,
+    rgba(12, 10, 8, 0.98) 100%
+  );
 }
 
 .form-select {
@@ -782,7 +995,11 @@
 .site-footer {
   border-top: 1px solid var(--color-border);
   padding: var(--space-8) 0 var(--space-6);
-  background: var(--bg-secondary);
+  /* フッター背景：上から下に向かって暗くなるグラデーション */
+  background: linear-gradient(180deg, var(--bg-secondary) 0%, rgba(6, 4, 8, 1) 100%);
+  /* 境界線に金のグロー */
+  box-shadow: 0 -1px 0 rgba(201, 168, 76, 0.15),
+              0 -8px 32px rgba(0, 0, 0, 0.5);
 }
 
 .site-footer .container {
