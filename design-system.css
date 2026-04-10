@@ -222,6 +222,13 @@ body {
   color: var(--bg-primary);
 }
 
+/* 隠しテキスト選択時：金の背景＋クリーム文字で読める */
+[data-secret]::selection,
+[data-secret] *::selection {
+  background: rgba(201, 168, 76, 0.5);
+  color: #F5ECD7;
+}
+
 /* スクロールバー（WebKit） */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--bg-primary); }
