@@ -677,6 +677,7 @@
   const trigger2      = document.getElementById('degrade-trigger-2');
 
   let degradeLevel = 0;
+  let degrade2Scheduled = false;
 
   function setDegrade(level) {
     if (level <= degradeLevel) return;
@@ -687,26 +688,24 @@
     }
   }
 
-  const obs1 = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        setDegrade(1);
-        // 少し遅れてLv2へ
+  function checkDegradeTriggers() {
+    const vh = window.innerHeight;
+    const r1 = trigger1.getBoundingClientRect();
+    const r2 = trigger2.getBoundingClientRect();
+
+    if (r1.top < vh && degradeLevel < 1) {
+      setDegrade(1);
+      if (!degrade2Scheduled) {
+        degrade2Scheduled = true;
         setTimeout(() => setDegrade(2), 1200);
       }
-    });
-  }, { threshold: 0, rootMargin: '0px' });
+    }
+    if (r2.top < vh) {
+      setDegrade(3);
+    }
+  }
 
-  const obs2 = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        setDegrade(3);
-      }
-    });
-  }, { threshold: 0, rootMargin: '0px' });
-
-  obs1.observe(trigger1);
-  obs2.observe(trigger2);
+  window.addEventListener('scroll', checkDegradeTriggers, { passive: true });
 
   // ── 応募フォーム ───────────────────────────────────────────────
   function handleApply(e) {
