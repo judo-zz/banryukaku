@@ -294,20 +294,15 @@
       if (count >= 2) brTryLevel(2);
     });
 
-    // 白文字: キャストカード周辺にも追加で仕込む
-    brInitSecret('cast_miju', (count) => {
-      if (count >= 2) brTryLevel(2);
-    });
-
     // DevTools open → Lv2→3へのヒント
-    brInitConsoleHint('▌ BANRYU-SYS ▐  ソースに鍵がある。\n  HTMLコメントを読め。処分報告書は /report/ にある。');
+    brInitConsoleHint('▌ BANRYU-SYS ▐  ソースに鍵がある。\n  HTMLコメントを読め。処分報告書は report/ にある。');
 
-    // Lv3以降はゆめページへの直リンクを表示
+    // Lv2以降はゆめページへの直リンクを表示
     if (brGetLevel() >= 2) {
       const voidCard = document.querySelector('.cast-card--yume .cast-card__bio--void');
       if (voidCard) {
         const link = document.createElement('a');
-        link.href = '../yume/';
+        link.href = 'yume/';   // cast.html はルート直下なので相対パスは yume/
         link.className = 'font-terminal';
         link.style.cssText = 'color:var(--color-text-muted);font-size:var(--text-xs);display:block;margin-top:8px';
         link.textContent = '…ゆめの記録を探す';

@@ -262,8 +262,9 @@ function brInitConsoleHint(msg) {
 // correctEncoded: btoa(正解) ── UkVOUEFJ = btoa('RENPAI')
 function brInitPasswordGate(inputSel, btnSel, correctEncoded, onSuccess) {
   const input = document.querySelector(inputSel);
-  const btn   = document.querySelector(btnSel);
-  if (!input || !btn) return;
+  if (!input) return;
+  // ボタンはオプション。存在しない場合はEnterキーのみで判定
+  const btn = btnSel ? document.querySelector(btnSel) : null;
 
   const attempt = () => {
     const val = input.value.trim().toUpperCase();
@@ -276,10 +277,10 @@ function brInitPasswordGate(inputSel, btnSel, correctEncoded, onSuccess) {
         input.value = '';
         input.placeholder = '……違う';
       }
-    } catch { /* btoa error (non-latin) */ }
+    } catch { /* btoa error (non-latin chars) */ }
   };
 
-  btn.addEventListener('click', attempt);
+  if (btn) btn.addEventListener('click', attempt);
   input.addEventListener('keydown', e => { if (e.key === 'Enter') attempt(); });
 }
 

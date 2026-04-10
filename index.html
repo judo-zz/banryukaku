@@ -131,7 +131,7 @@
       <!-- 装飾的なステータスライン -->
       <div class="hero__status font-cyber" aria-hidden="true">
         <span class="hero__status-dot hero__status-dot--open"></span>
-        <span>OPEN // 19:00 — 05:00</span>
+        <span>OPEN // 20:00 — 05:00</span>
         <span class="hero__status-sep">|</span>
         <span>TEL.予約専用</span>
       </div>
@@ -346,8 +346,8 @@
       </div>
 
       <div class="footer__info font-terminal">
-        <p>〒101-0021 東京都千代田区外神田X-X-X 蟠龍ビルB2F</p>
-        <p>営業時間：19:00 — 05:00（不定休）</p>
+        <p>〒101-0021 東京都千代田区外神田X-X-X 蟠龍ビルB1F</p>
+        <p>営業時間：20:00 — 翌5:00（不定休）</p>
         <p>完全会員制・紹介制</p>
       </div>
 
@@ -412,19 +412,25 @@
       brTryLevel(1);
     });
 
-    // フォームの紹介コード: BANRYU-0001 → Lv1→2 (DevToolsのヒントから発見)
+    // フォームの紹介コード: BANRYU-0001 → Lv1→2
     const codeInput = document.getElementById('code');
     if (codeInput) {
-      codeInput.addEventListener('change', () => {
-        if (codeInput.value.toUpperCase() === 'BANRYU-0001') {
+      const checkCode = () => {
+        if (codeInput.value.trim().toUpperCase() === 'BANRYU-0001') {
           brAddFlag('code_banryu_0001');
-          brTryLevel(2);  // Lv1→2 への一つのルート
+          brTryLevel(2);
         }
+      };
+      // change・Enter・input の3経路で確実に拾う
+      codeInput.addEventListener('change', checkCode);
+      codeInput.addEventListener('keydown', e => { if (e.key === 'Enter') checkCode(); });
+      codeInput.addEventListener('input', () => {
+        if (codeInput.value.trim().toUpperCase() === 'BANRYU-0001') checkCode();
       });
     }
 
-    // DevTools → コンソールにヒント
-    brInitConsoleHint('▌ BANRYU-SYS ▐  コードを見つけた。次は /yume/ を探せ。\n  HINT: フッターのHTMLコメントを確認した者へ — BANRYU-0001');
+    // DevTools → コンソールにヒント（パスは相対表記に統一）
+    brInitConsoleHint('▌ BANRYU-SYS ▐  コードを見つけた。次は yume/ を探せ。\n  HINT: フッターのHTMLコメントを確認した者へ — BANRYU-0001');
 
     // Lv2以降: ゆめのページへのリンクをナビに追加
     if (lv >= 2) {

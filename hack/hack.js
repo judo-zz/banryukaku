@@ -269,7 +269,14 @@
     },
 
     goto(args) {
-      const paths = { 'top': '/', 'yume': '/yume/', 'report': '/report/', 'final': '/final/', 'cast': '/cast.html' };
+      // hack/ サブディレクトリからの相対パス
+      const paths = {
+        'top':    '../',
+        'yume':   '../yume/',
+        'report': '../report/',
+        'final':  '../final/',
+        'cast':   '../cast.html',
+      };
       const target = args[0] && paths[args[0]];
       if (!target) return [{ text: `goto: 不明なパス。使用可能: ${Object.keys(paths).join(', ')}`, type: 'error' }];
       window.location.href = target;
@@ -298,9 +305,24 @@
     // 入力をログに表示
     await addLine(`root@BANRYU-CORE:~$ ${raw}`, 'system');
 
+    // ── パスワード判定（RENPAI） ─────────────────────────────
+    // brInitPasswordGate と同じ判定ロジック
+    try {
+      if (btoa(raw.trim().toUpperCase()) === 'UkVOUEFJ') {
+        await addLine('// 認証コードを照合中...', 'warn', 400);
+        await addLine('// ........', 'warn', 900);
+        await addLine('// MATCH: Level 4 clearance confirmed.', 'warn', 1400);
+        await addLine('// アクセスを許可します。リダイレクトします...', 'system', 2200);
+        if (typeof brTryLevel === 'function') brTryLevel(4);
+        setTimeout(() => { window.location.href = '../final/'; }, 3600);
+        return;
+      }
+    } catch { /* btoa error */ }
+
     const handler = commands[cmd];
     if (!handler) {
       await addLine(`コマンドが見つかりません: ${cmd}`, 'error');
+      await addLine('// help でコマンド一覧を確認してください。', 'output');
       return;
     }
 
