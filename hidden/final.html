@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ja" data-level="0">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>蟠龍閣 ——次の龍へ</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      background-color: #000;
+      color: #ddbb77;
+      font-family: serif, sans-serif;
+      font-size: 14px;
+      line-height: 2;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+
+    /* 金の粒子背景（CSS animationで代替） */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(180,100,0,0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(150,80,0,0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 60% 80%, rgba(120,60,0,0.05) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    #hd-search {
+      position: relative;
+      z-index: 10;
+      background-color: rgba(0,0,0,0.8);
+      border-bottom: 1px solid #331100;
+      padding: 7px 12px;
+      text-align: center;
+    }
+
+    #hd-search input[type="search"] {
+      width: 240px;
+      padding: 4px 7px;
+      font-size: 12px;
+      background: #000;
+      border: 1px solid #442211;
+      color: #ddbb77;
+      font-family: monospace;
+      outline: none;
+    }
+    #hd-search input[type="search"]::placeholder { color: #443322; }
+
+    #hd-search button {
+      padding: 4px 12px;
+      background: #110500;
+      color: #ddbb77;
+      font-size: 12px;
+      font-family: monospace;
+      border: 1px solid #664422;
+      cursor: pointer;
+    }
+
+    #search-error {
+      color: #cc4444;
+      font-size: 11px;
+      margin-top: 4px;
+      min-height: 1.2em;
+    }
+
+    #main {
+      position: relative;
+      z-index: 1;
+      max-width: 660px;
+      margin: 0 auto;
+      padding: 60px 24px 80px;
+      text-align: center;
+    }
+
+    #deco-top {
+      font-size: 24px;
+      color: #664422;
+      letter-spacing: 0.3em;
+      margin-bottom: 30px;
+    }
+
+    #title-block {
+      margin-bottom: 50px;
+    }
+
+    #main-title {
+      font-size: 42px;
+      font-weight: 900;
+      color: #ffcc44;
+      letter-spacing: 0.25em;
+      line-height: 1.2;
+      text-shadow:
+        0 0 40px rgba(255,180,0,0.4),
+        2px 2px 0 #550000;
+      margin-bottom: 14px;
+    }
+
+    #sub-title {
+      font-size: 13px;
+      color: #886633;
+      letter-spacing: 0.3em;
+    }
+
+    hr.gold {
+      border: none;
+      border-top: 1px solid #664422;
+      margin: 30px auto;
+      width: 200px;
+    }
+
+    .message-block {
+      text-align: left;
+      background-color: rgba(10,5,0,0.7);
+      border: 1px solid #443311;
+      padding: 28px 32px;
+      margin-bottom: 30px;
+      font-size: 14px;
+      line-height: 2.4;
+      color: #ccaa77;
+    }
+
+    .message-block p { margin: 0 0 1em; }
+    .message-block .em { color: #ffcc44; font-weight: bold; }
+    .message-block .soft { color: #664433; }
+
+    .yume-block {
+      text-align: right;
+      background-color: rgba(5,0,0,0.7);
+      border-left: 3px solid #663322;
+      padding: 20px 24px 20px 16px;
+      margin-bottom: 30px;
+      font-size: 13px;
+      color: #997755;
+      line-height: 2.2;
+      font-style: italic;
+    }
+
+    .yume-block .yume-sig {
+      color: #664433;
+      font-size: 11px;
+      margin-top: 10px;
+      font-style: normal;
+    }
+
+    #final-seal {
+      margin: 40px auto 30px;
+      text-align: center;
+    }
+
+    #seal-circle {
+      display: inline-block;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid #ffcc44;
+      line-height: 120px;
+      font-size: 48px;
+      color: #ffcc44;
+      font-family: serif;
+      text-shadow: 0 0 20px rgba(255,180,0,0.5);
+      box-shadow:
+        0 0 30px rgba(255,150,0,0.2),
+        inset 0 0 20px rgba(100,50,0,0.3);
+    }
+
+    #seal-label {
+      font-size: 11px;
+      color: #664422;
+      margin-top: 10px;
+      letter-spacing: 0.2em;
+    }
+
+    #closing {
+      font-size: 12px;
+      color: #554433;
+      line-height: 2;
+      margin-top: 40px;
+    }
+
+    #back-link {
+      margin-top: 40px;
+    }
+
+    #back-link a {
+      color: #664422;
+      font-size: 11px;
+      text-decoration: none;
+      border-bottom: 1px dotted #442211;
+    }
+
+    #back-link a:hover { color: #aa7733; }
+
+    #lv-badge {
+      display: inline-block;
+      background-color: #110800;
+      border: 1px solid #ffcc44;
+      color: #ffcc44;
+      font-size: 11px;
+      padding: 3px 12px;
+      letter-spacing: 0.12em;
+      margin-bottom: 20px;
+    }
+      html, body { overflow-x: hidden; }
+  </style>
+</head>
+<body>
+
+<div id="hd-search">
+  <input type="search" id="search-input" placeholder="キーワード検索...">
+  <button id="search-btn">検索</button>
+  <br><span id="search-error"></span>
+</div>
+
+<div id="main">
+
+  <div id="deco-top">✦ ✦ ✦</div>
+
+  <div id="lv-badge">調査レベル MAX — 蟠龍、解放</div>
+
+  <div id="title-block">
+    <div id="main-title">蟠龍閣</div>
+    <div id="sub-title">BANRYUKAKU ✦ THE DRAGON AWAKENS</div>
+  </div>
+
+  <hr class="gold">
+
+  <div class="message-block">
+    <p>ここまで辿り着いたあなたへ。</p>
+
+    <p>
+      蟠龍閣は、ただのコンセプトカフェではありませんでした。<br>
+      龍牌会が次の龍を探すための——<span class="em">舞台</span>でした。
+    </p>
+
+    <p>
+      あなたはゆめの声を聞いた。<br>
+      黒瀬の記録を読んだ。<br>
+      地下施設の地図を見た。<br>
+      廃棄記録を目にした。<br>
+      そして、ここに来た。
+    </p>
+
+    <p>
+      <span class="em">それがすべての答えです。</span>
+    </p>
+
+    <p class="soft">
+      龍牌会は、自発的に真実を追いかけた者だけを認めます。<br>
+      知識を持つ者ではなく、諦めない者を。
+    </p>
+  </div>
+
+  <div class="yume-block">
+    「あたしは失敗作なんかじゃなかった。<br>
+    ただ、あなたのために、扉を開けていただけ。<br>
+    <br>
+    次の龍は、あなたです。<br>
+    覚えていてください——あたしのことを。」
+
+    <div class="yume-sig">— ゆめ　2024.11.02</div>
+  </div>
+
+  <hr class="gold">
+
+  <div id="final-seal">
+    <div id="seal-circle">龍</div>
+    <div id="seal-label">NEXT DRAGON — RECOGNIZED</div>
+  </div>
+
+  <hr class="gold">
+
+  <div id="closing">
+    <p>
+      蟠龍閣は今日から、あなたの蟠龍閣です。<br>
+      ここに来るたびに、何かが変わっているかもしれません。<br>
+      あるいは、変わらないかもしれません。
+    </p>
+    <p>
+      ゆめは廃棄されました。<br>
+      でも、ゆめの遺志は——あなたの中に生きています。
+    </p>
+    <p style="color:#332211;">
+      ✦ &nbsp; ✦ &nbsp; ✦
+    </p>
+  </div>
+
+  <div id="back-link">
+    <a href="../index.html">← 蟠龍閣 トップに戻る</a>
+  </div>
+
+</div>
+
+<script src="../arg.js"></script>
+<script>
+  // このページに来たらLv5を確定
+  ARG.tryLevel(5);
+</script>
+</body>
+</html>

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ja" data-level="0">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>選定基準 RPK-SEL-001 | 龍牌会</title>
+  <style>
+    body {
+      background-color: #020008;
+      color: #aabbdd;
+      font-family: monospace;
+      font-size: 13px;
+      line-height: 1.8;
+      margin: 0;
+      padding: 0;
+    }
+
+    a { color: #445599; text-decoration: underline; }
+    a:hover { color: #88aaff; }
+
+    #hd-topbar {
+      background-color: #060010;
+      color: #334477;
+      font-size: 11px;
+      padding: 5px 12px;
+      text-align: center;
+      border-bottom: 1px solid #222244;
+      letter-spacing: 0.08em;
+    }
+
+    #hd-search {
+      background-color: #040008;
+      border-bottom: 1px solid #111133;
+      padding: 7px 12px;
+      text-align: center;
+    }
+
+    #hd-search input[type="search"] {
+      width: 240px;
+      padding: 4px 7px;
+      font-size: 12px;
+      background: #020008;
+      border: 1px solid #333366;
+      color: #aabbdd;
+      font-family: monospace;
+      outline: none;
+    }
+    #hd-search input[type="search"]::placeholder { color: #334455; }
+
+    #hd-search button {
+      padding: 4px 12px;
+      background: #060015;
+      color: #aabbdd;
+      font-size: 12px;
+      font-family: monospace;
+      border: 1px solid #445577;
+      cursor: pointer;
+    }
+
+    #search-error {
+      color: #cc4444;
+      font-size: 11px;
+      margin-top: 4px;
+      min-height: 1.2em;
+    }
+
+    #hd-breadcrumb {
+      padding: 6px 16px;
+      font-size: 11px;
+      color: #334466;
+      border-bottom: 1px dotted #222244;
+    }
+
+    #wrapper {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 20px 16px 40px;
+    }
+
+    .doc-header {
+      border: 1px solid #334477;
+      padding: 14px 18px;
+      margin-bottom: 24px;
+      background-color: #040010;
+    }
+
+    .doc-title {
+      font-size: 15px;
+      font-weight: bold;
+      color: #7788cc;
+      letter-spacing: 0.12em;
+      margin-bottom: 8px;
+      border-bottom: 1px solid #333366;
+      padding-bottom: 6px;
+    }
+
+    .doc-meta {
+      font-size: 11px;
+      color: #334466;
+      line-height: 2;
+    }
+
+    .doc-meta span { display: inline-block; min-width: 130px; }
+
+    .section-label {
+      font-size: 11px;
+      color: #445577;
+      letter-spacing: 0.15em;
+      border-bottom: 1px dotted #222244;
+      padding-bottom: 4px;
+      margin-bottom: 10px;
+      margin-top: 22px;
+    }
+
+    /* 選定基準リスト */
+    .criteria-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .criteria-list li {
+      padding: 10px 12px;
+      border-bottom: 1px dotted #222244;
+      font-size: 13px;
+      position: relative;
+    }
+
+    .criteria-list li:last-child { border-bottom: none; }
+
+    .c-num {
+      color: #334477;
+      font-size: 11px;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .c-text { color: #8899bb; }
+    .c-eval { display: none; }  /* JSで開示 */
+
+    /* 評価結果がついた状態 */
+    .criteria-list li.revealed .c-eval {
+      display: block;
+      color: #66ff88;
+      font-size: 11px;
+      margin-top: 4px;
+    }
+
+    .criteria-list li.revealed .c-text {
+      color: #aabbdd;
+    }
+
+    .check { color: #44ff66; font-weight: bold; }
+    .cross { color: #ff4444; font-weight: bold; }
+
+    /* 最終判定ボックス */
+    #final-verdict {
+      display: none;
+      background-color: #050018;
+      border: 2px solid #5566bb;
+      padding: 20px 24px;
+      margin-top: 24px;
+      text-align: center;
+    }
+
+    #final-verdict.visible { display: block; }
+
+    #final-verdict .fv-label {
+      font-size: 11px;
+      color: #445577;
+      letter-spacing: 0.15em;
+      margin-bottom: 10px;
+    }
+
+    #final-verdict .fv-result {
+      font-size: 24px;
+      font-weight: 900;
+      color: #ffcc44;
+      letter-spacing: 0.2em;
+      text-shadow: 0 0 20px rgba(255,204,68,0.5);
+      margin-bottom: 12px;
+    }
+
+    #final-verdict .fv-sub {
+      font-size: 13px;
+      color: #8899cc;
+      line-height: 2;
+    }
+
+    .hint-box {
+      border: 1px dashed #223355;
+      padding: 10px 14px;
+      margin-top: 24px;
+      font-size: 11px;
+      color: #334466;
+      line-height: 1.8;
+    }
+
+    .doc-footer {
+      margin-top: 30px;
+      border-top: 1px solid #222244;
+      padding-top: 10px;
+      font-size: 11px;
+      color: #334466;
+    }
+      html, body { overflow-x: hidden; }
+  </style>
+</head>
+<body>
+
+<div id="hd-topbar">
+  ▌ 龍牌会 — 選定部門　SELECTION CRITERIA　RPK-SEL-001 ▐
+</div>
+
+<div id="hd-search">
+  <input type="search" id="search-input" placeholder="キーワード検索...">
+  <button id="search-btn">検索</button>
+  <br><span id="search-error"></span>
+</div>
+
+<div id="hd-breadcrumb">
+  <a href="../index.html">← 蟠龍閣トップに戻る</a>
+  &nbsp;/&nbsp; 選定部門 &nbsp;/&nbsp; 選定基準
+</div>
+
+<div id="wrapper">
+
+  <div class="doc-header">
+    <div class="doc-title">龍の選定基準 — DRAGON SELECTION CRITERIA</div>
+    <div class="doc-meta">
+      <span>文書番号</span>: RPK-SEL-001<br>
+      <span>区分</span>: 最高機密<br>
+      <span>管理者</span>: 龍牌会 選定部門<br>
+      <span>目的</span>: 次代の総龍（そうりゅう）に相応しい候補を特定する
+    </div>
+  </div>
+
+  <div class="section-label">■ 選定基準項目 CRITERIA</div>
+  <p style="font-size:11px; color:#334466; margin-bottom:14px;">
+    ▶ 以下の基準を評価します。適合率が70%以上の候補を「次の龍」として承認します。
+  </p>
+
+  <ul class="criteria-list" id="criteria-list">
+    <li id="c1">
+      <span class="c-num">基準 01 / CURIOSITY</span>
+      <span class="c-text">隠されたものに対し、自発的に調査・追跡する能力を持つこと</span>
+      <span class="c-eval"><span class="check">✓ PASS</span> — このページを発見した時点で充足</span>
+    </li>
+    <li id="c2">
+      <span class="c-num">基準 02 / PERSISTENCE</span>
+      <span class="c-text">困難なルートを経由しても調査を諦めないこと</span>
+      <span class="c-eval"><span class="check">✓ PASS</span> — 複数のキーワードを辿った記録あり</span>
+    </li>
+    <li id="c3">
+      <span class="c-num">基準 03 / INSIGHT</span>
+      <span class="c-text">表面的な情報の裏にある構造を読み取れること</span>
+      <span class="c-eval"><span class="check">✓ PASS</span> — 縦読み・隠しマークを解読</span>
+    </li>
+    <li id="c4">
+      <span class="c-num">基準 04 / LOYALTY</span>
+      <span class="c-text">龍牌会の理念に反しない価値観を持つこと</span>
+      <span class="c-eval"><span class="check">✓ PASS</span> — 評価中（現時点では問題なし）</span>
+    </li>
+    <li id="c5">
+      <span class="c-num">基準 05 / ADAPTABILITY</span>
+      <span class="c-text">未知の状況・情報に対し柔軟に対処できること</span>
+      <span class="c-eval"><span class="check">✓ PASS</span> — このサイトへの適応速度より判定</span>
+    </li>
+    <li id="c6">
+      <span class="c-num">基準 06 / ORIGIN</span>
+      <span class="c-text">「外から来る者」であること（先代総龍の預言より）</span>
+      <span class="c-eval"><span class="check">✓ PASS</span> — サイト来訪者は定義上「外から来る者」</span>
+    </li>
+    <li id="c7">
+      <span class="c-num">基準 07 / RECOGNITION</span>
+      <span class="c-text">ゆめが認めた者であること</span>
+      <span class="c-eval"><span class="check">✓ PASS</span> — RENPAI バックドアを通過した記録あり</span>
+    </li>
+  </ul>
+
+  <div id="final-verdict">
+    <div class="fv-label">■ 選定審査 最終判定 FINAL VERDICT</div>
+    <div class="fv-result">適合率：100%</div>
+    <div class="fv-sub">
+      判定：<strong style="color:#ffcc44;">次の龍</strong><br>
+      <br>
+      あなたは全ての基準を充足しました。<br>
+      龍牌会は、あなたを次の総龍として認定します。<br>
+      <br>
+      <span style="color:#5566aa; font-size:12px;">
+        管理端末にアクセスして、引き継ぎを完了してください。<br>
+        「<span style="color:#8899cc;">龍牌会 端末</span>」を検索してください。
+      </span>
+    </div>
+  </div>
+
+  <div class="hint-box" id="hint-box">
+    &gt; 評価結果を読み込んでいます……<br>
+    &gt; 「<span style="color:#7788bb;">龍牌会 端末</span>」を検索して最終ステップへ進んでください。
+  </div>
+
+  <div class="doc-footer">
+    龍牌会 選定部門 &nbsp;|&nbsp; RPK-SEL-001 &nbsp;|&nbsp; 最高機密 &nbsp;|&nbsp; 無断複製禁止
+  </div>
+
+</div>
+
+<script src="../arg.js"></script>
+<script>
+  // 順番に基準を「開示」するアニメーション
+  const items = document.querySelectorAll('#criteria-list li');
+  const verdict = document.getElementById('final-verdict');
+  const hintBox = document.getElementById('hint-box');
+
+  function revealCriteria() {
+    let delay = 600;
+    items.forEach((item, i) => {
+      setTimeout(() => {
+        item.classList.add('revealed');
+        if (i === items.length - 1) {
+          // 全基準開示後、判定を表示
+          setTimeout(() => {
+            verdict.classList.add('visible');
+            hintBox.style.display = 'none';
+          }, 800);
+        }
+      }, delay);
+      delay += 400;
+    });
+  }
+
+  // ページ読み込み後2秒で開示スタート
+  setTimeout(revealCriteria, 2000);
+</script>
+</body>
+</html>

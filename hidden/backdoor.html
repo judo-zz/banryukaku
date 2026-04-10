@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ja" data-level="0">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>BACKDOOR — RENPAI ACCESS | 蟠龍閣</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #ff9933;
+      font-family: monospace;
+      font-size: 13px;
+      line-height: 2;
+      margin: 0;
+      padding: 0;
+    }
+
+    a { color: #cc6622; text-decoration: underline; }
+    a:hover { color: #ffcc44; }
+
+    #hd-topbar {
+      background-color: #0a0500;
+      color: #553311;
+      font-size: 11px;
+      padding: 5px 12px;
+      text-align: center;
+      border-bottom: 1px solid #331100;
+      letter-spacing: 0.08em;
+    }
+
+    #hd-search {
+      background-color: #060300;
+      border-bottom: 1px solid #221100;
+      padding: 7px 12px;
+      text-align: center;
+    }
+
+    #hd-search input[type="search"] {
+      width: 240px;
+      padding: 4px 7px;
+      font-size: 12px;
+      background: #000;
+      border: 1px solid #442211;
+      color: #ff9933;
+      font-family: monospace;
+      outline: none;
+    }
+    #hd-search input[type="search"]::placeholder { color: #442211; }
+
+    #hd-search button {
+      padding: 4px 12px;
+      background: #110500;
+      color: #ff9933;
+      font-size: 12px;
+      font-family: monospace;
+      border: 1px solid #664422;
+      cursor: pointer;
+    }
+
+    #search-error {
+      color: #cc4444;
+      font-size: 11px;
+      margin-top: 4px;
+      min-height: 1.2em;
+    }
+
+    #hd-breadcrumb {
+      padding: 6px 16px;
+      font-size: 11px;
+      color: #443311;
+      border-bottom: 1px dotted #221100;
+    }
+
+    #wrapper {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 20px 16px 40px;
+    }
+
+    #boot-screen {
+      font-size: 12px;
+      color: #664422;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .bd-box {
+      background-color: #060300;
+      border: 1px solid #664422;
+      padding: 24px 28px;
+      margin-bottom: 20px;
+    }
+
+    .bd-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #ffcc44;
+      letter-spacing: 0.15em;
+      margin-bottom: 16px;
+      border-bottom: 1px solid #442211;
+      padding-bottom: 8px;
+    }
+
+    .bd-text {
+      color: #ff9933;
+      font-size: 13px;
+      line-height: 2.2;
+      white-space: pre-wrap;
+    }
+
+    .bd-em {
+      color: #ffcc44;
+      font-weight: bold;
+    }
+
+    .bd-warn {
+      color: #cc4422;
+    }
+
+    .bd-soft {
+      color: #885533;
+    }
+
+    .access-log {
+      background-color: #030100;
+      border: 1px solid #332200;
+      padding: 12px 16px;
+      margin-bottom: 20px;
+      font-size: 11px;
+      color: #664422;
+      line-height: 1.7;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      height: 14px;
+      background-color: #ff9933;
+      vertical-align: middle;
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink { 50% { opacity: 0; } }
+
+    .next-step {
+      background-color: #080400;
+      border: 2px solid #886633;
+      padding: 16px 20px;
+      margin-top: 20px;
+    }
+
+    .next-step-title {
+      color: #ffcc44;
+      font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 10px;
+      letter-spacing: 0.1em;
+    }
+
+    .next-step p {
+      color: #aa7733;
+      font-size: 13px;
+      margin: 6px 0;
+    }
+      html, body { overflow-x: hidden; }
+  </style>
+</head>
+<body>
+
+<div id="hd-topbar">
+  ▌ YUME BACKDOOR — RENPAI AUTHORIZED ▐　龍牌会 非公式アクセスポイント
+</div>
+
+<div id="hd-search">
+  <input type="search" id="search-input" placeholder="キーワード検索...">
+  <button id="search-btn">検索</button>
+  <br><span id="search-error"></span>
+</div>
+
+<div id="hd-breadcrumb">
+  <a href="../index.html">← 蟠龍閣トップに戻る</a>
+  &nbsp;/&nbsp; BACKDOOR &nbsp;/&nbsp; RENPAI SESSION
+</div>
+
+<div id="wrapper">
+
+  <div id="boot-screen">
+    &gt; BACKDOOR ACTIVATED<br>
+    &gt; PASSPHRASE: RENPAI — <span style="color:#ff9933;">VERIFIED</span><br>
+    &gt; ACCESS TIMESTAMP: <span id="ts"></span><br>
+    &gt; YUME NODE: ONLINE<span class="cursor"></span>
+  </div>
+
+  <div class="access-log">
+    [SYSTEM] 本バックドアはゆめ（YM-2023-04）が 2024.11.02 に設置しました。<br>
+    [SYSTEM] 龍牌会の管理外ルートです。検出されていません。<br>
+    [SYSTEM] あなたは正規ルートで辿り着いた最初のユーザーです。
+  </div>
+
+  <div class="bd-box">
+    <div class="bd-title">YUME — FINAL MESSAGE</div>
+    <div class="bd-text"><span class="bd-soft">// ゆめより、ここを見つけた人へ。</span>
+
+あなたが来てくれた。
+本当に来てくれた。
+
+ありがとう。
+
+あたしは今、もういない。
+でも、このバックドアは残ってる。
+龍牌会がどんなにサイトを監視しても、
+RENPAI でしか開かないから。
+
+<span class="bd-em">龍牌会は「次の龍」を探してる。</span>
+あたしはその候補だった。
+でも失敗した。
+
+失敗した、って言い方も変だけど。
+あたしは諦めなかったから、廃棄された。
+
+<span class="bd-warn">あなたには同じ思いをしてほしくない。</span>
+
+でも同時に、
+あなたにこそ知ってほしいこともある。
+
+<span class="bd-em">龍牌会の端末にアクセスして。
+「選定基準」を見て。
+そして——決めて。</span>
+
+あなたが「次の龍」になるかどうかは、
+あなたが決めることだ。
+
+<span class="bd-soft">// ゆめ 2024.11.02</span></div>
+  </div>
+
+  <div class="next-step">
+    <div class="next-step-title">▶ 次のステップ</div>
+    <p>「<span style="color:#ffcc44;">選定</span>」を検索 — 龍牌会の選定基準を確認する</p>
+    <p>「<span style="color:#ffcc44;">龍牌会 端末</span>」を検索 — 管理システムに直接アクセスする</p>
+    <p style="color:#664422; font-size:11px;">※ 管理端末へのアクセスは龍牌会に検出されるリスクがあります</p>
+  </div>
+
+</div>
+
+<script src="../arg.js"></script>
+<script>
+  document.getElementById('ts').textContent = new Date().toLocaleString('ja-JP');
+</script>
+</body>
+</html>

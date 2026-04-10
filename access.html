@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="ja" data-level="0">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="蟠龍閣へのアクセス。秋葉原駅より徒歩5分。営業時間・住所・地図はこちら。">
+  <meta name="robots" content="noindex, nofollow">
+  <title>ACCESS アクセス | 蟠龍閣</title>
+  <style>
+    body {
+      background-color: #0d0000;
+      background-image:
+        repeating-linear-gradient(0deg, rgba(180,0,0,0.06) 0px, rgba(180,0,0,0.06) 1px, transparent 1px, transparent 28px),
+        repeating-linear-gradient(90deg, rgba(180,0,0,0.06) 0px, rgba(180,0,0,0.06) 1px, transparent 1px, transparent 28px);
+      color: #fff8f0;
+      font-family: sans-serif;
+      font-size: 13px;
+      line-height: 1.7;
+      margin: 0;
+      padding: 0;
+    }
+
+    a { color: #ffcc44; text-decoration: underline; }
+    a:hover { color: #ff9999; }
+    a:visited { color: #ffaa66; }
+    p { margin: 0.5em 0; }
+    hr { border: none; border-top: 2px solid #880000; margin: 18px 0; }
+
+    #wrapper { max-width: 800px; margin: 0 auto; padding: 0 8px; }
+
+    #topline {
+      background-color: #cc0000;
+      color: #fff;
+      font-size: 12px;
+      font-weight: bold;
+      text-align: center;
+      padding: 6px 0;
+      letter-spacing: 0.1em;
+      border-bottom: 3px double #ff6666;
+    }
+
+    #header {
+      background-color: #1a0000;
+      border-bottom: 3px solid #cc0000;
+      padding: 14px 12px 10px;
+      text-align: center;
+    }
+
+    #site-title {
+      font-size: 36px;
+      font-weight: 900;
+      color: #ffcc44;
+      letter-spacing: 0.18em;
+      line-height: 1.1;
+      text-shadow: 2px 2px 0 #880000;
+    }
+
+    #site-subtitle {
+      font-size: 11px;
+      color: #ffaaaa;
+      letter-spacing: 0.22em;
+      margin-top: 3px;
+    }
+
+    #site-catch {
+      font-size: 15px;
+      font-weight: bold;
+      color: #ffeecc;
+      margin-top: 6px;
+    }
+
+    #nav {
+      background-color: #330000;
+      border-bottom: 2px solid #880000;
+      padding: 6px 0;
+      text-align: center;
+    }
+
+    #nav a {
+      color: #ffcc44;
+      font-size: 12px;
+      font-weight: bold;
+      text-decoration: none;
+      padding: 0 10px;
+      border-right: 1px solid #660000;
+      letter-spacing: 0.08em;
+    }
+    #nav a:last-child { border-right: none; }
+    #nav a:hover { color: #ff9999; }
+    #nav a.current { color: #fff; border-bottom: 2px solid #ffcc44; }
+
+    #search-area {
+      background-color: #1a0005;
+      border-bottom: 1px solid #550000;
+      padding: 8px 12px;
+      text-align: center;
+    }
+
+    #search-area input[type="search"] {
+      width: 280px;
+      padding: 5px 8px;
+      font-size: 12px;
+      background: #0d0000;
+      border: 1px solid #880000;
+      color: #fff8f0;
+      outline: none;
+    }
+    #search-area input[type="search"]::placeholder { color: #775555; }
+
+    #search-area button {
+      padding: 5px 14px;
+      background: #880000;
+      color: #ffcc44;
+      font-size: 12px;
+      font-weight: bold;
+      border: 1px solid #cc0000;
+      cursor: pointer;
+      letter-spacing: 0.08em;
+    }
+
+    #search-error {
+      color: #ff7777;
+      font-size: 11px;
+      margin-top: 4px;
+      min-height: 1.2em;
+    }
+
+    .section-box {
+      background-color: #120000;
+      border: 2px solid #880000;
+      margin-bottom: 18px;
+      padding: 14px 16px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 900;
+      color: #ffcc44;
+      border-bottom: 2px solid #550000;
+      padding-bottom: 6px;
+      margin-bottom: 12px;
+      letter-spacing: 0.1em;
+    }
+
+    .section-title-deco { color: #ff9999; }
+
+    .deco-line {
+      text-align: center;
+      color: #880000;
+      font-size: 12px;
+      margin: 10px 0;
+      letter-spacing: 0.2em;
+    }
+
+    .gold-text { color: #ffcc44; }
+    .red-text  { color: #ff6666; }
+
+    #page-title-box {
+      background-color: #1a0005;
+      border: 2px solid #cc0000;
+      padding: 16px;
+      margin-bottom: 18px;
+      text-align: center;
+    }
+
+    #page-title {
+      font-size: 30px;
+      font-weight: 900;
+      color: #ffcc44;
+      letter-spacing: 0.2em;
+      text-shadow: 2px 2px 0 #880000;
+      margin-bottom: 6px;
+    }
+
+    #page-lead {
+      font-size: 12px;
+      color: #ffddcc;
+      line-height: 2;
+    }
+
+    /* 基本情報テーブル */
+    .info-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 10px;
+    }
+
+    .info-table th,
+    .info-table td {
+      padding: 8px 10px;
+      font-size: 12px;
+      border-bottom: 1px dotted #440000;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    .info-table tr:last-child th,
+    .info-table tr:last-child td { border-bottom: none; }
+
+    .info-table th {
+      color: #ffcc44;
+      font-weight: bold;
+      width: 110px;
+      white-space: nowrap;
+    }
+
+    /* 地図エリア */
+    #map-wrap {
+      background-color: #0d0005;
+      border: 2px solid #550000;
+      padding: 12px;
+      margin-bottom: 14px;
+      position: relative;
+    }
+
+    #map-area {
+      width: 100%;
+      background-color: #140000;
+      border: 1px solid #440000;
+      position: relative;
+      overflow: hidden;
+      /* アスペクト比を保つ */
+      padding-top: 56%;
+    }
+
+    #map-inner {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+    }
+
+    /* SVGマップ */
+    #map-svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* 隠し龍マーク */
+    #dragon-mark {
+      position: absolute;
+      bottom: 12px;
+      right: 14px;
+      font-size: 15px;
+      color: rgba(120, 0, 0, 0.28);
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-select: none;
+      font-family: serif;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    #dragon-mark:hover {
+      color: rgba(200, 0, 0, 0.5);
+    }
+
+    /* 龍マークを押したときのポップアップ */
+    #dragon-popup {
+      display: none;
+      position: absolute;
+      bottom: 36px;
+      right: 10px;
+      background: #000;
+      border: 1px solid #444;
+      padding: 8px 12px;
+      font-size: 11px;
+      color: #888;
+      font-family: monospace;
+      white-space: nowrap;
+      z-index: 10;
+    }
+
+    #dragon-popup.open { display: block; }
+
+    #dragon-popup .dp-code {
+      color: #cc6600;
+      font-weight: bold;
+      letter-spacing: 0.1em;
+    }
+
+    /* 凡例 */
+    #map-legend {
+      font-size: 11px;
+      color: #886655;
+      margin-top: 8px;
+      line-height: 1.8;
+    }
+
+    /* 交通案内 */
+    .route-item {
+      border-left: 3px solid #880000;
+      padding-left: 12px;
+      margin-bottom: 12px;
+    }
+
+    .route-label {
+      font-size: 11px;
+      font-weight: bold;
+      color: #ffcc44;
+      letter-spacing: 0.1em;
+      margin-bottom: 3px;
+    }
+
+    .note-box {
+      background-color: #0d0005;
+      border: 1px dashed #550000;
+      padding: 10px 14px;
+      margin-top: 12px;
+      font-size: 11px;
+      color: #bbaaaa;
+      line-height: 1.8;
+    }
+
+    #footer {
+      background-color: #0d0000;
+      border-top: 3px double #880000;
+      padding: 20px 12px;
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    #footer-logo {
+      font-size: 22px;
+      font-weight: 900;
+      color: #ffcc44;
+      letter-spacing: 0.2em;
+      text-shadow: 1px 1px 0 #880000;
+      margin-bottom: 8px;
+    }
+
+    #footer p {
+      font-size: 10px;
+      color: #664444;
+      margin: 3px 0;
+      letter-spacing: 0.12em;
+    }
+      html, body { overflow-x: hidden; }
+  </style>
+</head>
+<body>
+
+<div id="topline">
+  ★ 翌1時まで営業中！　18:00〜翌1:00　★　秋葉原・ネオ・オリエンタル コンセプトカフェ　★　お席のご予約はお電話にて　★
+</div>
+
+<div id="header">
+  <div id="site-title">蟠龍閣</div>
+  <div id="site-subtitle">BANRYUKAKU ✦ CYBER CHINA CONCEPT CAFE ✦ AKIHABARA</div>
+  <div id="site-catch">「異空間で出会う、カワイイチャイナガール！」</div>
+</div>
+
+<div id="nav">
+  <a href="index.html">TOP</a>
+  <a href="cast.html">CAST</a>
+  <a href="menu.html">MENU</a>
+  <a href="recruit.html">RECRUIT</a>
+  <a href="access.html" class="current">ACCESS</a>
+  <a href="index.html#reserve">RESERVE</a>
+</div>
+
+<div id="search-area">
+  <input type="search" id="search-input" placeholder="キーワードを入力して検索...">
+  <button id="search-btn">検索</button>
+  <br>
+  <span id="search-error"></span>
+</div>
+
+<div id="wrapper">
+
+  <br>
+
+  <div id="page-title-box">
+    <div id="page-title">✦ ACCESS ✦ アクセス</div>
+    <div id="page-lead">
+      秋葉原駅より徒歩約5分。<br>
+      ♥ 迷ったらお電話ください。キャストがご案内します ♥
+    </div>
+  </div>
+
+  <div class="deco-line">★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★</div>
+
+  <!-- 店舗情報 -->
+  <div class="section-box">
+    <div class="section-title"><span class="section-title-deco">★</span> 店舗情報 SHOP INFO</div>
+
+    <table class="info-table">
+      <tr>
+        <th>店名</th>
+        <td>蟠龍閣（ばんりゅうかく）</td>
+      </tr>
+      <tr>
+        <th>住所</th>
+        <td>
+          〒101-0021<br>
+          東京都千代田区外神田 X-XX-X<br>
+          蟠龍ビル 3F<br>
+          <span style="font-size:10px; color:#664444;">※ビル管理番号 MAP-RY-023（警備室問い合わせ用）</span>
+        </td>
+      </tr>
+      <tr>
+        <th>営業時間</th>
+        <td>
+          <strong class="gold-text">18:00〜翌1:00</strong>（不定休）<br>
+          <span style="font-size:11px; color:#886655;">臨時休業はSNSにてお知らせします。</span>
+        </td>
+      </tr>
+      <tr>
+        <th>予約受付</th>
+        <td>16:00〜翌0:00</td>
+      </tr>
+      <tr>
+        <th>電話番号</th>
+        <td>非公開（ご予約はウェブフォームにて）</td>
+      </tr>
+    </table>
+
+  </div>
+
+  <div class="deco-line">✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦</div>
+
+  <!-- 地図 -->
+  <div class="section-box">
+    <div class="section-title"><span class="section-title-deco">♥</span> 地図 MAP</div>
+
+    <div id="map-wrap">
+      <div id="map-area">
+        <div id="map-inner">
+          <!-- SVGマップ：秋葉原周辺の手書き風 -->
+          <svg id="map-svg" viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg">
+            <!-- 背景 -->
+            <rect width="600" height="320" fill="#0d0000"/>
+
+            <!-- 道路（横） -->
+            <rect x="0" y="140" width="600" height="18" fill="#2a1010"/>
+            <line x1="0" y1="149" x2="600" y2="149" stroke="#553333" stroke-width="1" stroke-dasharray="12,8"/>
+            <!-- 道路（縦） -->
+            <rect x="190" y="0" width="20" height="320" fill="#2a1010"/>
+            <line x1="200" y1="0" x2="200" y2="320" stroke="#553333" stroke-width="1" stroke-dasharray="10,7"/>
+            <!-- 別の縦道 -->
+            <rect x="380" y="0" width="14" height="320" fill="#1e0e0e"/>
+
+            <!-- 秋葉原駅 -->
+            <rect x="60" y="110" width="90" height="50" rx="2" fill="#1a0505" stroke="#880000" stroke-width="2"/>
+            <text x="105" y="130" text-anchor="middle" font-size="11" fill="#ffcc44" font-family="sans-serif" font-weight="bold">秋葉原駅</text>
+            <text x="105" y="148" text-anchor="middle" font-size="9" fill="#886655" font-family="sans-serif">JR / TX / 日比谷線</text>
+
+            <!-- 電気街出口マーカー -->
+            <circle cx="150" cy="149" r="5" fill="#cc0000"/>
+            <text x="160" y="135" font-size="9" fill="#ffaaaa" font-family="sans-serif">電気街口</text>
+
+            <!-- 大通り（中央通り）ラベル -->
+            <text x="300" y="134" text-anchor="middle" font-size="10" fill="#886655" font-family="sans-serif">中央通り</text>
+
+            <!-- 路地 -->
+            <rect x="280" y="149" width="100" height="10" fill="#1e0808"/>
+            <text x="335" y="175" text-anchor="middle" font-size="9" fill="#664444" font-family="sans-serif">路地（近道あり）</text>
+
+            <!-- ランドマーク A -->
+            <rect x="230" y="60" width="70" height="40" rx="2" fill="#160505" stroke="#440000" stroke-width="1"/>
+            <text x="265" y="83" text-anchor="middle" font-size="9" fill="#886655" font-family="sans-serif">コンビニ</text>
+
+            <!-- ランドマーク B -->
+            <rect x="420" y="80" width="80" height="45" rx="2" fill="#160505" stroke="#440000" stroke-width="1"/>
+            <text x="460" y="105" text-anchor="middle" font-size="9" fill="#886655" font-family="sans-serif">家電量販店</text>
+
+            <!-- ランドマーク C -->
+            <rect x="420" y="170" width="60" height="35" rx="2" fill="#160505" stroke="#440000" stroke-width="1"/>
+            <text x="450" y="191" text-anchor="middle" font-size="9" fill="#886655" font-family="sans-serif">書店</text>
+
+            <!-- 蟠龍閣ビル -->
+            <rect x="290" y="190" width="75" height="55" rx="2" fill="#2a0010" stroke="#cc0000" stroke-width="2"/>
+            <text x="328" y="212" text-anchor="middle" font-size="10" fill="#ffcc44" font-family="sans-serif" font-weight="bold">蟠龍ビル</text>
+            <text x="328" y="226" text-anchor="middle" font-size="9" fill="#ff9999" font-family="sans-serif">3F ▲</text>
+            <text x="328" y="239" text-anchor="middle" font-size="8" fill="#664444" font-family="sans-serif">ここ！</text>
+
+            <!-- 矢印：駅から店まで -->
+            <path d="M 155 149 Q 200 160 280 200" stroke="#880000" stroke-width="2" fill="none" stroke-dasharray="6,4" marker-end="url(#arrow)"/>
+            <defs>
+              <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L8,3 z" fill="#880000"/>
+              </marker>
+            </defs>
+
+            <!-- 徒歩時間 -->
+            <text x="195" y="188" font-size="10" fill="#ffaaaa" font-family="sans-serif" font-weight="bold">徒歩5分</text>
+
+            <!-- 方位 -->
+            <text x="20" y="30" font-size="10" fill="#553333" font-family="sans-serif">N</text>
+            <line x1="27" y1="22" x2="27" y2="12" stroke="#553333" stroke-width="1"/>
+            <polygon points="27,10 23,22 27,18 31,22" fill="#553333"/>
+
+            <!-- 隠し龍マーク（薄く・地下施設の位置に）: 右下隅、半透明 -->
+            <text
+              id="svg-dragon"
+              x="562"
+              y="308"
+              text-anchor="middle"
+              font-size="18"
+              fill="rgba(100,0,0,0.22)"
+              font-family="serif"
+              font-weight="900"
+              style="cursor:pointer;"
+              onclick="toggleDragonPopup()"
+            >龍</text>
+          </svg>
+
+          <!-- HTML側の龍マーク（小さく右下） -->
+          <div id="dragon-mark" onclick="toggleDragonPopup()" title="">龍</div>
+
+          <!-- ポップアップ -->
+          <div id="dragon-popup">
+            <span style="color:#444; font-size:10px;">&gt; FACILITY CODE DETECTED<br>&gt; </span><span class="dp-code">MAP-RY-023</span><br>
+            <span style="color:#333; font-size:10px;">&gt; 地下施設区画図 参照要</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="map-legend">
+        ★ 地図は概略図です。実際の道路配置と異なる場合があります。<br>
+        ★ 蟠龍ビル3Fエレベーターで直通。看板が目印。
+      </div>
+    </div>
+
+  </div>
+
+  <div class="deco-line">★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★</div>
+
+  <!-- 交通アクセス -->
+  <div class="section-box">
+    <div class="section-title"><span class="section-title-deco">★</span> 交通案内 ACCESS GUIDE</div>
+
+    <div class="route-item">
+      <div class="route-label">JR 秋葉原駅 — 電気街口</div>
+      <div>電気街口を出て、中央通りを北へ。2つ目の路地を右折。蟠龍ビル3Fへ。<br>
+        <strong class="gold-text">徒歩 約5分</strong>
+      </div>
+    </div>
+
+    <div class="route-item">
+      <div class="route-label">東京メトロ 日比谷線 — 秋葉原駅</div>
+      <div>3番出口を出て左折。中央通りを北へ直進。<br>
+        <strong class="gold-text">徒歩 約7分</strong>
+      </div>
+    </div>
+
+    <div class="route-item">
+      <div class="route-label">つくばエクスプレス（TX） — 秋葉原駅</div>
+      <div>A1出口より中央通りへ。北方向へ徒歩。<br>
+        <strong class="gold-text">徒歩 約6分</strong>
+      </div>
+    </div>
+
+    <div class="note-box">
+      ★ 周辺にコインパーキングあり（提携なし。料金はご自身でご確認ください）。<br>
+      ★ ビル入口の暗証番号ドアは、インターホンで呼び出してください。<br>
+      ★ 夜間は看板ライトが点灯しています。見つからない場合は予約フォームよりご連絡ください。
+    </div>
+
+  </div>
+
+  <div class="deco-line">✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦</div>
+
+  <!-- 予約 -->
+  <div class="section-box" id="reserve" style="text-align:center;">
+    <div class="section-title"><span class="section-title-deco">♥</span> ご予約 RESERVE</div>
+
+    <p>
+      ♥ 確実にご案内するために、事前予約をおすすめしています ♥<br>
+      予約受付：<strong class="gold-text">16:00〜翌0:00</strong>
+    </p>
+    <p style="margin-top:10px;">
+      <a href="index.html#reserve" style="background:#880000; color:#ffcc44; padding:8px 24px; text-decoration:none; font-weight:bold; font-size:14px; letter-spacing:0.1em;">
+        ★ 予約フォームへ ★
+      </a>
+    </p>
+
+    <div class="note-box" style="margin-top:16px; text-align:left;">
+      ★ 当日ご来店も歓迎ですが、混雑時はお待ちいただく場合があります。<br>
+      ★ お誕生日・記念日のご利用はご予約時にお申し付けください。特別演出をご用意します。
+    </div>
+
+  </div>
+
+  <div id="footer">
+    <div id="footer-logo">蟠龍閣</div>
+    <p>BANRYUKAKU ✦ CYBER CHINA CONCEPT CAFE</p>
+    <p>東京都千代田区外神田 ✦ 秋葉原</p>
+    <p>営業時間：18:00〜翌1:00（不定休）</p>
+    <p style="margin-top:8px; font-size:9px; color:#442222;">
+      © 蟠龍閣 All Rights Reserved.
+    </p>
+  </div>
+
+</div><!-- /#wrapper -->
+
+<script src="arg.js"></script>
+<script>
+  let dragonOpen = false;
+
+  function toggleDragonPopup() {
+    const popup = document.getElementById('dragon-popup');
+    dragonOpen = !dragonOpen;
+    if (dragonOpen) {
+      popup.classList.add('open');
+      // フラグ登録（発見ボーナス。レベルアップはしない）
+      ARG.addFlag('dragon_mark_found');
+      // 3秒後に自動で閉じる
+      setTimeout(() => {
+        popup.classList.remove('open');
+        dragonOpen = false;
+      }, 4000);
+    } else {
+      popup.classList.remove('open');
+    }
+  }
+
+  // SVG内の龍も同じ関数でOK（onclick属性で呼ばれる）
+</script>
+</body>
+</html>

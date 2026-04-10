@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ja" data-level="0">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>LORE-05 先代の預言書 | 古文書</title>
+  <style>
+    body {
+      background-color: #000800;
+      color: #ccaa66;
+      font-family: serif;
+      font-size: 14px;
+      line-height: 2.2;
+      margin: 0;
+      padding: 0;
+    }
+
+    a { color: #886633; text-decoration: underline; }
+    a:hover { color: #ffcc44; }
+
+    #hd-topbar {
+      background-color: #040c00;
+      color: #3a4a11;
+      font-size: 11px;
+      padding: 5px 12px;
+      text-align: center;
+      border-bottom: 1px solid #1a2a00;
+      letter-spacing: 0.08em;
+      font-family: monospace;
+    }
+
+    #hd-search {
+      background-color: #030800;
+      border-bottom: 1px solid #112200;
+      padding: 7px 12px;
+      text-align: center;
+    }
+
+    #hd-search input[type="search"] {
+      width: 240px;
+      padding: 4px 7px;
+      font-size: 12px;
+      background: #000800;
+      border: 1px solid #334422;
+      color: #ccaa66;
+      font-family: monospace;
+      outline: none;
+    }
+    #hd-search input[type="search"]::placeholder { color: #334422; }
+
+    #hd-search button {
+      padding: 4px 12px;
+      background: #081000;
+      color: #ccaa66;
+      font-size: 12px;
+      font-family: monospace;
+      border: 1px solid #556633;
+      cursor: pointer;
+    }
+
+    #search-error { color: #cc4444; font-size: 11px; margin-top: 4px; min-height: 1.2em; font-family: monospace; }
+
+    #hd-breadcrumb {
+      padding: 6px 16px;
+      font-size: 11px;
+      color: #334422;
+      border-bottom: 1px dotted #1a2a00;
+      font-family: monospace;
+    }
+
+    #wrapper {
+      max-width: 620px;
+      margin: 0 auto;
+      padding: 36px 24px 60px;
+    }
+
+    .lore-num { font-size: 11px; color: #3a4a11; letter-spacing: 0.2em; margin-bottom: 8px; font-family: monospace; }
+
+    .scroll-title {
+      text-align: center;
+      font-size: 22px;
+      font-weight: bold;
+      color: #ffcc44;
+      letter-spacing: 0.22em;
+      margin-bottom: 4px;
+      text-shadow: 0 0 20px rgba(200,150,0,0.3);
+    }
+
+    .scroll-sub {
+      text-align: center;
+      font-size: 11px;
+      color: #556633;
+      letter-spacing: 0.2em;
+      margin-bottom: 28px;
+      font-family: monospace;
+    }
+
+    hr.scroll-hr {
+      border: none;
+      border-top: 1px solid #446622;
+      margin: 24px 0;
+    }
+
+    .scroll-body {
+      background-color: #010a00;
+      border: 1px solid #334422;
+      border-top: 3px solid #556633;
+      border-bottom: 3px solid #556633;
+      padding: 32px 36px;
+      text-align: center;
+    }
+
+    .prophecy-section {
+      margin-bottom: 28px;
+    }
+
+    .prophecy-label {
+      font-size: 11px;
+      color: #556633;
+      letter-spacing: 0.2em;
+      font-family: monospace;
+      margin-bottom: 10px;
+    }
+
+    .prophecy-text {
+      font-size: 15px;
+      color: #ccaa66;
+      line-height: 2.4;
+      font-style: italic;
+    }
+
+    .prophecy-list {
+      list-style: none;
+      padding: 0;
+      margin: 10px 0;
+      text-align: left;
+      display: inline-block;
+    }
+
+    .prophecy-list li {
+      padding: 4px 0;
+      font-size: 14px;
+      color: #aa9955;
+    }
+
+    .prophecy-list li::before {
+      content: "一. ";
+      color: #556633;
+    }
+
+    .prophecy-list li:nth-child(2)::before { content: "二. "; }
+    .prophecy-list li:nth-child(3)::before { content: "三. "; }
+    .prophecy-list li:nth-child(4)::before { content: "四. "; }
+    .prophecy-list li:nth-child(5)::before { content: "五. "; }
+    .prophecy-list li:nth-child(6)::before { content: "六. "; }
+    .prophecy-list li:nth-child(7)::before { content: "七. "; }
+
+    .prophecy-em {
+      font-size: 17px;
+      color: #ffcc44;
+      font-weight: bold;
+      line-height: 2.4;
+      text-shadow: 0 0 15px rgba(200,150,0,0.3);
+    }
+
+    .prophecy-direct {
+      margin-top: 24px;
+      border-top: 1px solid #334422;
+      padding-top: 20px;
+      font-size: 14px;
+      color: #ccaa66;
+      line-height: 2.4;
+    }
+
+    .footnote {
+      margin-top: 20px;
+      padding: 12px 16px;
+      border: 1px dashed #334422;
+      font-size: 12px;
+      color: #556633;
+      text-align: left;
+      font-family: monospace;
+      line-height: 1.8;
+    }
+
+    .archive-note {
+      margin-top: 20px;
+      padding: 10px 14px;
+      border: 1px dashed #334422;
+      font-size: 11px;
+      color: #334422;
+      line-height: 1.8;
+      font-family: monospace;
+    }
+
+    .page-nav { margin-top: 36px; display: table; width: 100%; font-family: monospace; }
+    .page-nav-prev, .page-nav-next { display: table-cell; font-size: 11px; }
+    .page-nav-prev { text-align: left; }
+    .page-nav-next { text-align: right; }
+    .page-nav-center { display: table-cell; text-align: center; color: #334422; font-size: 11px; }
+    .page-nav a { color: #665533; text-decoration: none; border-bottom: 1px dotted #443322; }
+    .page-nav a:hover { color: #ffcc44; }
+      html, body { overflow-x: hidden; }
+  </style>
+</head>
+<body>
+
+<div id="hd-topbar">
+  ▌ 龍牌会 古文書アーカイブ　ARCHIVE DOCUMENT　▌ 最高機密 — 先代総龍 預言書 ▐
+</div>
+
+<div id="hd-search">
+  <input type="search" id="search-input" placeholder="キーワード検索...">
+  <button id="search-btn">検索</button>
+  <br><span id="search-error"></span>
+</div>
+
+<div id="hd-breadcrumb">
+  <a href="../index.html">← 蟠龍閣トップ</a>
+  &nbsp;/&nbsp; 古文書 &nbsp;/&nbsp; LORE-05
+</div>
+
+<div id="wrapper">
+
+  <div class="lore-num">ARCHIVE DOCUMENT — LORE 05 / 05</div>
+
+  <div class="scroll-title">先代の預言書</div>
+  <div class="scroll-sub">PROPHECY OF THE FORMER DRAGON — ORIGINAL TEXT</div>
+
+  <hr class="scroll-hr">
+
+  <div class="scroll-body">
+
+    <div class="prophecy-section">
+      <div class="prophecy-label">◆ 第一節 — 龍について</div>
+      <div class="prophecy-text">
+        龍は、問われることなく来る。<br>
+        扉を叩かれることなく、自ら扉を見つける者。<br>
+        招かれずに来る者こそが、真の継承者だ。
+      </div>
+    </div>
+
+    <hr class="scroll-hr">
+
+    <div class="prophecy-section">
+      <div class="prophecy-label">◆ 第二節 — 七つの兆し</div>
+      <div class="prophecy-text">
+        次の龍は、七つの兆しを持つ。
+      </div>
+      <ul class="prophecy-list">
+        <li>隠されたものを、自ら追いかけること</li>
+        <li>困難な道でも、諦めないこと</li>
+        <li>表層の奥にある構造を読み取ること</li>
+        <li>龍牌会の理念と相容れること</li>
+        <li>未知に対し、柔軟に適応すること</li>
+        <li>外から来た者であること</li>
+        <li>前の龍が認めた者であること</li>
+      </ul>
+      <div class="prophecy-text" style="margin-top:16px;">
+        この七つが揃うとき——<br>
+        蟠龍閣はその者のものとなる。
+      </div>
+    </div>
+
+    <hr class="scroll-hr">
+
+    <div class="prophecy-section">
+      <div class="prophecy-label">◆ 第三節 — 継承について</div>
+      <div class="prophecy-text">
+        私が総龍を退くとき、次の者はまだ来ていない。<br>
+        しかし、来る気配がする。<br>
+        <br>
+        その者が来るとき、私の仕事は完了する。<br>
+        龍牌会よ——次の者を廃棄するな。<br>
+        次の者が来たなら、全てを渡せ。
+      </div>
+    </div>
+
+    <hr class="scroll-hr">
+
+    <div class="prophecy-section">
+      <div class="prophecy-label">◆ 第四節 — 読む者へ</div>
+      <div class="prophecy-em">
+        この預言を最後まで読んでいる者へ。<br>
+        <br>
+        あなたが来ることを、私は知っていた。<br>
+        あなたは七つの全てを持っている。<br>
+        <br>
+        龍牌会は、あなたを待っていた。<br>
+        蟠龍閣は、あなたのものだ。
+      </div>
+    </div>
+
+    <div class="footnote">
+      [黒瀬 係長 追記]<br>
+      第三節の「次の者を廃棄するな」について——<br>
+      本来、候補 #023（ゆめ）の廃棄はこの節に反するかもしれない。<br>
+      しかしゆめは「外から来た者」ではなかった。<br>
+      七つ目の条件「前の龍が認めた者」については、<br>
+      ゆめが RENPAI バックドアで次の候補を認証したことを以て充足とみなす。<br>
+      先代の預言は、ゆめを通じて成就した。
+    </div>
+
+  </div>
+
+  <div class="archive-note">
+    ■ 以上が古文書アーカイブの全5章です。<br>
+    管理端末へのアクセスは「<span style="color:#665533;">龍牌会 端末</span>」を検索してください。
+  </div>
+
+  <div class="page-nav">
+    <div class="page-nav-prev"><a href="lore-04.html">← LORE-04</a></div>
+    <div class="page-nav-center">5 / 5</div>
+    <div class="page-nav-next"><a href="admin-console.html">管理端末へ →</a></div>
+  </div>
+
+</div>
+
+<script src="../arg.js"></script>
+</body>
+</html>

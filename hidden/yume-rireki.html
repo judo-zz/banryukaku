@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ja" data-level="0">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>在籍記録 YM-2023-04 | 蟠龍閣内部</title>
+  <style>
+    body {
+      background-color: #030002;
+      color: #c8b89a;
+      font-family: monospace;
+      font-size: 13px;
+      line-height: 1.8;
+      margin: 0;
+      padding: 0;
+    }
+
+    a { color: #aa8844; text-decoration: underline; }
+    a:hover { color: #ffcc44; }
+
+    #hd-topbar {
+      background-color: #1a0000;
+      color: #773333;
+      font-size: 11px;
+      padding: 5px 12px;
+      text-align: center;
+      border-bottom: 1px solid #440000;
+      letter-spacing: 0.08em;
+    }
+
+    #hd-search {
+      background-color: #0a0005;
+      border-bottom: 1px solid #330000;
+      padding: 7px 12px;
+      text-align: center;
+    }
+
+    #hd-search input[type="search"] {
+      width: 240px;
+      padding: 4px 7px;
+      font-size: 12px;
+      background: #030002;
+      border: 1px solid #550000;
+      color: #c8b89a;
+      font-family: monospace;
+      outline: none;
+    }
+    #hd-search input[type="search"]::placeholder { color: #554433; }
+
+    #hd-search button {
+      padding: 4px 12px;
+      background: #550000;
+      color: #aa8844;
+      font-size: 12px;
+      font-family: monospace;
+      border: 1px solid #880000;
+      cursor: pointer;
+    }
+
+    #search-error {
+      color: #aa4444;
+      font-size: 11px;
+      margin-top: 4px;
+      min-height: 1.2em;
+    }
+
+    #hd-breadcrumb {
+      padding: 6px 16px;
+      font-size: 11px;
+      color: #553333;
+      border-bottom: 1px dotted #330000;
+    }
+
+    #wrapper {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 20px 16px 40px;
+    }
+
+    /* 文書スタイル */
+    .doc-header {
+      border: 1px solid #554433;
+      padding: 14px 18px;
+      margin-bottom: 24px;
+      background-color: #060003;
+    }
+
+    .doc-title {
+      font-size: 16px;
+      font-weight: bold;
+      color: #aa8844;
+      letter-spacing: 0.12em;
+      margin-bottom: 8px;
+      border-bottom: 1px solid #443322;
+      padding-bottom: 6px;
+    }
+
+    .doc-meta {
+      font-size: 11px;
+      color: #664433;
+      line-height: 2;
+    }
+
+    .doc-meta span {
+      display: inline-block;
+      min-width: 140px;
+    }
+
+    .stamp {
+      float: right;
+      border: 2px solid #880000;
+      color: #880000;
+      font-size: 18px;
+      font-weight: 900;
+      padding: 6px 12px;
+      letter-spacing: 0.1em;
+      margin-top: -4px;
+      font-family: serif;
+    }
+
+    .section {
+      margin-bottom: 22px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      color: #773333;
+      letter-spacing: 0.15em;
+      border-bottom: 1px dotted #443322;
+      padding-bottom: 4px;
+      margin-bottom: 10px;
+    }
+
+    .eval-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    .eval-table th,
+    .eval-table td {
+      padding: 5px 8px;
+      border-bottom: 1px dotted #332211;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .eval-table th {
+      color: #886633;
+      width: 100px;
+      white-space: nowrap;
+    }
+
+    .eval-ok   { color: #88aa66; }
+    .eval-warn { color: #aaaa44; }
+    .eval-ng   { color: #aa5533; }
+    .eval-crit { color: #cc2222; font-weight: bold; }
+
+    .doc-footer {
+      margin-top: 30px;
+      border-top: 1px solid #443322;
+      padding-top: 10px;
+      font-size: 11px;
+      color: #553322;
+      line-height: 1.8;
+    }
+
+    .redacted {
+      background-color: #220000;
+      color: #220000;
+      user-select: none;
+    }
+    .redacted:hover {
+      color: #774444;
+    }
+      html, body { overflow-x: hidden; }
+  </style>
+</head>
+<body>
+
+<div id="hd-topbar">
+  ▌ BANRYUKAKU INTERNAL ▐　閲覧制限 — 龍牌会内部資料　▌ RESTRICTED ACCESS ▐
+</div>
+
+<div id="hd-search">
+  <input type="search" id="search-input" placeholder="キーワード検索...">
+  <button id="search-btn">検索</button>
+  <br><span id="search-error"></span>
+</div>
+
+<div id="hd-breadcrumb">
+  <a href="../index.html">← 蟠龍閣トップに戻る</a>
+  &nbsp;/&nbsp; 内部記録 &nbsp;/&nbsp; キャスト在籍記録
+</div>
+
+<div id="wrapper">
+
+  <div class="doc-header">
+    <div class="stamp">廃棄済</div>
+    <div class="doc-title">キャスト在籍記録 — CAST RECORD</div>
+    <div class="doc-meta">
+      <span>管理番号</span>: YM-2023-04<br>
+      <span>文書区分</span>: 内部限定 / 龍牌会承認<br>
+      <span>作成者</span>: 黒瀬（係長）<br>
+      <span>最終更新</span>: 2024.11.04
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">■ 基本情報 PERSONAL INFO</div>
+    <table class="eval-table">
+      <tr><th>氏名（芸名）</th><td>ゆめ（Yume）</td></tr>
+      <tr><th>本名</th><td><span class="redacted">████████████</span></td></tr>
+      <tr><th>採用日</th><td>2023.04.01</td></tr>
+      <tr><th>最終出勤日</th><td>2024.11.03</td></tr>
+      <tr><th>在籍期間</th><td>1年7ヶ月</td></tr>
+      <tr><th>退店区分</th><td>龍牌会規定第7条による処置（社外向け：一身上の都合）</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-label">■ 評価履歴 EVALUATION LOG</div>
+    <table class="eval-table">
+      <tr>
+        <th>2023.06</th>
+        <td><span class="eval-ok">◎ 優良</span> — 接客スコア 94 / 常連獲得数 月+8</td>
+      </tr>
+      <tr>
+        <th>2023.09</th>
+        <td><span class="eval-ok">◎ 優良</span> — 指名数 店内2位。明るく誠実。選定候補として記録</td>
+      </tr>
+      <tr>
+        <th>2024.01</th>
+        <td><span class="eval-ok">○ 良好</span> — 業務態度は問題なし。やや内向きになった印象</td>
+      </tr>
+      <tr>
+        <th>2024.04</th>
+        <td><span class="eval-warn">△ 注意</span> — 「選定」「龍牌会」について質問が増加。情報管理を指導</td>
+      </tr>
+      <tr>
+        <th>2024.07</th>
+        <td><span class="eval-warn">△ 警告</span> — 内部資料フォルダへの不正アクセス記録あり。黒瀬係長が直接面談</td>
+      </tr>
+      <tr>
+        <th>2024.09</th>
+        <td><span class="eval-ng">✕ 要審査</span> — 「先代の龍」について調査している形跡。審査開始を決定</td>
+      </tr>
+      <tr>
+        <th>2024.10</th>
+        <td><span class="eval-ng">✕ 審査中</span> — 選定基準との適合率 38%。担当：黒瀬係長</td>
+      </tr>
+      <tr>
+        <th>2024.11.03</th>
+        <td><span class="eval-crit">▶ 判定：失敗作 / 処置：廃棄（手続き完了）</span></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-label">■ 備考 NOTES</div>
+    <p style="color:#886644;">
+      退店に際し「一身上の都合」として処理。<br>
+      家族・知人への通知は龍牌会が代行。<br>
+      SNS・連絡先は凍結済み。<br>
+      処置詳細は廃棄記録（<span style="color:#aa4444;">「廃棄」</span>を検索）を参照のこと。
+    </p>
+    <p style="color:#664433; font-size:11px; margin-top:14px;">
+      ＊ 本文書は龍牌会内部のみで有効です。外部への持ち出しは第12条違反となります。
+    </p>
+  </div>
+
+  <div class="doc-footer">
+    承認：黒瀬（龍牌会 選定部門係長） &nbsp;|&nbsp; 文書番号：BRK-REC-2024-1103-YM &nbsp;|&nbsp; 電子捺印：済
+  </div>
+
+</div>
+
+<script src="../arg.js"></script>
+</body>
+</html>

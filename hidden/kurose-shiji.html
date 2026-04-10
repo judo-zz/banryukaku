@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ja" data-level="0">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>黒瀬 — 指示記録 | 蟠龍閣内部</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #33aa55;
+      font-family: monospace;
+      font-size: 13px;
+      line-height: 1.9;
+      margin: 0;
+      padding: 0;
+    }
+
+    a { color: #558833; text-decoration: underline; }
+    a:hover { color: #aaff66; }
+
+    #hd-topbar {
+      background-color: #001100;
+      color: #226633;
+      font-size: 11px;
+      padding: 5px 12px;
+      text-align: center;
+      border-bottom: 1px solid #003300;
+      letter-spacing: 0.08em;
+    }
+
+    #hd-search {
+      background-color: #000800;
+      border-bottom: 1px solid #002200;
+      padding: 7px 12px;
+      text-align: center;
+    }
+
+    #hd-search input[type="search"] {
+      width: 240px;
+      padding: 4px 7px;
+      font-size: 12px;
+      background: #000;
+      border: 1px solid #224422;
+      color: #33aa55;
+      font-family: monospace;
+      outline: none;
+    }
+    #hd-search input[type="search"]::placeholder { color: #224422; }
+
+    #hd-search button {
+      padding: 4px 12px;
+      background: #001a00;
+      color: #33aa55;
+      font-size: 12px;
+      font-family: monospace;
+      border: 1px solid #226633;
+      cursor: pointer;
+    }
+
+    #search-error {
+      color: #cc4444;
+      font-size: 11px;
+      margin-top: 4px;
+      min-height: 1.2em;
+    }
+
+    #hd-breadcrumb {
+      padding: 6px 16px;
+      font-size: 11px;
+      color: #225533;
+      border-bottom: 1px dotted #112211;
+    }
+
+    #wrapper {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 20px 16px 40px;
+    }
+
+    .term-header {
+      color: #226633;
+      font-size: 11px;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .mail-item {
+      border: 1px solid #113311;
+      padding: 14px 16px;
+      margin-bottom: 16px;
+      background-color: #000a00;
+    }
+
+    .mail-meta {
+      font-size: 11px;
+      color: #226633;
+      border-bottom: 1px dotted #112211;
+      padding-bottom: 6px;
+      margin-bottom: 10px;
+      line-height: 1.8;
+    }
+
+    .mail-meta span {
+      display: inline-block;
+      min-width: 60px;
+      color: #338844;
+    }
+
+    .mail-subject {
+      font-size: 13px;
+      font-weight: bold;
+      color: #44bb66;
+      margin-bottom: 10px;
+    }
+
+    .mail-body {
+      color: #33aa55;
+      font-size: 13px;
+      line-height: 1.9;
+      white-space: pre-wrap;
+    }
+
+    /* 内容がだんだん不穏になる */
+    .mail-item.warn  { border-color: #334411; background-color: #060800; }
+    .mail-item.warn .mail-body { color: #aaaa44; }
+    .mail-item.warn .mail-subject { color: #cccc44; }
+
+    .mail-item.danger { border-color: #441100; background-color: #080200; }
+    .mail-item.danger .mail-body { color: #aa6633; }
+    .mail-item.danger .mail-subject { color: #cc4422; }
+    .mail-item.danger .mail-meta { color: #663311; border-color: #441100; }
+    .mail-item.danger .mail-meta span { color: #884422; }
+
+    .mail-item.final {
+      border-color: #660000;
+      background-color: #0a0000;
+    }
+    .mail-item.final .mail-body { color: #664433; font-size: 12px; }
+    .mail-item.final .mail-subject { color: #880000; }
+
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      height: 13px;
+      background-color: #33aa55;
+      vertical-align: middle;
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    .hint-box {
+      border: 1px dashed #225533;
+      padding: 10px 14px;
+      margin-top: 24px;
+      font-size: 11px;
+      color: #226633;
+      line-height: 1.8;
+    }
+      html, body { overflow-x: hidden; }
+  </style>
+</head>
+<body>
+
+<div id="hd-topbar">
+  ▌ BANRYUKAKU INTERNAL ▐　閲覧制限 — 龍牌会内部資料　▌ RESTRICTED ACCESS ▐
+</div>
+
+<div id="hd-search">
+  <input type="search" id="search-input" placeholder="キーワード検索...">
+  <button id="search-btn">検索</button>
+  <br><span id="search-error"></span>
+</div>
+
+<div id="hd-breadcrumb">
+  <a href="../index.html">← 蟠龍閣トップに戻る</a>
+  &nbsp;/&nbsp; 内部記録 &nbsp;/&nbsp; 黒瀬係長 指示ログ
+</div>
+
+<div id="wrapper">
+
+  <div class="term-header">
+    &gt; MAIL ARCHIVE — KUROSE / YUME THREAD<br>
+    &gt; 取得日時: 2024.11.04 03:12:08<br>
+    &gt; 件数: 7件 （削除済み含む復元）<span class="cursor"></span>
+  </div>
+
+  <!-- メール1: 普通 -->
+  <div class="mail-item">
+    <div class="mail-meta">
+      <span>送信者</span>: kurose@banryukaku-internal.jp<br>
+      <span>宛先</span>: yume@banryukaku-cast.jp<br>
+      <span>日時</span>: 2024.06.20 18:44
+    </div>
+    <div class="mail-subject">件名: 業務連絡・今月のシフトについて</div>
+    <div class="mail-body">ゆめさん、お疲れさまです。黒瀬です。
+
+来月のシフトについて希望を確認したいと思います。
+また、先日の接客スコアですが今月も好成績でした。
+このまま頑張ってください。
+
+気になることがあればいつでも相談を。
+— 黒瀬</div>
+  </div>
+
+  <!-- メール2: 普通 -->
+  <div class="mail-item">
+    <div class="mail-meta">
+      <span>送信者</span>: kurose@banryukaku-internal.jp<br>
+      <span>宛先</span>: yume@banryukaku-cast.jp<br>
+      <span>日時</span>: 2024.09.02 21:17
+    </div>
+    <div class="mail-subject">件名: 重要なお話があります</div>
+    <div class="mail-body">ゆめさん、少々お時間をいただけますか。
+
+あなたのことを高く評価しています。
+近いうちに「特別なポジション」についてお話しできればと思っています。
+
+詳細は直接。次の出勤日に少し早めに来ていただけますか。
+— 黒瀬</div>
+  </div>
+
+  <!-- メール3: 少し不穏 -->
+  <div class="mail-item warn">
+    <div class="mail-meta">
+      <span>送信者</span>: kurose@banryukaku-internal.jp<br>
+      <span>宛先</span>: yume@banryukaku-cast.jp<br>
+      <span>日時</span>: 2024.09.28 23:55
+    </div>
+    <div class="mail-subject">件名: 選定審査について（重要）</div>
+    <div class="mail-body">ゆめさん。
+
+先日のお話の続きです。
+あなたは「選定」の対象として正式に登録されました。
+
+これは名誉なことです。
+詳細については、当分の間、他のキャストには話さないでください。
+
+龍牌会の規定になります。ご理解ください。
+— 黒瀬 係長</div>
+  </div>
+
+  <!-- メール4: 不穏 -->
+  <div class="mail-item warn">
+    <div class="mail-meta">
+      <span>送信者</span>: kurose@banryukaku-internal.jp<br>
+      <span>宛先</span>: yume@banryukaku-cast.jp<br>
+      <span>日時</span>: 2024.10.14 02:31
+    </div>
+    <div class="mail-subject">件名: 内部資料へのアクセスについて</div>
+    <div class="mail-body">ゆめさん。
+
+先週、共有フォルダへの不正アクセスが記録されています。
+ログにあなたのIDが残っています。
+
+私はあなたを信頼しています。
+しかし、龍牌会は記録を消しません。
+
+これ以上のことをしないように。
+— 黒瀬</div>
+  </div>
+
+  <!-- メール5: かなり危険 -->
+  <div class="mail-item danger">
+    <div class="mail-meta">
+      <span>送信者</span>: kurose@banryukaku-internal.jp<br>
+      <span>宛先</span>: yume@banryukaku-cast.jp<br>
+      <span>日時</span>: 2024.10.30 00:08
+    </div>
+    <div class="mail-subject">件名: 審査結果の通知</div>
+    <div class="mail-body">ゆめさん。
+
+選定審査の中間評価が出ました。
+適合率は現時点で38%です。
+
+基準には達していません。
+残念ながら、このままでは……
+
+来週、改めて話し合いましょう。
+まだ間に合うかもしれない。
+
+— 黒瀬</div>
+  </div>
+
+  <!-- メール6: 最終通知 -->
+  <div class="mail-item danger">
+    <div class="mail-meta">
+      <span>送信者</span>: kurose@banryukaku-internal.jp<br>
+      <span>宛先</span>: yume@banryukaku-cast.jp<br>
+      <span>日時</span>: 2024.11.02 17:43
+    </div>
+    <div class="mail-subject">件名: 明日について</div>
+    <div class="mail-body">ゆめさん。
+
+明日、最終確認を行います。
+
+龍牌会の決定は変わりません。
+あなたのことは嫌いではありません。
+
+でも、規定は規定です。
+私にも、どうにもできないことがある。
+
+明日の18時に来てください。
+— 黒瀬</div>
+  </div>
+
+  <!-- メール7: 最後。本文なし -->
+  <div class="mail-item final">
+    <div class="mail-meta" style="color:#550000; border-color:#440000;">
+      <span style="color:#661111;">送信者</span>: kurose@banryukaku-internal.jp<br>
+      <span style="color:#661111;">宛先</span>: yume@banryukaku-cast.jp<br>
+      <span style="color:#661111;">日時</span>: 2024.11.03 23:59
+    </div>
+    <div class="mail-subject" style="color:#660000;">件名: （なし）</div>
+    <div class="mail-body" style="color:#330000; min-height: 48px;">
+      （本文なし）
+    </div>
+  </div>
+
+  <div class="hint-box">
+    &gt; 関連記録: キーワード「<span style="color:#44aa44;">失敗作</span>」または「<span style="color:#44aa44;">選定</span>」を検索してください。
+  </div>
+
+</div>
+
+<script src="../arg.js"></script>
+</body>
+</html>

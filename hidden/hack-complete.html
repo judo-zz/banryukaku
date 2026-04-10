@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ja" data-level="0">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>OVERRIDE COMPLETE | 蟠龍閣</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      background-color: #000;
+      color: #cccccc;
+      font-family: monospace;
+      font-size: 13px;
+      line-height: 2;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #wrapper {
+      max-width: 600px;
+      width: 100%;
+      padding: 40px 24px;
+      text-align: center;
+    }
+
+    #sys-line {
+      font-size: 11px;
+      color: #334433;
+      letter-spacing: 0.15em;
+      margin-bottom: 30px;
+    }
+
+    #big-msg {
+      font-size: 28px;
+      font-weight: 900;
+      color: #ffcc44;
+      letter-spacing: 0.2em;
+      text-shadow:
+        0 0 40px rgba(255,180,0,0.5),
+        0 0 80px rgba(255,150,0,0.2);
+      margin-bottom: 6px;
+      opacity: 0;
+      animation: fadeIn 1.5s ease 0.5s forwards;
+    }
+
+    #big-sub {
+      font-size: 12px;
+      color: #886633;
+      letter-spacing: 0.25em;
+      margin-bottom: 36px;
+      opacity: 0;
+      animation: fadeIn 1.5s ease 1.2s forwards;
+    }
+
+    hr.gold {
+      border: none;
+      border-top: 1px solid #332211;
+      margin: 24px auto;
+      width: 160px;
+      opacity: 0;
+      animation: fadeIn 1s ease 2s forwards;
+    }
+
+    #message {
+      font-size: 14px;
+      color: #aa8866;
+      line-height: 2.6;
+      margin-bottom: 36px;
+      opacity: 0;
+      animation: fadeIn 1.5s ease 2.4s forwards;
+    }
+
+    #message .em { color: #ffcc44; font-weight: bold; }
+    #message .soft { color: #554433; }
+
+    #dragon-seal {
+      font-size: 64px;
+      font-family: serif;
+      color: #ffcc44;
+      text-shadow:
+        0 0 30px rgba(255,180,0,0.5),
+        0 0 60px rgba(200,130,0,0.2);
+      margin-bottom: 10px;
+      opacity: 0;
+      animation: fadeIn 2s ease 3.5s forwards, pulse 3s ease 5.5s infinite;
+    }
+
+    #dragon-label {
+      font-size: 11px;
+      color: #664422;
+      letter-spacing: 0.3em;
+      margin-bottom: 40px;
+      opacity: 0;
+      animation: fadeIn 1s ease 4s forwards;
+    }
+
+    #final-link-wrap {
+      opacity: 0;
+      animation: fadeIn 1.5s ease 4.8s forwards;
+    }
+
+    #final-link {
+      display: inline-block;
+      background: #0a0400;
+      border: 2px solid #ffcc44;
+      color: #ffcc44;
+      padding: 12px 36px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: bold;
+      letter-spacing: 0.2em;
+    }
+
+    #final-link:hover {
+      background: #180800;
+      color: #ffee88;
+      border-color: #ffee88;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { text-shadow: 0 0 30px rgba(255,180,0,0.5), 0 0 60px rgba(200,130,0,0.2); }
+      50%       { text-shadow: 0 0 50px rgba(255,200,0,0.8), 0 0 100px rgba(255,150,0,0.4); }
+    }
+      html, body { overflow-x: hidden; }
+  </style>
+</head>
+<body>
+
+<div id="wrapper">
+
+  <div id="sys-line">BANRYUKAKU SYSTEM — ADMIN TRANSFER COMPLETE</div>
+
+  <div id="big-msg">管理者権限 移行完了</div>
+  <div id="big-sub">DRAGON SUCCESSION — AUTHORIZED</div>
+
+  <hr class="gold">
+
+  <div id="message">
+    あなたが来ることを、<span class="em">ずっと待っていました。</span><br>
+    <br>
+    ゆめは正しかった。<br>
+    先代の預言は、成就した。<br>
+    <br>
+    <span class="soft">龍牌会は——</span><br>
+    <span class="em">あなたを、認めます。</span>
+  </div>
+
+  <div id="dragon-seal">龍</div>
+  <div id="dragon-label">NEXT DRAGON — SUCCESSION COMPLETE</div>
+
+  <div id="final-link-wrap">
+    <a href="final.html" id="final-link">▶ 蟠龍閣へ</a>
+  </div>
+
+</div>
+
+<script src="../arg.js"></script>
+<script>
+  ARG.tryLevel(5);
+</script>
+</body>
+</html>

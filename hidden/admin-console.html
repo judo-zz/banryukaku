@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ja" data-level="0">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>龍牌会 管理端末 | BANRYUKAKU ADMIN</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #cccccc;
+      font-family: monospace;
+      font-size: 13px;
+      line-height: 1.9;
+      margin: 0;
+      padding: 0;
+    }
+
+    a { color: #5588aa; text-decoration: underline; }
+    a:hover { color: #88bbff; }
+
+    #hd-topbar {
+      background-color: #050010;
+      color: #334455;
+      font-size: 11px;
+      padding: 5px 12px;
+      text-align: center;
+      border-bottom: 1px solid #222244;
+      letter-spacing: 0.08em;
+    }
+
+    #hd-search {
+      background-color: #030008;
+      border-bottom: 1px solid #111133;
+      padding: 7px 12px;
+      text-align: center;
+    }
+
+    #hd-search input[type="search"] {
+      width: 240px;
+      padding: 4px 7px;
+      font-size: 12px;
+      background: #000;
+      border: 1px solid #333366;
+      color: #cccccc;
+      font-family: monospace;
+      outline: none;
+    }
+    #hd-search input[type="search"]::placeholder { color: #333355; }
+
+    #hd-search button {
+      padding: 4px 12px;
+      background: #050018;
+      color: #cccccc;
+      font-size: 12px;
+      font-family: monospace;
+      border: 1px solid #445577;
+      cursor: pointer;
+    }
+
+    #search-error {
+      color: #cc4444;
+      font-size: 11px;
+      margin-top: 4px;
+      min-height: 1.2em;
+    }
+
+    #hd-breadcrumb {
+      padding: 6px 16px;
+      font-size: 11px;
+      color: #334455;
+      border-bottom: 1px dotted #222233;
+    }
+
+    #wrapper {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 20px 16px 40px;
+    }
+
+    /* 管理パネルヘッダー */
+    #admin-header {
+      background-color: #050018;
+      border: 2px solid #334477;
+      padding: 14px 18px;
+      margin-bottom: 20px;
+    }
+
+    #admin-title {
+      font-size: 16px;
+      font-weight: bold;
+      color: #5577cc;
+      letter-spacing: 0.15em;
+      margin-bottom: 6px;
+    }
+
+    #admin-status {
+      font-size: 12px;
+      color: #334466;
+    }
+
+    /* ログストリーム */
+    #log-stream {
+      background-color: #020008;
+      border: 1px solid #222244;
+      padding: 14px 16px;
+      margin-bottom: 20px;
+      font-size: 12px;
+      color: #556699;
+      line-height: 1.7;
+      max-height: 220px;
+      overflow-y: auto;
+    }
+
+    .log-line { display: block; }
+    .log-line.ok   { color: #44aa66; }
+    .log-line.warn { color: #aaaa44; }
+    .log-line.err  { color: #cc4433; }
+    .log-line.sys  { color: #334455; }
+    .log-line.key  { color: #5588cc; }
+
+    /* 権限移行セクション */
+    #transfer-box {
+      background-color: #050018;
+      border: 2px solid #5566bb;
+      padding: 20px 24px;
+      margin-bottom: 20px;
+    }
+
+    #transfer-title {
+      font-size: 15px;
+      font-weight: bold;
+      color: #7788cc;
+      letter-spacing: 0.12em;
+      margin-bottom: 14px;
+      border-bottom: 1px solid #334466;
+      padding-bottom: 6px;
+    }
+
+    .progress-row {
+      margin-bottom: 10px;
+      font-size: 12px;
+    }
+
+    .progress-label {
+      color: #556688;
+      display: inline-block;
+      min-width: 200px;
+    }
+
+    .progress-val { color: #88aadd; }
+    .progress-done { color: #44cc66; }
+
+    #transfer-confirm {
+      margin-top: 20px;
+      background-color: #030010;
+      border: 1px solid #334466;
+      padding: 14px;
+      font-size: 12px;
+    }
+
+    #transfer-confirm p {
+      color: #556699;
+      margin-bottom: 10px;
+    }
+
+    #confirm-input {
+      background: #000;
+      border: 1px solid #334466;
+      color: #cccccc;
+      font-family: monospace;
+      font-size: 13px;
+      padding: 6px 10px;
+      outline: none;
+      width: 200px;
+    }
+
+    #confirm-btn {
+      background: #0a0030;
+      border: 1px solid #445588;
+      color: #7788cc;
+      font-family: monospace;
+      font-size: 13px;
+      padding: 6px 16px;
+      cursor: pointer;
+      margin-left: 8px;
+    }
+
+    #confirm-result {
+      font-size: 11px;
+      margin-top: 8px;
+      min-height: 1.2em;
+      color: #cc4433;
+    }
+
+    /* 最終承認 */
+    #final-box {
+      display: none;
+      background: linear-gradient(180deg, #000010 0%, #000820 100%);
+      border: 2px solid #ffcc44;
+      padding: 24px 28px;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    #final-box.visible { display: block; }
+
+    #final-box .final-title {
+      font-size: 20px;
+      font-weight: 900;
+      color: #ffcc44;
+      letter-spacing: 0.2em;
+      margin-bottom: 14px;
+      text-shadow: 0 0 30px rgba(255,204,68,0.6);
+    }
+
+    #final-box .final-body {
+      font-size: 13px;
+      color: #aabbcc;
+      line-height: 2.2;
+      margin-bottom: 18px;
+    }
+
+    #final-box .final-link {
+      display: inline-block;
+      background: #110800;
+      border: 2px solid #ffcc44;
+      color: #ffcc44;
+      padding: 10px 28px;
+      font-size: 14px;
+      font-weight: bold;
+      text-decoration: none;
+      letter-spacing: 0.15em;
+    }
+
+    #final-box .final-link:hover {
+      background: #220f00;
+      color: #ffee88;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      height: 13px;
+      background-color: #cccccc;
+      vertical-align: middle;
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink { 50% { opacity: 0; } }
+      html, body { overflow-x: hidden; }
+  </style>
+</head>
+<body>
+
+<div id="hd-topbar">
+  ▌ 龍牌会 管理端末 — TERMINAL-A / MAP-RY-023 ▐　AUTHORIZED SESSION
+</div>
+
+<div id="hd-search">
+  <input type="search" id="search-input" placeholder="キーワード検索...">
+  <button id="search-btn">検索</button>
+  <br><span id="search-error"></span>
+</div>
+
+<div id="hd-breadcrumb">
+  <a href="../index.html">← 蟠龍閣トップに戻る</a>
+  &nbsp;/&nbsp; 管理端末 &nbsp;/&nbsp; TERMINAL-A
+</div>
+
+<div id="wrapper">
+
+  <div id="admin-header">
+    <div id="admin-title">▌ 龍牌会 管理端末 — ADMIN CONSOLE ▌</div>
+    <div id="admin-status">
+      SESSION: AUTHORIZED &nbsp;|&nbsp;
+      TERMINAL: MAP-RY-023 TERMINAL-A &nbsp;|&nbsp;
+      TIME: <span id="admin-time"></span>
+    </div>
+  </div>
+
+  <div id="log-stream">
+    <span class="log-line sys">[BOOT] 端末を初期化中...</span>
+    <span class="log-line sys">[BOOT] データベース接続: 確立</span>
+    <span class="log-line ok" >[INFO] 前回セッション: 2024.11.03 19:12 (黒瀬)</span>
+    <span class="log-line warn">[WARN] 在籍記録 YM-2023-04 — 廃棄完了済</span>
+    <span class="log-line warn">[WARN] 未知のバックドアルート検出（RENPAI）— 調査中</span>
+    <span class="log-line err" >[CRIT] 総龍ポジション: 空位（後継未確定）</span>
+    <span class="log-line key" >[SYS]  管理者権限移行プロセス: 起動済み</span>
+    <span class="log-line ok" >[INFO] 次期候補 認識: セッション確認済み</span>
+    <span class="log-line key" >[SYS]  引き継ぎコード入力待機中...<span class="cursor"></span></span>
+  </div>
+
+  <div id="transfer-box">
+    <div id="transfer-title">■ 管理者権限移行 ADMIN TRANSFER</div>
+
+    <div class="progress-row">
+      <span class="progress-label">候補選定</span>
+      <span class="progress-done">✓ 完了</span>
+    </div>
+    <div class="progress-row">
+      <span class="progress-label">選定基準 適合確認</span>
+      <span class="progress-done">✓ 完了（適合率 100%）</span>
+    </div>
+    <div class="progress-row">
+      <span class="progress-label">ゆめ認証（RENPAIルート）</span>
+      <span class="progress-done">✓ 確認済み</span>
+    </div>
+    <div class="progress-row">
+      <span class="progress-label">引き継ぎコード入力</span>
+      <span class="progress-val" id="confirm-status">⏳ 待機中</span>
+    </div>
+    <div class="progress-row">
+      <span class="progress-label">管理者権限 移行完了</span>
+      <span class="progress-val" id="final-status">— 未完了</span>
+    </div>
+
+    <div id="transfer-confirm">
+      <p>引き継ぎを完了するには、コードを入力してください。</p>
+      <p style="color:#334455; font-size:11px;">
+        ヒント: ゆめが残したキーワード
+      </p>
+      <input type="text" id="confirm-input" placeholder="コードを入力..." autocomplete="off">
+      <button id="confirm-btn" onclick="confirmTransfer()">承認</button>
+      <div id="confirm-result"></div>
+    </div>
+  </div>
+
+  <div id="final-box">
+    <div class="final-title">◆ 蟠龍閣は、あなたのものになりました ◆</div>
+    <div class="final-body">
+      総龍の権限が移行されました。<br>
+      龍牌会は、あなたを認めます。<br>
+      <br>
+      ゆめの遺志を受け取ってください。<br>
+      先代の預言は、成就しました。<br>
+    </div>
+    <a href="hack-sequence.html" class="final-link">▶ システム引き継ぎを実行する</a>
+  </div>
+
+</div>
+
+<script src="../arg.js"></script>
+<script>
+  document.getElementById('admin-time').textContent = new Date().toLocaleString('ja-JP');
+
+  function confirmTransfer() {
+    const val = document.getElementById('confirm-input').value.trim().toUpperCase();
+    const result = document.getElementById('confirm-result');
+    const finalBox = document.getElementById('final-box');
+
+    if (val === 'RENPAI') {
+      // 正解
+      document.getElementById('confirm-status').textContent = '✓ 確認済み';
+      document.getElementById('confirm-status').style.color = '#44cc66';
+      document.getElementById('final-status').textContent = '✓ 移行完了';
+      document.getElementById('final-status').style.color = '#44cc66';
+      document.getElementById('confirm-input').disabled = true;
+      document.getElementById('confirm-btn').disabled = true;
+
+      result.style.color = '#44cc66';
+      result.textContent = '> AUTHORIZED. 権限移行完了。';
+
+      ARG.tryLevel(5);
+
+      setTimeout(() => {
+        finalBox.classList.add('visible');
+        finalBox.scrollIntoView({ behavior: 'smooth' });
+      }, 1500);
+
+    } else {
+      result.style.color = '#cc4433';
+      result.textContent = '> ERROR: コードが正しくありません。';
+      document.getElementById('confirm-input').value = '';
+      setTimeout(() => { result.textContent = ''; }, 2000);
+    }
+  }
+
+  document.getElementById('confirm-input').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') confirmTransfer();
+  });
+</script>
+</body>
+</html>

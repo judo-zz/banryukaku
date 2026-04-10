@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ja" data-level="0">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>MAP-RY-023 地下施設区画図 | 蟠龍閣内部</title>
+  <style>
+    body {
+      background-color: #000305;
+      color: #44ccaa;
+      font-family: monospace;
+      font-size: 13px;
+      line-height: 1.8;
+      margin: 0;
+      padding: 0;
+    }
+
+    a { color: #338877; text-decoration: underline; }
+    a:hover { color: #66ffcc; }
+
+    #hd-topbar {
+      background-color: #000a08;
+      color: #226644;
+      font-size: 11px;
+      padding: 5px 12px;
+      text-align: center;
+      border-bottom: 1px solid #113322;
+      letter-spacing: 0.08em;
+    }
+
+    #hd-search {
+      background-color: #000805;
+      border-bottom: 1px solid #112233;
+      padding: 7px 12px;
+      text-align: center;
+    }
+
+    #hd-search input[type="search"] {
+      width: 240px;
+      padding: 4px 7px;
+      font-size: 12px;
+      background: #000305;
+      border: 1px solid #224433;
+      color: #44ccaa;
+      font-family: monospace;
+      outline: none;
+    }
+    #hd-search input[type="search"]::placeholder { color: #224433; }
+
+    #hd-search button {
+      padding: 4px 12px;
+      background: #001a10;
+      color: #44ccaa;
+      font-size: 12px;
+      font-family: monospace;
+      border: 1px solid #336655;
+      cursor: pointer;
+    }
+
+    #search-error {
+      color: #cc4444;
+      font-size: 11px;
+      margin-top: 4px;
+      min-height: 1.2em;
+    }
+
+    #hd-breadcrumb {
+      padding: 6px 16px;
+      font-size: 11px;
+      color: #225533;
+      border-bottom: 1px dotted #113322;
+    }
+
+    #wrapper {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 20px 16px 40px;
+    }
+
+    .term-sys {
+      color: #226644;
+      font-size: 11px;
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+
+    .map-box {
+      background-color: #000a06;
+      border: 1px solid #224433;
+      padding: 18px 20px;
+      margin-bottom: 20px;
+      overflow-x: auto;
+    }
+
+    .map-title {
+      color: #55ddaa;
+      font-size: 14px;
+      font-weight: bold;
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+      border-bottom: 1px dotted #224433;
+      padding-bottom: 6px;
+    }
+
+    .map-ascii {
+      color: #33aa88;
+      font-size: 12px;
+      line-height: 1.5;
+      white-space: pre;
+    }
+
+    .map-ascii .wall   { color: #335544; }
+    .map-ascii .room   { color: #44ddaa; }
+    .map-ascii .danger { color: #cc4433; }
+    .map-ascii .label  { color: #55bb99; }
+    .map-ascii .exit   { color: #88ff66; }
+
+    .legend-box {
+      background-color: #000a06;
+      border: 1px solid #224433;
+      padding: 12px 16px;
+      margin-bottom: 20px;
+      font-size: 12px;
+    }
+
+    .legend-title {
+      color: #55ddaa;
+      font-weight: bold;
+      margin-bottom: 8px;
+      border-bottom: 1px dotted #224433;
+      padding-bottom: 4px;
+    }
+
+    .legend-item {
+      margin-bottom: 4px;
+      color: #33aa88;
+    }
+
+    .legend-item span {
+      display: inline-block;
+      width: 30px;
+    }
+
+    .info-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      margin-bottom: 14px;
+    }
+
+    .info-table th,
+    .info-table td {
+      padding: 6px 10px;
+      border-bottom: 1px dotted #224433;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    .info-table th {
+      color: #33aa88;
+      width: 130px;
+      white-space: nowrap;
+    }
+
+    .danger-zone {
+      color: #cc4433;
+    }
+
+    .hint-box {
+      border: 1px dashed #224433;
+      padding: 10px 14px;
+      margin-top: 24px;
+      font-size: 11px;
+      color: #226644;
+      line-height: 1.8;
+    }
+      html, body { overflow-x: hidden; }
+  </style>
+</head>
+<body>
+
+<div id="hd-topbar">
+  ▌ BANRYUKAKU INTERNAL ▐　MAP-RY-023 / 地下施設区画図　▌ 廃棄部門 管轄 ▐
+</div>
+
+<div id="hd-search">
+  <input type="search" id="search-input" placeholder="キーワード検索...">
+  <button id="search-btn">検索</button>
+  <br><span id="search-error"></span>
+</div>
+
+<div id="hd-breadcrumb">
+  <a href="../index.html">← 蟠龍閣トップに戻る</a>
+  &nbsp;/&nbsp; 施設資料 &nbsp;/&nbsp; MAP-RY-023
+</div>
+
+<div id="wrapper">
+
+  <div class="term-sys">
+    &gt; LOADING: MAP-RY-023.flr<br>
+    &gt; FACILITY: 蟠龍閣 地下施設 / UNDERGROUND UNIT<br>
+    &gt; ACCESS LEVEL: 廃棄部門 以上<br>
+    &gt; WARNING: 関係者以外の侵入は第23条違反です
+  </div>
+
+  <div class="map-box">
+    <div class="map-title">■ 地下1F 区画図 / B1F FLOOR PLAN</div>
+    <div class="map-ascii">
+┌───────────────────────────────────────────────┐
+│  B1F — 蟠龍閣 地下施設　MAP-RY-023             │
+├──────────┬──────────────┬──────────────────────┤
+│          │              │                      │
+│  搬入口  │   前室       │   管理端末室         │
+│  ［入］  │  (ENTRANCE)  │  (TERMINAL-A)        │
+│          │              │  ▶ 龍牌会 端末 設置  │
+│          │              │                      │
+├──────────┴──────┬───────┴──────────────────────┤
+│                  │                             │
+│   廊下（監視カメラ 4台）                      │
+│  ─────────────────────────────────────────   │
+│                  │                             │
+├──────────────────┤                             │
+│                  │       廃棄処理室            │
+│   記録保管室     │      (DISPOSAL-UNIT)        │
+│   (ARCHIVE)      │   ██ アクセス要認証 ██     │
+│   YM-2023-04 他  │                             │
+│                  │                             │
+├──────────────────┴──────────────────────────────┤
+│                                                 │
+│   深部区画  [B2F へのアクセス — 総龍のみ]      │
+│   ※ 現在封鎖中                                 │
+│                                                 │
+└─────────────────────────────────────────────────┘</div>
+  </div>
+
+  <div class="legend-box">
+    <div class="legend-title">■ 凡例 LEGEND</div>
+    <div class="legend-item"><span>［入］</span> 搬入専用出入口（エレベーター連結）</div>
+    <div class="legend-item"><span>██</span> アクセス制限区画（認証必要）</div>
+    <div class="legend-item"><span>▶</span> 重要設備・端末の設置場所</div>
+    <div class="legend-item" style="color:#cc4433;"><span>■</span> 廃棄処理室（立ち入り禁止）</div>
+  </div>
+
+  <div class="map-box">
+    <div class="map-title">■ 各区画 詳細</div>
+    <table class="info-table">
+      <tr>
+        <th>管理端末室</th>
+        <td>
+          龍牌会の主端末が設置されている。選定記録・廃棄記録・候補者リストにアクセス可能。<br>
+          <span style="color:#55ddaa;">→ キーワード「<strong>龍牌会 端末</strong>」で管理画面にアクセスできます。</span>
+        </td>
+      </tr>
+      <tr>
+        <th>廃棄処理室</th>
+        <td class="danger-zone">
+          龍牌会規定第7条に基づく「失敗作」の処置が行われる区画。<br>
+          直近の処置: 2024.11.03（YM-2023-04 / ゆめ）<br>
+          詳細記録: 「<span style="color:#cc4433;">廃棄</span>」を検索。
+        </td>
+      </tr>
+      <tr>
+        <th>記録保管室</th>
+        <td>
+          全在籍記録・廃棄記録の原本が物理保管されている。<br>
+          デジタルバックアップは管理端末室の端末にて参照可能。
+        </td>
+      </tr>
+      <tr>
+        <th>深部区画（B2F）</th>
+        <td style="color:#664433;">
+          封鎖中。先代総龍の在位期間中に使用された記録あり。<br>
+          詳細は <span style="color:#220000; background:#220000;">████████████████████</span>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="hint-box">
+    &gt; 管理端末へのアクセス: 「<span style="color:#44ccaa;">龍牌会 端末</span>」を検索。<br>
+    &gt; 廃棄記録の参照: 「<span style="color:#44ccaa;">廃棄</span>」を検索。
+  </div>
+
+</div>
+
+<script src="../arg.js"></script>
+</body>
+</html>

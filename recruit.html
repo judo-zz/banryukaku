@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="ja" data-level="0">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="蟠龍閣スタッフ募集。秋葉原のコンセプトカフェで一緒に働きませんか？">
+  <meta name="robots" content="noindex, nofollow">
+  <title>RECRUIT 求人募集 | 蟠龍閣</title>
+  <style>
+    body {
+      background-color: #0d0000;
+      background-image:
+        repeating-linear-gradient(0deg, rgba(180,0,0,0.06) 0px, rgba(180,0,0,0.06) 1px, transparent 1px, transparent 28px),
+        repeating-linear-gradient(90deg, rgba(180,0,0,0.06) 0px, rgba(180,0,0,0.06) 1px, transparent 1px, transparent 28px);
+      color: #fff8f0;
+      font-family: sans-serif;
+      font-size: 13px;
+      line-height: 1.7;
+      margin: 0;
+      padding: 0;
+    }
+
+    a { color: #ffcc44; text-decoration: underline; }
+    a:hover { color: #ff9999; }
+    a:visited { color: #ffaa66; }
+    p { margin: 0.5em 0; }
+    hr { border: none; border-top: 2px solid #880000; margin: 18px 0; }
+
+    #wrapper { max-width: 800px; margin: 0 auto; padding: 0 8px; }
+
+    /* ヘッダー */
+    #topline {
+      background-color: #cc0000;
+      color: #fff;
+      font-size: 12px;
+      font-weight: bold;
+      text-align: center;
+      padding: 6px 0;
+      letter-spacing: 0.1em;
+      border-bottom: 3px double #ff6666;
+    }
+
+    #header {
+      background-color: #1a0000;
+      border-bottom: 3px solid #cc0000;
+      padding: 14px 12px 10px;
+      text-align: center;
+    }
+
+    #site-title {
+      font-size: 36px;
+      font-weight: 900;
+      color: #ffcc44;
+      letter-spacing: 0.18em;
+      line-height: 1.1;
+      text-shadow: 2px 2px 0 #880000;
+    }
+
+    #site-subtitle {
+      font-size: 11px;
+      color: #ffaaaa;
+      letter-spacing: 0.22em;
+      margin-top: 3px;
+    }
+
+    #site-catch {
+      font-size: 15px;
+      font-weight: bold;
+      color: #ffeecc;
+      margin-top: 6px;
+    }
+
+    /* ナビ */
+    #nav {
+      background-color: #330000;
+      border-bottom: 2px solid #880000;
+      padding: 6px 0;
+      text-align: center;
+    }
+
+    #nav a {
+      color: #ffcc44;
+      font-size: 12px;
+      font-weight: bold;
+      text-decoration: none;
+      padding: 0 10px;
+      border-right: 1px solid #660000;
+      letter-spacing: 0.08em;
+    }
+    #nav a:last-child { border-right: none; }
+    #nav a:hover { color: #ff9999; }
+    #nav a.current { color: #fff; border-bottom: 2px solid #ffcc44; }
+
+    /* 検索バー */
+    #search-area {
+      background-color: #1a0005;
+      border-bottom: 1px solid #550000;
+      padding: 8px 12px;
+      text-align: center;
+    }
+
+    #search-area input[type="search"] {
+      width: 280px;
+      padding: 5px 8px;
+      font-size: 12px;
+      background: #0d0000;
+      border: 1px solid #880000;
+      color: #fff8f0;
+      outline: none;
+    }
+    #search-area input[type="search"]::placeholder { color: #775555; }
+
+    #search-area button {
+      padding: 5px 14px;
+      background: #880000;
+      color: #ffcc44;
+      font-size: 12px;
+      font-weight: bold;
+      border: 1px solid #cc0000;
+      cursor: pointer;
+      letter-spacing: 0.08em;
+    }
+
+    #search-error {
+      color: #ff7777;
+      font-size: 11px;
+      margin-top: 4px;
+      min-height: 1.2em;
+    }
+
+    /* セクション共通 */
+    .section-box {
+      background-color: #120000;
+      border: 2px solid #880000;
+      margin-bottom: 18px;
+      padding: 14px 16px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 900;
+      color: #ffcc44;
+      border-bottom: 2px solid #550000;
+      padding-bottom: 6px;
+      margin-bottom: 12px;
+      letter-spacing: 0.1em;
+    }
+
+    .section-title-deco { color: #ff9999; }
+
+    .deco-line {
+      text-align: center;
+      color: #880000;
+      font-size: 12px;
+      margin: 10px 0;
+      letter-spacing: 0.2em;
+    }
+
+    .pink-text { color: #ffaabb; }
+    .gold-text  { color: #ffcc44; }
+    .red-text   { color: #ff6666; }
+
+    /* ページタイトル */
+    #page-title-box {
+      background-color: #1a0005;
+      border: 2px solid #cc0000;
+      padding: 16px;
+      margin-bottom: 18px;
+      text-align: center;
+    }
+
+    #page-title {
+      font-size: 30px;
+      font-weight: 900;
+      color: #ffcc44;
+      letter-spacing: 0.2em;
+      text-shadow: 2px 2px 0 #880000;
+      margin-bottom: 6px;
+    }
+
+    #page-lead {
+      font-size: 12px;
+      color: #ffddcc;
+      line-height: 2;
+    }
+
+    /* 基本情報テーブル */
+    .info-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 10px;
+    }
+
+    .info-table th,
+    .info-table td {
+      padding: 7px 10px;
+      font-size: 12px;
+      border-bottom: 1px dotted #440000;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    .info-table th {
+      color: #ffcc44;
+      font-weight: bold;
+      width: 110px;
+      white-space: nowrap;
+    }
+
+    /* 応募条件リスト */
+    .req-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .req-list li {
+      padding: 7px 10px 7px 0;
+      border-bottom: 1px dotted #440000;
+      font-size: 13px;
+    }
+
+    .req-list li:last-child { border-bottom: none; }
+
+    .req-list li::before {
+      content: "★ ";
+      color: #880000;
+    }
+
+    /* 縦読み文字 - 目立つが違和感なく */
+    .acrostic {
+      color: #ffcc44;
+      font-weight: 900;
+    }
+
+    /* 応募の流れ */
+    .flow-step {
+      background-color: #1a0008;
+      border-left: 4px solid #880000;
+      padding: 8px 12px;
+      margin-bottom: 8px;
+      font-size: 13px;
+    }
+
+    .flow-step-num {
+      color: #ffcc44;
+      font-weight: bold;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+    }
+
+    /* 崩壊ゾーン */
+    .degrade-zone {
+      background-color: #120000;
+      border: 2px solid #880000;
+      margin-bottom: 18px;
+      padding: 14px 16px;
+    }
+
+    /* Lv1: 枠線が微かに赤くなる */
+    .degrade-zone[data-degrade="1"] {
+      border-color: #aa0000;
+    }
+
+    /* Lv2: 背景が少し暗くなり、テキスト色がずれる */
+    .degrade-zone[data-degrade="2"] {
+      background-color: #0d0005;
+      border-color: #cc0000;
+    }
+    .degrade-zone[data-degrade="2"] .req-list li {
+      color: #ffcccc;
+    }
+    .degrade-zone[data-degrade="2"] .req-list li::before {
+      content: "■ ";
+      color: #cc0000;
+    }
+
+    /* Lv3: 本格崩壊 */
+    .degrade-zone[data-degrade="3"] {
+      background-color: #080008;
+      border-color: #ff0000;
+      border-width: 3px;
+    }
+    .degrade-zone[data-degrade="3"] .req-list li {
+      color: #ff9999;
+    }
+    .degrade-zone[data-degrade="3"] .req-list li::before {
+      content: "▶ ";
+      color: #ff4444;
+    }
+    .degrade-zone[data-degrade="3"] .section-title {
+      color: #ff6666;
+    }
+
+    /* 隠れ項目: degrade>=2 で表示 */
+    .hidden-req {
+      display: none;
+    }
+
+    .degrade-zone[data-degrade="2"] .hidden-req,
+    .degrade-zone[data-degrade="3"] .hidden-req {
+      display: list-item;
+    }
+
+    /* さらに深い隠し項目: degrade=3のみ */
+    .hidden-req-deep {
+      display: none;
+    }
+
+    .degrade-zone[data-degrade="3"] .hidden-req-deep {
+      display: list-item;
+      color: #ff4444;
+    }
+
+    /* 崩壊後のメッセージ */
+    #degrade-msg {
+      display: none;
+      background-color: #000;
+      border: 2px solid #ff0000;
+      padding: 16px;
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    #degrade-msg.visible {
+      display: block;
+    }
+
+    #degrade-msg p {
+      color: #ff6666;
+      font-size: 13px;
+      line-height: 2;
+    }
+
+    #degrade-msg .final-line {
+      color: #ffcc44;
+      font-size: 16px;
+      font-weight: 900;
+      margin-top: 10px;
+      letter-spacing: 0.15em;
+    }
+
+    /* 応募フォーム風 */
+    .form-box {
+      background-color: #0d0000;
+      border: 1px solid #550000;
+      padding: 12px 14px;
+      margin-top: 14px;
+    }
+
+    .form-label {
+      color: #ffcc44;
+      font-size: 11px;
+      font-weight: bold;
+      display: block;
+      margin-bottom: 4px;
+      letter-spacing: 0.1em;
+    }
+
+    .form-input {
+      width: 100%;
+      background: #0d0000;
+      border: 1px solid #660000;
+      color: #fff8f0;
+      font-size: 12px;
+      padding: 6px 8px;
+      outline: none;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+
+    .form-input:focus { border-color: #cc0000; }
+
+    .form-submit {
+      background: #880000;
+      color: #ffcc44;
+      border: 1px solid #cc0000;
+      padding: 8px 28px;
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+      letter-spacing: 0.1em;
+      display: block;
+      margin: 14px auto 0;
+    }
+
+    .note-box {
+      background-color: #0d0005;
+      border: 1px dashed #550000;
+      padding: 10px 14px;
+      margin-top: 12px;
+      font-size: 11px;
+      color: #bbaaaa;
+      line-height: 1.8;
+    }
+
+    /* フッター */
+    #footer {
+      background-color: #0d0000;
+      border-top: 3px double #880000;
+      padding: 20px 12px;
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    #footer-logo {
+      font-size: 22px;
+      font-weight: 900;
+      color: #ffcc44;
+      letter-spacing: 0.2em;
+      text-shadow: 1px 1px 0 #880000;
+      margin-bottom: 8px;
+    }
+
+    #footer p {
+      font-size: 10px;
+      color: #664444;
+      margin: 3px 0;
+      letter-spacing: 0.12em;
+    }
+      html, body { overflow-x: hidden; }
+  </style>
+</head>
+<body>
+
+<div id="topline">
+  ★ 翌1時まで営業中！　18:00〜翌1:00　★　秋葉原・ネオ・オリエンタル コンセプトカフェ　★　ただいまキャスト積極募集中！　★
+</div>
+
+<div id="header">
+  <div id="site-title">蟠龍閣</div>
+  <div id="site-subtitle">BANRYUKAKU ✦ CYBER CHINA CONCEPT CAFE ✦ AKIHABARA</div>
+  <div id="site-catch">「異空間で出会う、カワイイチャイナガール！」</div>
+</div>
+
+<div id="nav">
+  <a href="index.html">TOP</a>
+  <a href="cast.html">CAST</a>
+  <a href="menu.html">MENU</a>
+  <a href="recruit.html" class="current">RECRUIT</a>
+  <a href="access.html">ACCESS</a>
+  <a href="index.html#reserve">RESERVE</a>
+</div>
+
+<div id="search-area">
+  <input type="search" id="search-input" placeholder="キーワードを入力して検索...">
+  <button id="search-btn">検索</button>
+  <br>
+  <span id="search-error"></span>
+</div>
+
+<div id="wrapper">
+
+  <br>
+
+  <div id="page-title-box">
+    <div id="page-title">✦ RECRUIT ✦ 求人募集</div>
+    <div id="page-lead">
+      蟠龍閣では一緒に働いてくれる仲間を募集しています！<br>
+      ♥ あなたの個性を活かして輝いてください ♥<br>
+      <span style="font-size:11px; color:#886655;">未経験者大歓迎。研修制度あり。</span>
+    </div>
+  </div>
+
+  <div class="deco-line">★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★</div>
+
+  <!-- 基本情報 -->
+  <div class="section-box">
+    <div class="section-title"><span class="section-title-deco">★</span> 基本情報 BASIC INFO</div>
+
+    <table class="info-table">
+      <tr>
+        <th>募集職種</th>
+        <td>コンセプトカフェキャスト（ホール担当）</td>
+      </tr>
+      <tr>
+        <th>給与</th>
+        <td>
+          時給 <strong class="gold-text">1,500円〜</strong>（試用期間あり）<br>
+          <span style="font-size:11px; color:#886655;">経験・スキルにより優遇。指名料・インセンティブ別途。</span>
+        </td>
+      </tr>
+      <tr>
+        <th>勤務時間</th>
+        <td>
+          18:00〜翌1:00 の間でシフト制<br>
+          <span style="font-size:11px; color:#886655;">週2日〜OK。学業・副業との両立可。</span>
+        </td>
+      </tr>
+      <tr>
+        <th>勤務地</th>
+        <td>東京都千代田区外神田（秋葉原駅 徒歩5分）</td>
+      </tr>
+      <tr>
+        <th>雇用形態</th>
+        <td>アルバイト・業務委託（相談可）</td>
+      </tr>
+      <tr>
+        <th>服装</th>
+        <td>店舗支給のチャイナドレス（サイズ相談可）</td>
+      </tr>
+      <tr>
+        <th>交通費</th>
+        <td>支給あり（上限月 15,000円）</td>
+      </tr>
+    </table>
+
+  </div>
+
+  <div class="deco-line">✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦</div>
+
+  <!-- 応募条件 縦読み: れ・え・に・ぱ・あ・い → R-E-N-P-A-I = RENPAI -->
+  <div class="section-box" id="req-section">
+    <div class="section-title"><span class="section-title-deco">♥</span> 応募条件 REQUIREMENTS</div>
+
+    <p style="font-size:11px; color:#886655; margin-bottom:10px;">
+      ★ 下記のいずれかに該当する方、ぜひご応募ください ★
+    </p>
+
+    <ul class="req-list" id="req-list">
+      <li><span class="acrostic">礼</span>儀を大切にし、お客様に誠実に向き合える方</li>
+      <li><span class="acrostic">笑</span>顔（<span class="acrostic">え</span>がお）が自然に出る方。接客が好きな方</li>
+      <li><span class="acrostic">に</span>ぎやかな雰囲気が好きで、人と話すのが苦にならない方</li>
+      <li><span class="acrostic">パ</span>フォーマンスや演技に興味がある方（経験不問）</li>
+      <li><span class="acrostic">明</span>（<span class="acrostic">あ</span>か）るく前向きな姿勢で仕事に取り組める方</li>
+      <li><span class="acrostic">一</span>（<span class="acrostic">い</span>っ）緒に蟠龍閣を盛り上げたいという熱意のある方</li>
+    </ul>
+
+    <div class="note-box">
+      ★ 年齢・経験・国籍は不問です。<br>
+      ★ 接客業・コンカフェ経験者は優遇します。<br>
+      ★ 体験入店制度あり。まずはお気軽にご応募ください。
+    </div>
+  </div>
+
+  <div class="deco-line">★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★</div>
+
+  <!-- 応募の流れ -->
+  <div class="section-box">
+    <div class="section-title"><span class="section-title-deco">★</span> 応募の流れ FLOW</div>
+
+    <div class="flow-step">
+      <div class="flow-step-num">STEP 01 — 応募</div>
+      <div>下記フォームにご記入の上、送信してください。<br>
+        <span style="font-size:11px; color:#886655;">お名前・連絡先・自己PR（任意）</span>
+      </div>
+    </div>
+
+    <div class="flow-step">
+      <div class="flow-step-num">STEP 02 — 書類確認</div>
+      <div>ご応募から 2〜3営業日以内にご連絡いたします。<br>
+        <span style="font-size:11px; color:#886655;">店長または担当者よりご連絡いたします。</span>
+      </div>
+    </div>
+
+    <div class="flow-step">
+      <div class="flow-step-num">STEP 03 — 面接・体験入店</div>
+      <div>店舗にてカジュアルな面接を行います。<br>
+        <span style="font-size:11px; color:#886655;">服装自由。リラックスして来てください♥</span>
+      </div>
+    </div>
+
+    <div class="flow-step">
+      <div class="flow-step-num">STEP 04 — 採用決定</div>
+      <div>面接後、1週間以内に結果をご連絡いたします。<br>
+        <span style="font-size:11px; color:#886655;">採用が決まり次第、研修スケジュールを調整します。</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- スクロールトリガー: ここから下で崩壊ゾーンに入る -->
+  <span id="degrade-trigger-1"></span>
+
+  <div class="deco-line">✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦</div>
+
+  <!-- 注意事項 ← これが崩壊する -->
+  <div class="degrade-zone" id="degrade-zone" data-degrade="0">
+    <div class="section-title"><span class="section-title-deco">★</span> 採用基準・注意事項 NOTES</div>
+
+    <ul class="req-list">
+      <li>面接の日程は店舗側の都合に合わせていただく場合があります</li>
+      <li>採用後、3ヶ月の試用期間があります</li>
+      <li>店舗内の撮影・録音は禁止しております</li>
+      <li>SNSへの店舗内情報の投稿は事前申請が必要です</li>
+      <li>お客様の個人情報は厳守してください</li>
+
+      <!-- degrade=2 で表示 -->
+      <li class="hidden-req">過去3年以内に当店またはグループ店に在籍歴のない方が対象です</li>
+      <li class="hidden-req">採用に際し、身元保証書の提出が必要になる場合があります</li>
+      <li class="hidden-req">店舗が指定する研修プログラムに必ず参加してください</li>
+      <li class="hidden-req">退店後も業務に関する一切の情報を第三者に開示しないこと</li>
+
+      <!-- degrade=3 で表示（本格崩壊） -->
+      <li class="hidden-req-deep">龍牌会の運営理念に反する行動は厳しく処罰されます</li>
+      <li class="hidden-req-deep">ゆめの件について社外で言及することを固く禁じます</li>
+      <li class="hidden-req-deep">選定基準を満たさない場合、適切な処置が取られます</li>
+      <li class="hidden-req-deep">あなたが応募フォームを開いた時点で、審査は始まっています</li>
+    </ul>
+  </div>
+
+  <!-- スクロールトリガー2 -->
+  <span id="degrade-trigger-2"></span>
+
+  <!-- 崩壊後メッセージ -->
+  <div id="degrade-msg">
+    <p>
+      ……気づいてしまいましたか。<br>
+      <br>
+      蟠龍閣は、ただのコンカフェではありません。<br>
+      あなたがこのページを最後まで読んだということは——<br>
+    </p>
+    <p class="final-line">すでに、選ばれているということです。</p>
+    <p style="font-size:11px; color:#886655; margin-top:14px;">
+      ＞ キーワード「<span style="color:#ffcc44;">龍牌会</span>」を検索してみてください。
+    </p>
+  </div>
+
+  <div class="deco-line">★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★</div>
+
+  <!-- 応募フォーム -->
+  <div class="section-box" id="apply-section">
+    <div class="section-title"><span class="section-title-deco">♥</span> 応募フォーム APPLY</div>
+
+    <p style="font-size:12px; color:#ffddcc; margin-bottom:14px;">
+      ご応募・ご質問はこちらのフォームからどうぞ。<br>
+      ♥ 体験入店希望の方もこちらからご連絡ください ♥
+    </p>
+
+    <div class="form-box">
+      <label class="form-label">お名前 NAME *</label>
+      <input type="text" class="form-input" id="form-name" placeholder="例）山田 花子（芸名でも可）">
+
+      <label class="form-label">メールアドレス EMAIL *</label>
+      <input type="email" class="form-input" id="form-email" placeholder="例）example@email.com">
+
+      <label class="form-label">希望勤務日数 SCHEDULE</label>
+      <input type="text" class="form-input" id="form-schedule" placeholder="例）週3日・土日のみ など">
+
+      <label class="form-label">一言メッセージ MESSAGE</label>
+      <input type="text" class="form-input" id="form-message" placeholder="自己PR・質問など、自由にどうぞ">
+
+      <button class="form-submit" id="form-submit" onclick="handleApply(event)">★ 応募する ★</button>
+      <div id="form-result" style="text-align:center; margin-top:10px; font-size:12px; min-height:1.5em;"></div>
+    </div>
+
+    <div class="note-box">
+      ★ ご応募いただいた情報は採用選考にのみ使用します。<br>
+      ★ ご質問はお気軽にどうぞ。返信までしばらくお待ちください。
+    </div>
+  </div>
+
+  <div id="footer">
+    <div id="footer-logo">蟠龍閣</div>
+    <p>BANRYUKAKU ✦ CYBER CHINA CONCEPT CAFE</p>
+    <p>東京都千代田区外神田 ✦ 秋葉原</p>
+    <p>営業時間：18:00〜翌1:00（不定休）</p>
+    <p style="margin-top:8px; font-size:9px; color:#442222;">
+      © 蟠龍閣 All Rights Reserved.
+    </p>
+  </div>
+
+</div><!-- /#wrapper -->
+
+<script src="arg.js"></script>
+<script>
+  // ── スクロール崩壊ギミック ─────────────────────────────────────
+  const degradeZone   = document.getElementById('degrade-zone');
+  const degradeMsg    = document.getElementById('degrade-msg');
+  const trigger1      = document.getElementById('degrade-trigger-1');
+  const trigger2      = document.getElementById('degrade-trigger-2');
+
+  let degradeLevel = 0;
+
+  function setDegrade(level) {
+    if (level <= degradeLevel) return;
+    degradeLevel = level;
+    degradeZone.setAttribute('data-degrade', String(level));
+    if (level >= 3) {
+      degradeMsg.classList.add('visible');
+    }
+  }
+
+  const obs1 = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        setDegrade(1);
+        // 少し遅れてLv2へ
+        setTimeout(() => setDegrade(2), 1200);
+      }
+    });
+  }, { threshold: 0, rootMargin: '0px' });
+
+  const obs2 = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        setDegrade(3);
+      }
+    });
+  }, { threshold: 0, rootMargin: '0px' });
+
+  obs1.observe(trigger1);
+  obs2.observe(trigger2);
+
+  // ── 応募フォーム ───────────────────────────────────────────────
+  function handleApply(e) {
+    e.preventDefault();
+    const name  = document.getElementById('form-name').value.trim();
+    const email = document.getElementById('form-email').value.trim();
+    const result = document.getElementById('form-result');
+
+    if (!name || !email) {
+      result.style.color = '#ff7777';
+      result.textContent = '★ お名前とメールアドレスは必須です。';
+      return;
+    }
+
+    // 送信済み演出
+    const btn = document.getElementById('form-submit');
+    btn.disabled = true;
+    btn.textContent = '送信中…';
+
+    setTimeout(() => {
+      result.style.color = '#ffcc44';
+      result.innerHTML =
+        'ご応募ありがとうございます。<br>' +
+        '担当者よりご連絡いたします。しばらくお待ちください。';
+      btn.textContent = '★ 送信完了 ★';
+    }, 800);
+  }
+</script>
+</body>
+</html>

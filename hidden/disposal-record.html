@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ja" data-level="0">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>廃棄処理記録 BRK-DSP-2024-1103 | 蟠龍閣内部</title>
+  <style>
+    body {
+      background-color: #020000;
+      color: #aa8877;
+      font-family: monospace;
+      font-size: 13px;
+      line-height: 1.8;
+      margin: 0;
+      padding: 0;
+    }
+
+    a { color: #774433; text-decoration: underline; }
+    a:hover { color: #cc6633; }
+
+    #hd-topbar {
+      background-color: #150000;
+      color: #552222;
+      font-size: 11px;
+      padding: 5px 12px;
+      text-align: center;
+      border-bottom: 1px solid #330000;
+      letter-spacing: 0.08em;
+    }
+
+    #hd-search {
+      background-color: #0a0000;
+      border-bottom: 1px solid #220000;
+      padding: 7px 12px;
+      text-align: center;
+    }
+
+    #hd-search input[type="search"] {
+      width: 240px;
+      padding: 4px 7px;
+      font-size: 12px;
+      background: #020000;
+      border: 1px solid #440000;
+      color: #aa8877;
+      font-family: monospace;
+      outline: none;
+    }
+    #hd-search input[type="search"]::placeholder { color: #443333; }
+
+    #hd-search button {
+      padding: 4px 12px;
+      background: #1a0000;
+      color: #aa8877;
+      font-size: 12px;
+      font-family: monospace;
+      border: 1px solid #660000;
+      cursor: pointer;
+    }
+
+    #search-error {
+      color: #cc4444;
+      font-size: 11px;
+      margin-top: 4px;
+      min-height: 1.2em;
+    }
+
+    #hd-breadcrumb {
+      padding: 6px 16px;
+      font-size: 11px;
+      color: #442222;
+      border-bottom: 1px dotted #220000;
+    }
+
+    #wrapper {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 20px 16px 40px;
+    }
+
+    .doc-header {
+      border: 2px solid #550000;
+      padding: 14px 18px;
+      margin-bottom: 24px;
+      background-color: #070000;
+    }
+
+    .doc-title {
+      font-size: 15px;
+      font-weight: bold;
+      color: #cc3322;
+      letter-spacing: 0.12em;
+      margin-bottom: 8px;
+      border-bottom: 1px solid #443322;
+      padding-bottom: 6px;
+    }
+
+    .doc-meta {
+      font-size: 11px;
+      color: #553322;
+      line-height: 2;
+    }
+
+    .doc-meta span { display: inline-block; min-width: 140px; }
+
+    .stamp-row {
+      text-align: right;
+      margin-bottom: 8px;
+    }
+
+    .stamp {
+      display: inline-block;
+      border: 2px solid #cc0000;
+      color: #cc0000;
+      font-size: 20px;
+      font-weight: 900;
+      padding: 6px 14px;
+      letter-spacing: 0.12em;
+      font-family: serif;
+    }
+
+    .section-label {
+      font-size: 11px;
+      color: #662222;
+      letter-spacing: 0.15em;
+      border-bottom: 1px dotted #330000;
+      padding-bottom: 4px;
+      margin-bottom: 10px;
+      margin-top: 22px;
+    }
+
+    .info-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    .info-table th,
+    .info-table td {
+      padding: 6px 10px;
+      border-bottom: 1px dotted #330000;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    .info-table tr:last-child th,
+    .info-table tr:last-child td { border-bottom: none; }
+
+    .info-table th {
+      color: #774433;
+      width: 130px;
+      white-space: nowrap;
+    }
+
+    .redacted {
+      background-color: #110000;
+      color: #110000;
+    }
+    .redacted:hover { color: #553333; }
+
+    .process-item {
+      border-left: 3px solid #440000;
+      padding: 6px 12px;
+      margin-bottom: 8px;
+      font-size: 12px;
+    }
+
+    .process-item .pt { color: #552222; font-size: 11px; }
+    .process-item .pc { color: #aa7766; }
+    .process-item.done .pc { color: #664433; }
+
+    .final-note {
+      background-color: #070000;
+      border: 1px solid #440000;
+      padding: 14px 16px;
+      margin-top: 20px;
+      font-size: 12px;
+      color: #664433;
+      line-height: 2;
+    }
+
+    .doc-footer {
+      margin-top: 30px;
+      border-top: 1px solid #330000;
+      padding-top: 10px;
+      font-size: 11px;
+      color: #442222;
+    }
+
+    .hint-box {
+      border: 1px dashed #330000;
+      padding: 10px 14px;
+      margin-top: 24px;
+      font-size: 11px;
+      color: #552222;
+      line-height: 1.8;
+    }
+      html, body { overflow-x: hidden; }
+  </style>
+</head>
+<body>
+
+<div id="hd-topbar">
+  ▌ BANRYUKAKU INTERNAL ▐　廃棄部門 — 機密処理記録　▌ CLASSIFIED ▐
+</div>
+
+<div id="hd-search">
+  <input type="search" id="search-input" placeholder="キーワード検索...">
+  <button id="search-btn">検索</button>
+  <br><span id="search-error"></span>
+</div>
+
+<div id="hd-breadcrumb">
+  <a href="../index.html">← 蟠龍閣トップに戻る</a>
+  &nbsp;/&nbsp; 廃棄部門 &nbsp;/&nbsp; 処理記録
+</div>
+
+<div id="wrapper">
+
+  <div class="stamp-row">
+    <span class="stamp">処理完了</span>
+  </div>
+
+  <div class="doc-header">
+    <div class="doc-title">廃棄処理記録 / DISPOSAL RECORD</div>
+    <div class="doc-meta">
+      <span>記録番号</span>: BRK-DSP-2024-1103<br>
+      <span>対象</span>: キャスト「ゆめ」（YM-2023-04）<br>
+      <span>処理日</span>: 2024.11.03<br>
+      <span>処理区分</span>: 龍牌会規定 第7条 — 選定失敗<br>
+      <span>担当</span>: 黒瀬（係長）/ 廃棄部門 乙班
+    </div>
+  </div>
+
+  <div class="section-label">■ 処理事由 REASON</div>
+  <table class="info-table">
+    <tr>
+      <th>判定</th>
+      <td style="color:#cc3322; font-weight:bold;">失敗作（選定基準 適合率 38%）</td>
+    </tr>
+    <tr>
+      <th>判定日</th>
+      <td>2024.11.01</td>
+    </tr>
+    <tr>
+      <th>判定者</th>
+      <td>黒瀬（係長）/ 龍牌会 選定部門</td>
+    </tr>
+    <tr>
+      <th>特記事項</th>
+      <td>
+        内部資料への不正アクセス記録（2024.07, 2024.09）あり。<br>
+        退店後の情報漏洩リスクあり。速やかな処置を推奨。
+      </td>
+    </tr>
+  </table>
+
+  <div class="section-label">■ 処理手順 PROCESS LOG</div>
+
+  <div class="process-item done">
+    <div class="pt">2024.11.02 17:43</div>
+    <div class="pc">最終出勤通知を送付。本人に告知なし。</div>
+  </div>
+  <div class="process-item done">
+    <div class="pt">2024.11.03 18:00</div>
+    <div class="pc">対象者が通常出勤。施設地下へ誘導。</div>
+  </div>
+  <div class="process-item done">
+    <div class="pt">2024.11.03 18:30</div>
+    <div class="pc">MAP-RY-023 搬入口より地下施設へ移送。</div>
+  </div>
+  <div class="process-item done">
+    <div class="pt">2024.11.03 19:12</div>
+    <div class="pc">廃棄処理室にて手続き完了。記録封印。</div>
+  </div>
+  <div class="process-item done">
+    <div class="pt">2024.11.04 00:00</div>
+    <div class="pc">SNS・連絡先を凍結。家族への通知は龍牌会が代行。</div>
+  </div>
+  <div class="process-item done">
+    <div class="pt">2024.11.04 03:00</div>
+    <div class="pc">在籍記録（YM-2023-04）を「廃棄済」に更新。本記録を封印。</div>
+  </div>
+
+  <div class="section-label">■ 後処理 POST-PROCESS</div>
+  <table class="info-table">
+    <tr>
+      <th>社外向け説明</th>
+      <td>「一身上の都合による退店」として処理済み</td>
+    </tr>
+    <tr>
+      <th>サイト対応</th>
+      <td>キャストページを「最終出勤：2024.11.03 / 現在不在」表示に変更済み</td>
+    </tr>
+    <tr>
+      <th>不正アクセス痕跡</th>
+      <td>
+        2024.11.04 03:12 — ゆめのIDによるログが検出されたが、<br>
+        システム上は「削除済みユーザー」として処理。精査中。
+      </td>
+    </tr>
+  </table>
+
+  <div class="final-note">
+    ■ 担当者メモ（黒瀬）<br><br>
+    彼女は最後まで抵抗した。<br>
+    珍しいことではないが、今回は特に……<br>
+    何かを残そうとしていた気配がある。<br>
+    <span class="redacted">██████████████████████████████████████████</span><br>
+    次の候補の選定を早急に進めること。<br>
+    先代が残した預言に照らすと、<br>
+    「外から来る者が次の龍になる」——<br>
+    サイトを通じて来た者が、鍵になるかもしれない。
+  </div>
+
+  <div class="hint-box">
+    &gt; 選定基準の詳細: 「<span style="color:#774433;">選定</span>」を検索してください。<br>
+    &gt; 管理端末へのアクセス: 「<span style="color:#774433;">龍牌会 端末</span>」を検索してください。
+  </div>
+
+  <div class="doc-footer">
+    廃棄部門 乙班 &nbsp;|&nbsp; BRK-DSP-2024-1103 &nbsp;|&nbsp; 電子捺印：済 &nbsp;|&nbsp; 外部持ち出し禁止
+  </div>
+
+</div>
+
+<script src="../arg.js"></script>
+</body>
+</html>

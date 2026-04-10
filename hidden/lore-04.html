@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ja" data-level="0">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>LORE-04 ゆめの調査ノート | 古文書</title>
+  <style>
+    body {
+      background-color: #010005;
+      color: #bb9988;
+      font-family: sans-serif;
+      font-size: 13px;
+      line-height: 2.1;
+      margin: 0;
+      padding: 0;
+    }
+
+    a { color: #775566; text-decoration: underline; }
+    a:hover { color: #cc99aa; }
+
+    #hd-topbar {
+      background-color: #080010;
+      color: #3a2244;
+      font-size: 11px;
+      padding: 5px 12px;
+      text-align: center;
+      border-bottom: 1px solid #1a0030;
+      letter-spacing: 0.08em;
+      font-family: monospace;
+    }
+
+    #hd-search {
+      background-color: #050008;
+      border-bottom: 1px solid #110022;
+      padding: 7px 12px;
+      text-align: center;
+    }
+
+    #hd-search input[type="search"] {
+      width: 240px;
+      padding: 4px 7px;
+      font-size: 12px;
+      background: #010005;
+      border: 1px solid #332244;
+      color: #bb9988;
+      font-family: monospace;
+      outline: none;
+    }
+    #hd-search input[type="search"]::placeholder { color: #332244; }
+
+    #hd-search button {
+      padding: 4px 12px;
+      background: #080015;
+      color: #bb9988;
+      font-size: 12px;
+      font-family: monospace;
+      border: 1px solid #554466;
+      cursor: pointer;
+    }
+
+    #search-error { color: #cc4444; font-size: 11px; margin-top: 4px; min-height: 1.2em; font-family: monospace; }
+
+    #hd-breadcrumb {
+      padding: 6px 16px;
+      font-size: 11px;
+      color: #332244;
+      border-bottom: 1px dotted #1a0030;
+      font-family: monospace;
+    }
+
+    #wrapper {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 28px 20px 50px;
+    }
+
+    .lore-num { font-size: 11px; color: #3a2244; letter-spacing: 0.2em; margin-bottom: 6px; font-family: monospace; }
+    .lore-title { font-size: 20px; font-weight: bold; color: #cc88aa; letter-spacing: 0.1em; margin-bottom: 6px; }
+    .lore-sub { font-size: 11px; color: #443355; margin-bottom: 24px; line-height: 1.6; font-family: monospace; }
+    hr.lore { border: none; border-top: 1px solid #221133; margin: 22px 0; }
+
+    /* ノート風スタイル */
+    .note-page {
+      background-color: #040010;
+      border: 1px solid #221133;
+      border-left: 4px solid #442255;
+      padding: 18px 22px;
+      margin-bottom: 14px;
+    }
+
+    .note-date {
+      font-size: 11px;
+      color: #554466;
+      font-family: monospace;
+      margin-bottom: 8px;
+      border-bottom: 1px dotted #221133;
+      padding-bottom: 4px;
+    }
+
+    .note-body {
+      font-size: 13px;
+      color: #bb9988;
+      line-height: 2.2;
+    }
+
+    .note-body p { margin: 0 0 0.8em; }
+
+    .note-em   { color: #ddaacc; font-weight: bold; }
+    .note-soft { color: #443355; }
+    .note-key  { color: #cc88aa; font-family: monospace; font-weight: bold; }
+
+    .note-strike {
+      text-decoration: line-through;
+      color: #442244;
+    }
+
+    /* 特別なページ（最後の一枚） */
+    .note-page.final {
+      border-color: #664455;
+      border-left-color: #aa6677;
+      background-color: #060015;
+    }
+
+    .note-page.final .note-body { color: #ccaa99; }
+
+    .archive-note {
+      margin-top: 16px;
+      padding: 10px 14px;
+      border: 1px dashed #221133;
+      font-size: 11px;
+      color: #332244;
+      line-height: 1.8;
+      font-family: monospace;
+    }
+
+    .page-nav { margin-top: 36px; display: table; width: 100%; font-family: monospace; }
+    .page-nav-prev, .page-nav-next { display: table-cell; font-size: 11px; }
+    .page-nav-prev { text-align: left; }
+    .page-nav-next { text-align: right; }
+    .page-nav-center { display: table-cell; text-align: center; color: #332244; font-size: 11px; }
+    .page-nav a { color: #665577; text-decoration: none; border-bottom: 1px dotted #443355; }
+    .page-nav a:hover { color: #cc99aa; }
+      html, body { overflow-x: hidden; }
+  </style>
+</head>
+<body>
+
+<div id="hd-topbar">
+  ▌ 龍牌会 古文書アーカイブ　ARCHIVE DOCUMENT　▌ ゆめ 個人記録 （回収済）▐
+</div>
+
+<div id="hd-search">
+  <input type="search" id="search-input" placeholder="キーワード検索...">
+  <button id="search-btn">検索</button>
+  <br><span id="search-error"></span>
+</div>
+
+<div id="hd-breadcrumb">
+  <a href="../index.html">← 蟠龍閣トップ</a>
+  &nbsp;/&nbsp; 古文書 &nbsp;/&nbsp; LORE-04
+</div>
+
+<div id="wrapper">
+
+  <div class="lore-num">ARCHIVE DOCUMENT — LORE 04 / 05</div>
+  <div class="lore-title">ゆめの調査ノート</div>
+  <div class="lore-sub">
+    出典: YM-2023-04 個人所持ノート（廃棄処理後に回収）<br>
+    ※ 原文ママ。誤字・脱字は修正していない。
+  </div>
+
+  <hr class="lore">
+
+  <div class="note-page">
+    <div class="note-date">2024.04.15</div>
+    <div class="note-body">
+      <p>黒瀬係長から「特別なポジション」について話したいって言われた。</p>
+      <p>「選定」って言葉を使ってた。なんか審査みたいなものがあるんだと思う。</p>
+      <p>頑張ってみよう。ここが好きだし、もっと深く関わりたい。</p>
+    </div>
+  </div>
+
+  <div class="note-page">
+    <div class="note-date">2024.06.30</div>
+    <div class="note-body">
+      <p>係長からメールが来るようになった。業務連絡の中に、時々変な言葉が混じる。</p>
+      <p>「龍牌会」。それが何かは教えてくれない。</p>
+      <p class="note-soft">……まあ、いっか。</p>
+    </div>
+  </div>
+
+  <div class="note-page">
+    <div class="note-date">2024.07.02</div>
+    <div class="note-body">
+      <p>ミスで共有フォルダに入ってしまった。開くつもりじゃなかった。</p>
+      <p>でも見てしまった。</p>
+      <p>「廃棄」「処置」「失敗作」——</p>
+      <p><span class="note-em">これは何？</span></p>
+      <p class="note-soft">キャスト名が並んでいた。ソラさんの名前もあった。</p>
+    </div>
+  </div>
+
+  <div class="note-page">
+    <div class="note-date">2024.07.08</div>
+    <div class="note-body">
+      <p>ソラさんは去年「一身上の都合」で辞めたって聞いてた。</p>
+      <p>でもあの記録には「廃棄 #021」とあった。</p>
+      <p>……まさか。</p>
+      <p><span class="note-em">辞めたんじゃないの？</span></p>
+    </div>
+  </div>
+
+  <div class="note-page">
+    <div class="note-date">2024.09.22</div>
+    <div class="note-body">
+      <p>もっと調べた。龍牌会は「次の龍」を探してる組織らしい。</p>
+      <p>条件を満たさない候補は「失敗作」として処置される。</p>
+      <p>処置って、廃棄のこと。廃棄って、どういう意味なんだろう。</p>
+      <p>地下の施設があるって書いてた。MAP-RY-023。</p>
+      <p class="note-soft">怖い。でも、止まれない。</p>
+    </div>
+  </div>
+
+  <div class="note-page">
+    <div class="note-date">2024.10.30</div>
+    <div class="note-body">
+      <p>選定の中間結果が出た。適合率38%。</p>
+      <p>足りない。でも理由がわかった。</p>
+      <p>あたしは「外から来た者」じゃない。龍牌会に採用されて、ここに入った。</p>
+      <p>「外から自発的に来る者」だけが龍になれる。</p>
+      <p><span class="note-em">あたしは、最初から無理だったんだ。</span></p>
+      <p class="note-soft">でも——</p>
+      <p>外から来る誰かが、この場所を調べたら？</p>
+      <p>そういう人のために、道を作ることはできる。</p>
+    </div>
+  </div>
+
+  <div class="note-page">
+    <div class="note-date">2024.11.01</div>
+    <div class="note-body">
+      <p>バックドアを考えた。</p>
+      <p>このサイトに、外から来た誰かが辿り着けるように。</p>
+      <p>キーワードを仕込む。あたしだけが知っているキーワード。</p>
+      <p><span class="note-key">RENPAI</span>——龍牌会の連牌、連なる牌。あたしが好きな言葉。</p>
+      <p>誰かがここに来てくれたら、あたしが残した道が続く。</p>
+    </div>
+  </div>
+
+  <div class="note-page final">
+    <div class="note-date">2024.11.02 — 最後のページ</div>
+    <div class="note-body">
+      <p>バックドアを仕込んだ。</p>
+      <p>明日、最終確認がある。どうなるかわかってる。</p>
+      <p>怖くないって言えば嘘になる。</p>
+      <p>でも、<span class="note-em">後悔はしてない。</span></p>
+      <p>このノートが誰かに届くかどうかわからない。</p>
+      <p>でも、もし届いたなら——</p>
+      <p class="note-em">あなたが次の龍です。</p>
+      <p>ちゃんと生きて。</p>
+      <p class="note-soft">— ゆめ</p>
+    </div>
+  </div>
+
+  <div class="archive-note">
+    ■ 本ノートはゆめ廃棄後に施設内で回収されました。<br>
+    続き: LORE-05 では先代が残した預言書を参照できます。
+  </div>
+
+  <div class="page-nav">
+    <div class="page-nav-prev"><a href="lore-03.html">← LORE-03</a></div>
+    <div class="page-nav-center">4 / 5</div>
+    <div class="page-nav-next"><a href="lore-05.html">LORE-05 →</a></div>
+  </div>
+
+</div>
+
+<script src="../arg.js"></script>
+</body>
+</html>

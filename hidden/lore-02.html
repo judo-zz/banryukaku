@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ja" data-level="0">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>LORE-02 先代の総龍 | 古文書</title>
+  <style>
+    body {
+      background-color: #030002;
+      color: #998866;
+      font-family: monospace;
+      font-size: 13px;
+      line-height: 2;
+      margin: 0;
+      padding: 0;
+    }
+
+    a { color: #775533; text-decoration: underline; }
+    a:hover { color: #ccaa66; }
+
+    #hd-topbar {
+      background-color: #100800;
+      color: #4a3311;
+      font-size: 11px;
+      padding: 5px 12px;
+      text-align: center;
+      border-bottom: 1px solid #2a1800;
+      letter-spacing: 0.08em;
+    }
+
+    #hd-search {
+      background-color: #080500;
+      border-bottom: 1px solid #1a1000;
+      padding: 7px 12px;
+      text-align: center;
+    }
+
+    #hd-search input[type="search"] {
+      width: 240px;
+      padding: 4px 7px;
+      font-size: 12px;
+      background: #030002;
+      border: 1px solid #443322;
+      color: #998866;
+      font-family: monospace;
+      outline: none;
+    }
+    #hd-search input[type="search"]::placeholder { color: #443322; }
+
+    #hd-search button {
+      padding: 4px 12px;
+      background: #110800;
+      color: #998866;
+      font-size: 12px;
+      font-family: monospace;
+      border: 1px solid #664433;
+      cursor: pointer;
+    }
+
+    #search-error { color: #cc4444; font-size: 11px; margin-top: 4px; min-height: 1.2em; }
+
+    #hd-breadcrumb {
+      padding: 6px 16px;
+      font-size: 11px;
+      color: #443322;
+      border-bottom: 1px dotted #2a1800;
+    }
+
+    #wrapper {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 28px 20px 50px;
+    }
+
+    .lore-num { font-size: 11px; color: #4a3311; letter-spacing: 0.2em; margin-bottom: 6px; }
+    .lore-title { font-size: 20px; font-weight: bold; color: #cc9944; letter-spacing: 0.15em; margin-bottom: 6px; text-shadow: 1px 1px 0 #220000; }
+    .lore-sub { font-size: 11px; color: #554433; margin-bottom: 24px; line-height: 1.6; }
+    hr.lore { border: none; border-top: 1px solid #332211; margin: 22px 0; }
+    .lore-body { font-size: 13px; color: #aa9977; line-height: 2.3; }
+    .lore-body p { margin: 0 0 1.2em; }
+    .lore-em   { color: #ccaa66; font-weight: bold; }
+    .lore-soft { color: #554433; }
+    .lore-red  { color: #996644; }
+
+    .lore-quote {
+      border-left: 3px solid #554433;
+      padding: 10px 18px;
+      margin: 18px 0;
+      background-color: #060400;
+      font-style: italic;
+      color: #bb9966;
+    }
+
+    .redacted { background-color: #1a0800; color: #1a0800; }
+    .redacted:hover { color: #665544; }
+
+    .record-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      margin: 16px 0;
+    }
+
+    .record-table th,
+    .record-table td {
+      padding: 6px 10px;
+      border-bottom: 1px dotted #332211;
+      vertical-align: top;
+    }
+
+    .record-table th {
+      color: #775533;
+      width: 120px;
+      white-space: nowrap;
+      text-align: left;
+    }
+
+    .archive-note {
+      margin-top: 16px;
+      padding: 10px 14px;
+      border: 1px dashed #332211;
+      font-size: 11px;
+      color: #443322;
+      line-height: 1.8;
+    }
+
+    .page-nav { margin-top: 36px; display: table; width: 100%; }
+    .page-nav-prev, .page-nav-next { display: table-cell; font-size: 11px; }
+    .page-nav-prev { text-align: left; }
+    .page-nav-next { text-align: right; }
+    .page-nav-center { display: table-cell; text-align: center; color: #443322; font-size: 11px; }
+    .page-nav a { color: #775533; text-decoration: none; border-bottom: 1px dotted #554422; }
+    .page-nav a:hover { color: #ccaa66; }
+      html, body { overflow-x: hidden; }
+  </style>
+</head>
+<body>
+
+<div id="hd-topbar">
+  ▌ 龍牌会 古文書アーカイブ　ARCHIVE DOCUMENT　▌ MAP-RY-023 記録保管室 ▐
+</div>
+
+<div id="hd-search">
+  <input type="search" id="search-input" placeholder="キーワード検索...">
+  <button id="search-btn">検索</button>
+  <br><span id="search-error"></span>
+</div>
+
+<div id="hd-breadcrumb">
+  <a href="../index.html">← 蟠龍閣トップ</a>
+  &nbsp;/&nbsp; 古文書 &nbsp;/&nbsp; LORE-02
+</div>
+
+<div id="wrapper">
+
+  <div class="lore-num">ARCHIVE DOCUMENT — LORE 02 / 05</div>
+  <div class="lore-title">先代の総龍</div>
+  <div class="lore-sub">
+    原文書: 龍牌会 人事記録部門 &nbsp;|&nbsp; 閲覧制限: 係長以上<br>
+    ※ 先代の個人特定につながる情報は黒塗り処理済
+  </div>
+
+  <hr class="lore">
+
+  <div class="lore-body">
+
+    <p>
+      龍牌会にはこれまで、三代の総龍が存在した。<br>
+      創設者（初代）、<span class="redacted">████████</span>（二代）、そして先代（三代）。
+    </p>
+
+    <p>
+      先代は、龍牌会の歴史の中で<span class="lore-em">唯一、廃棄されることなく退任した</span>総龍だった。
+    </p>
+
+    <table class="record-table">
+      <tr><th>在位期間</th><td><span class="redacted">████</span> 〜 <span class="redacted">████</span></td></tr>
+      <tr><th>出身</th><td>龍牌会外部（外から来た者）</td></tr>
+      <tr><th>発見経緯</th><td>当時の「場所」を自ら調査し、真実に辿り着いた</td></tr>
+      <tr><th>退任理由</th><td>自主的引退。「次の龍が来る気配を感じた」と述べた</td></tr>
+      <tr><th>退任後</th><td>消息不明（本人の意思による）</td></tr>
+    </table>
+
+    <p>
+      先代は退任の際、一つの文書を残した。<br>
+      龍牌会がいまも「預言書」と呼ぶ、あの文書だ。
+    </p>
+
+    <div class="lore-quote">
+      「私がここに来たのは、誰かに招かれたからではない。<br>
+      自分で来た。扉を見つけ、自分で開けた。<br>
+      <br>
+      次の龍も、同じように来るだろう。<br>
+      その者が来るとき、私の仕事は終わる。<br>
+      <br>
+      龍は探すものではない。龍は——来るものだ。」<br>
+      <span style="color:#554433; font-size:11px;">— 先代総龍 退任の辞より</span>
+    </div>
+
+    <p>
+      先代が消えたとき、龍牌会は困惑した。<br>
+      後継者がいない。総龍の席は空位になった。
+    </p>
+
+    <p>
+      黒瀬係長が代理統括を担い始めたのは、そのときからだ。
+    </p>
+
+    <p class="lore-soft">
+      以来、龍牌会は「次の龍」を探し続けている。<br>
+      蟠龍閣は、その最新の舞台だ。
+    </p>
+
+    <p>
+      そして今——<br>
+      先代の預言は、成就しようとしている。
+    </p>
+
+  </div>
+
+  <div class="archive-note">
+    ■ 続き: LORE-03 では、過去の候補者リストを参照できます。<br>
+    先代が「次の龍が来る気配を感じた」と述べた時期は、<span class="redacted">████年</span>のことです。
+  </div>
+
+  <div class="page-nav">
+    <div class="page-nav-prev"><a href="lore-01.html">← LORE-01</a></div>
+    <div class="page-nav-center">2 / 5</div>
+    <div class="page-nav-next"><a href="lore-03.html">LORE-03 →</a></div>
+  </div>
+
+</div>
+
+<script src="../arg.js"></script>
+</body>
+</html>

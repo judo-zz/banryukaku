@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="ja" data-level="0">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="蟠龍閣のキャスト紹介ページ。みじゅ・ちゃき・なの・よすずが在籍中。">
+  <meta name="robots" content="noindex, nofollow">
+  <title>CAST キャスト紹介 | 蟠龍閣</title>
+  <style>
+    body {
+      background-color: #0d0000;
+      background-image:
+        repeating-linear-gradient(0deg, rgba(180,0,0,0.06) 0px, rgba(180,0,0,0.06) 1px, transparent 1px, transparent 28px),
+        repeating-linear-gradient(90deg, rgba(180,0,0,0.06) 0px, rgba(180,0,0,0.06) 1px, transparent 1px, transparent 28px);
+      color: #fff8f0;
+      font-family: sans-serif;
+      font-size: 13px;
+      line-height: 1.7;
+      margin: 0;
+      padding: 0;
+    }
+
+    a { color: #ffcc44; text-decoration: underline; }
+    a:hover { color: #ff9999; }
+    a:visited { color: #ffaa66; }
+    p { margin: 0.5em 0; }
+    hr { border: none; border-top: 2px solid #880000; margin: 18px 0; }
+
+    #wrapper { max-width: 800px; margin: 0 auto; padding: 0 8px; }
+
+    /* ヘッダー */
+    #topline {
+      background-color: #cc0000;
+      color: #fff;
+      font-size: 12px;
+      font-weight: bold;
+      text-align: center;
+      padding: 6px 0;
+      letter-spacing: 0.1em;
+      border-bottom: 3px double #ff6666;
+    }
+
+    #header {
+      background-color: #1a0000;
+      border-bottom: 3px solid #cc0000;
+      padding: 14px 12px 10px;
+      text-align: center;
+    }
+
+    #site-title {
+      font-size: 36px;
+      font-weight: 900;
+      color: #ffcc44;
+      letter-spacing: 0.18em;
+      line-height: 1.1;
+      text-shadow: 2px 2px 0 #880000;
+    }
+
+    #site-subtitle {
+      font-size: 11px;
+      color: #ffaaaa;
+      letter-spacing: 0.22em;
+      margin-top: 3px;
+    }
+
+    #site-catch {
+      font-size: 15px;
+      font-weight: bold;
+      color: #ffeecc;
+      margin-top: 6px;
+    }
+
+    /* ナビ */
+    #nav {
+      background-color: #330000;
+      border-bottom: 2px solid #880000;
+      padding: 6px 0;
+      text-align: center;
+    }
+
+    #nav a {
+      color: #ffcc44;
+      font-size: 12px;
+      font-weight: bold;
+      text-decoration: none;
+      padding: 0 10px;
+      border-right: 1px solid #660000;
+      letter-spacing: 0.08em;
+    }
+    #nav a:last-child { border-right: none; }
+    #nav a:hover { color: #ff9999; }
+    #nav a.current { color: #fff; border-bottom: 2px solid #ffcc44; }
+
+    /* 検索バー */
+    #search-area {
+      background-color: #1a0005;
+      border-bottom: 1px solid #550000;
+      padding: 8px 12px;
+      text-align: center;
+    }
+
+    #search-area input[type="search"] {
+      width: 280px;
+      padding: 5px 8px;
+      font-size: 12px;
+      background: #0d0000;
+      border: 1px solid #880000;
+      color: #fff8f0;
+      outline: none;
+    }
+    #search-area input[type="search"]::placeholder { color: #775555; }
+
+    #search-area button {
+      padding: 5px 14px;
+      background: #880000;
+      color: #ffcc44;
+      font-size: 12px;
+      font-weight: bold;
+      border: 1px solid #cc0000;
+      cursor: pointer;
+      letter-spacing: 0.08em;
+    }
+
+    #search-error {
+      color: #ff7777;
+      font-size: 11px;
+      margin-top: 4px;
+      min-height: 1.2em;
+    }
+
+    /* 共通セクション */
+    .section-box {
+      background-color: #120000;
+      border: 2px solid #880000;
+      margin-bottom: 18px;
+      padding: 14px 16px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 900;
+      color: #ffcc44;
+      border-bottom: 2px solid #550000;
+      padding-bottom: 6px;
+      margin-bottom: 12px;
+      letter-spacing: 0.1em;
+    }
+
+    .section-title-deco { color: #ff9999; }
+
+    .deco-line {
+      text-align: center;
+      color: #880000;
+      font-size: 12px;
+      margin: 10px 0;
+      letter-spacing: 0.2em;
+    }
+
+    .pink-text { color: #ffaabb; }
+    .gold-text  { color: #ffcc44; }
+    .red-text   { color: #ff6666; }
+
+    /* ページタイトル */
+    #page-title-box {
+      background-color: #1a0005;
+      border: 2px solid #cc0000;
+      padding: 16px;
+      margin-bottom: 18px;
+      text-align: center;
+    }
+
+    #page-title {
+      font-size: 30px;
+      font-weight: 900;
+      color: #ffcc44;
+      letter-spacing: 0.2em;
+      text-shadow: 2px 2px 0 #880000;
+      margin-bottom: 6px;
+    }
+
+    #page-lead {
+      font-size: 12px;
+      color: #ffddcc;
+      line-height: 2;
+    }
+
+    /* キャストカード（大型） */
+    .cast-block {
+      background-color: #120000;
+      border: 2px solid #880000;
+      margin-bottom: 20px;
+    }
+
+    .cast-block.absent {
+      border-color: #444;
+      background-color: #0d0d0d;
+      opacity: 0.7;
+    }
+
+    /* カードヘッダー（名前リボン） */
+    .cast-header {
+      background-color: #cc0000;
+      padding: 6px 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .cast-block.absent .cast-header {
+      background-color: #444;
+    }
+
+    .cast-ribbon {
+      background-color: #fff;
+      color: #880000;
+      font-size: 10px;
+      font-weight: 900;
+      padding: 2px 10px;
+      letter-spacing: 0.12em;
+      white-space: nowrap;
+    }
+
+    .cast-block.absent .cast-ribbon {
+      background-color: #888;
+      color: #222;
+    }
+
+    .cast-header-name {
+      font-size: 18px;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: 0.1em;
+    }
+
+    .cast-header-en {
+      font-size: 11px;
+      color: #ffeecc;
+      letter-spacing: 0.25em;
+    }
+
+    /* カード本文 */
+    .cast-inner {
+      display: table;
+      width: 100%;
+    }
+
+    .cast-photo-col {
+      display: table-cell;
+      width: 180px;
+      vertical-align: top;
+      padding: 14px;
+    }
+
+    .cast-photo-box {
+      width: 160px;
+      height: 210px;
+      background-color: #2a0010;
+      border: 1px solid #550000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 60px;
+      font-weight: 900;
+      color: rgba(255,255,255,0.15);
+      font-family: serif;
+    }
+
+    .cast-block.absent .cast-photo-box {
+      background-color: #111;
+      border-color: #333;
+    }
+
+    .cast-detail-col {
+      display: table-cell;
+      vertical-align: top;
+      padding: 14px 16px 14px 0;
+    }
+
+    .cast-detail-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 10px;
+    }
+
+    .cast-detail-table th,
+    .cast-detail-table td {
+      padding: 5px 8px;
+      font-size: 12px;
+      border-bottom: 1px dotted #440000;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    .cast-detail-table th {
+      color: #ffcc44;
+      font-weight: bold;
+      width: 80px;
+      white-space: nowrap;
+    }
+
+    .cast-detail-table td { color: #ffddcc; }
+
+    .cast-self-intro {
+      background-color: #1a0005;
+      border-left: 3px solid #cc0000;
+      padding: 10px 12px;
+      font-size: 12px;
+      color: #ffeecc;
+      line-height: 1.9;
+      font-style: italic;
+    }
+
+    .cast-block.absent .cast-self-intro {
+      border-left-color: #444;
+      color: #888;
+    }
+
+    .cast-divider-stars {
+      text-align: center;
+      color: #880000;
+      font-size: 11px;
+      margin: 8px 0 4px;
+      letter-spacing: 0.3em;
+    }
+
+    /* 戻るボタン */
+    .back-btn {
+      display: inline-block;
+      background-color: #330000;
+      color: #ffcc44;
+      font-size: 13px;
+      font-weight: bold;
+      padding: 8px 18px;
+      border: 1px solid #660000;
+      text-decoration: none;
+      margin: 4px;
+    }
+
+    /* フッター */
+    #footer {
+      background-color: #0d0000;
+      border-top: 3px double #880000;
+      padding: 14px;
+      text-align: center;
+      font-size: 11px;
+      color: #887777;
+    }
+    #footer strong { color: #ffcc44; font-size: 13px; }
+
+    @media (max-width: 600px) {
+      #site-title { font-size: 26px; }
+      #page-title  { font-size: 22px; }
+      .cast-inner  { display: block; }
+      .cast-photo-col,
+      .cast-detail-col {
+        display: block;
+        width: auto;
+        padding: 12px;
+      }
+      .cast-photo-box {
+        width: 100%;
+        height: 180px;
+      }
+      #search-area input[type="search"] { width: 180px; }
+      #nav a { padding: 0 6px; font-size: 11px; }
+    }
+      html, body { overflow-x: hidden; }
+  </style>
+</head>
+<body>
+
+  <div id="topline">
+    ★ 深夜1時まで営業中！はじめての方も大歓迎 ★ 秋葉原の路地裏・地下1階 ★
+  </div>
+
+  <div id="header">
+    <div id="site-title">蟠 龍 閣</div>
+    <div id="site-subtitle">BANRYUKAKU ✦ AKIHABARA NEO CHINA CONCEPT CAFE</div>
+    <div id="site-catch">✦ 異空間で出会う、カワイイチャイナガール！✦</div>
+  </div>
+
+  <div id="nav">
+    <a href="index.html">TOP</a><a href="cast.html" class="current">CAST</a><a href="menu.html">MENU</a><a href="recruit.html">RECRUIT</a><a href="access.html">ACCESS</a><a href="index.html#reserve">RESERVE</a>
+  </div>
+
+  <div id="search-area">
+    <input type="search" id="search-input" placeholder="キャスト名・キーワードを入力…" autocomplete="off" spellcheck="false" aria-label="サイト内検索">
+    <button id="search-btn" type="button">SEARCH</button>
+    <br>
+    <div id="search-error" role="alert" aria-live="polite"></div>
+  </div>
+
+  <div id="wrapper">
+  <div id="main" style="padding:12px 0;">
+
+    <!-- ページタイトル -->
+    <div id="page-title-box">
+      <div id="page-title">★ CAST キャスト紹介 ★</div>
+      <div id="page-lead">
+        龍の宮廷を彩る4人＋1人。<br>
+        個性豊かなキャストたちが、あなたの夜を特別にします♪<br>
+        <span class="pink-text">※ ゆめは現在長期お休み中です。</span>
+      </div>
+    </div>
+
+    <div class="deco-line">★ ★ ★ IN STORE ★ ★ ★</div>
+
+    <!-- ═══════════════════
+         みじゅ
+    ════════════════════ -->
+    <div class="cast-block">
+      <div class="cast-header">
+        <span class="cast-ribbon">PICK UP</span>
+        <span class="cast-header-name">みじゅ</span>
+        <span class="cast-header-en">MIJU</span>
+      </div>
+      <div class="cast-inner">
+        <div class="cast-photo-col">
+          <div class="cast-photo-box">美</div>
+        </div>
+        <div class="cast-detail-col">
+          <table class="cast-detail-table">
+            <tbody>
+              <tr>
+                <th>キャスト名</th>
+                <td>みじゅ（MIJU）</td>
+              </tr>
+              <tr>
+                <th>趣味</th>
+                <td>料理・映画鑑賞</td>
+              </tr>
+              <tr>
+                <th>得意なこと</th>
+                <td>おしゃべり・おすすめ映画を教えること</td>
+              </tr>
+              <tr>
+                <th>好きな食べ物</th>
+                <td>餃子・杏仁豆腐</td>
+              </tr>
+              <tr>
+                <th>一言</th>
+                <td class="gold-text">ご来店お待ちしております♪</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="cast-divider-stars">* * * * *</div>
+          <div class="cast-self-intro">
+            はじめまして、みじゅです！<br>
+            料理と映画が大好きで、おすすめを語り出したら止まりません（笑）<br>
+            うちのお店、先代から受け継いだことがたくさんあって……<br>
+            「四代目は外から来る者だ」ってよく言われてたんですよね。<br>
+            なんか不思議な言葉だなって思ってたんですけど、<br>
+            あなたのことかも？なんて♪<br>
+            とにかく、来てくれてありがとう。いつでもまた来てね！
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════
+         ちゃき
+    ════════════════════ -->
+    <div class="cast-block">
+      <div class="cast-header">
+        <span class="cast-ribbon">NEW</span>
+        <span class="cast-header-name">ちゃき</span>
+        <span class="cast-header-en">CHAKI</span>
+      </div>
+      <div class="cast-inner">
+        <div class="cast-photo-col">
+          <div class="cast-photo-box">茶</div>
+        </div>
+        <div class="cast-detail-col">
+          <table class="cast-detail-table">
+            <tbody>
+              <tr>
+                <th>キャスト名</th>
+                <td>ちゃき（CHAKI）</td>
+              </tr>
+              <tr>
+                <th>趣味</th>
+                <td>ゲーム・お絵かき</td>
+              </tr>
+              <tr>
+                <th>得意なこと</th>
+                <td>似顔絵を描くこと・ゲームの話</td>
+              </tr>
+              <tr>
+                <th>好きな食べ物</th>
+                <td>チョコレート・唐揚げ</td>
+              </tr>
+              <tr>
+                <th>一言</th>
+                <td class="gold-text">全力で盛り上げます！</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="cast-divider-stars">* * * * *</div>
+          <div class="cast-self-intro">
+            ちゃきです！ゲームとお絵かきが生きがいです〜！<br>
+            似顔絵描くの得意なので、よかったらリクエストしてね♪<br>
+            <br>
+            最近ちょっとだけ気になってることがあって……<br>
+            黒瀬係長から連絡が増えた気がするんですよね。<br>
+            なんか忙しそうで、いつもより雰囲気が違うというか。<br>
+            まあ深く考えないようにしてます！<br>
+            今日はあなたのために全力で楽しませます！！
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════
+         なの
+    ════════════════════ -->
+    <div class="cast-block">
+      <div class="cast-header">
+        <span class="cast-ribbon">EVENT</span>
+        <span class="cast-header-name">なの</span>
+        <span class="cast-header-en">NANO</span>
+      </div>
+      <div class="cast-inner">
+        <div class="cast-photo-col">
+          <div class="cast-photo-box">七</div>
+        </div>
+        <div class="cast-detail-col">
+          <table class="cast-detail-table">
+            <tbody>
+              <tr>
+                <th>キャスト名</th>
+                <td>なの（NANO）</td>
+              </tr>
+              <tr>
+                <th>趣味</th>
+                <td>カフェ巡り・読書</td>
+              </tr>
+              <tr>
+                <th>得意なこと</th>
+                <td>おすすめカフェを紹介すること・本の話</td>
+              </tr>
+              <tr>
+                <th>好きな食べ物</th>
+                <td>プリン・ミルクティー</td>
+              </tr>
+              <tr>
+                <th>一言</th>
+                <td class="gold-text">ゆっくりお話しましょう♪</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="cast-divider-stars">* * * * *</div>
+          <div class="cast-self-intro">
+            なのです、よろしくお願いします！<br>
+            週末はよくカフェ巡りをしていて、秋葉原近辺のおすすめも結構知ってますよ♪<br>
+            読書も好きで、最近はちょっと不思議な本にはまっています。<br>
+            <br>
+            そういえば……「龍牌会」って言葉、どこかで聞いたことがある気がするんですよね。<br>
+            なんだったかな、本で読んだのかな……まあいいか！<br>
+            今日はたくさんお話しましょうね。
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════
+         よすず
+    ════════════════════ -->
+    <div class="cast-block">
+      <div class="cast-header">
+        <span class="cast-ribbon">NIGHT</span>
+        <span class="cast-header-name">よすず</span>
+        <span class="cast-header-en">YOSUZU</span>
+      </div>
+      <div class="cast-inner">
+        <div class="cast-photo-col">
+          <div class="cast-photo-box">宵</div>
+        </div>
+        <div class="cast-detail-col">
+          <table class="cast-detail-table">
+            <tbody>
+              <tr>
+                <th>キャスト名</th>
+                <td>よすず（YOSUZU）</td>
+              </tr>
+              <tr>
+                <th>趣味</th>
+                <td>音楽・占い</td>
+              </tr>
+              <tr>
+                <th>得意なこと</th>
+                <td>タロット占い・深夜の会話</td>
+              </tr>
+              <tr>
+                <th>好きな食べ物</th>
+                <td>黒糖タピオカ・チョコミント</td>
+              </tr>
+              <tr>
+                <th>一言</th>
+                <td class="gold-text">出会いには意味がある。</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="cast-divider-stars">* * * * *</div>
+          <div class="cast-self-intro">
+            ……よすず、です。<br>
+            音楽と占いが好き。深夜に静かに話すのが一番好きな時間。<br>
+            <br>
+            あなたがここを読んでいるなら、もう選ばれているよ。<br>
+            偶然ここに来た人なんて、本当はいないから。<br>
+            タロット引いてみる？今夜のあなたに合ったカードを引いてあげる。
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="deco-line">★ ★ ★ ABSENT ★ ★ ★</div>
+
+    <!-- ═══════════════════
+         ゆめ（不在）
+    ════════════════════ -->
+    <div class="cast-block absent">
+      <div class="cast-header">
+        <span class="cast-ribbon">ABSENT</span>
+        <span class="cast-header-name" style="color:#aaa;">ゆめ</span>
+        <span class="cast-header-en" style="color:#888;">YUME</span>
+      </div>
+      <div class="cast-inner">
+        <div class="cast-photo-col">
+          <div class="cast-photo-box">夢</div>
+        </div>
+        <div class="cast-detail-col">
+          <table class="cast-detail-table">
+            <tbody>
+              <tr>
+                <th>キャスト名</th>
+                <td style="color:#888;">ゆめ（YUME）</td>
+              </tr>
+              <tr>
+                <th>最終出勤</th>
+                <td style="color:#888;">2024.11.03</td>
+              </tr>
+              <tr>
+                <th>状況</th>
+                <td style="color:#888;">長期お休み中</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="cast-divider-stars" style="color:#444;">* * * * *</div>
+          <div class="cast-self-intro" style="border-left-color:#444;color:#888;">
+            現在長期お休みをいただいております。<br>
+            復帰の時期は未定です。今しばらくお待ちください。<br>
+            <br>
+            <span style="font-size:11px;color:#666;">
+              ※ ゆめへのメッセージはスタッフまでお声がけください。
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="deco-line">♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥</div>
+
+    <p style="text-align:center;margin-bottom:18px;">
+      <a href="index.html" class="back-btn">← TOPページへ戻る</a>
+      <a href="index.html#reserve" class="back-btn">💌 ご予約はこちら</a>
+    </p>
+
+  </div>
+  </div>
+
+  <div id="footer">
+    <strong>蟠龍閣 / BANRYUKAKU</strong><br>
+    AKIHABARA NEO CHINA CONCEPT CAFE<br>
+    <br>
+    <span style="color:#664444;">18歳未満のご入店はお断りしております。<br>
+    © 2026 BANRYUKAKU. All rights reserved.</span>
+  </div>
+
+  <script src="arg.js"></script>
+
+</body>
+</html>

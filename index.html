@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="ja" data-level="0">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="蟠龍閣 — 秋葉原のネオチャイナ系コンセプトカフェ。かわいいチャイナ娘と、ちょっと非日常な夜。">
+  <meta name="robots" content="noindex, nofollow">
+  <title>蟠龍閣 | 秋葉原 ネオチャイナ系コンカフェ</title>
+  <style>
+    body {
+      background-color: #0d0000;
+      background-image:
+        repeating-linear-gradient(0deg, rgba(180,0,0,0.06) 0px, rgba(180,0,0,0.06) 1px, transparent 1px, transparent 28px),
+        repeating-linear-gradient(90deg, rgba(180,0,0,0.06) 0px, rgba(180,0,0,0.06) 1px, transparent 1px, transparent 28px);
+      color: #fff8f0;
+      font-family: sans-serif;
+      font-size: 13px;
+      line-height: 1.7;
+      margin: 0;
+      padding: 0;
+    }
+
+    a { color: #ffcc44; text-decoration: underline; }
+    a:hover { color: #ff9999; }
+    a:visited { color: #ffaa66; }
+
+    img { border: 0; max-width: 100%; }
+    p { margin: 0.5em 0; }
+    hr { border: none; border-top: 2px solid #880000; margin: 18px 0; }
+
+    /* ==============================
+       ページ全体ラッパー
+    ============================== */
+    #wrapper {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 8px;
+    }
+
+    /* ==============================
+       おしらせ帯（一番上）
+    ============================== */
+    #topline {
+      background-color: #cc0000;
+      color: #fff;
+      font-size: 12px;
+      font-weight: bold;
+      text-align: center;
+      padding: 6px 0;
+      letter-spacing: 0.1em;
+      border-bottom: 3px double #ff6666;
+    }
+
+    /* ==============================
+       ヘッダー
+    ============================== */
+    #header {
+      background-color: #1a0000;
+      border-bottom: 3px solid #cc0000;
+      padding: 14px 12px 10px;
+      text-align: center;
+    }
+
+    #site-title {
+      font-size: 36px;
+      font-weight: 900;
+      color: #ffcc44;
+      letter-spacing: 0.18em;
+      line-height: 1.1;
+      text-shadow: 2px 2px 0 #880000;
+    }
+
+    #site-subtitle {
+      font-size: 11px;
+      color: #ffaaaa;
+      letter-spacing: 0.22em;
+      margin-top: 3px;
+    }
+
+    #site-catch {
+      font-size: 15px;
+      font-weight: bold;
+      color: #ffeecc;
+      margin-top: 6px;
+    }
+
+    /* ==============================
+       ナビ
+    ============================== */
+    #nav {
+      background-color: #330000;
+      border-bottom: 2px solid #880000;
+      padding: 6px 0;
+      text-align: center;
+    }
+
+    #nav a {
+      color: #ffcc44;
+      font-size: 12px;
+      font-weight: bold;
+      text-decoration: none;
+      padding: 0 10px;
+      border-right: 1px solid #660000;
+      letter-spacing: 0.08em;
+    }
+    #nav a:last-child { border-right: none; }
+    #nav a:hover { color: #ff9999; }
+
+    /* ==============================
+       検索バー
+    ============================== */
+    #search-area {
+      background-color: #1a0005;
+      border-bottom: 1px solid #550000;
+      padding: 8px 12px;
+      text-align: center;
+    }
+
+    #search-area input[type="search"] {
+      width: 280px;
+      padding: 5px 8px;
+      font-size: 12px;
+      background: #0d0000;
+      border: 1px solid #880000;
+      color: #fff8f0;
+      outline: none;
+    }
+
+    #search-area input[type="search"]::placeholder { color: #775555; }
+
+    #search-area button {
+      padding: 5px 14px;
+      background: #880000;
+      color: #ffcc44;
+      font-size: 12px;
+      font-weight: bold;
+      border: 1px solid #cc0000;
+      cursor: pointer;
+      letter-spacing: 0.08em;
+    }
+
+    #search-error {
+      color: #ff7777;
+      font-size: 11px;
+      margin-top: 4px;
+      min-height: 1.2em;
+    }
+
+    /* ==============================
+       メインコンテンツ共通
+    ============================== */
+    #main {
+      padding: 12px 0;
+    }
+
+    .section-box {
+      background-color: #120000;
+      border: 2px solid #880000;
+      margin-bottom: 18px;
+      padding: 14px 16px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 900;
+      color: #ffcc44;
+      border-bottom: 2px solid #550000;
+      padding-bottom: 6px;
+      margin-bottom: 12px;
+      letter-spacing: 0.1em;
+    }
+
+    .section-title-deco {
+      color: #ff9999;
+    }
+
+    /* ==============================
+       HERO
+    ============================== */
+    #hero {
+      background-color: #1a0005;
+      border: 2px solid #cc0000;
+      padding: 18px;
+      margin-bottom: 18px;
+      text-align: center;
+    }
+
+    #hero-main-title {
+      font-size: 42px;
+      font-weight: 900;
+      color: #ffcc44;
+      text-shadow: 2px 2px 0 #880000, 0 0 8px rgba(255,100,100,0.4);
+      letter-spacing: 0.25em;
+      line-height: 1.05;
+      margin-bottom: 8px;
+    }
+
+    #hero-en {
+      font-size: 10px;
+      color: #ffaaaa;
+      letter-spacing: 0.4em;
+      margin-bottom: 14px;
+    }
+
+    #hero-copy {
+      font-size: 20px;
+      font-weight: 900;
+      color: #fff8f0;
+      margin-bottom: 12px;
+    }
+
+    #hero-story {
+      font-size: 13px;
+      color: #ffddcc;
+      line-height: 2;
+      text-align: left;
+      max-width: 640px;
+      margin: 0 auto 16px;
+    }
+
+    .info-badges {
+      margin: 14px 0;
+    }
+
+    .badge {
+      display: inline-block;
+      background-color: #330000;
+      border: 1px solid #880000;
+      color: #ffcc44;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 4px 10px;
+      margin: 3px;
+    }
+
+    .badge-label { color: #ffaaaa; font-weight: normal; }
+
+    .hero-btn {
+      display: inline-block;
+      background-color: #cc0000;
+      color: #ffeecc;
+      font-size: 14px;
+      font-weight: 900;
+      padding: 10px 22px;
+      border: 2px solid #ff5555;
+      text-decoration: none;
+      margin: 4px;
+      letter-spacing: 0.08em;
+    }
+
+    .hero-btn-sub {
+      display: inline-block;
+      background-color: #330000;
+      color: #ffcc44;
+      font-size: 13px;
+      font-weight: bold;
+      padding: 8px 18px;
+      border: 1px solid #660000;
+      text-decoration: none;
+      margin: 4px;
+    }
+
+    /* ==============================
+       NEWS
+    ============================== */
+    .news-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .news-table tr {
+      border-bottom: 1px dotted #550000;
+    }
+
+    .news-table td {
+      padding: 7px 8px;
+      font-size: 12px;
+      vertical-align: top;
+    }
+
+    .news-date { color: #ff9999; width: 100px; white-space: nowrap; }
+    .news-cat {
+      width: 64px;
+      text-align: center;
+      background-color: #330000;
+      color: #ffcc44;
+      font-size: 10px;
+      font-weight: bold;
+      border: 1px solid #660000;
+    }
+    .news-text { color: #fff8f0; }
+
+    /* ==============================
+       CAST
+    ============================== */
+    .cast-row {
+      display: table;
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 8px;
+    }
+
+    .cast-col {
+      display: table-cell;
+      width: 20%;
+      vertical-align: top;
+      text-align: center;
+      background-color: #1a0005;
+      border: 1px solid #660000;
+      padding: 10px 8px 12px;
+    }
+
+    .cast-col.absent {
+      opacity: 0.6;
+      background-color: #0d0d0d;
+      border-color: #333;
+    }
+
+    .cast-photo-box {
+      width: 100%;
+      aspect-ratio: 2/3;
+      background-color: #2a0010;
+      border: 1px solid #550000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 8px;
+      font-size: 32px;
+      font-weight: 900;
+      color: rgba(255,255,255,0.18);
+      font-family: serif;
+    }
+
+    .cast-col.absent .cast-photo-box {
+      background-color: #111;
+      border-color: #333;
+      color: rgba(255,255,255,0.1);
+    }
+
+    .cast-ribbon-label {
+      display: inline-block;
+      background-color: #cc0000;
+      color: #fff;
+      font-size: 9px;
+      font-weight: 900;
+      padding: 2px 8px;
+      margin-bottom: 5px;
+      letter-spacing: 0.1em;
+    }
+
+    .cast-col.absent .cast-ribbon-label {
+      background-color: #555;
+    }
+
+    .cast-name-jp {
+      font-size: 16px;
+      font-weight: 900;
+      color: #fff8f0;
+    }
+
+    .cast-name-en {
+      font-size: 10px;
+      color: #ffaaaa;
+      letter-spacing: 0.2em;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .cast-meta-txt {
+      font-size: 10px;
+      color: #ffaaaa;
+      border-top: 1px dotted #550000;
+      padding-top: 4px;
+      margin-top: 4px;
+    }
+
+    .cast-msg-txt {
+      font-size: 11px;
+      color: #ffddcc;
+      margin-top: 6px;
+      line-height: 1.65;
+    }
+
+    .cast-divider {
+      color: #cc6666;
+      font-size: 11px;
+      margin: 4px 0;
+    }
+
+    /* ==============================
+       SYSTEM
+    ============================== */
+    .sys-grid {
+      display: table;
+      width: 100%;
+      border-spacing: 8px;
+      border-collapse: separate;
+    }
+
+    .sys-row { display: table-row; }
+
+    .sys-cell {
+      display: table-cell;
+      width: 25%;
+      vertical-align: top;
+      background-color: #1a0005;
+      border: 1px solid #660000;
+      padding: 10px 12px;
+      text-align: center;
+    }
+
+    .sys-icon { font-size: 24px; display: block; margin-bottom: 6px; }
+
+    .sys-cell h3 {
+      font-size: 14px;
+      font-weight: 900;
+      color: #ffcc44;
+      margin: 0 0 6px;
+    }
+
+    .sys-cell p {
+      font-size: 11px;
+      color: #ffddcc;
+    }
+
+    /* ==============================
+       MENU
+    ============================== */
+    .menu-item-box {
+      background-color: #1a0005;
+      border: 1px solid #550000;
+      padding: 12px 14px;
+      margin-bottom: 8px;
+    }
+
+    .menu-cat-label {
+      display: inline-block;
+      background-color: #550000;
+      color: #ffcc44;
+      font-size: 10px;
+      font-weight: 900;
+      padding: 2px 8px;
+      margin-bottom: 6px;
+      letter-spacing: 0.1em;
+    }
+
+    .menu-name {
+      font-size: 15px;
+      font-weight: 900;
+      color: #fff8f0;
+      margin-bottom: 4px;
+    }
+
+    .menu-desc { font-size: 12px; color: #ffddcc; margin-bottom: 6px; }
+
+    .menu-price {
+      display: inline-block;
+      background-color: #cc0000;
+      color: #ffeecc;
+      font-size: 13px;
+      font-weight: 900;
+      padding: 3px 12px;
+      border: 1px solid #ff5555;
+    }
+
+    /* ==============================
+       ACCESS
+    ============================== */
+    .info-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .info-table th,
+    .info-table td {
+      padding: 7px 10px;
+      font-size: 12px;
+      border-bottom: 1px dotted #550000;
+      vertical-align: top;
+    }
+
+    .info-table th {
+      color: #ffcc44;
+      font-weight: bold;
+      width: 100px;
+      white-space: nowrap;
+    }
+
+    .info-table td { color: #ffddcc; }
+
+    /* ==============================
+       RESERVE
+    ============================== */
+    #reserve-box {
+      text-align: center;
+      background-color: #1a0005;
+      border: 2px solid #cc0000;
+      padding: 18px;
+      margin-bottom: 18px;
+    }
+
+    #tel-num {
+      font-size: 28px;
+      font-weight: 900;
+      color: #fff8f0;
+      letter-spacing: 0.12em;
+      margin: 10px 0 4px;
+    }
+
+    #tel-hours {
+      font-size: 12px;
+      color: #ffaaaa;
+      margin-bottom: 12px;
+    }
+
+    .reserve-note-list {
+      list-style: none;
+      padding: 0;
+      margin: 12px 0;
+      text-align: left;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .reserve-note-list li {
+      font-size: 12px;
+      color: #ffddcc;
+      padding: 4px 0;
+      border-bottom: 1px dotted #550000;
+    }
+
+    .reserve-note-list li::before { content: "★ "; color: #cc0000; }
+
+    /* ==============================
+       FOOTER
+    ============================== */
+    #footer {
+      background-color: #0d0000;
+      border-top: 3px double #880000;
+      padding: 14px;
+      text-align: center;
+      font-size: 11px;
+      color: #887777;
+    }
+
+    #footer strong { color: #ffcc44; font-size: 13px; }
+
+    /* ==============================
+       装飾テキスト
+    ============================== */
+    .deco-line {
+      text-align: center;
+      color: #880000;
+      font-size: 12px;
+      margin: 10px 0;
+      letter-spacing: 0.2em;
+    }
+
+    .pink-text { color: #ffaabb; }
+    .gold-text { color: #ffcc44; }
+    .red-text  { color: #ff6666; }
+
+    /* ==============================
+       モバイル対応（最低限）
+    ============================== */
+    @media (max-width: 600px) {
+      #site-title { font-size: 26px; }
+      #hero-main-title { font-size: 28px; }
+      #tel-num { font-size: 20px; }
+
+      .cast-row {
+        display: block;
+      }
+      .cast-col {
+        display: inline-block;
+        width: 44%;
+        margin: 3px 1%;
+        vertical-align: top;
+      }
+
+      .sys-grid,
+      .sys-row { display: block; }
+      .sys-cell {
+        display: block;
+        width: auto;
+        margin-bottom: 8px;
+      }
+
+      #search-area input[type="search"] { width: 180px; }
+
+      #nav a { padding: 0 6px; font-size: 11px; }
+    }
+      html, body { overflow-x: hidden; }
+  </style>
+</head>
+<body>
+
+  <!-- ==================
+       おしらせ帯
+  =================== -->
+  <div id="topline">
+    ★ 翌1時まで営業中！はじめての方も大歓迎 ★ 秋葉原の路地裏・地下1階 ★
+  </div>
+
+  <!-- ==================
+       ヘッダー
+  =================== -->
+  <div id="header">
+    <div id="site-title">蟠 龍 閣</div>
+    <div id="site-subtitle">BANRYUKAKU ✦ AKIHABARA NEO CHINA CONCEPT CAFE</div>
+    <div id="site-catch">✦ 異空間で出会う、カワイイチャイナガール！✦</div>
+  </div>
+
+  <!-- ==================
+       ナビ
+  =================== -->
+  <div id="nav">
+    <a href="#news">NEWS</a><a href="#system">SYSTEM</a><a href="#cast">CAST</a><a href="#menu">MENU</a><a href="#access">ACCESS</a><a href="#reserve">RESERVE</a><a href="recruit.html">RECRUIT</a>
+  </div>
+
+  <!-- ==================
+       検索バー
+  =================== -->
+  <div id="search-area">
+    <input type="search" id="search-input" placeholder="キャスト名・キーワードを入力…" autocomplete="off" spellcheck="false" aria-label="サイト内検索">
+    <button id="search-btn" type="button">SEARCH</button>
+    <br>
+    <div id="search-error" role="alert" aria-live="polite"></div>
+  </div>
+
+  <!-- ==================
+       メイン
+  =================== -->
+  <div id="wrapper">
+  <div id="main">
+
+    <!-- HERO -->
+    <div id="hero">
+      <div id="hero-main-title">蟠 龍 閣</div>
+      <div id="hero-en">✦ B A N R Y U K A K U ✦</div>
+
+      <div id="hero-copy">
+        かわいいチャイナ娘と<br>
+        ちょっと非日常な夜。
+      </div>
+
+      <div class="deco-line">★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★</div>
+
+      <div id="hero-story">
+        秋葉原の路地裏、地下1階。<br>
+        看板もない細い階段を降りると——<br>
+        そこには<span class="gold-text">煌びやかな龍の宮廷</span>が広がっています。<br>
+        <br>
+        チャイナドレスに身を包んだキャストたちが、<br>
+        あなたのことを今夜もお待ちしています♪<br>
+        <br>
+        <span class="pink-text">重すぎる世界観より、入りやすさを重視！</span><br>
+        ふらっと寄れて、お話も写真も楽しめる<br>
+        秋葉原らしいコンセプトカフェです。
+      </div>
+
+      <div class="deco-line">♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥</div>
+
+      <div class="info-badges">
+        <span class="badge"><span class="badge-label">営業時間</span> 18:00〜翌1:00</span>
+        <span class="badge"><span class="badge-label">料金</span> 60分 ¥3,500〜</span>
+        <span class="badge"><span class="badge-label">場所</span> 秋葉原 B1F</span>
+        <span class="badge"><span class="badge-label">入店</span> 会員制 / 紹介制</span>
+      </div>
+
+      <p>
+        <a href="#reserve" class="hero-btn">💌 予約方法を見る</a>
+        <a href="#cast" class="hero-btn-sub">👀 キャストを見る</a>
+        <a href="#access" class="hero-btn-sub">📍 アクセス</a>
+      </p>
+    </div>
+
+    <!-- NEWS -->
+    <div class="section-box" id="news">
+      <div class="section-title">
+        <span class="section-title-deco">★</span> NEWS &amp; INFORMATION <span class="section-title-deco">★</span>
+      </div>
+      <table class="news-table">
+        <tbody>
+          <tr>
+            <td class="news-date">2026.04.18</td>
+            <td class="news-cat">EVENT</td>
+            <td class="news-text">週末限定「チャイナくじ」開催予定！当たりで特典券プレゼント</td>
+          </tr>
+          <tr>
+            <td class="news-date">2026.04.15</td>
+            <td class="news-cat">CAST</td>
+            <td class="news-text">みじゅ・ちゃき・なのの特別衣装デーを実施します</td>
+          </tr>
+          <tr>
+            <td class="news-date">2026.04.10</td>
+            <td class="news-cat">INFO</td>
+            <td class="news-text">ご新規さま向けに、初回のご案内をアップデートしました</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SYSTEM -->
+    <div class="section-box" id="system">
+      <div class="section-title">
+        <span class="section-title-deco">★</span> SYSTEM 料金・遊び方 <span class="section-title-deco">★</span>
+      </div>
+      <div class="sys-grid">
+        <div class="sys-row">
+          <div class="sys-cell">
+            <span class="sys-icon">⏰</span>
+            <h3>営業時間</h3>
+            <p>18:00〜翌1:00<br>年中無休！終電後もOK</p>
+          </div>
+          <div class="sys-cell">
+            <span class="sys-icon">💴</span>
+            <h3>料金目安</h3>
+            <p>60分 ¥3,500〜<br>飲み物代は別途</p>
+          </div>
+          <div class="sys-cell">
+            <span class="sys-icon">🥂</span>
+            <h3>楽しみ方</h3>
+            <p>ドリンク・会話<br>チェキ・イベントetc</p>
+          </div>
+          <div class="sys-cell">
+            <span class="sys-icon">🪪</span>
+            <h3>入店方法</h3>
+            <p>会員制 / 紹介制<br>コードをご用意ください</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAST -->
+    <div class="section-box" id="cast">
+      <div class="section-title">
+        <span class="section-title-deco">★</span> CAST キャスト紹介 <span class="section-title-deco">★</span>
+      </div>
+      <p style="font-size:12px;color:#ffaaaa;text-align:center;margin-bottom:10px;">
+        ✦ 龍の宮廷を彩る4人＋1人。個性豊かなキャストがあなたの夜を特別にする ✦
+      </p>
+
+      <div class="cast-row">
+
+        <div class="cast-col">
+          <span class="cast-ribbon-label">PICK UP</span><br>
+          <div class="cast-photo-box">美</div>
+          <div class="cast-name-jp">みじゅ</div>
+          <span class="cast-name-en">MIJU</span>
+          <div class="cast-divider">* * *</div>
+          <div class="cast-meta-txt">趣味：料理・映画鑑賞</div>
+          <div class="cast-msg-txt">先代から「四代目は外から来る者」って聞いてたけど、あなたのことかも。</div>
+        </div>
+
+        <div class="cast-col">
+          <span class="cast-ribbon-label">NEW</span><br>
+          <div class="cast-photo-box">茶</div>
+          <div class="cast-name-jp">ちゃき</div>
+          <span class="cast-name-en">CHAKI</span>
+          <div class="cast-divider">* * *</div>
+          <div class="cast-meta-txt">趣味：ゲーム・お絵かき</div>
+          <div class="cast-msg-txt">最近、黒瀬係長から連絡が増えた気がする。でも今日はあなたのために全力！</div>
+        </div>
+
+        <div class="cast-col">
+          <span class="cast-ribbon-label">EVENT</span><br>
+          <div class="cast-photo-box">七</div>
+          <div class="cast-name-jp">なの</div>
+          <span class="cast-name-en">NANO</span>
+          <div class="cast-divider">* * *</div>
+          <div class="cast-meta-txt">趣味：カフェ巡り・読書</div>
+          <div class="cast-msg-txt">龍牌会って言葉、どこかで聞いたことがある気がするんだけど……まあいいか！</div>
+        </div>
+
+        <div class="cast-col">
+          <span class="cast-ribbon-label">NIGHT</span><br>
+          <div class="cast-photo-box">宵</div>
+          <div class="cast-name-jp">よすず</div>
+          <span class="cast-name-en">YOSUZU</span>
+          <div class="cast-divider">* * *</div>
+          <div class="cast-meta-txt">趣味：音楽・占い</div>
+          <div class="cast-msg-txt">あなたがここを読んでいるなら、もう選ばれているよ。</div>
+        </div>
+
+        <div class="cast-col absent">
+          <span class="cast-ribbon-label">ABSENT</span><br>
+          <div class="cast-photo-box">夢</div>
+          <div class="cast-name-jp" style="color:#888;">ゆめ</div>
+          <span class="cast-name-en" style="color:#666;">YUME</span>
+          <div class="cast-divider" style="color:#444;">* * *</div>
+          <div class="cast-meta-txt">最終出勤：2024.11.03</div>
+          <div class="cast-msg-txt" style="color:#888;">長期お休み中です。復帰まで今しばらくお待ちください。</div>
+        </div>
+
+      </div>
+
+      <p style="text-align:center;margin-top:12px;">
+        <a href="cast.html" class="hero-btn-sub">キャスト詳細ページへ →</a>
+      </p>
+    </div>
+
+    <!-- MENU -->
+    <div class="section-box" id="menu">
+      <div class="section-title">
+        <span class="section-title-deco">★</span> MENU おすすめメニュー <span class="section-title-deco">★</span>
+      </div>
+      <p style="font-size:12px;color:#ffaaaa;margin-bottom:10px;">
+        ✦ 龍の宮廷に伝わる秘伝の酒と肴。飲み物から軽食まで豊富に取り揃えております ✦
+      </p>
+
+      <div class="menu-item-box">
+        <span class="menu-cat-label">COCKTAIL</span><br>
+        <div class="menu-name">龍血のスプリッツ</div>
+        <div class="menu-desc">ザクロとカンパリ、薔薇水を合わせた、見た目も映える深紅のカクテル。</div>
+        <span class="menu-price">¥ 1,800</span>
+      </div>
+
+      <div class="menu-item-box">
+        <span class="menu-cat-label">NON-ALCOHOL</span><br>
+        <div class="menu-name">宵闇茶</div>
+        <div class="menu-desc">黒烏龍とジャスミンを冷温で抽出。大人っぽいけど飲みやすい人気メニュー。</div>
+        <span class="menu-price">¥ 900</span>
+      </div>
+
+      <div class="menu-item-box">
+        <span class="menu-cat-label">SPECIAL</span><br>
+        <div class="menu-name">蟠龍シャンパン</div>
+        <div class="menu-desc">キャストみんなで盛り上がるお祝いメニュー。要前日予約の特別仕様です。</div>
+        <span class="menu-price">¥ 28,000〜</span>
+      </div>
+
+      <p style="text-align:center;margin-top:12px;">
+        <a href="menu.html" class="hero-btn-sub">フルメニューを見る →</a>
+      </p>
+    </div>
+
+    <!-- ACCESS -->
+    <div class="section-box" id="access">
+      <div class="section-title">
+        <span class="section-title-deco">★</span> ACCESS アクセス <span class="section-title-deco">★</span>
+      </div>
+      <table class="info-table">
+        <tbody>
+          <tr>
+            <th>店名</th>
+            <td>蟠龍閣（ばんりゅうかく）</td>
+          </tr>
+          <tr>
+            <th>営業時間</th>
+            <td>18:00〜翌1:00（年中無休）</td>
+          </tr>
+          <tr>
+            <th>場所</th>
+            <td>東京都千代田区外神田 地下1階</td>
+          </tr>
+          <tr>
+            <th>アクセス</th>
+            <td>秋葉原駅 電気街口より徒歩5分 / 末広町駅 1番出口より徒歩3分</td>
+          </tr>
+          <tr>
+            <th>予約</th>
+            <td>完全予約制（会員様のご紹介によりご入会いただけます）</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="text-align:center;margin-top:12px;">
+        <a href="access.html" class="hero-btn-sub">アクセス詳細 →</a>
+      </p>
+    </div>
+
+    <!-- RESERVE -->
+    <div id="reserve-box" id="reserve">
+      <div class="section-title" style="border-bottom-color:#880000;">
+        <span class="section-title-deco">★</span> RESERVE ご予約 <span class="section-title-deco">★</span>
+      </div>
+      <div class="deco-line">♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥</div>
+
+      <div id="tel-num">03 — XXXX — XXXX</div>
+      <div id="tel-hours">受付時間 16:00〜翌0:00</div>
+
+      <ul class="reserve-note-list">
+        <li>会員様のご紹介があるとご案内がスムーズです。</li>
+        <li>ご予約なしのご来店はお受けできません。</li>
+        <li>18歳未満のご入店はお断りしております。</li>
+        <li>コードをお持ちの方は、ご予約時にお伝えください。</li>
+      </ul>
+
+      <div class="deco-line" style="margin-top:14px;">★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★</div>
+    </div>
+
+  </div><!-- /main -->
+  </div><!-- /wrapper -->
+
+  <!-- ==================
+       FOOTER
+  =================== -->
+  <div id="footer">
+    <strong>蟠龍閣 / BANRYUKAKU</strong><br>
+    AKIHABARA NEO CHINA CONCEPT CAFE<br>
+    <br>
+    <span style="color:#664444;">18歳未満のご入店はお断りしております。<br>
+    © 2026 BANRYUKAKU. All rights reserved.</span>
+  </div>
+
+  <script src="arg.js"></script>
+  <script>
+    // スクロールリビール不使用のシンプル版
+    // .reveal クラスは使わないのでObserverも不要
+    // arg.js の investigationLevel / 検索機能はそのまま動作
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="ja" data-level="0">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="蟠龍閣のメニュー一覧。ドリンク・フード・ボトル・特別コース。">
+  <meta name="robots" content="noindex, nofollow">
+  <title>MENU メニュー | 蟠龍閣</title>
+  <style>
+    body {
+      background-color: #0d0000;
+      background-image:
+        repeating-linear-gradient(0deg, rgba(180,0,0,0.06) 0px, rgba(180,0,0,0.06) 1px, transparent 1px, transparent 28px),
+        repeating-linear-gradient(90deg, rgba(180,0,0,0.06) 0px, rgba(180,0,0,0.06) 1px, transparent 1px, transparent 28px);
+      color: #fff8f0;
+      font-family: sans-serif;
+      font-size: 13px;
+      line-height: 1.7;
+      margin: 0;
+      padding: 0;
+    }
+
+    a { color: #ffcc44; text-decoration: underline; }
+    a:hover { color: #ff9999; }
+    a:visited { color: #ffaa66; }
+    p { margin: 0.5em 0; }
+    hr { border: none; border-top: 2px solid #880000; margin: 18px 0; }
+
+    #wrapper { max-width: 800px; margin: 0 auto; padding: 0 8px; }
+
+    /* ヘッダー */
+    #topline {
+      background-color: #cc0000;
+      color: #fff;
+      font-size: 12px;
+      font-weight: bold;
+      text-align: center;
+      padding: 6px 0;
+      letter-spacing: 0.1em;
+      border-bottom: 3px double #ff6666;
+    }
+
+    #header {
+      background-color: #1a0000;
+      border-bottom: 3px solid #cc0000;
+      padding: 14px 12px 10px;
+      text-align: center;
+    }
+
+    #site-title {
+      font-size: 36px;
+      font-weight: 900;
+      color: #ffcc44;
+      letter-spacing: 0.18em;
+      line-height: 1.1;
+      text-shadow: 2px 2px 0 #880000;
+    }
+
+    #site-subtitle {
+      font-size: 11px;
+      color: #ffaaaa;
+      letter-spacing: 0.22em;
+      margin-top: 3px;
+    }
+
+    #site-catch {
+      font-size: 15px;
+      font-weight: bold;
+      color: #ffeecc;
+      margin-top: 6px;
+    }
+
+    /* ナビ */
+    #nav {
+      background-color: #330000;
+      border-bottom: 2px solid #880000;
+      padding: 6px 0;
+      text-align: center;
+    }
+
+    #nav a {
+      color: #ffcc44;
+      font-size: 12px;
+      font-weight: bold;
+      text-decoration: none;
+      padding: 0 10px;
+      border-right: 1px solid #660000;
+      letter-spacing: 0.08em;
+    }
+    #nav a:last-child { border-right: none; }
+    #nav a:hover { color: #ff9999; }
+    #nav a.current { color: #fff; border-bottom: 2px solid #ffcc44; }
+
+    /* 検索バー */
+    #search-area {
+      background-color: #1a0005;
+      border-bottom: 1px solid #550000;
+      padding: 8px 12px;
+      text-align: center;
+    }
+
+    #search-area input[type="search"] {
+      width: 280px;
+      padding: 5px 8px;
+      font-size: 12px;
+      background: #0d0000;
+      border: 1px solid #880000;
+      color: #fff8f0;
+      outline: none;
+    }
+    #search-area input[type="search"]::placeholder { color: #775555; }
+
+    #search-area button {
+      padding: 5px 14px;
+      background: #880000;
+      color: #ffcc44;
+      font-size: 12px;
+      font-weight: bold;
+      border: 1px solid #cc0000;
+      cursor: pointer;
+      letter-spacing: 0.08em;
+    }
+
+    #search-error {
+      color: #ff7777;
+      font-size: 11px;
+      margin-top: 4px;
+      min-height: 1.2em;
+    }
+
+    /* 共通セクション */
+    .section-box {
+      background-color: #120000;
+      border: 2px solid #880000;
+      margin-bottom: 18px;
+      padding: 14px 16px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 900;
+      color: #ffcc44;
+      border-bottom: 2px solid #550000;
+      padding-bottom: 6px;
+      margin-bottom: 12px;
+      letter-spacing: 0.1em;
+    }
+
+    .section-title-deco { color: #ff9999; }
+
+    .deco-line {
+      text-align: center;
+      color: #880000;
+      font-size: 12px;
+      margin: 10px 0;
+      letter-spacing: 0.2em;
+    }
+
+    .pink-text { color: #ffaabb; }
+    .gold-text  { color: #ffcc44; }
+    .red-text   { color: #ff6666; }
+
+    /* ページタイトル */
+    #page-title-box {
+      background-color: #1a0005;
+      border: 2px solid #cc0000;
+      padding: 16px;
+      margin-bottom: 18px;
+      text-align: center;
+    }
+
+    #page-title {
+      font-size: 30px;
+      font-weight: 900;
+      color: #ffcc44;
+      letter-spacing: 0.2em;
+      text-shadow: 2px 2px 0 #880000;
+      margin-bottom: 6px;
+    }
+
+    #page-lead {
+      font-size: 12px;
+      color: #ffddcc;
+      line-height: 2;
+    }
+
+    /* メニューテーブル */
+    .menu-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 10px;
+    }
+
+    .menu-table th {
+      background-color: #330000;
+      color: #ffcc44;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 6px 10px;
+      text-align: left;
+      border-bottom: 2px solid #880000;
+      letter-spacing: 0.1em;
+    }
+
+    .menu-table td {
+      padding: 8px 10px;
+      font-size: 13px;
+      border-bottom: 1px dotted #440000;
+      vertical-align: top;
+    }
+
+    .menu-table tr:last-child td { border-bottom: none; }
+
+    .menu-table .item-name {
+      color: #ffeecc;
+      font-weight: bold;
+    }
+
+    .menu-table .item-desc {
+      color: #ccbbaa;
+      font-size: 11px;
+      display: block;
+      margin-top: 2px;
+    }
+
+    .menu-table .item-price {
+      color: #ffcc44;
+      font-weight: bold;
+      white-space: nowrap;
+      text-align: right;
+    }
+
+    /* 注目メニュー */
+    .featured-item {
+      background-color: #1a0008;
+      border: 2px solid #cc0000;
+      padding: 14px;
+      margin-bottom: 14px;
+    }
+
+    .featured-item-name {
+      font-size: 20px;
+      font-weight: 900;
+      color: #ffcc44;
+      letter-spacing: 0.15em;
+      text-shadow: 1px 1px 0 #660000;
+    }
+
+    .featured-item-price {
+      font-size: 18px;
+      font-weight: bold;
+      color: #ff6666;
+    }
+
+    .featured-item-desc {
+      font-size: 12px;
+      color: #ffddcc;
+      margin-top: 6px;
+      line-height: 1.8;
+    }
+
+    /* 画像プレースホルダー（長押しギミック用） */
+    .cocktail-img-wrap {
+      display: inline-block;
+      vertical-align: top;
+      width: 140px;
+      margin-right: 14px;
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .cocktail-img-box {
+      width: 140px;
+      height: 180px;
+      background-color: #200010;
+      border: 1px solid #550000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 50px;
+      color: rgba(255,255,255,0.12);
+      font-family: serif;
+      position: relative;
+    }
+
+    .cocktail-img-label {
+      font-size: 10px;
+      color: #884444;
+      text-align: center;
+      margin-top: 4px;
+      letter-spacing: 0.1em;
+    }
+
+    /* 端末モーダル */
+    #terminal-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.85);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+    }
+    #terminal-modal.open {
+      display: flex;
+    }
+
+    #terminal-box {
+      background-color: #000;
+      border: 2px solid #00ff66;
+      padding: 24px 28px;
+      max-width: 380px;
+      width: 90%;
+      font-family: monospace;
+    }
+
+    #terminal-box .t-title {
+      color: #00ff66;
+      font-size: 13px;
+      margin-bottom: 12px;
+      letter-spacing: 0.1em;
+    }
+
+    #terminal-box .t-prompt {
+      color: #888;
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+
+    #terminal-box input[type="password"] {
+      width: 100%;
+      background: #000;
+      border: none;
+      border-bottom: 1px solid #00ff66;
+      color: #00ff66;
+      font-family: monospace;
+      font-size: 14px;
+      outline: none;
+      padding: 4px 2px;
+      box-sizing: border-box;
+    }
+
+    #terminal-box .t-error {
+      color: #ff4444;
+      font-size: 11px;
+      margin-top: 8px;
+      min-height: 1.2em;
+    }
+
+    #terminal-box .t-close {
+      color: #555;
+      font-size: 11px;
+      cursor: pointer;
+      margin-top: 14px;
+      display: block;
+    }
+    #terminal-box .t-close:hover { color: #ff6666; }
+
+    /* 注意書きボックス */
+    .note-box {
+      background-color: #0d0005;
+      border: 1px dashed #550000;
+      padding: 10px 14px;
+      margin-top: 12px;
+      font-size: 11px;
+      color: #bbaaaa;
+      line-height: 1.8;
+    }
+
+    /* フッター */
+    #footer {
+      background-color: #0d0000;
+      border-top: 3px double #880000;
+      padding: 20px 12px;
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    #footer-logo {
+      font-size: 22px;
+      font-weight: 900;
+      color: #ffcc44;
+      letter-spacing: 0.2em;
+      text-shadow: 1px 1px 0 #880000;
+      margin-bottom: 8px;
+    }
+
+    #footer p {
+      font-size: 10px;
+      color: #664444;
+      margin: 3px 0;
+      letter-spacing: 0.12em;
+    }
+
+    /* ARG: レベル別演出 */
+    [data-level="3"] .cocktail-img-box,
+    [data-level="4"] .cocktail-img-box,
+    [data-level="5"] .cocktail-img-box {
+      border-color: #886600;
+    }
+      html, body { overflow-x: hidden; }
+  </style>
+</head>
+<body>
+
+<div id="topline">
+  ★ 翌1時まで営業中！　18:00〜翌1:00　★　秋葉原・ネオ・オリエンタル コンセプトカフェ　★　ご予約・お問い合わせはこちら　★
+</div>
+
+<div id="header">
+  <div id="site-title">蟠龍閣</div>
+  <div id="site-subtitle">BANRYUKAKU ✦ CYBER CHINA CONCEPT CAFE ✦ AKIHABARA</div>
+  <div id="site-catch">「異空間で出会う、カワイイチャイナガール！」</div>
+</div>
+
+<div id="nav">
+  <a href="index.html">TOP</a>
+  <a href="cast.html">CAST</a>
+  <a href="menu.html" class="current">MENU</a>
+  <a href="recruit.html">RECRUIT</a>
+  <a href="access.html">ACCESS</a>
+  <a href="index.html#reserve">RESERVE</a>
+</div>
+
+<div id="search-area">
+  <input type="search" id="search-input" placeholder="キーワードを入力して検索...">
+  <button id="search-btn">検索</button>
+  <br>
+  <span id="search-error"></span>
+</div>
+
+<div id="wrapper">
+
+  <br>
+
+  <div id="page-title-box">
+    <div id="page-title">✦ MENU ✦ メニュー</div>
+    <div id="page-lead">
+      蟠龍閣こだわりのドリンク＆フードをご用意しています。<br>
+      ♥ キャストのおすすめも聞いてみてね ♥<br>
+      <span style="font-size:11px; color:#886655;">※価格はすべて税込。お通し代 500円別途。</span>
+    </div>
+  </div>
+
+  <div class="deco-line">★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★</div>
+
+  <!-- 注目メニュー -->
+  <div class="section-box">
+    <div class="section-title"><span class="section-title-deco">★</span> 今月のおすすめ SPECIAL</div>
+
+    <div style="text-align:center; margin-bottom:10px;">
+      <p style="font-size:11px; color:#886655;">★ 画像を3秒長押しで隠しメニューが開きます ★</p>
+    </div>
+
+    <div class="featured-item" id="featured-spritz">
+      <table width="100%" cellpadding="0" cellspacing="0"><tr>
+        <td style="vertical-align:top;">
+          <div class="cocktail-img-wrap"
+               data-hold-target="terminal-modal"
+               data-item="龍血のスプリッツ"
+               onmousedown="startHold(event, this)"
+               onmouseup="cancelHold()"
+               onmouseleave="cancelHold()"
+               ontouchstart="startHold(event, this)"
+               ontouchend="cancelHold()"
+               ontouchcancel="cancelHold()">
+            <div class="cocktail-img-box">🍷</div>
+            <div class="cocktail-img-label">LONG PRESS 3sec</div>
+          </div>
+        </td>
+        <td style="vertical-align:top;">
+          <div class="featured-item-name">龍血のスプリッツ</div>
+          <div class="featured-item-price">¥1,800</div>
+          <div class="featured-item-desc">
+            深紅のクランベリーとスパークリングワインが織りなす一杯。<br>
+            飲み干す頃には、あなたの瞳が赤く輝くかも……？<br>
+            <span style="font-size:11px; color:#886655;">★ キャストおすすめ No.1 ★</span>
+          </div>
+        </td>
+      </tr></table>
+    </div>
+
+  </div>
+
+  <div class="deco-line">✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦</div>
+
+  <!-- ドリンクメニュー -->
+  <div class="section-box">
+    <div class="section-title"><span class="section-title-deco">♥</span> ドリンク DRINK</div>
+
+    <p style="font-size:11px; color:#886655; margin-bottom:10px;">
+      ★ ソフトドリンク・ノンアルコールあり。お気軽にお申し付けください ★
+    </p>
+
+    <table class="menu-table">
+      <tr>
+        <th width="55%">商品名</th>
+        <th width="45%" style="text-align:right;">価格（税込）</th>
+      </tr>
+      <tr>
+        <td>
+          <span class="item-name">龍血のスプリッツ</span>
+          <span class="item-desc">クランベリー＋スパークリングワイン。看板カクテル。</span>
+        </td>
+        <td class="item-price">¥1,800</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="item-name">宵闇茶（ソフトドリンク）</span>
+          <span class="item-desc">黒ウーロン＋ジャスミン。ほんのり甘い夜の香り。</span>
+        </td>
+        <td class="item-price">¥900</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="item-name">翠龍レモネード</span>
+          <span class="item-desc">青色のバタフライピーにレモンを注ぐと紫に変わる。</span>
+        </td>
+        <td class="item-price">¥1,200</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="item-name">金龍ハイボール</span>
+          <span class="item-desc">黄金色のジンジャーシロップが入ったウイスキーハイボール。</span>
+        </td>
+        <td class="item-price">¥1,500</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="item-name">紅玉ジャスミンティー</span>
+          <span class="item-desc">紅茶ベースのジャスミン冷茶。ノンアルコール。</span>
+        </td>
+        <td class="item-price">¥800</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="item-name">龍眼ミルクティー</span>
+          <span class="item-desc">台湾産龍眼のシロップを使ったタピオカミルクティー。</span>
+        </td>
+        <td class="item-price">¥1,000</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="item-name">生ビール</span>
+          <span class="item-desc">—</span>
+        </td>
+        <td class="item-price">¥900</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="item-name">ソフトドリンク各種</span>
+          <span class="item-desc">コーラ / オレンジ / ウーロン / ジンジャーエール</span>
+        </td>
+        <td class="item-price">¥700</td>
+      </tr>
+    </table>
+
+  </div>
+
+  <div class="deco-line">★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★</div>
+
+  <!-- フードメニュー -->
+  <div class="section-box">
+    <div class="section-title"><span class="section-title-deco">★</span> フード FOOD</div>
+
+    <p style="font-size:11px; color:#886655; margin-bottom:10px;">
+      ♥ キャストが心を込めてお作りします ♥　アレルギーはお申し付けください。
+    </p>
+
+    <table class="menu-table">
+      <tr>
+        <th width="55%">商品名</th>
+        <th width="45%" style="text-align:right;">価格（税込）</th>
+      </tr>
+      <tr>
+        <td>
+          <span class="item-name">蟠龍チャーハン</span>
+          <span class="item-desc">本格中華風のぱらぱらチャーハン。一番人気♥</span>
+        </td>
+        <td class="item-price">¥1,200</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="item-name">宵闇の小籠包（3個）</span>
+          <span class="item-desc">黒い生地が目を引く、イカ墨入り小籠包。</span>
+        </td>
+        <td class="item-price">¥1,100</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="item-name">龍の爪 揚げ餃子（5個）</span>
+          <span class="item-desc">カリカリ食感の揚げ餃子。ピリ辛ソース添え。</span>
+        </td>
+        <td class="item-price">¥980</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="item-name">麻辣唐揚げ</span>
+          <span class="item-desc">花椒と山椒が効いたしびれ系唐揚げ。</span>
+        </td>
+        <td class="item-price">¥900</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="item-name">蟠龍プレート</span>
+          <span class="item-desc">チャーハン＋揚げ餃子3個＋スープのセット。</span>
+        </td>
+        <td class="item-price">¥1,800</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="item-name">デザートプリン（龍眼風味）</span>
+          <span class="item-desc">なめらかプリン。甘めのカラメルソース。</span>
+        </td>
+        <td class="item-price">¥700</td>
+      </tr>
+    </table>
+
+  </div>
+
+  <div class="deco-line">✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦</div>
+
+  <!-- ボトルメニュー -->
+  <div class="section-box">
+    <div class="section-title"><span class="section-title-deco">♥</span> ボトル BOTTLE</div>
+
+    <p style="font-size:11px; color:#886655; margin-bottom:10px;">
+      ★ ボトルはお名前入りのプレートでお席に設置します！ ★
+    </p>
+
+    <table class="menu-table">
+      <tr>
+        <th width="55%">商品名</th>
+        <th width="45%" style="text-align:right;">価格（税込）</th>
+      </tr>
+      <tr>
+        <td>
+          <span class="item-name">焼酎（麦・芋）</span>
+          <span class="item-desc">ボトルキープ可。ソーダ・お湯割り対応。</span>
+        </td>
+        <td class="item-price">¥5,000〜</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="item-name">ウイスキー</span>
+          <span class="item-desc">銘柄によって価格変動。お気軽にご相談ください。</span>
+        </td>
+        <td class="item-price">¥8,000〜</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="item-name">蟠龍シャンパン</span>
+          <span class="item-desc">
+            店内一番の华やかな演出！<br>
+            <span style="color:#ffaabb; font-size:11px;">キャスト全員でお祝いします♥ ストロボ＆ベル演出付き</span>
+          </span>
+        </td>
+        <td class="item-price"><span style="font-size:15px; font-weight:900;">¥28,000〜</span></td>
+      </tr>
+    </table>
+
+    <div class="note-box">
+      ★ 蟠龍シャンパンは事前予約推奨です。当日ご要望の場合は在庫をご確認ください。<br>
+      ★ 「誕生日・記念日サプライズ」のご依頼もお受けしています。ご予約時にお申し付けください。
+    </div>
+
+  </div>
+
+  <div class="deco-line">★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★</div>
+
+  <!-- コース・システム -->
+  <div class="section-box">
+    <div class="section-title"><span class="section-title-deco">★</span> コース &amp; システム SYSTEM</div>
+
+    <table class="menu-table">
+      <tr>
+        <th width="55%">内容</th>
+        <th width="45%" style="text-align:right;">料金（税込）</th>
+      </tr>
+      <tr>
+        <td>
+          <span class="item-name">通常料金</span>
+          <span class="item-desc">入店時にお通し代 ¥500 がかかります。</span>
+        </td>
+        <td class="item-price">お通し ¥500</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="item-name">時間制（90分）</span>
+          <span class="item-desc">ドリンク1杯付き。延長30分ごとに ¥1,000。</span>
+        </td>
+        <td class="item-price">¥3,000</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="item-name">指名料</span>
+          <span class="item-desc">お気に入りのキャストをご指名いただけます。</span>
+        </td>
+        <td class="item-price">¥1,000 / 60分</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="item-name">チェキ</span>
+          <span class="item-desc">お気に入りの一枚を持ち帰りできます♥</span>
+        </td>
+        <td class="item-price">¥1,500</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="item-name">撮影許可オプション</span>
+          <span class="item-desc">1時間単位。SNS掲載不可。</span>
+        </td>
+        <td class="item-price">¥500 / 60分</td>
+      </tr>
+    </table>
+
+    <div class="note-box">
+      ★ 未成年のお客様へのアルコールのご提供はお断りしております。<br>
+      ★ 泥酔状態でのご入店はお断りする場合がございます。<br>
+      ★ 他のお客様へのご迷惑となる行為は退店いただく場合があります。<br>
+      ★ 価格は予告なく変更する場合があります。最新情報はSNSをご確認ください。
+    </div>
+
+  </div>
+
+  <div class="deco-line">✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦</div>
+
+  <!-- 予約リンク -->
+  <div class="section-box" style="text-align:center;">
+    <div class="section-title"><span class="section-title-deco">★</span> ご予約はこちら RESERVE</div>
+    <p>
+      ♥ お席のご予約はお電話・ウェブフォームにて承っております ♥<br>
+      予約受付時間：<strong class="gold-text">16:00〜翌0:00</strong>
+    </p>
+    <p style="margin-top:10px;">
+      <a href="index.html#reserve" style="background:#880000; color:#ffcc44; padding:8px 24px; text-decoration:none; font-weight:bold; font-size:14px; letter-spacing:0.1em;">
+        ★ 予約フォームへ ★
+      </a>
+    </p>
+  </div>
+
+  <div id="footer">
+    <div id="footer-logo">蟠龍閣</div>
+    <p>BANRYUKAKU ✦ CYBER CHINA CONCEPT CAFE</p>
+    <p>東京都千代田区外神田 ✦ 秋葉原</p>
+    <p>営業時間：18:00〜翌1:00（不定休）</p>
+    <p style="margin-top:8px; font-size:9px; color:#442222;">
+      © 蟠龍閣 All Rights Reserved.
+    </p>
+  </div>
+
+</div><!-- /#wrapper -->
+
+<!-- パスワード端末モーダル -->
+<div id="terminal-modal">
+  <div id="terminal-box">
+    <div class="t-title">■ BANRYUKAKU TERMINAL ■</div>
+    <div class="t-prompt">&gt; AUTHORIZED ACCESS ONLY<br>&gt; Enter passphrase to continue:</div>
+    <input type="password" id="terminal-input" autocomplete="off" placeholder="________">
+    <div class="t-error" id="terminal-error"></div>
+    <span class="t-close" onclick="closeTerminal()">[ESC] 閉じる</span>
+  </div>
+</div>
+
+<script src="arg.js"></script>
+<script>
+  // ── 長押しギミック ────────────────────────────────────────────
+  let holdTimer = null;
+
+  function startHold(e, el) {
+    e.preventDefault();
+    holdTimer = setTimeout(() => {
+      openTerminal(el.dataset.item);
+    }, 3000);
+  }
+
+  function cancelHold() {
+    if (holdTimer) {
+      clearTimeout(holdTimer);
+      holdTimer = null;
+    }
+  }
+
+  function openTerminal(itemName) {
+    const modal = document.getElementById('terminal-modal');
+    const input = document.getElementById('terminal-input');
+    const err   = document.getElementById('terminal-error');
+    err.textContent = '';
+    input.value = '';
+    modal.classList.add('open');
+    setTimeout(() => input.focus(), 100);
+  }
+
+  function closeTerminal() {
+    document.getElementById('terminal-modal').classList.remove('open');
+    cancelHold();
+  }
+
+  // ESCキーで閉じる
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeTerminal();
+  });
+
+  // モーダル背景クリックで閉じる
+  document.getElementById('terminal-modal').addEventListener('click', function(e) {
+    if (e.target === this) closeTerminal();
+  });
+
+  // パスワード入力
+  document.getElementById('terminal-input').addEventListener('keydown', function(e) {
+    if (e.key !== 'Enter') return;
+    const val = this.value.trim().toUpperCase();
+    const err = document.getElementById('terminal-error');
+
+    if (val === 'RENPAI') {
+      // 正解 → backdoor へ
+      ARG.addFlag('menu_terminal');
+      ARG.tryLevel(ARG.getLevel() + 1);
+      this.disabled = true;
+      err.style.color = '#00ff66';
+      err.textContent = '> AUTHORIZED. Redirecting...';
+      setTimeout(() => {
+        window.location.href = 'hidden/backdoor.html';
+      }, 1200);
+    } else {
+      err.style.color = '#ff4444';
+      err.textContent = '> ERROR: Invalid passphrase.';
+      this.value = '';
+      setTimeout(() => { err.textContent = ''; }, 2000);
+    }
+  });
+</script>
+</body>
+</html>

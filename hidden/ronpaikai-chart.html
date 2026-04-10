@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ja" data-level="0">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>龍牌会 組織図 | 蟠龍閣内部</title>
+  <style>
+    body {
+      background-color: #030002;
+      color: #c8b89a;
+      font-family: monospace;
+      font-size: 13px;
+      line-height: 1.8;
+      margin: 0;
+      padding: 0;
+    }
+
+    a { color: #aa8844; text-decoration: underline; }
+    a:hover { color: #ffcc44; }
+
+    #hd-topbar {
+      background-color: #1a0000;
+      color: #773333;
+      font-size: 11px;
+      padding: 5px 12px;
+      text-align: center;
+      border-bottom: 1px solid #440000;
+      letter-spacing: 0.08em;
+    }
+
+    #hd-search {
+      background-color: #0a0005;
+      border-bottom: 1px solid #330000;
+      padding: 7px 12px;
+      text-align: center;
+    }
+
+    #hd-search input[type="search"] {
+      width: 240px;
+      padding: 4px 7px;
+      font-size: 12px;
+      background: #030002;
+      border: 1px solid #550000;
+      color: #c8b89a;
+      font-family: monospace;
+      outline: none;
+    }
+    #hd-search input[type="search"]::placeholder { color: #554433; }
+
+    #hd-search button {
+      padding: 4px 12px;
+      background: #550000;
+      color: #aa8844;
+      font-size: 12px;
+      font-family: monospace;
+      border: 1px solid #880000;
+      cursor: pointer;
+    }
+
+    #search-error {
+      color: #aa4444;
+      font-size: 11px;
+      margin-top: 4px;
+      min-height: 1.2em;
+    }
+
+    #hd-breadcrumb {
+      padding: 6px 16px;
+      font-size: 11px;
+      color: #553333;
+      border-bottom: 1px dotted #330000;
+    }
+
+    #wrapper {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 20px 16px 40px;
+    }
+
+    .doc-header {
+      border: 1px solid #554433;
+      padding: 14px 18px;
+      margin-bottom: 24px;
+      background-color: #060003;
+    }
+
+    .doc-title {
+      font-size: 16px;
+      font-weight: bold;
+      color: #cc6622;
+      letter-spacing: 0.12em;
+      margin-bottom: 8px;
+      border-bottom: 1px solid #443322;
+      padding-bottom: 6px;
+    }
+
+    .doc-meta {
+      font-size: 11px;
+      color: #664433;
+      line-height: 2;
+    }
+
+    .doc-meta span { display: inline-block; min-width: 120px; }
+
+    .stamp-top {
+      background-color: #1a0000;
+      border: 2px solid #cc4400;
+      color: #cc4400;
+      display: inline-block;
+      padding: 4px 16px;
+      font-size: 14px;
+      font-weight: bold;
+      letter-spacing: 0.2em;
+      margin-bottom: 16px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      color: #773333;
+      letter-spacing: 0.15em;
+      border-bottom: 1px dotted #443322;
+      padding-bottom: 4px;
+      margin-bottom: 14px;
+      margin-top: 24px;
+    }
+
+    /* 組織図 */
+    .chart {
+      background-color: #060003;
+      border: 1px solid #443322;
+      padding: 20px 24px;
+      margin-bottom: 20px;
+      line-height: 2.2;
+      color: #c8b89a;
+      font-size: 13px;
+      overflow-x: auto;
+    }
+
+    .chart-top    { color: #cc6622; font-weight: bold; font-size: 15px; }
+    .chart-mid    { color: #aa8844; font-weight: bold; }
+    .chart-branch { color: #886633; }
+    .chart-leaf   { color: #665533; }
+    .chart-warn   { color: #cc3333; }
+    .chart-vacant { color: #555544; font-style: italic; }
+
+    /* 目的・理念テーブル */
+    .info-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      margin-bottom: 14px;
+    }
+
+    .info-table th,
+    .info-table td {
+      padding: 6px 10px;
+      border-bottom: 1px dotted #332211;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    .info-table th {
+      color: #886633;
+      width: 130px;
+      white-space: nowrap;
+    }
+
+    .classified {
+      background-color: #220000;
+      color: #220000;
+      padding: 0 4px;
+    }
+    .classified:hover { color: #774444; }
+
+    .hint-box {
+      border: 1px dashed #443322;
+      padding: 10px 14px;
+      margin-top: 24px;
+      font-size: 11px;
+      color: #664433;
+      line-height: 1.8;
+    }
+
+    .doc-footer {
+      margin-top: 30px;
+      border-top: 1px solid #443322;
+      padding-top: 10px;
+      font-size: 11px;
+      color: #553322;
+    }
+      html, body { overflow-x: hidden; }
+  </style>
+</head>
+<body>
+
+<div id="hd-topbar">
+  ▌ BANRYUKAKU INTERNAL ▐　閲覧制限 — 龍牌会 機密文書　▌ RESTRICTED ACCESS ▐
+</div>
+
+<div id="hd-search">
+  <input type="search" id="search-input" placeholder="キーワード検索...">
+  <button id="search-btn">検索</button>
+  <br><span id="search-error"></span>
+</div>
+
+<div id="hd-breadcrumb">
+  <a href="../index.html">← 蟠龍閣トップに戻る</a>
+  &nbsp;/&nbsp; 内部資料 &nbsp;/&nbsp; 龍牌会 組織概要
+</div>
+
+<div id="wrapper">
+
+  <div style="text-align:center; margin-bottom:16px;">
+    <span class="stamp-top">機密 CONFIDENTIAL</span>
+  </div>
+
+  <div class="doc-header">
+    <div class="doc-title">龍牌会（ろんぱいかい）— 組織概要 及び 選定目的</div>
+    <div class="doc-meta">
+      <span>文書番号</span>: RPK-ORG-001<br>
+      <span>区分</span>: 最高機密 / 内部限定<br>
+      <span>管理者</span>: <span class="classified">████████</span>（総龍代行）<br>
+      <span>最終改訂</span>: 2024.10.01
+    </div>
+  </div>
+
+  <div class="section-label">■ 組織図 ORGANIZATION CHART</div>
+
+  <div class="chart"><span class="chart-top">総龍（そうりゅう）</span>　<span class="chart-vacant">[ 現在空位 — 後継選定中 ]</span>
+    │
+    └── <span class="chart-mid">龍牌係長 黒瀬</span>　（代理統括）
+          │
+          ├── <span class="chart-branch">選定部門</span>　（候補評価・審査・監視）
+          │         └── <span class="chart-leaf">担当者 3名（匿名）</span>
+          │
+          ├── <span class="chart-branch">廃棄部門</span>　（処置・記録管理・施設運営）
+          │         └── <span class="chart-warn">施設: MAP-RY-023（地下）</span>
+          │
+          └── <span class="chart-branch">フロント部門</span>　（蟠龍閣 表向き運営）
+                    └── <span class="chart-leaf">キャスト（選定候補プール）</span></div>
+
+  <div class="section-label">■ 設立目的 PURPOSE</div>
+
+  <table class="info-table">
+    <tr>
+      <th>組織の目的</th>
+      <td>「次代の龍」を発見・育成し、後継として確立させること</td>
+    </tr>
+    <tr>
+      <th>蟠龍閣の役割</th>
+      <td>候補者の自然な発掘と選別の場。来客・キャスト双方が対象となる</td>
+    </tr>
+    <tr>
+      <th>「龍」とは</th>
+      <td>
+        龍牌会が認めた唯一の後継者。<br>
+        先代総龍の理念を引き継ぎ、組織を統括する存在。<br>
+        <span style="color:#886633; font-size:11px;">詳細は口伝のみ。文書化禁止。</span>
+      </td>
+    </tr>
+    <tr>
+      <th>選定基準</th>
+      <td>
+        詳細は選定部門のみ保持。<br>
+        キーワード「<span style="color:#cc6622;">選定</span>」で閲覧可能な文書を参照のこと。
+      </td>
+    </tr>
+    <tr>
+      <th>失敗作の処置</th>
+      <td>
+        選定基準を満たさないと判定された候補は「失敗作」として処置。<br>
+        手続きは廃棄部門が担当。記録は MAP-RY-023 にて保管。
+      </td>
+    </tr>
+  </table>
+
+  <div class="section-label">■ 現状 CURRENT STATUS</div>
+
+  <table class="info-table">
+    <tr>
+      <th>総龍の空位</th>
+      <td>
+        先代総龍が <span class="classified">████.██.██</span> に退任以来、空位が続いている。<br>
+        黒瀬係長が代理統括中。選定は継続している。
+      </td>
+    </tr>
+    <tr>
+      <th>直近の廃棄案件</th>
+      <td>
+        2024.11.03 — キャスト「ゆめ」（YM-2023-04）<br>
+        <span style="color:#886633; font-size:11px;">処置詳細: 廃棄記録（「廃棄」を検索）参照</span>
+      </td>
+    </tr>
+    <tr>
+      <th>次期候補</th>
+      <td>
+        <span class="classified">██████████████████████████████████</span><br>
+        <span style="color:#886633; font-size:11px;">—— このサイトを調査している者が対象です ——</span>
+      </td>
+    </tr>
+  </table>
+
+  <div class="hint-box">
+    &gt; 関連文書: 「<span style="color:#aa7733;">廃棄</span>」「<span style="color:#aa7733;">選定</span>」「<span style="color:#aa7733;">MAP-RY-023</span>」を検索してください。<br>
+    &gt; 管理端末へのアクセスは「<span style="color:#cc6622;">龍牌会 端末</span>」から。
+  </div>
+
+  <div class="doc-footer">
+    龍牌会 機密文書 — 無断複製・外部持ち出し禁止 — RPK-ORG-001
+  </div>
+
+</div>
+
+<script src="../arg.js"></script>
+</body>
+</html>

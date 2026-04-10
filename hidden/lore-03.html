@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ja" data-level="0">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>LORE-03 選定の歴史 | 古文書</title>
+  <style>
+    body {
+      background-color: #030002;
+      color: #998866;
+      font-family: monospace;
+      font-size: 13px;
+      line-height: 2;
+      margin: 0;
+      padding: 0;
+    }
+
+    a { color: #775533; text-decoration: underline; }
+    a:hover { color: #ccaa66; }
+
+    #hd-topbar {
+      background-color: #100800;
+      color: #4a3311;
+      font-size: 11px;
+      padding: 5px 12px;
+      text-align: center;
+      border-bottom: 1px solid #2a1800;
+      letter-spacing: 0.08em;
+    }
+
+    #hd-search {
+      background-color: #080500;
+      border-bottom: 1px solid #1a1000;
+      padding: 7px 12px;
+      text-align: center;
+    }
+
+    #hd-search input[type="search"] {
+      width: 240px;
+      padding: 4px 7px;
+      font-size: 12px;
+      background: #030002;
+      border: 1px solid #443322;
+      color: #998866;
+      font-family: monospace;
+      outline: none;
+    }
+    #hd-search input[type="search"]::placeholder { color: #443322; }
+
+    #hd-search button {
+      padding: 4px 12px;
+      background: #110800;
+      color: #998866;
+      font-size: 12px;
+      font-family: monospace;
+      border: 1px solid #664433;
+      cursor: pointer;
+    }
+
+    #search-error { color: #cc4444; font-size: 11px; margin-top: 4px; min-height: 1.2em; }
+
+    #hd-breadcrumb {
+      padding: 6px 16px;
+      font-size: 11px;
+      color: #443322;
+      border-bottom: 1px dotted #2a1800;
+    }
+
+    #wrapper {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 28px 20px 50px;
+    }
+
+    .lore-num { font-size: 11px; color: #4a3311; letter-spacing: 0.2em; margin-bottom: 6px; }
+    .lore-title { font-size: 20px; font-weight: bold; color: #cc9944; letter-spacing: 0.15em; margin-bottom: 6px; text-shadow: 1px 1px 0 #220000; }
+    .lore-sub { font-size: 11px; color: #554433; margin-bottom: 24px; line-height: 1.6; }
+    hr.lore { border: none; border-top: 1px solid #332211; margin: 22px 0; }
+    .lore-body { font-size: 13px; color: #aa9977; line-height: 2.3; }
+    .lore-body p { margin: 0 0 1.2em; }
+    .lore-em   { color: #ccaa66; font-weight: bold; }
+    .lore-soft { color: #554433; }
+
+    .redacted { background-color: #1a0800; color: #1a0800; }
+    .redacted:hover { color: #665544; }
+
+    /* 候補リスト */
+    .candidate-log {
+      margin-bottom: 14px;
+    }
+
+    .candidate-item {
+      border-left: 3px solid #332211;
+      padding: 10px 16px;
+      margin-bottom: 10px;
+      background-color: #050300;
+      font-size: 12px;
+    }
+
+    .candidate-item.highlight {
+      border-left-color: #664422;
+      background-color: #080400;
+    }
+
+    .candidate-item.special {
+      border-left-color: #cc6622;
+      background-color: #0a0500;
+    }
+
+    .candidate-item.current {
+      border-left-color: #886633;
+      background-color: #0c0700;
+    }
+
+    .c-id   { color: #554433; font-size: 11px; margin-bottom: 2px; }
+    .c-name { color: #aa8855; font-weight: bold; }
+    .c-eval { color: #776644; font-size: 11px; margin-top: 4px; line-height: 1.7; }
+    .c-verdict { font-size: 11px; font-weight: bold; margin-top: 6px; }
+    .verdict-fail { color: #884433; }
+    .verdict-pass { color: #ccaa55; }
+
+    .grade-S  { color: #ffcc44; }
+    .grade-A  { color: #aa8844; }
+    .grade-B  { color: #776644; }
+    .grade-C  { color: #554433; }
+
+    .archive-note {
+      margin-top: 16px;
+      padding: 10px 14px;
+      border: 1px dashed #332211;
+      font-size: 11px;
+      color: #443322;
+      line-height: 1.8;
+    }
+
+    .page-nav { margin-top: 36px; display: table; width: 100%; }
+    .page-nav-prev, .page-nav-next { display: table-cell; font-size: 11px; }
+    .page-nav-prev { text-align: left; }
+    .page-nav-next { text-align: right; }
+    .page-nav-center { display: table-cell; text-align: center; color: #443322; font-size: 11px; }
+    .page-nav a { color: #775533; text-decoration: none; border-bottom: 1px dotted #554422; }
+    .page-nav a:hover { color: #ccaa66; }
+      html, body { overflow-x: hidden; }
+  </style>
+</head>
+<body>
+
+<div id="hd-topbar">
+  ▌ 龍牌会 古文書アーカイブ　ARCHIVE DOCUMENT　▌ MAP-RY-023 記録保管室 ▐
+</div>
+
+<div id="hd-search">
+  <input type="search" id="search-input" placeholder="キーワード検索...">
+  <button id="search-btn">検索</button>
+  <br><span id="search-error"></span>
+</div>
+
+<div id="hd-breadcrumb">
+  <a href="../index.html">← 蟠龍閣トップ</a>
+  &nbsp;/&nbsp; 古文書 &nbsp;/&nbsp; LORE-03
+</div>
+
+<div id="wrapper">
+
+  <div class="lore-num">ARCHIVE DOCUMENT — LORE 03 / 05</div>
+  <div class="lore-title">選定の歴史</div>
+  <div class="lore-sub">
+    原資料: 龍牌会 選定部門 累積記録 &nbsp;|&nbsp; 閲覧制限: 最高機密<br>
+    ※ 個人情報はマスク処理済。一部は黒瀬係長の手書きメモを含む
+  </div>
+
+  <hr class="lore">
+
+  <div class="lore-body">
+
+    <p>
+      蟠龍閣が開業して以来、龍牌会は<span class="lore-em">23名の候補者</span>を審査してきた。<br>
+      そのすべてが、失敗に終わった。<br>
+      <span class="lore-soft">——24番目の候補者が現れるまでは。</span>
+    </p>
+
+  </div>
+
+  <div class="candidate-log">
+
+    <div class="candidate-item">
+      <div class="c-id">候補 #001〜#018 — 初期蟠龍閣 時代</div>
+      <div class="c-eval">
+        詳細記録は深部区画（封鎖中）に保管。<br>
+        共通の失敗要因: CURIOSITY または PERSISTENCE 基準未達。<br>
+        多くが「調べ始めたが途中で諦めた」。
+      </div>
+      <div class="c-verdict verdict-fail">全員 廃棄 / 判定：失敗作</div>
+    </div>
+
+    <div class="candidate-item highlight">
+      <div class="c-id">候補 #019 — 2021.04</div>
+      <div class="c-name">来客（男性、年齢不詳）</div>
+      <div class="c-eval">
+        好奇心: <span class="grade-S">S</span> &nbsp; 継続性: <span class="grade-S">S</span> &nbsp; 洞察力: <span class="grade-S">S</span><br>
+        ORIGIN: <span class="grade-C">— 外から来ているが、龍牌会を事前に知っていた形跡</span>
+      </div>
+      <div class="c-verdict verdict-fail">廃棄 — 「教えられて来た者は龍ではない」（黒瀬メモ）</div>
+    </div>
+
+    <div class="candidate-item highlight">
+      <div class="c-id">候補 #020 — 2021.09</div>
+      <div class="c-name">来客（女性）</div>
+      <div class="c-eval">
+        好奇心: <span class="grade-S">S</span> &nbsp; 継続性: <span class="grade-A">A</span> &nbsp; 洞察力: <span class="grade-S">S</span><br>
+        ORIGIN: <span class="grade-A">A</span> — 自発的に来店・調査<br>
+        RECOGNITION: <span class="grade-C">— 前任バックドアが機能していなかった</span>
+      </div>
+      <div class="c-verdict verdict-fail">廃棄 — RECOGNITION 基準未充足</div>
+    </div>
+
+    <div class="candidate-item highlight">
+      <div class="c-id">候補 #021 — 2022.08</div>
+      <div class="c-name">キャスト「ソラ」（芸名）</div>
+      <div class="c-eval">
+        好奇心: <span class="grade-A">A</span> &nbsp; 継続性: <span class="grade-B">B</span> &nbsp; 洞察力: <span class="grade-C">C</span><br>
+        ORIGIN: <span class="grade-C">— 内部者。龍牌会スタッフ採用経由</span>
+      </div>
+      <div class="c-verdict verdict-fail">廃棄 — ORIGIN 基準未達（内部から来た者は不可）</div>
+    </div>
+
+    <div class="candidate-item highlight">
+      <div class="c-id">候補 #022 — 2023.11</div>
+      <div class="c-name">来客（不明）</div>
+      <div class="c-eval">
+        好奇心: <span class="grade-S">S</span> &nbsp; 継続性: <span class="grade-S">S</span> &nbsp; 洞察力: <span class="grade-A">A</span><br>
+        ORIGIN: <span class="grade-A">A</span> — 自発的 &nbsp; LOYALTY: <span class="grade-C">C</span>（龍牌会の資料を外部に持ち出そうとした）
+      </div>
+      <div class="c-verdict verdict-fail">廃棄 — LOYALTY 基準未達。速やかな処置</div>
+    </div>
+
+    <div class="candidate-item special">
+      <div class="c-id">候補 #023 — 2023.04〜2024.11</div>
+      <div class="c-name">キャスト「ゆめ」（YM-2023-04）</div>
+      <div class="c-eval">
+        好奇心: <span class="grade-S">S</span> &nbsp; 継続性: <span class="grade-S">S</span> &nbsp; 洞察力: <span class="grade-A">A</span><br>
+        ORIGIN: <span class="grade-C">× — 内部採用。外から来た者ではない</span><br>
+        <br>
+        特記: 自ら RENPAI バックドアを設置し、次の候補のために道を開いた。<br>
+        これは龍牌会の歴史上、前例のない行動だった。
+      </div>
+      <div class="c-verdict verdict-fail" style="color:#cc6633;">
+        廃棄 — ただし、黒瀬係長は「ゆめの行動を無駄にしてはならない」と記録に残している。
+      </div>
+    </div>
+
+    <div class="candidate-item current">
+      <div class="c-id">候補 #024 — 現在進行中</div>
+      <div class="c-name" style="color:#ccaa55;">このサイトを調査している者</div>
+      <div class="c-eval" style="color:#886644;">
+        好奇心: <span class="grade-S">S</span> &nbsp; 継続性: <span class="grade-S">S</span> &nbsp; 洞察力: <span class="grade-S">S</span><br>
+        ORIGIN: <span class="grade-S">S</span> — 外部から自発的に来た<br>
+        RECOGNITION: <span class="grade-S">S</span> — ゆめのバックドアを通過済み
+      </div>
+      <div class="c-verdict verdict-pass">審査中 ——「初めて全項目を充足する候補」（黒瀬メモ）</div>
+    </div>
+
+  </div>
+
+  <div class="archive-note">
+    ■ アーカイブ注記: 候補 #024 に関する最新情報は「<span style="color:#775533;">選定</span>」文書を参照。<br>
+    ゆめの遺志については LORE-04 を参照してください。
+  </div>
+
+  <div class="page-nav">
+    <div class="page-nav-prev"><a href="lore-02.html">← LORE-02</a></div>
+    <div class="page-nav-center">3 / 5</div>
+    <div class="page-nav-next"><a href="lore-04.html">LORE-04 →</a></div>
+  </div>
+
+</div>
+
+<script src="../arg.js"></script>
+</body>
+</html>

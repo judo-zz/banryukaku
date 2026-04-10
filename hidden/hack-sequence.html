@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ja" data-level="0">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>SYSTEM OVERRIDE IN PROGRESS</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      background-color: #000;
+      color: #00ff66;
+      font-family: monospace;
+      font-size: 13px;
+      line-height: 1.8;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    #screen {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 30px 20px 50px;
+    }
+
+    #header-line {
+      color: #00cc44;
+      font-size: 11px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #003311;
+      padding-bottom: 10px;
+    }
+
+    #log-area {
+      min-height: 400px;
+    }
+
+    .log-line {
+      display: block;
+      line-height: 1.9;
+      opacity: 0;
+    }
+
+    .log-line.show { opacity: 1; }
+
+    .col-sys  { color: #005522; }
+    .col-ok   { color: #00ff66; }
+    .col-warn { color: #aaff00; }
+    .col-err  { color: #ff4444; }
+    .col-key  { color: #00ffcc; font-weight: bold; }
+    .col-gold { color: #ffcc44; font-weight: bold; }
+
+    #progress-bar {
+      margin: 20px 0;
+      border: 1px solid #003311;
+      padding: 2px;
+      display: none;
+    }
+
+    #progress-inner {
+      height: 12px;
+      background-color: #00ff66;
+      width: 0%;
+      transition: width 0.1s linear;
+    }
+
+    #progress-label {
+      font-size: 11px;
+      color: #005522;
+      margin-top: 4px;
+    }
+
+    #cursor {
+      display: inline-block;
+      width: 8px;
+      height: 14px;
+      background-color: #00ff66;
+      vertical-align: middle;
+      animation: blink 0.8s step-end infinite;
+    }
+
+    @keyframes blink { 50% { opacity: 0; } }
+
+    #final-section {
+      display: none;
+      margin-top: 30px;
+      border-top: 1px solid #003311;
+      padding-top: 20px;
+    }
+
+    #final-section.visible { display: block; }
+
+    #final-msg {
+      font-size: 15px;
+      color: #ffcc44;
+      font-weight: bold;
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+    }
+
+    #proceed-link {
+      display: inline-block;
+      border: 1px solid #00ff66;
+      color: #00ff66;
+      padding: 8px 24px;
+      text-decoration: none;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+    }
+
+    #proceed-link:hover {
+      background-color: #001a00;
+      color: #66ffaa;
+    }
+  </style>
+</head>
+<body>
+
+<div id="screen">
+
+  <div id="header-line">
+    BANRYUKAKU SYSTEM — OVERRIDE SEQUENCE — RENPAI AUTHORIZED
+  </div>
+
+  <div id="log-area"></div>
+
+  <div id="progress-bar">
+    <div id="progress-inner"></div>
+    <div id="progress-label">転送中...</div>
+  </div>
+
+  <span id="cursor"></span>
+
+  <div id="final-section">
+    <div id="final-msg">▌ SYSTEM OVERRIDE COMPLETE ▌</div>
+    <a href="hack-complete.html" id="proceed-link">▶ 続行する</a>
+  </div>
+
+</div>
+
+<script src="../arg.js"></script>
+<script>
+  const logArea = document.getElementById('log-area');
+  const progressBar = document.getElementById('progress-bar');
+  const progressInner = document.getElementById('progress-inner');
+  const progressLabel = document.getElementById('progress-label');
+  const finalSection = document.getElementById('final-section');
+  const cursor = document.getElementById('cursor');
+
+  // ログシーケンスの定義
+  const sequence = [
+    { delay: 0,    col: 'col-sys',  text: '> INITIATING SYSTEM OVERRIDE...' },
+    { delay: 400,  col: 'col-sys',  text: '> PASSPHRASE: RENPAI — VERIFIED' },
+    { delay: 800,  col: 'col-sys',  text: '> CONNECTING TO BANRYUKAKU CORE...' },
+    { delay: 1400, col: 'col-ok',   text: '> CONNECTION ESTABLISHED' },
+    { delay: 1800, col: 'col-sys',  text: '> LOADING ADMIN MODULES...' },
+    { delay: 2400, col: 'col-warn', text: '> [WARN] SECURITY LAYER 1: BYPASSED' },
+    { delay: 2900, col: 'col-warn', text: '> [WARN] SECURITY LAYER 2: BYPASSED' },
+    { delay: 3400, col: 'col-warn', text: '> [WARN] SECURITY LAYER 3: BYPASSED' },
+    { delay: 4000, col: 'col-ok',   text: '> ACCESSING 龍牌会 DATABASE...' },
+    { delay: 4500, col: 'col-sys',  text: '> READING RECORDS: YM-2023-04 (ゆめ)' },
+    { delay: 5000, col: 'col-sys',  text: '> READING RECORDS: RPK-SEL-001 (選定基準)' },
+    { delay: 5500, col: 'col-sys',  text: '> READING RECORDS: RPK-ORG-001 (組織図)' },
+    { delay: 6000, col: 'col-sys',  text: '> READING RECORDS: BRK-DSP-2024-1103 (廃棄)' },
+    { delay: 6600, col: 'col-ok',   text: '> ALL RECORDS LOADED.' },
+    { delay: 7200, col: 'col-sys',  text: '> INITIATING ADMIN TRANSFER PROTOCOL...' },
+    { delay: 7600, col: 'col-warn', text: '> [WARN] CURRENT ADMIN: 黒瀬 (代理統括)' },
+    { delay: 8100, col: 'col-warn', text: '> [WARN] TRANSFERRING TO: SESSION USER (#024)' },
+    { delay: 8800, col: 'col-sys',  text: '' },
+    { delay: 9000, col: 'col-sys',  text: '> 候補 #024 — 全選定基準 充足確認済み' },
+    { delay: 9500, col: 'col-sys',  text: '> ゆめ認証 (RENPAI) — 有効' },
+    { delay: 10000, col: 'col-sys', text: '> 先代預言書 照合 — 一致' },
+    { delay: 10600, col: 'col-sys', text: '' },
+    { delay: 10800, col: 'col-key', text: '> TRANSFER IN PROGRESS: ████████████████████████' },
+    { delay: 11200, col: 'col-key', text: '                          ████████████████████████' },
+    { delay: 11600, col: 'col-key', text: '                          ████████████████████████' },
+    // Progress barを表示するタイミング
+    { delay: 12000, col: 'col-sys', text: '' },
+    { delay: 12200, col: 'col-gold', text: '> TRANSFER: 100% COMPLETE' },
+    { delay: 12800, col: 'col-sys',  text: '' },
+    { delay: 13000, col: 'col-gold', text: '> 管理者権限 移行完了' },
+    { delay: 13500, col: 'col-gold', text: '> 蟠龍閣 — 次の龍を認定します' },
+    { delay: 14200, col: 'col-sys',  text: '' },
+    { delay: 14500, col: 'col-ok',   text: '> SYSTEM OVERRIDE COMPLETE.' },
+  ];
+
+  let lineIndex = 0;
+
+  function addLog(col, text) {
+    const span = document.createElement('span');
+    span.className = 'log-line show ' + col;
+    span.textContent = text;
+    logArea.appendChild(span);
+    span.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  // プログレスバーアニメーション（12000ms〜12200msの間）
+  function animateProgress() {
+    progressBar.style.display = 'block';
+    let pct = 0;
+    const interval = setInterval(() => {
+      pct += 2;
+      progressInner.style.width = pct + '%';
+      progressLabel.textContent = '管理者権限を転送中... ' + pct + '%';
+      if (pct >= 100) {
+        clearInterval(interval);
+        progressLabel.textContent = '転送完了 — 100%';
+      }
+    }, 20);
+  }
+
+  // シーケンスを実行
+  sequence.forEach(({ delay, col, text }) => {
+    setTimeout(() => addLog(col, text), delay);
+  });
+
+  // プログレスバーを11400msで表示
+  setTimeout(animateProgress, 11400);
+
+  // 完了後にfinalセクションを表示
+  setTimeout(() => {
+    cursor.style.display = 'none';
+    finalSection.classList.add('visible');
+    finalSection.scrollIntoView({ behavior: 'smooth' });
+    ARG.tryLevel(5);
+  }, 15200);
+</script>
+</body>
+</html>
