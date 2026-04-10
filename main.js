@@ -36,9 +36,9 @@
 
 // ── スクロールリビール (Intersection Observer) ─────────────────
 (function initScrollReveal() {
-  const targets = document.querySelectorAll(
-    '.pillar, .cast-card, .yume-post, .reserve-form, .concept__grid, .section'
-  );
+  // .section に is-visible を付与 → CSS カスケードで子要素がアニメイン
+  // 個別子要素を観測すると is-visible が親から外れて機能しないため .section のみ対象
+  const targets = document.querySelectorAll('.section');
   if (!targets.length) return;
 
   const observer = new IntersectionObserver(

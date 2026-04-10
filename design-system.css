@@ -209,6 +209,9 @@ html {
   scroll-behavior: smooth;
   /* スマートフォン最適化 */
   -webkit-text-size-adjust: 100%;
+  /* overflow-x をここに置く: body に置くと html がスクロールコンテナになり
+     body.scrollHeight が正しく計算されないブラウザがある */
+  overflow-x: clip;
 }
 
 body {
@@ -220,7 +223,6 @@ body {
   letter-spacing: 0.04em;
   font-feature-settings: "palt" 1;  /* 日本語プロポーショナル詰め */
   transition: background-color 2s ease, color 1s ease;
-  overflow-x: hidden;
 }
 
 /* 選択色 */
