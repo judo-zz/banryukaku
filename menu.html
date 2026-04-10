@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="蟠龍閣のメニュー・料金システム">
+  <title data-base="MENU — 蟠龍閣">MENU｜CYBER CHINA ✦ 蟠龍閣</title>
+  <link rel="stylesheet" href="design-system.css">
+  <link rel="stylesheet" href="index.css">
+  <script src="assets/js/investigation.js"></script>
+  <style>
+    .menu-hero {
+      padding: calc(var(--space-16) + 64px) var(--space-4) var(--space-12);
+      text-align: center;
+      background: var(--grad-hero);
+      position: relative;
+    }
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: var(--space-3);
+      margin-bottom: var(--space-8);
+    }
+    .menu-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--color-border);
+      padding: var(--space-3);
+      transition: border-color var(--transition-base);
+    }
+    .menu-card:hover { border-color: var(--color-border-strong); }
+    /* プレースホルダー: 400×300px 推奨 */
+    .menu-card__img {
+      width: 100%; aspect-ratio: 4/3;
+      background: linear-gradient(160deg, #1a0c14, #0a0508);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-terminal); font-size: var(--text-xs);
+      color: var(--color-text-muted); letter-spacing: 0.1em;
+      margin-bottom: var(--space-2);
+    }
+    .menu-card__name { font-family: var(--font-display); font-size: var(--text-md); color: var(--color-text-primary); margin-bottom: var(--space-1); }
+    .menu-card__price { font-family: var(--font-cyber); font-size: var(--text-sm); color: var(--color-gold); letter-spacing: 0.1em; }
+    .menu-card__desc { font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.8; margin-top: var(--space-1); }
+
+    /* 特別カクテル（長押しトリガー） */
+    .menu-card--special {
+      border-color: rgba(201,168,76,0.5);
+      box-shadow: 0 0 20px rgba(201,168,76,0.06);
+      cursor: pointer;
+      position: relative;
+    }
+    .menu-card--special::after {
+      content: '✦';
+      position: absolute; top: 8px; right: 10px;
+      color: var(--color-gold); font-size: 0.75rem;
+      animation: pulse-gold 2s ease-in-out infinite;
+    }
+    @keyframes pulse-gold {
+      0%,100% { opacity: 0.4; } 50% { opacity: 1; }
+    }
+
+    /* パスワードモーダル */
+    .pw-modal {
+      position: fixed; inset: 0; z-index: 9000;
+      background: rgba(0,0,0,0.94);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.4s;
+    }
+    .pw-modal.is-open { opacity: 1; pointer-events: all; }
+    .pw-modal__box {
+      background: #06020a;
+      border: 1px solid rgba(201,168,76,0.4);
+      padding: 44px 36px;
+      max-width: 360px; width: 90%;
+      text-align: center;
+      box-shadow: 0 0 60px rgba(0,0,0,0.95), 0 0 30px rgba(201,168,76,0.08);
+    }
+    .pw-modal__label {
+      font-family: var(--font-terminal);
+      font-size: var(--text-xs); letter-spacing: 0.3em;
+      color: var(--color-text-muted); text-transform: uppercase;
+      margin-bottom: var(--space-2);
+    }
+    .pw-modal__sep {
+      width: 60px; height: 1px;
+      background: rgba(201,168,76,0.3);
+      margin: 0 auto var(--space-3);
+    }
+    .pw-modal__prompt {
+      font-family: var(--font-display);
+      font-size: var(--text-base);
+      color: var(--color-text-secondary);
+      line-height: 2; margin-bottom: var(--space-3);
+    }
+    .pw-modal__input {
+      width: 100%; padding: 14px;
+      background: rgba(0,0,0,0.6);
+      border: 1px solid rgba(201,168,76,0.35);
+      color: #00ff9f;
+      font-family: var(--font-terminal);
+      font-size: 1.1rem; letter-spacing: 0.35em;
+      text-align: center; text-transform: uppercase;
+      outline: none; margin-bottom: var(--space-2);
+      transition: border-color var(--transition-base), box-shadow var(--transition-base);
+    }
+    .pw-modal__input:focus {
+      border-color: #00ff9f;
+      box-shadow: 0 0 12px rgba(0,255,159,0.3);
+    }
+    .pw-modal__input::placeholder { color: var(--color-text-muted); letter-spacing: 0.2em; font-size: 0.85rem; }
+    .pw-modal__btn {
+      width: 100%; padding: 12px;
+      background: transparent;
+      border: 1px solid rgba(201,168,76,0.5);
+      color: var(--color-gold);
+      font-family: var(--font-cyber); font-size: var(--text-sm);
+      letter-spacing: 0.2em; text-transform: uppercase;
+      cursor: pointer;
+      transition: all var(--transition-base);
+      margin-bottom: var(--space-2);
+    }
+    .pw-modal__btn:hover { background: rgba(201,168,76,0.1); }
+    .pw-modal__close {
+      font-family: var(--font-terminal); font-size: var(--text-xs);
+      color: var(--color-text-muted); cursor: pointer; letter-spacing: 0.2em;
+      background: none; border: none;
+      transition: color var(--transition-fast);
+    }
+    .pw-modal__close:hover { color: var(--color-text-secondary); }
+    @keyframes shake {
+      0%,100%{transform:translateX(0)} 20%{transform:translateX(-8px)} 40%{transform:translateX(8px)} 60%{transform:translateX(-5px)} 80%{transform:translateX(5px)}
+    }
+    .shake { animation: shake 0.4s ease; }
+  </style>
+</head>
+<body>
+
+  <div class="scanline-overlay" aria-hidden="true"></div>
+  <div class="dragon-scale-bg" aria-hidden="true"></div>
+
+  <nav class="site-nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo__en font-cyber">CYBER CHINA</span>
+        <span class="nav-logo__ja font-display">蟠龍閣</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="メニューを開く" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-menu" id="navMenu" role="list">
+        <li><a href="index.html" class="nav-link">TOP</a></li>
+        <li><a href="cast.html" class="nav-link">CAST</a></li>
+        <li><a href="menu.html" class="nav-link">MENU</a></li>
+        <li><a href="recruit.html" class="nav-link">RECRUIT</a></li>
+        <li><a href="access.html" class="nav-link">ACCESS</a></li>
+        <li><a href="index.html#reserve" class="nav-link nav-link--cta">予約する</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ヒーロー -->
+  <div class="menu-hero">
+    <p class="font-cyber" style="font-size:var(--text-xs);letter-spacing:0.35em;color:var(--color-text-muted);margin-bottom:var(--space-2)">— MENU &amp; SYSTEM —</p>
+    <h1 class="font-display" style="font-size:var(--text-2xl);color:var(--color-gold);text-shadow:var(--glow-text-gold)">メニュー</h1>
+    <p class="font-display" style="font-size:var(--text-base);color:var(--color-text-secondary);margin-top:var(--space-2);letter-spacing:0.15em">龍の加護のもと、至高の一杯を</p>
+  </div>
+
+  <main>
+    <div class="container">
+
+      <!-- システム料金 -->
+      <section class="section">
+        <div class="section-header">
+          <p class="section-label font-cyber text-gold">— SYSTEM —</p>
+          <h2 class="section-title font-display">料金システム</h2>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--space-3)">
+          <div class="menu-card">
+            <div class="menu-card__name">入店料</div>
+            <div class="menu-card__price">¥1,500 / 1time（60分）</div>
+            <div class="menu-card__desc">延長30分ごとに¥800</div>
+          </div>
+          <div class="menu-card">
+            <div class="menu-card__name">指名料</div>
+            <div class="menu-card__price">¥500〜 / 30分</div>
+            <div class="menu-card__desc">キャストによって異なります</div>
+          </div>
+          <div class="menu-card">
+            <div class="menu-card__name">VIPルーム</div>
+            <div class="menu-card__price">¥3,000 / 1time</div>
+            <div class="menu-card__desc">個室・完全プライベート空間</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ドリンクメニュー -->
+      <section class="section">
+        <div class="section-header">
+          <p class="section-label font-cyber text-gold">— DRINKS —</p>
+          <h2 class="section-title font-display">ドリンク</h2>
+        </div>
+        <div class="menu-grid">
+          <div class="menu-card">
+            <div class="menu-card__img">400 × 300</div>
+            <div class="menu-card__name">龍眼スパークリング</div>
+            <div class="menu-card__price">¥800</div>
+            <div class="menu-card__desc">白ぶどうのシュワシュワ。龍の瞳のような深い輝き。</div>
+          </div>
+          <div class="menu-card">
+            <div class="menu-card__img">400 × 300</div>
+            <div class="menu-card__name">蟠龍紅茶ハイ</div>
+            <div class="menu-card__price">¥700</div>
+            <div class="menu-card__desc">アールグレイの香りが漂う、上品な大人のハイボール。</div>
+          </div>
+          <div class="menu-card">
+            <div class="menu-card__img">400 × 300</div>
+            <div class="menu-card__name">金箔カクテル</div>
+            <div class="menu-card__price">¥1,200</div>
+            <div class="menu-card__desc">本物の金箔が舞う、贅沢なシャンパンベース。</div>
+          </div>
+          <div class="menu-card">
+            <div class="menu-card__img">400 × 300</div>
+            <div class="menu-card__name">ソフトドリンク各種</div>
+            <div class="menu-card__price">¥500〜</div>
+            <div class="menu-card__desc">ウーロン茶・コーラ・ジュース・ノンアルカクテル。</div>
+          </div>
+
+          <!-- 特別カクテル: 長押しトリガー -->
+          <div class="menu-card menu-card--special" id="specialCocktail" style="grid-column:1/-1;max-width:320px">
+            <div class="menu-card__img" style="background:linear-gradient(160deg,#2a0a1a,#0a0510);color:rgba(201,168,76,0.4)">400 × 300</div>
+            <div class="menu-card__name" style="color:var(--color-gold-lt)">運命の赤い糸カクテル</div>
+            <div class="menu-card__price">¥2,500</div>
+            <div class="menu-card__desc" style="color:var(--color-text-secondary)">
+              今宵あなたと縁を結ぶ、特別なカクテル。<br>
+              <span style="font-size:0.72rem;color:var(--color-text-muted)">※ご注文は長押しにてどうぞ</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- フードメニュー -->
+      <section class="section">
+        <div class="section-header">
+          <p class="section-label font-cyber text-gold">— FOOD —</p>
+          <h2 class="section-title font-display">フード</h2>
+        </div>
+        <div class="menu-grid">
+          <div class="menu-card">
+            <div class="menu-card__img">400 × 300</div>
+            <div class="menu-card__name">龍の爪揚げ</div>
+            <div class="menu-card__price">¥600</div>
+            <div class="menu-card__desc">サクサク唐揚げ5個。秘伝の蟠龍ダレ添え。</div>
+          </div>
+          <div class="menu-card">
+            <div class="menu-card__img">400 × 300</div>
+            <div class="menu-card__name">チャイナプレート</div>
+            <div class="menu-card__price">¥900</div>
+            <div class="menu-card__desc">本格中華小皿の盛り合わせ。</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 白文字ギミック（メニューページ） -->
+      <span data-secret="menu_note" style="color:#0A0A0F;user-select:text;display:block;font-size:0.01px;height:0;overflow:visible" aria-hidden="true">パスワード：R———AI　各ページの頭文字を繋げよ。</span>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer__logo">
+        <span class="font-cyber text-gold">CYBER CHINA</span>
+        <span class="font-display" style="font-size:var(--text-lg)">蟠龍閣</span>
+      </div>
+      <nav class="footer__nav">
+        <a href="index.html">TOP</a>
+        <a href="cast.html">CAST</a>
+        <a href="menu.html">MENU</a>
+        <a href="recruit.html">RECRUIT</a>
+        <a href="access.html">ACCESS</a>
+      </nav>
+      <p class="footer__copy font-cyber">&copy; 2024 BANRYUKAKU. ALL RIGHTS RESERVED.</p>
+    </div>
+  </footer>
+
+  <!-- パスワードモーダル -->
+  <div class="pw-modal" id="pwModal" role="dialog" aria-label="内部端末アクセス">
+    <div class="pw-modal__box">
+      <p class="pw-modal__label">■ 内部端末にアクセスします ■</p>
+      <div class="pw-modal__sep"></div>
+      <p class="pw-modal__prompt">識別コードを入力してください</p>
+      <input class="pw-modal__input" id="pwInput" type="text" placeholder="______" maxlength="10" autocomplete="off" spellcheck="false">
+      <button class="pw-modal__btn" id="pwSubmit">入力する</button>
+      <button class="pw-modal__close" id="pwClose">× 閉じる</button>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+  <script src="assets/js/effects.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const modal   = document.getElementById('pwModal');
+    const special = document.getElementById('specialCocktail');
+
+    // 特別カクテルを3秒長押し → パスワードモーダル表示
+    brInitLongPress('#specialCocktail', 'longpress_cocktail', () => {
+      modal.classList.add('is-open');
+      document.getElementById('pwInput').focus();
+    }, 3000);
+
+    // モーダルを閉じる
+    document.getElementById('pwClose').addEventListener('click', () => {
+      modal.classList.remove('is-open');
+    });
+
+    // RENPAI入力でLv3→4 + hack/ へ誘導
+    // btoa('RENPAI') === 'UkVOUEFJ'
+    brInitPasswordGate('#pwInput', '#pwSubmit', 'UkVOUEFJ', () => {
+      modal.classList.remove('is-open');
+      brTryLevel(4);
+      // 成功メッセージ（コンソール）
+      console.log('%c識別コード確認。\n管理者権限の移行を開始します。\n次は /hack/ を確認してください。', 'color:#00ff9f;font-family:monospace;font-size:14px;background:#000;padding:8px 14px;border-left:3px solid #00ff9f');
+      // 遅延後にhack/ へ
+      setTimeout(() => { window.location.href = 'hack/'; }, 2000);
+    });
+
+    // 白文字
+    brInitSecret('menu_note', (count) => {
+      if (count >= 2) brTryLevel(2);
+    });
+  });
+  </script>
+</body>
+</html>

@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="蟠龍閣へのアクセス。秋葉原駅徒歩3分。">
+  <title data-base="ACCESS — 蟠龍閣">ACCESS｜CYBER CHINA ✦ 蟠龍閣</title>
+  <link rel="stylesheet" href="design-system.css">
+  <link rel="stylesheet" href="index.css">
+  <script src="assets/js/investigation.js"></script>
+  <style>
+    /* ── アクセスページ専用スタイル ─────────────────── */
+    .access-hero {
+      padding: calc(var(--space-16) + 64px) var(--space-4) var(--space-12);
+      text-align: center;
+      background: var(--grad-hero);
+    }
+    .access-hero__label {
+      font-family: var(--font-cyber);
+      font-size: var(--text-sm);
+      letter-spacing: 0.3em;
+      color: var(--color-gold);
+      margin-bottom: var(--space-2);
+    }
+    .access-hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(var(--text-xl), 6vw, var(--text-3xl));
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-2);
+    }
+    .access-hero__sub {
+      font-family: var(--font-cyber);
+      font-size: var(--text-base);
+      color: var(--color-text-secondary);
+      letter-spacing: 0.15em;
+    }
+
+    /* ── 2カラムレイアウト ─── */
+    .access-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-6);
+      margin-bottom: var(--space-8);
+    }
+    @media (max-width: 768px) {
+      .access-layout { grid-template-columns: 1fr; }
+    }
+
+    /* ── 地図エリア ─── */
+    .map-wrap {
+      position: relative;
+      width: 100%;
+    }
+    /* プレースホルダーマップ (600 × 400px) */
+    .map-placeholder {
+      width: 100%;
+      aspect-ratio: 600 / 400;
+      background: #0a0a12;
+      border: 1px solid var(--color-border);
+      position: relative;
+      overflow: hidden;
+      cursor: crosshair;
+    }
+
+    /* 地図グリッド線 */
+    .map-placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+      background-size: 30px 30px;
+    }
+    /* 外周ボーダーグロー */
+    .map-placeholder::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      box-shadow: inset 0 0 30px rgba(201,168,76,0.05);
+      pointer-events: none;
+    }
+
+    /* 地図内の道路ライン */
+    .map-road {
+      position: absolute;
+      background: rgba(201,168,76,0.12);
+      pointer-events: none;
+    }
+    .map-road--h { height: 2px; width: 100%; }
+    .map-road--v { width: 2px; height: 100%; }
+    .map-road--thick { background: rgba(201,168,76,0.2); }
+
+    /* ブロック（建物） */
+    .map-block {
+      position: absolute;
+      background: rgba(201,168,76,0.06);
+      border: 1px solid rgba(201,168,76,0.08);
+      pointer-events: none;
+    }
+
+    /* マップラベル */
+    .map-label {
+      position: absolute;
+      font-family: var(--font-terminal);
+      font-size: 9px;
+      color: rgba(201,168,76,0.4);
+      pointer-events: none;
+      letter-spacing: 0.05em;
+    }
+
+    /* 現在地マーカー（蟠龍閣） */
+    .map-pin {
+      position: absolute;
+      /* 地図上の位置 — 差し替え時は調整 */
+      left: 50%; top: 55%;
+      transform: translate(-50%, -100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      pointer-events: none;
+    }
+    .map-pin__dot {
+      width: 12px; height: 12px;
+      background: var(--color-crimson);
+      border: 2px solid var(--color-gold);
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px rgba(139,0,0,0.3), var(--glow-crimson);
+      animation: pin-pulse 2s ease-in-out infinite;
+    }
+    .map-pin__label {
+      margin-top: 6px;
+      font-family: var(--font-cyber);
+      font-size: 10px;
+      color: var(--color-gold);
+      letter-spacing: 0.1em;
+      text-shadow: 0 0 8px rgba(201,168,76,0.8);
+      white-space: nowrap;
+    }
+    .map-pin__stem {
+      width: 2px; height: 12px;
+      background: var(--color-gold);
+      opacity: 0.6;
+    }
+
+    @keyframes pin-pulse {
+      0%, 100% { box-shadow: 0 0 0 4px rgba(139,0,0,0.3), 0 0 8px rgba(139,0,0,0.6); }
+      50%       { box-shadow: 0 0 0 8px rgba(139,0,0,0.1), 0 0 20px rgba(139,0,0,0.8); }
+    }
+
+    /* ── 隠し龍マーカー ─── */
+    .map-dragon-marker {
+      position: absolute;
+      /* 地図の右下エリアに配置 */
+      right: 18%; bottom: 22%;
+      width: 20px; height: 20px;
+      cursor: pointer;
+      opacity: 0.08;
+      transition: opacity 0.4s;
+      z-index: 10;
+    }
+    .map-dragon-marker:hover {
+      opacity: 0.6;
+    }
+    .map-dragon-marker svg {
+      width: 100%; height: 100%;
+    }
+    /* 発見後 */
+    .map-dragon-marker.found {
+      opacity: 1;
+      filter: drop-shadow(0 0 6px rgba(201,168,76,0.9));
+      animation: dragon-found 1s ease-out;
+    }
+    @keyframes dragon-found {
+      0%   { transform: scale(1);   opacity: 0.08; }
+      50%  { transform: scale(2.5); opacity: 1; }
+      100% { transform: scale(1);   opacity: 1; }
+    }
+
+    /* 発見コードポップアップ */
+    .dragon-code-popup {
+      position: absolute;
+      right: 5%; bottom: 30%;
+      background: var(--bg-secondary);
+      border: 1px solid var(--color-gold);
+      padding: var(--space-2) var(--space-3);
+      font-family: var(--font-terminal);
+      font-size: var(--text-xs);
+      color: var(--color-gold);
+      letter-spacing: 0.15em;
+      display: none;
+      box-shadow: var(--glow-gold);
+      z-index: 20;
+      white-space: nowrap;
+    }
+    .dragon-code-popup.visible {
+      display: block;
+      animation: popup-appear 0.4s ease-out;
+    }
+    @keyframes popup-appear {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 地図サイズ注記 */
+    .map-size-note {
+      font-family: var(--font-terminal);
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+      text-align: right;
+      margin-top: var(--space-1);
+    }
+
+    /* ── アクセス情報テーブル ─── */
+    .access-info {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    .access-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--color-border);
+      padding: var(--space-3);
+    }
+    .access-card__label {
+      font-family: var(--font-cyber);
+      font-size: var(--text-xs);
+      letter-spacing: 0.25em;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-1);
+    }
+    .access-card__value {
+      font-family: var(--font-display);
+      font-size: var(--text-base);
+      color: var(--color-text-primary);
+      line-height: 1.8;
+    }
+    .access-card__sub {
+      font-family: var(--font-terminal);
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+      margin-top: var(--space-1);
+      line-height: 1.6;
+    }
+
+    /* ── 周辺情報 ─── */
+    .access-route {
+      margin-top: var(--space-6);
+    }
+    .route-step {
+      display: flex;
+      gap: var(--space-3);
+      padding: var(--space-2) 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .route-step:last-child { border-bottom: none; }
+    .route-step__num {
+      font-family: var(--font-cyber);
+      font-size: var(--text-sm);
+      color: var(--color-gold);
+      min-width: 32px;
+      line-height: 1.8;
+    }
+    .route-step__text {
+      font-family: var(--font-terminal);
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+      line-height: 1.8;
+    }
+
+    /* ── 注記ボックス ─── */
+    .access-notice {
+      margin-top: var(--space-8);
+      padding: var(--space-4);
+      background: var(--bg-secondary);
+      border: 1px solid var(--color-border);
+      font-family: var(--font-terminal);
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 2;
+      position: relative;
+    }
+    .access-notice::before {
+      content: '// NOTE';
+      display: block;
+      font-family: var(--font-cyber);
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+      letter-spacing: 0.2em;
+      margin-bottom: var(--space-2);
+    }
+    .access-notice .hidden-hint {
+      color: rgba(139,0,0,0.5);
+      display: block;
+      margin-top: var(--space-2);
+    }
+
+    /* ── 龍コード発見通知（画面下） ─── */
+    .dragon-found-toast {
+      position: fixed;
+      bottom: var(--space-4);
+      right: var(--space-4);
+      background: var(--bg-secondary);
+      border: 1px solid var(--color-gold);
+      padding: var(--space-2) var(--space-4);
+      font-family: var(--font-terminal);
+      font-size: var(--text-sm);
+      color: var(--color-gold);
+      box-shadow: var(--glow-gold);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: transform 0.4s ease-out, opacity 0.4s;
+      z-index: 999;
+      max-width: 320px;
+    }
+    .dragon-found-toast.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .dragon-found-toast__title {
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+      letter-spacing: 0.2em;
+      margin-bottom: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- スキャンライン -->
+  <div class="scanline-overlay" aria-hidden="true"></div>
+  <div class="dragon-scale-bg" aria-hidden="true"></div>
+
+  <!-- ================================================================
+       NAVIGATION
+       ================================================================ -->
+  <nav class="site-nav" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <span class="nav__logo-cyber font-cyber">CYBER CHINA</span>
+        <span class="nav__logo-kanji font-display">蟠龍閣</span>
+      </a>
+      <ul class="nav__links">
+        <li><a href="cast.html" class="nav__link">CAST</a></li>
+        <li><a href="menu.html" class="nav__link">MENU</a></li>
+        <li><a href="recruit.html" class="nav__link">RECRUIT</a></li>
+        <li><a href="access.html" class="nav__link nav__link--active">ACCESS</a></li>
+      </ul>
+      <button class="nav__reserve-btn" onclick="window.location.href='index.html#reserve'">予約する</button>
+    </div>
+  </nav>
+
+  <!-- ================================================================
+       HERO
+       ================================================================ -->
+  <section class="access-hero">
+    <p class="access-hero__label font-cyber">— ACCESS —</p>
+    <h1 class="access-hero__title font-display">龍の棲む場所へ</h1>
+    <p class="access-hero__sub">秋葉原駅より徒歩3分。地下に潜る。</p>
+  </section>
+
+  <!-- ================================================================
+       MAIN CONTENT
+       ================================================================ -->
+  <main class="container" style="padding-top:var(--space-8);padding-bottom:var(--space-16)">
+
+    <div class="access-layout">
+
+      <!-- 左：地図 -->
+      <div class="map-wrap">
+        <div class="map-placeholder" id="mapArea" title="地図（プレースホルダー 600×400px）">
+
+          <!-- 道路レイアウト（抽象地図） -->
+          <div class="map-road map-road--h" style="top:30%"></div>
+          <div class="map-road map-road--h map-road--thick" style="top:50%"></div>
+          <div class="map-road map-road--h" style="top:70%"></div>
+          <div class="map-road map-road--v" style="left:25%"></div>
+          <div class="map-road map-road--v map-road--thick" style="left:50%"></div>
+          <div class="map-road map-road--v" style="left:75%"></div>
+
+          <!-- 建物ブロック -->
+          <div class="map-block" style="left:5%;top:5%;width:18%;height:22%"></div>
+          <div class="map-block" style="left:27%;top:5%;width:20%;height:22%"></div>
+          <div class="map-block" style="left:52%;top:5%;width:20%;height:22%"></div>
+          <div class="map-block" style="left:77%;top:5%;width:18%;height:22%"></div>
+          <div class="map-block" style="left:5%;top:33%;width:18%;height:14%"></div>
+          <div class="map-block" style="left:27%;top:33%;width:20%;height:14%"></div>
+          <div class="map-block" style="left:52%;top:33%;width:20%;height:14%"></div>
+          <div class="map-block" style="left:77%;top:33%;width:18%;height:14%"></div>
+          <div class="map-block" style="left:5%;top:53%;width:18%;height:20%"></div>
+          <div class="map-block" style="left:27%;top:53%;width:20%;height:20%"></div>
+          <div class="map-block" style="left:52%;top:53%;width:20%;height:20%"></div>
+          <div class="map-block" style="left:77%;top:53%;width:18%;height:20%"></div>
+          <div class="map-block" style="left:5%;top:76%;width:18%;height:19%"></div>
+          <div class="map-block" style="left:27%;top:76%;width:20%;height:19%"></div>
+          <div class="map-block" style="left:52%;top:76%;width:20%;height:19%"></div>
+          <div class="map-block" style="left:77%;top:76%;width:18%;height:19%"></div>
+
+          <!-- ラベル -->
+          <div class="map-label" style="top:31%;left:52%;transform:translateX(-50%)">中央通り</div>
+          <div class="map-label" style="top:50%;right:2%;transform:translateY(-50%)">昭和通り</div>
+          <div class="map-label" style="top:8%;left:52%;transform:translateX(-50%)">秋葉原駅</div>
+
+          <!-- 現在地マーカー -->
+          <div class="map-pin" style="left:50%;top:55%">
+            <div class="map-pin__label">蟠龍閣</div>
+            <div class="map-pin__stem"></div>
+            <div class="map-pin__dot"></div>
+          </div>
+
+          <!-- プレースホルダーサイズ表示 -->
+          <div style="
+            position:absolute;bottom:var(--space-1);left:var(--space-1);
+            font-family:var(--font-terminal);font-size:9px;
+            color:rgba(201,168,76,0.2);letter-spacing:0.05em;
+          ">600 × 400 — placeholder map</div>
+
+          <!-- ── 隠し龍マーカー ────────────────────────── -->
+          <!-- ほぼ透明。見つけた者だけがクリックできる -->
+          <button
+            class="map-dragon-marker"
+            id="dragonMarker"
+            aria-label="謎のポイント"
+            title=""
+          >
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- 龍の簡易シルエット（金色） -->
+              <path d="M12 2 C7 2 3 6 3 10 C3 13 5 15 7 16 L6 20 C6 21 7 22 8 21 L10 18 C10.6 18.3 11.3 18.5 12 18.5 C16.4 18.5 20 14.9 20 10.5 C20 6.1 16.4 2.5 12 2.5 Z"
+                fill="rgba(212,175,55,0.9)" />
+              <circle cx="9" cy="9" r="1.5" fill="rgba(0,0,0,0.8)"/>
+              <path d="M15 7 Q17 5 19 6" stroke="rgba(212,175,55,0.9)" stroke-width="1" fill="none"/>
+              <path d="M14 6 Q15 4 17 4" stroke="rgba(212,175,55,0.7)" stroke-width="0.8" fill="none"/>
+            </svg>
+          </button>
+
+          <!-- 発見コードポップアップ -->
+          <div class="dragon-code-popup" id="dragonCodePopup">
+            MAP-RY-023-DRAGON
+          </div>
+
+        </div><!-- /map-placeholder -->
+        <p class="map-size-note font-terminal">// placeholder — 600×400px — 実地図に差し替え予定</p>
+      </div>
+
+      <!-- 右：アクセス情報 -->
+      <div class="access-info">
+        <div class="access-card">
+          <div class="access-card__label">ADDRESS</div>
+          <div class="access-card__value font-display">
+            東京都千代田区外神田<br>
+            ██-██ 蟠龍ビルB1F
+          </div>
+          <div class="access-card__sub">※ 正確な住所は予約確定後にお知らせします</div>
+        </div>
+
+        <div class="access-card">
+          <div class="access-card__label">HOURS</div>
+          <div class="access-card__value font-display">
+            20:00 — 翌5:00
+          </div>
+          <div class="access-card__sub">月〜日 / 年中無休（龍の休眠日を除く）</div>
+        </div>
+
+        <div class="access-card">
+          <div class="access-card__label">NEAREST STATION</div>
+          <div class="access-card__value font-display">
+            JR 秋葉原駅<br>
+            <span style="font-size:var(--text-base)">電気街口 徒歩3分</span>
+          </div>
+          <div class="access-card__sub">
+            東京メトロ日比谷線 秋葉原駅 3番出口 徒歩4分<br>
+            つくばエクスプレス 秋葉原駅 A1出口 徒歩2分
+          </div>
+        </div>
+
+        <div class="access-card">
+          <div class="access-card__label">CONTACT</div>
+          <div class="access-card__value font-display">
+            予約専用DM
+          </div>
+          <div class="access-card__sub">
+            Twitter/X: @banryukaku_arg<br>
+            ※ 電話・メールでのお問い合わせは受け付けておりません
+          </div>
+        </div>
+
+        <div class="access-card">
+          <div class="access-card__label">NOTES</div>
+          <div class="access-card__value font-display" style="font-size:var(--text-base)">
+            完全予約制 / 会員制
+          </div>
+          <div class="access-card__sub">
+            当日の予約は受け付けておりません。<br>
+            初回ご来店の方は紹介者が必要です。<br>
+            <span style="color:rgba(139,0,0,0.5)">B3Fへは立ち入らないでください。</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /access-layout -->
+
+    <!-- 道順 -->
+    <section class="section access-route">
+      <div class="section-header">
+        <p class="section-label font-cyber text-gold">— HOW TO REACH —</p>
+        <h2 class="section-title font-display">道順</h2>
+      </div>
+      <div class="route-step">
+        <span class="route-step__num font-cyber">01</span>
+        <span class="route-step__text">JR秋葉原駅「電気街口」を出て、中央通りを南へ進む。</span>
+      </div>
+      <div class="route-step">
+        <span class="route-step__num font-cyber">02</span>
+        <span class="route-step__text">1つ目の交差点を右折。路地に入る。</span>
+      </div>
+      <div class="route-step">
+        <span class="route-step__num font-cyber">03</span>
+        <span class="route-step__text">赤い提灯のかかった黒いビルが見える。「蟠龍閣」と書かれた看板のある扉を探す。</span>
+      </div>
+      <div class="route-step">
+        <span class="route-step__num font-cyber">04</span>
+        <span class="route-step__text">B1Fへ降りる階段を下りる。扉の前でインターフォンを押してください。</span>
+      </div>
+      <div class="route-step" style="border-color:rgba(139,0,0,0.3)">
+        <span class="route-step__num font-cyber" style="color:rgba(139,0,0,0.6)">※</span>
+        <span class="route-step__text" style="color:var(--color-text-muted)">
+          B2F以下には降りないでください。<br>
+          <span style="color:rgba(139,0,0,0.5)">そこは龍の眠る場所です。</span>
+        </span>
+      </div>
+    </section>
+
+    <!-- 注記 -->
+    <div class="access-notice">
+      <p>当閣の場所を、SNSや口頭で第三者に共有することはご遠慮ください。</p>
+      <p>予約確定者のみが、正確な住所を受け取ります。</p>
+      <p>当閣の存在は、知る者のみが知ればよい。</p>
+      <span class="hidden-hint font-terminal">
+        ※ このページのどこかに、龍の目が潜んでいる。<br>
+        　 見つけた者だけが、次の扉を知る。
+      </span>
+    </div>
+
+    <!-- 白文字ギミック -->
+    <span
+      data-secret="access_dragon"
+      style="color:#0A0A0F;user-select:text;display:block;font-size:0.01px;height:0;overflow:visible"
+      aria-hidden="true"
+    >地図の中に龍が隠れている。見つけてクリックせよ。コード：MAP-RY-023-DRAGON</span>
+
+  </main>
+
+  <!-- ================================================================
+       FOOTER
+       ================================================================ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer__logo">
+        <span class="font-cyber text-gold">CYBER CHINA</span>
+        <span class="font-display" style="font-size:var(--text-lg)">蟠龍閣</span>
+      </div>
+      <nav class="footer__nav">
+        <a href="index.html">TOP</a>
+        <a href="cast.html">CAST</a>
+        <a href="menu.html">MENU</a>
+        <a href="recruit.html">RECRUIT</a>
+        <a href="access.html">ACCESS</a>
+      </nav>
+      <p class="footer__copy font-cyber">&copy; 2024 BANRYUKAKU. ALL RIGHTS RESERVED.</p>
+    </div>
+  </footer>
+
+  <!-- 龍コード発見トースト -->
+  <div class="dragon-found-toast" id="dragonToast" role="alert">
+    <div class="dragon-found-toast__title font-cyber">// DISCOVERY LOGGED</div>
+    <div id="dragonToastCode" style="letter-spacing:0.15em">MAP-RY-023-DRAGON</div>
+    <div style="font-size:0.7rem;color:var(--color-text-muted);margin-top:4px">このコードを記録してください。</div>
+  </div>
+
+  <script src="main.js"></script>
+  <script src="assets/js/effects.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // ── 隠し龍マーカーのクリックイベント ────────────
+    const marker = document.getElementById('dragonMarker');
+    const popup  = document.getElementById('dragonCodePopup');
+    const toast  = document.getElementById('dragonToast');
+    const FLAG   = 'access_dragon_found';
+
+    if (marker) {
+      // すでに発見済みなら復元
+      if (brHasFlag(FLAG)) {
+        marker.classList.add('found');
+        if (popup) popup.classList.add('visible');
+      }
+
+      marker.addEventListener('click', () => {
+        if (brHasFlag(FLAG)) return; // 2回目以降は無視
+
+        // フラグ記録
+        brAddFlag(FLAG);
+        brTryLevel(2);
+
+        // マーカーを光らせる
+        marker.classList.add('found');
+
+        // コードポップアップ表示
+        if (popup) popup.classList.add('visible');
+
+        // 効果音
+        if (typeof brPlayGlitch === 'function') brPlayGlitch();
+
+        // CRTフラッシュ
+        if (typeof brCRTFlash === 'function') brCRTFlash('rgba(201,168,76,0.15)', 600);
+
+        // トースト通知
+        if (toast) {
+          toast.classList.add('visible');
+          setTimeout(() => toast.classList.remove('visible'), 6000);
+        }
+
+        // コンソールヒント
+        brInitConsoleHint('▌ BANRYU-SYS ▐  龍の目を見つけた。\n  コード記録: MAP-RY-023-DRAGON\n  次のステップ: /menu/ の特別カクテル。');
+      });
+    }
+
+    // ── DevTools ヒント ───────────────────────────────
+    brInitConsoleHint('▌ BANRYU-SYS ▐  地図の中に龍が眠っている。\n  目を凝らして探せ。');
+  });
+  </script>
+</body>
+</html>

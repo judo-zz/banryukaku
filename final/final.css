@@ -1,0 +1,349 @@
+/*
+  最終到達点 — 黒と金の荘厳な教祖就任画面
+  デザイン思想：絶対的な金と黒。装飾は「多すぎる」が正解。
+  完全な Lv5 状態として設計（design-system.css の .lv5 変数が適用される）
+*/
+
+/* ================================================================
+   FINAL WORLD — ベース
+   ================================================================ */
+
+.final-world {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+/* 深い黒の背景グラデーション */
+.final-world::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 50%, rgba(212, 175, 55, 0.04) 0%, transparent 70%),
+    radial-gradient(ellipse 100% 100% at 0% 0%, rgba(212, 175, 55, 0.02) 0%, transparent 50%),
+    radial-gradient(ellipse 100% 100% at 100% 100%, rgba(212, 175, 55, 0.02) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ================================================================
+   金の粒子（上から降る）
+   ================================================================ */
+
+.final-particles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+@keyframes particle-fall {
+  0% {
+    transform: translateY(-20px) rotate(0deg);
+    opacity: 0;
+  }
+  10% { opacity: 1; }
+  90% { opacity: 0.6; }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--color-gold);
+  box-shadow: var(--glow-gold);
+  animation: particle-fall linear infinite;
+}
+
+/* それぞれ位置・速度・サイズを変える */
+.particle--1 { left: 10%; animation-duration: 8s;  animation-delay: 0s;   width: 2px; height: 2px; }
+.particle--2 { left: 25%; animation-duration: 12s; animation-delay: 2s;   width: 4px; height: 4px; }
+.particle--3 { left: 40%; animation-duration: 9s;  animation-delay: 1s;   }
+.particle--4 { left: 55%; animation-duration: 14s; animation-delay: 3s;   width: 2px; height: 2px; }
+.particle--5 { left: 70%; animation-duration: 10s; animation-delay: 0.5s; }
+.particle--6 { left: 80%; animation-duration: 11s; animation-delay: 4s;   width: 4px; height: 4px; }
+.particle--7 { left: 90%; animation-duration: 7s;  animation-delay: 1.5s; width: 2px; height: 2px; }
+.particle--8 { left: 5%;  animation-duration: 13s; animation-delay: 2.5s; }
+
+/* ================================================================
+   龍の封印紋様（SVG円）
+   ================================================================ */
+
+.final-seal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.final-seal__svg {
+  width: min(90vw, 90vh);
+  height: min(90vw, 90vh);
+  animation: slow-rotate 120s linear infinite;
+  opacity: 0;
+  /* エントランスアニメーション */
+  animation-delay: 0.5s;
+}
+
+@keyframes seal-reveal {
+  from { opacity: 0; transform: scale(0.8) rotate(-10deg); }
+  to   { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+.final-seal__svg {
+  animation:
+    seal-reveal 2s cubic-bezier(0.4, 0, 0.2, 1) both,
+    slow-rotate 120s 2s linear infinite;
+}
+
+/* ================================================================
+   メインコンテンツ
+   ================================================================ */
+
+.final-container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8) var(--space-3);
+}
+
+.final-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-6);
+  max-width: 640px;
+  position: relative;
+  z-index: 10;
+}
+
+/* ================================================================
+   上部符号テキスト
+   ================================================================ */
+
+.final-pre {
+  font-size: var(--text-xs);
+  letter-spacing: 0.3em;
+  color: var(--color-gold-dk);
+  opacity: 0.6;
+  animation: fade-up 1s ease both;
+}
+
+/* ================================================================
+   メインタイトル
+   ================================================================ */
+
+.final-title-wrap {
+  animation: fade-up 1s ease both;
+  animation-delay: 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.final-title {
+  font-size: clamp(var(--text-2xl), 15vw, 96px);
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: var(--color-gold);
+  text-shadow: var(--glow-text-gold);
+  line-height: 1;
+}
+
+.final-title-sub {
+  font-size: var(--text-xs);
+  letter-spacing: 0.5em;
+  color: var(--color-gold-dk);
+  opacity: 0.7;
+}
+
+/* ================================================================
+   区切り線
+   ================================================================ */
+
+.final-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+  animation: fade-up 1s ease both;
+  animation-delay: 0.5s;
+}
+
+.final-divider__line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--color-gold), transparent);
+  opacity: 0.4;
+}
+
+.final-divider__icon {
+  font-size: var(--text-lg);
+  color: var(--color-gold);
+  text-shadow: var(--glow-text-gold);
+  animation: neon-flicker 5s infinite;
+  padding: 0 var(--space-1);
+}
+
+/* ================================================================
+   巻物（就任文）
+   ================================================================ */
+
+.final-scroll {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-4);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background: rgba(212, 175, 55, 0.03);
+  box-shadow: var(--glow-gold);
+  animation: fade-up 1s ease both;
+  animation-delay: 0.7s;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 巻物の上下装飾 */
+.final-scroll::before,
+.final-scroll::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--color-gold), transparent);
+  opacity: 0.4;
+}
+
+.final-scroll::before { top: 0; }
+.final-scroll::after  { bottom: 0; }
+
+.final-scroll__text {
+  font-size: clamp(var(--text-base), 2.5vw, var(--text-md));
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  line-height: 1.9;
+  color: var(--color-text-primary);
+}
+
+.final-scroll__text--gold {
+  color: var(--color-gold);
+  text-shadow: var(--glow-text-gold);
+  font-weight: 700;
+}
+
+.final-scroll__subtext {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.9;
+  letter-spacing: 0.08em;
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--color-border);
+}
+
+/* ================================================================
+   ARGコード表示
+   ================================================================ */
+
+.final-code-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  animation: fade-up 1s ease both;
+  animation-delay: 1s;
+}
+
+.final-code-label {
+  font-size: var(--text-xs);
+  letter-spacing: 0.3em;
+  color: var(--color-gold-dk);
+  opacity: 0.6;
+}
+
+.final-code-display {
+  padding: var(--space-2) var(--space-6);
+  border: 2px solid var(--color-gold);
+  border-radius: var(--radius-sm);
+  background: rgba(212, 175, 55, 0.05);
+  box-shadow: var(--glow-gold);
+  position: relative;
+}
+
+/* コーナー装飾 */
+.final-code-display::before,
+.final-code-display::after {
+  content: '◆';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-gold);
+  font-size: var(--text-xs);
+  opacity: 0.5;
+}
+
+.final-code-display::before { left: var(--space-1); }
+.final-code-display::after  { right: var(--space-1); }
+
+.final-code__value {
+  font-size: var(--text-xl);
+  letter-spacing: 0.3em;
+  color: var(--color-gold);
+  text-shadow: var(--glow-text-gold);
+  animation: neon-flicker 4s infinite;
+}
+
+.final-code-hint {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  letter-spacing: 0.1em;
+  line-height: 1.8;
+}
+
+/* ================================================================
+   最終CTA
+   ================================================================ */
+
+.final-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  animation: fade-up 1s ease both;
+  animation-delay: 1.2s;
+}
+
+.final-cta__text {
+  font-size: clamp(var(--text-base), 2.5vw, var(--text-md));
+  font-weight: 600;
+  color: var(--color-gold);
+  letter-spacing: 0.1em;
+}
+
+.final-cta__subtext {
+  font-family: var(--font-terminal);
+  font-size: var(--text-sm);
+  color: var(--color-gold-dk);
+  letter-spacing: 0.2em;
+  opacity: 0.7;
+}

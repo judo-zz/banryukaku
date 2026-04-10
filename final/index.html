@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title data-base="蟠龍閣 — 完全就任">蟠龍閣 — 完全就任</title>
+  <link rel="stylesheet" href="../design-system.css">
+  <link rel="stylesheet" href="final.css">
+  <script src="../assets/js/investigation.js"></script>
+</head>
+
+<!-- Lv5状態：黒と金の完全支配 -->
+<body class="lv5 final-world">
+
+  <!-- スキャンラインは金色 -->
+  <div class="scanline-overlay" aria-hidden="true"></div>
+
+  <!-- 龍の鱗 -->
+  <div class="dragon-scale-bg" aria-hidden="true"></div>
+
+  <!-- ================================================================
+       最終到達点：黒と金の荘厳な教祖就任画面
+       ================================================================ -->
+
+  <div class="final-container" id="final">
+
+    <!-- 入場アニメーション：金の粒子が降る -->
+    <div class="final-particles" aria-hidden="true">
+      <!-- JSで動的生成、CSSで定義 -->
+      <div class="particle particle--1"></div>
+      <div class="particle particle--2"></div>
+      <div class="particle particle--3"></div>
+      <div class="particle particle--4"></div>
+      <div class="particle particle--5"></div>
+      <div class="particle particle--6"></div>
+      <div class="particle particle--7"></div>
+      <div class="particle particle--8"></div>
+    </div>
+
+    <!-- 外円：龍紋様 -->
+    <div class="final-seal" aria-hidden="true">
+      <svg class="final-seal__svg" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+        <!-- 外周円 -->
+        <circle cx="300" cy="300" r="285" fill="none" stroke="rgba(212,175,55,0.3)" stroke-width="1"/>
+        <circle cx="300" cy="300" r="270" fill="none" stroke="rgba(212,175,55,0.15)" stroke-width="1" stroke-dasharray="4 8"/>
+        <!-- 中円 -->
+        <circle cx="300" cy="300" r="230" fill="none" stroke="rgba(212,175,55,0.25)" stroke-width="2"/>
+        <!-- 内円 -->
+        <circle cx="300" cy="300" r="180" fill="none" stroke="rgba(212,175,55,0.4)" stroke-width="1"/>
+        <circle cx="300" cy="300" r="160" fill="none" stroke="rgba(212,175,55,0.2)" stroke-width="1"/>
+
+        <!-- 八角形の格子 -->
+        <polygon points="300,40 440,130 500,290 440,450 300,540 160,450 100,290 160,130"
+          fill="none" stroke="rgba(212,175,55,0.15)" stroke-width="1"/>
+
+        <!-- 十六分割の線 -->
+        <line x1="300" y1="15" x2="300" y2="585" stroke="rgba(212,175,55,0.06)" stroke-width="1"/>
+        <line x1="15" y1="300" x2="585" y2="300" stroke="rgba(212,175,55,0.06)" stroke-width="1"/>
+        <line x1="85" y1="85" x2="515" y2="515" stroke="rgba(212,175,55,0.05)" stroke-width="1"/>
+        <line x1="515" y1="85" x2="85" y2="515" stroke="rgba(212,175,55,0.05)" stroke-width="1"/>
+
+        <!-- 4方向の装飾ひし形 -->
+        <polygon points="300,50 315,75 300,100 285,75" fill="rgba(212,175,55,0.3)"/>
+        <polygon points="300,500 315,525 300,550 285,525" fill="rgba(212,175,55,0.3)"/>
+        <polygon points="50,300 75,285 100,300 75,315" fill="rgba(212,175,55,0.3)"/>
+        <polygon points="500,300 525,285 550,300 525,315" fill="rgba(212,175,55,0.3)"/>
+
+        <!-- 中央の龍眼 -->
+        <circle cx="300" cy="300" r="30" fill="none" stroke="rgba(212,175,55,0.6)" stroke-width="2"/>
+        <circle cx="300" cy="300" r="15" fill="rgba(212,175,55,0.1)"/>
+        <circle cx="300" cy="300" r="5" fill="rgba(212,175,55,0.8)"/>
+      </svg>
+    </div>
+
+    <!-- メインコンテンツ -->
+    <div class="final-content">
+
+      <!-- 上部符号 -->
+      <p class="final-pre font-cyber">
+        ✦ BANRYU SYSTEM : LEVEL 5 INITIALIZED ✦
+      </p>
+
+      <!-- メインタイトル -->
+      <div class="final-title-wrap">
+        <h1 class="final-title font-display glitch-text flicker-gold" data-text="龍の目覚め">
+          龍の目覚め
+        </h1>
+        <p class="final-title-sub font-cyber">THE DRAGON AWAKENS</p>
+      </div>
+
+      <!-- 区切り線 -->
+      <div class="final-divider" aria-hidden="true">
+        <span class="final-divider__line"></span>
+        <span class="final-divider__icon font-display">龍</span>
+        <span class="final-divider__line"></span>
+      </div>
+
+      <!-- 就任文：荘厳な言葉 -->
+      <div class="final-scroll">
+        <p class="final-scroll__text font-display">
+          あなたは、蟠龍閣の真実を知った者。
+        </p>
+        <p class="final-scroll__text font-display">
+          龍は試みた。龍はあなたを認めた。
+        </p>
+        <p class="final-scroll__text final-scroll__text--gold font-display">
+          今この瞬間より、あなたは蟠龍の縁者（えにしもの）となる。
+        </p>
+        <p class="final-scroll__subtext">
+          ゆめのことは、龍が知っている。<br>
+          あなたが読んだものは、消えない。
+        </p>
+      </div>
+
+      <!-- 区切り線 -->
+      <div class="final-divider" aria-hidden="true">
+        <span class="final-divider__line"></span>
+        <span class="final-divider__icon font-display">縁</span>
+        <span class="final-divider__line"></span>
+      </div>
+
+      <!-- ARGコード：次のアクション -->
+      <div class="final-code-section">
+        <p class="final-code-label font-cyber">// YOUR CODE</p>
+        <div class="final-code-display font-cyber">
+          <span class="final-code__value" id="userCode">BANRYU-████</span>
+        </div>
+        <p class="final-code-hint font-terminal">
+          このコードを記録してください。<br>
+          次の扉を開く鍵となります。
+        </p>
+      </div>
+
+      <!-- 区切り線 -->
+      <div class="final-divider" aria-hidden="true">
+        <span class="final-divider__line"></span>
+        <span class="final-divider__icon font-display">✦</span>
+        <span class="final-divider__line"></span>
+      </div>
+
+      <!-- 最後の問いかけ（SNSシェア誘導） -->
+      <div class="final-cta">
+        <p class="final-cta__text font-display">
+          龍を信じる者に、この符号を届けよ。
+        </p>
+        <p class="final-cta__subtext font-terminal">
+          #蟠龍閣 #龍の目覚め
+        </p>
+      </div>
+
+      <!-- 下部符号 -->
+      <p class="final-pre font-cyber" style="margin-top: var(--space-8);">
+        ✦ BANRYU SYSTEM : SESSION RECORDED ✦
+      </p>
+
+    </div><!-- /final-content -->
+
+  </div><!-- /final-container -->
+
+  <script src="../main.js"></script>
+  <script src="../assets/js/effects.js"></script>
+  <script src="final.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // 最終ページ到達 → Lv5確定
+    brSetLevel(5);
+  });
+  </script>
+</body>
+</html>
