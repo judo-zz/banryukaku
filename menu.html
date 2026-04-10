@@ -231,8 +231,7 @@
             <div class="menu-card__name" style="color:var(--color-gold-lt)">運命の赤い糸カクテル</div>
             <div class="menu-card__price">¥2,500</div>
             <div class="menu-card__desc" style="color:var(--color-text-secondary)">
-              今宵あなたと縁を結ぶ、特別なカクテル。<br>
-              <span style="font-size:0.72rem;color:var(--color-text-muted)">※ご注文は長押しにてどうぞ</span>
+              今宵あなたと縁を結ぶ、特別なカクテル。
             </div>
           </div>
         </div>
@@ -261,7 +260,7 @@
       </section>
 
       <!-- 白文字ギミック（メニューページ） -->
-      <span data-secret="menu_note" style="color:transparent;user-select:text;cursor:text;display:block;font-size:1px;line-height:1px" aria-hidden="true">パスワード：R———AI　各ページの頭文字を繋げよ。</span>
+      <span data-secret="menu_note" style="color:transparent;user-select:text;display:block;font-size:1px;line-height:1px" aria-hidden="true">パスワード：R———AI　各ページの頭文字を繋げよ。</span>
 
     </div>
   </main>
@@ -308,22 +307,20 @@
       document.getElementById('pwInput').focus();
     }, 3000);
 
-    // 短いクリック（長押しではない）時のフィードバック
+    // 短いクリック（長押しではない）時のフィードバック（ヒント要素を動的生成）
     let pressStart = 0;
-    const hintEl = special?.querySelector('.menu-card__desc small');
-    if (special && hintEl) {
+    if (special) {
       special.addEventListener('mousedown', () => { pressStart = Date.now(); });
       special.addEventListener('touchstart', () => { pressStart = Date.now(); }, { passive: true });
       const onShortPress = () => {
         if (modal.classList.contains('is-open')) return;
         const held = Date.now() - pressStart;
         if (held > 0 && held < 2800) {
-          hintEl.textContent = 'もう少し長く押し続けてください…';
-          hintEl.style.color = 'rgba(201,168,76,0.7)';
-          setTimeout(() => {
-            hintEl.textContent = '※ご注文は長押しにてどうぞ';
-            hintEl.style.color = '';
-          }, 1800);
+          const fb = document.createElement('span');
+          fb.style.cssText = 'display:block;font-size:0.72rem;color:rgba(201,168,76,0.7);margin-top:4px';
+          fb.textContent = 'もう少し長く…';
+          special.querySelector('.menu-card__desc').appendChild(fb);
+          setTimeout(() => fb.remove(), 1800);
         }
       };
       special.addEventListener('mouseup', onShortPress);
