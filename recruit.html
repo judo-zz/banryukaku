@@ -576,13 +576,13 @@
       data-secret="recruit_code"
       style="color:transparent;user-select:text;cursor:text;display:block;font-size:1px;line-height:1px"
       aria-hidden="true"
-    >各条件の頭文字を繋げよ：RENPAI</span>
+    >条件の列を、縦に辿れ。その文字列が、次の扉を開く。</span>
 
     <!-- 底部メッセージ（スクロール到達後に見えるゾーン） -->
     <div class="recruit-bottom-msg" id="recruitBottom">
       <p>全ての条件を最後まで読んだあなたへ。</p>
       <p>龍はあなたの訪問を記録しました。</p>
-      <p class="final-line">次は、内部端末へ。<br><span style="font-size:0.7rem;opacity:0.6">扉は /hack/ にある。合言葉は、あなたがすでに知っている。</span></p>
+      <p class="final-line">次は、内部端末へ。<br><span style="font-size:0.7rem;opacity:0.6">合言葉は、あなたがすでに持っている。</span></p>
     </div>
 
   </main>
@@ -633,7 +633,7 @@
         submitBtn.textContent = '✦ 応募を受理しました ✦';
         submitBtn.style.color = 'rgba(139,0,0,0.8)';
         submitBtn.style.borderColor = 'rgba(139,0,0,0.5)';
-        brInitConsoleHint('▌ BANRYU-SYS ▐  応募受理。\n  あなたのアクセスは記録されました。\n  次のステップ: /hack/ → パスワードは各ページを読め。');
+        brInitConsoleHint('▌ BANRYU-SYS ▐  応募受理。\n  あなたのアクセスは記録されました。\n  認証コードは、すでにあなたの手の中にある。');
         setTimeout(() => {
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }, 2000);
@@ -641,7 +641,7 @@
     }
 
     // ── DevTools ヒント ───────────────────────────────
-    brInitConsoleHint('▌ BANRYU-SYS ▐  条件の頭文字を縦に読め。\n  /hack/ への道は、すでに示されている。');
+    brInitConsoleHint('▌ BANRYU-SYS ▐  条件は縦に読める。\n  道は、いつでもそこにある。');
   });
   </script>
 </body>

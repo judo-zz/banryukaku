@@ -28,14 +28,14 @@
       transition: border-color var(--transition-base);
     }
     .menu-card:hover { border-color: var(--color-border-strong); }
-    /* プレースホルダー: 400×300px 推奨 */
     .menu-card__img {
       width: 100%; aspect-ratio: 4/3;
       background: linear-gradient(160deg, #1a0c14, #0a0508);
       display: flex; align-items: center; justify-content: center;
-      font-family: var(--font-terminal); font-size: var(--text-xs);
-      color: var(--color-text-muted); letter-spacing: 0.1em;
+      font-family: var(--font-display); font-size: 3.5rem;
+      color: rgba(201,168,76,0.18); letter-spacing: 0;
       margin-bottom: var(--space-2);
+      user-select: none;
     }
     .menu-card__name { font-family: var(--font-display); font-size: var(--text-md); color: var(--color-text-primary); margin-bottom: var(--space-1); }
     .menu-card__price { font-family: var(--font-cyber); font-size: var(--text-sm); color: var(--color-gold); letter-spacing: 0.1em; }
@@ -201,25 +201,25 @@
         </div>
         <div class="menu-grid">
           <div class="menu-card">
-            <div class="menu-card__img">400 × 300</div>
+            <div class="menu-card__img">龍</div>
             <div class="menu-card__name">龍眼スパークリング</div>
             <div class="menu-card__price">¥800</div>
             <div class="menu-card__desc">白ぶどうのシュワシュワ。龍の瞳のような深い輝き。</div>
           </div>
           <div class="menu-card">
-            <div class="menu-card__img">400 × 300</div>
+            <div class="menu-card__img">茶</div>
             <div class="menu-card__name">蟠龍紅茶ハイ</div>
             <div class="menu-card__price">¥700</div>
             <div class="menu-card__desc">アールグレイの香りが漂う、上品な大人のハイボール。</div>
           </div>
           <div class="menu-card">
-            <div class="menu-card__img">400 × 300</div>
+            <div class="menu-card__img">金</div>
             <div class="menu-card__name">金箔カクテル</div>
             <div class="menu-card__price">¥1,200</div>
             <div class="menu-card__desc">本物の金箔が舞う、贅沢なシャンパンベース。</div>
           </div>
           <div class="menu-card">
-            <div class="menu-card__img">400 × 300</div>
+            <div class="menu-card__img">飲</div>
             <div class="menu-card__name">ソフトドリンク各種</div>
             <div class="menu-card__price">¥500〜</div>
             <div class="menu-card__desc">ウーロン茶・コーラ・ジュース・ノンアルカクテル。</div>
@@ -227,7 +227,7 @@
 
           <!-- 特別カクテル: 長押しトリガー -->
           <div class="menu-card menu-card--special" id="specialCocktail" style="grid-column:1/-1;max-width:320px">
-            <div class="menu-card__img" style="background:linear-gradient(160deg,#2a0a1a,#0a0510);color:rgba(201,168,76,0.4)">400 × 300</div>
+            <div class="menu-card__img" style="background:linear-gradient(160deg,#2a0a1a,#0a0510);color:rgba(201,168,76,0.35)">縁</div>
             <div class="menu-card__name" style="color:var(--color-gold-lt)">運命の赤い糸カクテル</div>
             <div class="menu-card__price">¥2,500</div>
             <div class="menu-card__desc" style="color:var(--color-text-secondary)">
@@ -246,13 +246,13 @@
         </div>
         <div class="menu-grid">
           <div class="menu-card">
-            <div class="menu-card__img">400 × 300</div>
+            <div class="menu-card__img">爪</div>
             <div class="menu-card__name">龍の爪揚げ</div>
             <div class="menu-card__price">¥600</div>
             <div class="menu-card__desc">サクサク唐揚げ5個。秘伝の蟠龍ダレ添え。</div>
           </div>
           <div class="menu-card">
-            <div class="menu-card__img">400 × 300</div>
+            <div class="menu-card__img">宴</div>
             <div class="menu-card__name">チャイナプレート</div>
             <div class="menu-card__price">¥900</div>
             <div class="menu-card__desc">本格中華小皿の盛り合わせ。</div>
@@ -308,6 +308,28 @@
       document.getElementById('pwInput').focus();
     }, 3000);
 
+    // 短いクリック（長押しではない）時のフィードバック
+    let pressStart = 0;
+    const hintEl = special?.querySelector('.menu-card__desc small');
+    if (special && hintEl) {
+      special.addEventListener('mousedown', () => { pressStart = Date.now(); });
+      special.addEventListener('touchstart', () => { pressStart = Date.now(); }, { passive: true });
+      const onShortPress = () => {
+        if (modal.classList.contains('is-open')) return;
+        const held = Date.now() - pressStart;
+        if (held > 0 && held < 2800) {
+          hintEl.textContent = 'もう少し長く押し続けてください…';
+          hintEl.style.color = 'rgba(201,168,76,0.7)';
+          setTimeout(() => {
+            hintEl.textContent = '※ご注文は長押しにてどうぞ';
+            hintEl.style.color = '';
+          }, 1800);
+        }
+      };
+      special.addEventListener('mouseup', onShortPress);
+      special.addEventListener('touchend', onShortPress, { passive: true });
+    }
+
     // モーダルを閉じる
     document.getElementById('pwClose').addEventListener('click', () => {
       modal.classList.remove('is-open');
@@ -319,7 +341,7 @@
       modal.classList.remove('is-open');
       brTryLevel(4);
       // 成功メッセージ（コンソール）
-      console.log('%c識別コード確認。\n管理者権限の移行を開始します。\n次は /hack/ を確認してください。', 'color:#00ff9f;font-family:monospace;font-size:14px;background:#000;padding:8px 14px;border-left:3px solid #00ff9f');
+      console.log('%c識別コード確認。\n管理者権限の移行を開始します。\nシステムが、応答している。', 'color:#00ff9f;font-family:monospace;font-size:14px;background:#000;padding:8px 14px;border-left:3px solid #00ff9f');
       // 遅延後にhack/ へ
       setTimeout(() => { window.location.href = 'hack/'; }, 2000);
     });
