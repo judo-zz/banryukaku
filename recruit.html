@@ -685,6 +685,9 @@
     degradeZone.setAttribute('data-degrade', String(level));
     if (level >= 3) {
       degradeMsg.classList.add('visible');
+      // 仕様: Lv3 = recruit深層到達
+      ARG.addFlag('recruit_deep');
+      ARG.tryLevel(3);
     }
   }
 

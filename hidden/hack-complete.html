@@ -168,7 +168,9 @@
 
 <script src="../arg.js"></script>
 <script>
-  ARG.tryLevel(5);
+  if (!ARG.hasFlag('admin_transfer_complete')) {
+    window.location.replace('../index.html');
+  }
 </script>
 </body>
 </html>

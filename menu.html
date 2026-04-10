@@ -777,6 +777,7 @@
 
   function startHold(e, el) {
     e.preventDefault();
+    cancelHold(); // 既存タイマーをクリアしてから開始
     holdTimer = setTimeout(() => {
       openTerminal(el.dataset.item);
     }, 3000);

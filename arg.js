@@ -95,7 +95,26 @@ var ARG = (() => {
     document.title = base + suffix;
   }
 
+  function ensureOverlayCss() {
+    if (document.getElementById('arg-overlay-css')) return;
+    const s = document.createElement('style');
+    s.id = 'arg-overlay-css';
+    s.textContent =
+      '.lv-overlay{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;' +
+      'justify-content:center;background:rgba(0,0,0,.88);opacity:0;pointer-events:none;' +
+      'transition:opacity .4s ease}' +
+      '.lv-overlay.lv-overlay--visible{opacity:1;pointer-events:all}' +
+      '.lv-overlay__inner{text-align:center;transform:scale(.9);' +
+      'transition:transform .5s cubic-bezier(.23,1,.32,1)}' +
+      '.lv-overlay.lv-overlay--visible .lv-overlay__inner{transform:scale(1)}' +
+      '.lv-overlay__num{font-family:monospace;font-size:.75rem;letter-spacing:.4em;' +
+      'color:#c9a84c;margin-bottom:.5rem}' +
+      '.lv-overlay__msg{font-size:clamp(1.2rem,3vw,1.8rem);color:#f5eed7;letter-spacing:.1em}';
+    document.head.appendChild(s);
+  }
+
   function showLvOverlay(level) {
+    ensureOverlayCss();
     const existing = document.querySelector('.lv-overlay');
     if (existing) existing.remove();
 
@@ -153,17 +172,18 @@ var ARG = (() => {
 
 // ─── Search index ──────────────────────────────────────────────────────────
 
+// dest: 遷移先, flag: 発見フラグ(パス基準で共有), level: 到達目標Lv
 var SEARCH_INDEX = {
-  'ゆめ':          'hidden/yume-rireki.html',
-  '夢':            'hidden/yume-rireki.html',
-  '黒瀬':          'hidden/kurose-shiji.html',
-  '失敗作':        'hidden/yume-finallog.html',
-  '龍牌会':        'hidden/ronpaikai-chart.html',
-  'MAP-RY-023':    'hidden/basement-map.html',
-  'RENPAI':        'hidden/backdoor.html',
-  '廃棄':          'hidden/disposal-record.html',
-  '選定':          'hidden/selection-criteria.html',
-  '龍牌会 端末':   'hidden/admin-console.html',
+  'ゆめ':        { dest: 'hidden/yume-rireki.html',        flag: 'found_yume_rireki',     level: 1 },
+  '夢':          { dest: 'hidden/yume-rireki.html',        flag: 'found_yume_rireki',     level: 1 },
+  '黒瀬':        { dest: 'hidden/kurose-shiji.html',       flag: 'found_kurose',          level: 2 },
+  '失敗作':      { dest: 'hidden/yume-finallog.html',      flag: 'found_yume_finallog',   level: 2 },
+  '龍牌会':      { dest: 'hidden/ronpaikai-chart.html',    flag: 'found_ronpaikai',       level: 2 },
+  'MAP-RY-023':  { dest: 'hidden/basement-map.html',       flag: 'found_basement_map',    level: 3 },
+  'RENPAI':      { dest: 'hidden/backdoor.html',           flag: 'found_renpai',          level: 4 },
+  '廃棄':        { dest: 'hidden/disposal-record.html',    flag: 'found_disposal',        level: 3 },
+  '選定':        { dest: 'hidden/selection-criteria.html', flag: 'found_selection',       level: 3 },
+  '龍牌会 端末': { dest: 'hidden/admin-console.html',      flag: 'found_admin_console',   level: 4 },
 };
 
 function resolveSearchPath(dest) {
@@ -182,21 +202,32 @@ function executeSearch(query) {
   const q = query.trim();
   if (!q) return;
 
-  const dest = SEARCH_INDEX[q];
-  if (dest) {
-    const flag = 'search_' + q;
+  const entry = SEARCH_INDEX[q];
+  if (entry) {
+    const { dest, flag, level } = entry;
     const input = document.getElementById('search-input');
     const btn = document.getElementById('search-btn');
-
-    if (!ARG.hasFlag(flag)) {
-      ARG.addFlag(flag);
-      ARG.tryLevel(ARG.getLevel() + 1);
-    }
 
     if (input) input.disabled = true;
     if (btn) btn.disabled = true;
 
-    window.location.href = resolveSearchPath(dest);
+    const isNewFind  = !ARG.hasFlag(flag);
+    const prevLevel  = ARG.getLevel();
+
+    if (isNewFind) {
+      ARG.addFlag(flag);
+      ARG.tryLevel(level);
+    }
+
+    const didLevelUp = ARG.getLevel() > prevLevel;
+    const path = resolveSearchPath(dest);
+
+    // Lvアップ演出（overlay）を視認してから遷移
+    if (didLevelUp) {
+      setTimeout(() => { window.location.href = path; }, 2000);
+    } else {
+      window.location.href = path;
+    }
   } else {
     const el = document.getElementById('search-error');
     if (el) {

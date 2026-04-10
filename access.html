@@ -599,23 +599,21 @@
 
 <script src="arg.js"></script>
 <script>
-  let dragonOpen = false;
+  let dragonOpen  = false;
+  let dragonTimer = null;
 
   function toggleDragonPopup() {
+    if (dragonOpen) return; // 表示中は無視
     const popup = document.getElementById('dragon-popup');
-    dragonOpen = !dragonOpen;
-    if (dragonOpen) {
-      popup.classList.add('open');
-      // フラグ登録（発見ボーナス。レベルアップはしない）
-      ARG.addFlag('dragon_mark_found');
-      // 3秒後に自動で閉じる
-      setTimeout(() => {
-        popup.classList.remove('open');
-        dragonOpen = false;
-      }, 4000);
-    } else {
+    dragonOpen = true;
+    popup.classList.add('open');
+    ARG.addFlag('dragon_mark_found');
+    if (dragonTimer) clearTimeout(dragonTimer);
+    dragonTimer = setTimeout(() => {
       popup.classList.remove('open');
-    }
+      dragonOpen  = false;
+      dragonTimer = null;
+    }, 4000);
   }
 
   // SVG内の龍も同じ関数でOK（onclick属性で呼ばれる）

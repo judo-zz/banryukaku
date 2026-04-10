@@ -143,6 +143,11 @@
 
 <script src="../arg.js"></script>
 <script>
+  // admin-consoleを経由していない直接アクセスはトップへ戻す
+  if (!ARG.hasFlag('admin_transfer_complete')) {
+    window.location.replace('../index.html');
+  }
+
   const logArea = document.getElementById('log-area');
   const progressBar = document.getElementById('progress-bar');
   const progressInner = document.getElementById('progress-inner');
@@ -225,7 +230,6 @@
     cursor.style.display = 'none';
     finalSection.classList.add('visible');
     finalSection.scrollIntoView({ behavior: 'smooth' });
-    ARG.tryLevel(5);
   }, 15200);
 </script>
 </body>
