@@ -40,7 +40,6 @@ var ARG = (() => {
   function tryLevel(target) {
     if (target > getLevel()) {
       setLevel(target);
-      showLvOverlay(target);
     }
   }
 
@@ -279,15 +278,8 @@ function executeSearch(query) {
       ARG.tryLevel(level);
     }
 
-    const didLevelUp = ARG.getLevel() > prevLevel;
     const path = resolveSearchPath(dest);
-
-    // Lvアップ演出（overlay）を視認してから遷移
-    if (didLevelUp) {
-      setTimeout(() => { window.location.href = path; }, 2000);
-    } else {
-      window.location.href = path;
-    }
+    window.location.href = path;
   } else {
     const el = document.getElementById('search-error');
     if (el) {
