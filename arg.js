@@ -68,6 +68,54 @@ var ARG = (() => {
     document.documentElement.setAttribute('data-level', String(level));
     updateFavicon(level);
     updateTitle(level);
+    updateLevelIndicator(level);
+  }
+
+  // ─── Level indicator ────────────────────────────────────────────
+  function ensureUI() {
+    if (document.getElementById('arg-ui-css')) return;
+
+    // CSS
+    const s = document.createElement('style');
+    s.id = 'arg-ui-css';
+    s.textContent =
+      '#arg-level-indicator{' +
+        'position:fixed;bottom:14px;right:14px;z-index:9000;' +
+        'background:rgba(0,0,0,0.70);border:1px solid rgba(180,140,60,0.35);' +
+        'color:#c9a84c;font-family:monospace;font-size:12px;' +
+        'letter-spacing:0.18em;padding:5px 10px;pointer-events:none;' +
+        'user-select:none;line-height:1;' +
+      '}' +
+      '#arg-disclaimer{' +
+        'text-align:center;font-family:monospace;font-size:10px;' +
+        'color:rgba(120,100,80,0.55);padding:18px 12px 10px;' +
+        'letter-spacing:0.05em;line-height:1.8;' +
+      '}';
+    document.head.appendChild(s);
+
+    // indicator
+    const ind = document.createElement('div');
+    ind.id = 'arg-level-indicator';
+    document.body.appendChild(ind);
+
+    // disclaimer
+    if (!document.getElementById('arg-disclaimer')) {
+      const disc = document.createElement('div');
+      disc.id = 'arg-disclaimer';
+      disc.textContent =
+        'このWebサイトの内容はフィクションであり、実在の人物・団体・施設とは一切関係がありません。';
+      document.body.appendChild(disc);
+    }
+  }
+
+  function updateLevelIndicator(level) {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => updateLevelIndicator(level));
+      return;
+    }
+    ensureUI();
+    const ind = document.getElementById('arg-level-indicator');
+    if (ind) ind.textContent = '◆'.repeat(level) + '◇'.repeat(5 - level);
   }
 
   function updateFavicon(level) {
