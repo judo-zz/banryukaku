@@ -692,8 +692,8 @@
   }
 
   function checkDegradeTriggers() {
-    // 隠しページを1つ以上発見していない状態では演出を起動しない
-    if (ARG.getLevel() < 1) return;
+    // Lv2以上（隠しページを複数発見済み）でないと演出を起動しない
+    if (ARG.getLevel() < 2) return;
 
     const vh = window.innerHeight;
     const r1 = trigger1.getBoundingClientRect();
