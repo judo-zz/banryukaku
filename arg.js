@@ -262,6 +262,18 @@ function executeSearch(query) {
     const isNewFind  = !ARG.hasFlag(flag);
     const prevLevel  = ARG.getLevel();
 
+    // 前提レベル未達の場合はキーワードを知らないはずなので遷移しない
+    if (prevLevel < level - 1) {
+      const el = document.getElementById('search-error');
+      if (el) {
+        el.textContent = '該当するデータが見つかりません。';
+        setTimeout(() => { el.textContent = ''; }, 2000);
+      }
+      if (input) input.disabled = false;
+      if (btn) btn.disabled = false;
+      return;
+    }
+
     if (isNewFind) {
       ARG.addFlag(flag);
       ARG.tryLevel(level);

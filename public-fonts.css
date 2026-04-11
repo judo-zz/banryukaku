@@ -1,0 +1,367 @@
+/**
+ * public-fonts.css — 蟠龍閣 公開ページ共通フォント・タイポグラフィ改善
+ *
+ * 目的: inline style の font-family: sans-serif をまとめて上書き。
+ *       配色・レイアウトは変えず、フォント品質だけを引き上げる。
+ *       このファイルは各ページの <style> ブロックの "後" に読み込まれるので、
+ *       同じ詳細度では後勝ちルールで上書きが効く。
+ */
+
+/* ================================================================
+   GOOGLE FONTS
+   ================================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@400;600;700&display=swap');
+
+/* ================================================================
+   CSS VARIABLES（フォント）
+   ================================================================ */
+:root {
+  --font-serif: 'Noto Serif JP', 'Yu Mincho', '游明朝', serif;
+  --font-sans:  'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
+  --font-en:    'Cinzel', serif;
+}
+
+/* ================================================================
+   BODY — ベースフォント
+   ================================================================ */
+body {
+  font-family: var(--font-sans);
+  font-size: 14px;        /* 13px → 14px：やや読みやすく */
+  line-height: 1.85;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ================================================================
+   HEADER
+   ================================================================ */
+#site-title {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  letter-spacing: 0.25em;
+}
+
+#site-subtitle {
+  font-family: var(--font-en);
+  letter-spacing: 0.28em;
+  font-size: 10px;
+}
+
+#site-catch {
+  font-family: var(--font-serif);
+  letter-spacing: 0.12em;
+}
+
+/* ================================================================
+   NAVIGATION
+   ================================================================ */
+#nav a {
+  font-family: var(--font-en);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-decoration: none;
+}
+
+/* ================================================================
+   おしらせ帯
+   ================================================================ */
+#topline {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+}
+
+/* ================================================================
+   SECTION TITLES
+   ================================================================ */
+.section-title {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  font-size: 16px;
+}
+
+.section-title-deco {
+  font-family: var(--font-en);
+}
+
+/* ================================================================
+   HERO
+   ================================================================ */
+#hero-main-title {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  letter-spacing: 0.3em;
+}
+
+#hero-en {
+  font-family: var(--font-en);
+  letter-spacing: 0.45em;
+  font-size: 9px;
+}
+
+#hero-copy {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  font-size: 18px;
+}
+
+#hero-story {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 2.1;
+}
+
+/* ================================================================
+   BADGES
+   ================================================================ */
+.badge {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+
+.badge-label {
+  font-family: var(--font-en);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+}
+
+/* ================================================================
+   BUTTONS
+   ================================================================ */
+.hero-btn,
+.hero-btn-sub {
+  font-family: var(--font-en);
+  letter-spacing: 0.15em;
+  font-size: 12px;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* ================================================================
+   NEWS
+   ================================================================ */
+.news-table td {
+  font-family: var(--font-sans);
+  font-size: 13px;
+}
+
+.news-date {
+  font-family: var(--font-en);
+  letter-spacing: 0.1em;
+  font-size: 11px;
+}
+
+.news-cat {
+  font-family: var(--font-en);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+}
+
+/* ================================================================
+   CAST
+   ================================================================ */
+.cast-name-jp {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  font-size: 15px;
+}
+
+.cast-name-en {
+  font-family: var(--font-en);
+  letter-spacing: 0.22em;
+  font-size: 9px;
+}
+
+.cast-ribbon-label {
+  font-family: var(--font-en);
+  font-size: 8px;
+  letter-spacing: 0.15em;
+}
+
+.cast-meta-txt {
+  font-family: var(--font-sans);
+  font-size: 10px;
+}
+
+.cast-msg-txt {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  line-height: 1.75;
+}
+
+/* ================================================================
+   SYSTEM
+   ================================================================ */
+.sys-cell h3 {
+  font-family: var(--font-serif);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+}
+
+.sys-cell p {
+  font-family: var(--font-sans);
+  font-size: 11px;
+}
+
+.sys-icon {
+  font-size: 22px;
+}
+
+/* ================================================================
+   MENU
+   ================================================================ */
+.menu-cat-label {
+  font-family: var(--font-en);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+}
+
+.menu-name {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.06em;
+}
+
+.menu-desc {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.menu-price {
+  font-family: var(--font-en);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+}
+
+/* ================================================================
+   ACCESS / INFO TABLE
+   ================================================================ */
+.info-table th {
+  font-family: var(--font-en);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+}
+
+.info-table td {
+  font-family: var(--font-sans);
+  font-size: 13px;
+}
+
+/* ================================================================
+   RESERVE
+   ================================================================ */
+#tel-num {
+  font-family: var(--font-en);
+  letter-spacing: 0.18em;
+}
+
+#tel-hours {
+  font-family: var(--font-sans);
+  font-size: 11px;
+}
+
+.reserve-note-list li {
+  font-family: var(--font-sans);
+  font-size: 12px;
+}
+
+/* ================================================================
+   FOOTER
+   ================================================================ */
+#footer {
+  font-family: var(--font-sans);
+  font-size: 10px;
+}
+
+#footer strong {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+/* ================================================================
+   SEARCH
+   ================================================================ */
+#search-area input[type="search"] {
+  font-family: var(--font-sans);
+}
+
+#search-area button {
+  font-family: var(--font-en);
+  letter-spacing: 0.12em;
+  font-size: 11px;
+}
+
+/* ================================================================
+   CAST / RECRUIT ページ固有
+   ================================================================ */
+#page-title {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
+
+#page-lead {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+/* ================================================================
+   CAST ページ（詳細カード）
+   ================================================================ */
+.cast-header-name {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.cast-header-en {
+  font-family: var(--font-en);
+  letter-spacing: 0.28em;
+  font-size: 10px;
+}
+
+.cast-ribbon {
+  font-family: var(--font-en);
+  font-size: 8px;
+  letter-spacing: 0.18em;
+}
+
+.cast-detail-table th {
+  font-family: var(--font-en);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+}
+
+.cast-detail-table td {
+  font-family: var(--font-sans);
+  font-size: 12px;
+}
+
+.cast-self-intro {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 2;
+}
+
+.back-btn {
+  font-family: var(--font-en);
+  letter-spacing: 0.15em;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+/* ================================================================
+   DECO / MISC
+   ================================================================ */
+.deco-line {
+  font-family: var(--font-en);
+  letter-spacing: 0.3em;
+}

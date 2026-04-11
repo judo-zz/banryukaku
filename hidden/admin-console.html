@@ -361,8 +361,11 @@
       result.style.color = '#44cc66';
       result.textContent = '> AUTHORIZED. 権限移行完了。';
 
-      ARG.tryLevel(5);
-      ARG.addFlag('admin_transfer_complete'); // hack系ページのガード用
+      // Lv4以上のときのみLv5へ進める
+      if (ARG.getLevel() >= 4) {
+        ARG.tryLevel(5);
+        ARG.addFlag('admin_transfer_complete'); // hack系ページのガード用
+      }
 
       setTimeout(() => {
         finalBox.classList.add('visible');
