@@ -692,6 +692,9 @@
   }
 
   function checkDegradeTriggers() {
+    // 隠しページを1つ以上発見していない状態では演出を起動しない
+    if (ARG.getLevel() < 1) return;
+
     const vh = window.innerHeight;
     const r1 = trigger1.getBoundingClientRect();
     const r2 = trigger2.getBoundingClientRect();
