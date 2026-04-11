@@ -289,15 +289,9 @@
       龍牌会は、あなたを次の総龍として認定します。<br>
       <br>
       <span style="color:#5566aa; font-size:12px;">
-        管理端末にアクセスして、引き継ぎを完了してください。<br>
-        「<span style="color:#8899cc;">龍牌会 端末</span>」を検索してください。
+        管理端末にアクセスして、引き継ぎを完了してください。
       </span>
     </div>
-  </div>
-
-  <div class="hint-box" id="hint-box">
-    &gt; 評価結果を読み込んでいます……<br>
-    &gt; 「<span style="color:#7788bb;">龍牌会 端末</span>」を検索して最終ステップへ進んでください。
   </div>
 
   <div class="doc-footer">
@@ -311,8 +305,6 @@
   // 順番に基準を「開示」するアニメーション
   const items = document.querySelectorAll('#criteria-list li');
   const verdict = document.getElementById('final-verdict');
-  const hintBox = document.getElementById('hint-box');
-
   function revealCriteria() {
     let delay = 600;
     items.forEach((item, i) => {
@@ -322,7 +314,6 @@
           // 全基準開示後、判定を表示
           setTimeout(() => {
             verdict.classList.add('visible');
-            hintBox.style.display = 'none';
           }, 800);
         }
       }, delay);
