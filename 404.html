@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja" data-level="0">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>404 — FILE NOT FOUND | 蟠龍閣</title>
+  <style>
+    html, body {
+      margin: 0; padding: 0;
+      background: #000;
+      color: #cc4444;
+      font-family: monospace;
+      font-size: 13px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+    }
+
+    #terminal {
+      max-width: 560px;
+      width: 90%;
+      padding: 32px 28px;
+      border: 1px solid #330000;
+      background: #080000;
+    }
+
+    .t-sys  { color: #443333; font-size: 11px; line-height: 1.8; }
+    .t-err  { color: #cc3333; font-size: 15px; font-weight: bold;
+              letter-spacing: 0.1em; margin: 16px 0 8px; }
+    .t-body { color: #886655; font-size: 12px; line-height: 2; margin: 0 0 20px; }
+    .t-warn { color: #aa4422; font-size: 11px; line-height: 1.9; }
+
+    .blink {
+      display: inline-block;
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    #back-link {
+      display: inline-block;
+      margin-top: 22px;
+      color: #886644;
+      font-size: 12px;
+      text-decoration: none;
+      border-bottom: 1px dotted #554433;
+      letter-spacing: 0.08em;
+    }
+    #back-link:hover { color: #ffcc44; }
+
+    html, body { overflow-x: hidden; }
+  </style>
+</head>
+<body>
+
+<div id="terminal">
+  <div class="t-sys">
+    &gt; BANRYUKAKU INTERNAL SYSTEM<br>
+    &gt; REQUEST: <span id="req-path" style="color:#553333;"></span><br>
+    &gt; STATUS: 404
+  </div>
+
+  <div class="t-err">■ ERROR — FILE NOT FOUND <span class="blink">_</span></div>
+
+  <div class="t-body">
+    アクセスしようとしたファイルは存在しないか、<br>
+    すでに削除されています。<br>
+    <br>
+    <span style="color:#663333;">※ このアクセスはログに記録されました。</span>
+  </div>
+
+  <div class="t-warn">
+    &gt; 引き返すことをお勧めします。<br>
+    &gt; それでも調査を続けるなら——
+  </div>
+
+  <a href="./" id="back-link">← 蟠龍閣トップへ戻る</a>
+</div>
+
+<script src="arg.js"></script>
+<script>
+  // パスが hidden/ 内なら ../arg.js を参照する必要があるが
+  // 404.html はルートに置かれるので arg.js で正しい
+  const p = window.location.pathname;
+  const el = document.getElementById('req-path');
+  if (el) el.textContent = p;
+</script>
+</body>
+</html>

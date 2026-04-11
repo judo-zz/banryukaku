@@ -906,9 +906,31 @@
 
   <script src="arg.js"></script>
   <script>
-    // スクロールリビール不使用のシンプル版
-    // .reveal クラスは使わないのでObserverも不要
-    // arg.js の investigationLevel / 検索機能はそのまま動作
+    // Lv0 の初回訪問者だけ、検索バーに一瞬「ゆ...」が入力されたように見せる
+    document.addEventListener('DOMContentLoaded', () => {
+      if (ARG.getLevel() !== 0) return;
+
+      const input = document.getElementById('search-input');
+      if (!input) return;
+
+      const hint  = 'ゆ...';
+      let shown   = false;
+
+      setTimeout(() => {
+        if (shown || input.value) return;
+        shown = true;
+
+        // プレースホルダーを一時的に差し替えて点滅させる
+        const original = input.placeholder;
+        input.placeholder = hint;
+        input.style.caretColor = 'transparent';
+
+        setTimeout(() => {
+          input.placeholder = original;
+          input.style.caretColor = '';
+        }, 1400);
+      }, 3500);
+    });
   </script>
 
 </body>
