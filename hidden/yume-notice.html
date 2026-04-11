@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ja" data-level="0">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>業務連絡 — キャスト長期休暇のご案内 | 蟠龍閣</title>
+  <style>
+    body {
+      background-color: #030002;
+      color: #c8b89a;
+      font-family: monospace;
+      font-size: 13px;
+      line-height: 1.8;
+      margin: 0;
+      padding: 0;
+    }
+
+    a { color: #aa8844; text-decoration: underline; }
+    a:hover { color: #ffcc44; }
+
+    #hd-topbar {
+      background-color: #1a0000;
+      color: #773333;
+      font-size: 11px;
+      padding: 5px 12px;
+      text-align: center;
+      border-bottom: 1px solid #440000;
+      letter-spacing: 0.08em;
+    }
+
+    #hd-search {
+      background-color: #0a0005;
+      border-bottom: 1px solid #330000;
+      padding: 7px 12px;
+      text-align: center;
+    }
+
+    #hd-search input[type="search"] {
+      width: 240px;
+      padding: 4px 7px;
+      font-size: 12px;
+      background: #030002;
+      border: 1px solid #550000;
+      color: #c8b89a;
+      font-family: monospace;
+      outline: none;
+    }
+    #hd-search input[type="search"]::placeholder { color: #554433; }
+
+    #hd-search button {
+      padding: 4px 12px;
+      background: #550000;
+      color: #aa8844;
+      font-size: 12px;
+      font-family: monospace;
+      border: 1px solid #880000;
+      cursor: pointer;
+    }
+
+    #search-error {
+      color: #aa4444;
+      font-size: 11px;
+      margin-top: 4px;
+      min-height: 1.2em;
+    }
+
+    #hd-breadcrumb {
+      padding: 6px 16px;
+      font-size: 11px;
+      color: #553333;
+      border-bottom: 1px dotted #330000;
+    }
+
+    #wrapper {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 28px 16px 48px;
+    }
+
+    /* 業務連絡スタイル */
+    .memo-wrap {
+      background-color: #f5f0e8;
+      color: #222;
+      font-family: sans-serif;
+      font-size: 13px;
+      line-height: 1.9;
+      padding: 32px 36px;
+      border: 1px solid #c8b89a;
+    }
+
+    .memo-header {
+      text-align: center;
+      border-bottom: 2px solid #888;
+      padding-bottom: 12px;
+      margin-bottom: 20px;
+    }
+
+    .memo-org {
+      font-size: 11px;
+      color: #666;
+      letter-spacing: 0.12em;
+      margin-bottom: 4px;
+    }
+
+    .memo-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #222;
+      letter-spacing: 0.08em;
+    }
+
+    .memo-meta {
+      margin-bottom: 20px;
+      font-size: 12px;
+      color: #444;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 12px;
+    }
+
+    .memo-meta table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .memo-meta td {
+      padding: 3px 8px;
+      vertical-align: top;
+    }
+
+    .memo-meta td:first-child {
+      white-space: nowrap;
+      color: #666;
+      width: 80px;
+    }
+
+    .memo-body {
+      font-size: 13px;
+      color: #333;
+      line-height: 2;
+      margin-bottom: 24px;
+    }
+
+    .memo-body p {
+      margin: 0 0 1em;
+    }
+
+    .memo-id {
+      color: #555;
+      font-family: monospace;
+      font-size: 12px;
+    }
+
+    .memo-caution {
+      background: #f0ede0;
+      border-left: 3px solid #888;
+      padding: 8px 12px;
+      font-size: 12px;
+      color: #555;
+      margin: 16px 0;
+    }
+
+    .memo-sign {
+      margin-top: 28px;
+      padding-top: 12px;
+      border-top: 1px solid #ccc;
+      font-size: 12px;
+      color: #555;
+      text-align: right;
+    }
+
+    html, body { overflow-x: hidden; }
+  </style>
+</head>
+<body>
+
+<div id="hd-topbar">
+  ▌ BANRYUKAKU INTERNAL ▐　スタッフ向け業務連絡　▌ STAFF ONLY ▐
+</div>
+
+<div id="hd-search">
+  <input type="search" id="search-input" placeholder="キーワード検索...">
+  <button id="search-btn">検索</button>
+  <br><span id="search-error"></span>
+</div>
+
+<div id="hd-breadcrumb">
+  <a href="../index.html">← 蟠龍閣トップに戻る</a>
+  &nbsp;/&nbsp; スタッフ向け連絡
+</div>
+
+<div id="wrapper">
+
+  <div class="memo-wrap">
+
+    <div class="memo-header">
+      <div class="memo-org">蟠龍閣 管理部門 — STAFF NOTICE</div>
+      <div class="memo-title">業 務 連 絡</div>
+    </div>
+
+    <div class="memo-meta">
+      <table>
+        <tr>
+          <td>発信日</td>
+          <td>2024年11月3日</td>
+        </tr>
+        <tr>
+          <td>宛先</td>
+          <td>蟠龍閣 在籍キャスト各位</td>
+        </tr>
+        <tr>
+          <td>件名</td>
+          <td>キャスト「ゆめ」の長期休暇について</td>
+        </tr>
+        <tr>
+          <td>発信者</td>
+          <td>管理部門担当</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="memo-body">
+      <p>スタッフの皆さまへ</p>
+
+      <p>標記の件につきまして、下記の通りご連絡いたします。</p>
+
+      <p>
+        キャスト「ゆめ」<span class="memo-id">（管理番号: YM-2023-04）</span>は、
+        2024年11月3日付をもって長期休暇に入ることとなりました。
+        復帰時期については現時点で未定です。
+      </p>
+
+      <p>
+        在籍中はお客様・スタッフ双方に大変お世話になりました。
+        引き続き、蟠龍閣の運営にご協力をよろしくお願いいたします。
+      </p>
+
+      <div class="memo-caution">
+        ※ 本件に関してお客様からお問い合わせがあった場合は、
+        「一身上の都合による長期休暇」とお伝えください。<br>
+        ※ SNS・個人連絡等での言及はお控えください。<br>
+        ※ 詳細については各自からの問い合わせを控え、
+        担当より追ってご連絡いたします。
+      </div>
+
+      <p>
+        以上、ご確認のほどよろしくお願いいたします。
+      </p>
+    </div>
+
+    <div class="memo-sign">
+      蟠龍閣 管理部門<br>
+      担当: 黒瀬
+    </div>
+
+  </div>
+
+</div>
+
+<script src="../arg.js"></script>
+</body>
+</html>

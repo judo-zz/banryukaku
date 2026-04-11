@@ -221,8 +221,9 @@ var ARG = (() => {
 
 // dest: 遷移先, flag: 発見フラグ(パス基準で共有), level: 到達目標Lv
 var SEARCH_INDEX = {
-  'ゆめ':        { dest: 'hidden/yume-rireki.html',        flag: 'found_yume_rireki',     level: 1 },
-  '夢':          { dest: 'hidden/yume-rireki.html',        flag: 'found_yume_rireki',     level: 1 },
+  'ゆめ':        { dest: 'hidden/yume-notice.html',        flag: 'found_yume_notice',     level: 1 },
+  '夢':          { dest: 'hidden/yume-notice.html',        flag: 'found_yume_notice',     level: 1 },
+  'YM-2023-04':  { dest: 'hidden/yume-rireki.html',        flag: 'found_yume_rireki',     level: 2 },
   '黒瀬':        { dest: 'hidden/kurose-shiji.html',       flag: 'found_kurose',          level: 2 },
   '失敗作':      { dest: 'hidden/yume-finallog.html',      flag: 'found_yume_finallog',   level: 2 },
   '龍牌会':      { dest: 'hidden/ronpaikai-chart.html',    flag: 'found_ronpaikai',       level: 2 },
