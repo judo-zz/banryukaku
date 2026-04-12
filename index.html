@@ -185,6 +185,30 @@
       text-align: center;
     }
 
+    #hero-inner {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    #hero-text {
+      flex: 1;
+      min-width: 0;
+    }
+
+    #hero-img {
+      flex: 0 0 240px;
+      width: 240px;
+    }
+
+    #hero-img img {
+      width: 100%;
+      border: 2px solid #660000;
+      border-radius: 4px;
+      display: block;
+    }
+
     #hero-main-title {
       font-size: 42px;
       font-weight: 900;
@@ -566,6 +590,8 @@
     @media (max-width: 600px) {
       #site-title { font-size: 26px; }
       #hero-main-title { font-size: 28px; }
+      #hero-inner { flex-direction: column; }
+      #hero-img { width: 100%; flex: none; }
       #tel-num { font-size: 20px; }
 
       .cast-row {
@@ -645,17 +671,24 @@
 
       <div class="deco-line">★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★</div>
 
-      <div id="hero-story">
-        秋葉原の路地裏、地下1階。<br>
-        看板もない細い階段を降りると——<br>
-        そこには<span class="gold-text">煌びやかな龍の宮廷</span>が広がっています。<br>
-        <br>
-        チャイナドレスに身を包んだキャストたちが、<br>
-        あなたのことを今夜もお待ちしています♪<br>
-        <br>
-        <span class="pink-text">重すぎる世界観より、入りやすさを重視！</span><br>
-        ふらっと寄れて、お話も写真も楽しめる<br>
-        秋葉原らしいコンセプトカフェです。
+      <div id="hero-inner">
+        <div id="hero-text">
+          <div id="hero-story">
+            秋葉原の路地裏、地下1階。<br>
+            看板もない細い階段を降りると——<br>
+            そこには<span class="gold-text">煌びやかな龍の宮廷</span>が広がっています。<br>
+            <br>
+            チャイナドレスに身を包んだキャストたちが、<br>
+            あなたのことを今夜もお待ちしています♪<br>
+            <br>
+            <span class="pink-text">重すぎる世界観より、入りやすさを重視！</span><br>
+            ふらっと寄れて、お話も写真も楽しめる<br>
+            秋葉原らしいコンセプトカフェです。
+          </div>
+        </div>
+        <div id="hero-img">
+          <img src="entrance.jpg" alt="蟠龍閣 入口">
+        </div>
       </div>
 
       <div class="deco-line">♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥</div>
