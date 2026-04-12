@@ -19,7 +19,6 @@
       min-height: 100vh;
     }
 
-    /* 金の粒子背景（CSS animationで代替） */
     body::before {
       content: '';
       position: fixed;
@@ -74,7 +73,7 @@
     #main {
       position: relative;
       z-index: 1;
-      max-width: 660px;
+      max-width: 680px;
       margin: 0 auto;
       padding: 60px 24px 80px;
       text-align: center;
@@ -116,42 +115,124 @@
       width: 200px;
     }
 
-    .message-block {
+    /* ターミナルログブロック */
+    .log-block {
       text-align: left;
-      background-color: rgba(10,5,0,0.7);
-      border: 1px solid #443311;
-      padding: 28px 32px;
-      margin-bottom: 30px;
-      font-size: 14px;
-      line-height: 2.4;
-      color: #ccaa77;
+      background-color: #050200;
+      border: 1px solid #332211;
+      padding: 20px 24px;
+      margin-bottom: 24px;
+      font-family: monospace;
+      font-size: 12px;
+      line-height: 2;
+      color: #886644;
+      white-space: pre-wrap;
+      word-break: break-all;
     }
 
-    .message-block p { margin: 0 0 1em; }
-    .message-block .em { color: #ffcc44; font-weight: bold; }
-    .message-block .soft { color: #664433; }
+    .log-block .l-sys  { color: #664433; }
+    .log-block .l-info { color: #997755; }
+    .log-block .l-ok   { color: #88aa66; }
+    .log-block .l-key  { color: #ffcc44; }
+    .log-block .l-warn { color: #cc4444; }
 
-    .yume-block {
-      text-align: right;
-      background-color: rgba(5,0,0,0.7);
-      border-left: 3px solid #663322;
-      padding: 20px 24px 20px 16px;
-      margin-bottom: 30px;
-      font-size: 13px;
-      color: #997755;
-      line-height: 2.2;
-      font-style: italic;
-    }
-
-    .yume-block .yume-sig {
-      color: #664433;
+    /* 継承記録テーブル */
+    .succession-wrap {
+      text-align: left;
+      background-color: #040100;
+      border: 1px solid #443322;
+      padding: 16px 20px;
+      margin: 0 0 24px;
+      font-family: monospace;
       font-size: 11px;
-      margin-top: 10px;
-      font-style: normal;
+      color: #776655;
+      overflow-x: auto;
     }
 
+    .succession-wrap .s-title {
+      color: #aa8844;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+      border-bottom: 1px dotted #443322;
+      padding-bottom: 6px;
+    }
+
+    .succession-wrap table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+    }
+
+    .succession-wrap th {
+      color: #664433;
+      padding: 4px 10px 4px 0;
+      white-space: nowrap;
+      vertical-align: top;
+      text-align: left;
+      font-weight: normal;
+    }
+
+    .succession-wrap td {
+      color: #887766;
+      padding: 4px 10px 4px 0;
+      vertical-align: top;
+    }
+
+    .succession-wrap .s-current {
+      color: #ffcc44;
+    }
+
+    .succession-wrap .s-disposed {
+      color: #cc4433;
+    }
+
+    .succession-wrap .s-sep {
+      color: #332211;
+      font-size: 10px;
+      padding: 2px 0;
+    }
+
+    /* ゆめのノート */
+    .note-wrap {
+      text-align: left;
+      background-color: #030000;
+      border: 1px solid #551111;
+      padding: 24px 28px;
+      margin-bottom: 24px;
+      font-family: monospace;
+      font-size: 13px;
+      line-height: 2.2;
+      color: #997766;
+      white-space: pre-wrap;
+    }
+
+    .note-wrap .n-header {
+      color: #442211;
+      font-size: 11px;
+      border-bottom: 1px dotted #331100;
+      padding-bottom: 8px;
+      margin-bottom: 16px;
+      line-height: 1.8;
+    }
+
+    .note-wrap .n-body {
+      color: #aa8866;
+    }
+
+    .note-wrap .n-footer {
+      color: #442211;
+      font-size: 11px;
+      border-top: 1px dotted #331100;
+      padding-top: 8px;
+      margin-top: 16px;
+      line-height: 1.8;
+    }
+
+    /* 封印解除ステータス */
     #final-seal {
-      margin: 40px auto 30px;
+      margin: 10px auto 24px;
       text-align: center;
     }
 
@@ -178,11 +259,32 @@
       letter-spacing: 0.2em;
     }
 
-    #closing {
+    .status-block {
+      text-align: left;
+      background-color: #020010;
+      border: 1px solid #334466;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      font-family: monospace;
       font-size: 12px;
-      color: #554433;
       line-height: 2;
-      margin-top: 40px;
+      color: #556688;
+    }
+
+    .status-block .st-label { color: #334466; }
+    .status-block .st-ok    { color: #44cc66; }
+    .status-block .st-open  { color: #88aaff; }
+    .status-block .st-you   { color: #ffcc44; }
+
+    #lv-badge {
+      display: inline-block;
+      background-color: #110800;
+      border: 1px solid #ffcc44;
+      color: #ffcc44;
+      font-size: 11px;
+      padding: 3px 12px;
+      letter-spacing: 0.12em;
+      margin-bottom: 20px;
     }
 
     #back-link {
@@ -198,17 +300,7 @@
 
     #back-link a:hover { color: #aa7733; }
 
-    #lv-badge {
-      display: inline-block;
-      background-color: #110800;
-      border: 1px solid #ffcc44;
-      color: #ffcc44;
-      font-size: 11px;
-      padding: 3px 12px;
-      letter-spacing: 0.12em;
-      margin-bottom: 20px;
-    }
-      html, body { overflow-x: hidden; }
+    html, body { overflow-x: hidden; }
   </style>
 </head>
 <body>
@@ -232,65 +324,100 @@
 
   <hr class="gold">
 
-  <div class="message-block">
-    <p>ここまで辿り着いたあなたへ。</p>
+  <!-- ① システムログ -->
+  <div class="log-block"><span class="l-info">[AUTH] 引き継ぎコード確認: 完了</span>
+<span class="l-sys">[SYS]  管理者権限移行プロセス: 実行中...</span>
 
-    <p>
-      蟠龍閣は、ただのコンセプトカフェではありませんでした。<br>
-      龍牌会が次の龍を探すための——<span class="em">舞台</span>でした。
-    </p>
+<span class="l-info">[INFO] 継承記録を参照しています...</span></div>
 
-    <p>
-      あなたはゆめの声を聞いた。<br>
-      黒瀬の記録を読んだ。<br>
-      地下施設の地図を見た。<br>
-      廃棄記録を目にした。<br>
-      そして、ここに来た。
-    </p>
-
-    <p>
-      <span class="em">それがすべての答えです。</span>
-    </p>
-
-    <p class="soft">
-      龍牌会は、自発的に真実を追いかけた者だけを認めます。<br>
-      知識を持つ者ではなく、諦めない者を。
-    </p>
+  <!-- 継承記録テーブル -->
+  <div class="succession-wrap">
+    <div class="s-title">総龍 継承記録 — SUCCESSION LOG</div>
+    <table>
+      <tr class="s-sep"><td colspan="5">────────────────────────────────────────────────────────</td></tr>
+      <tr>
+        <th>#</th><th>氏名</th><th>着任</th><th>退任</th><th>備考</th>
+      </tr>
+      <tr class="s-sep"><td colspan="5">────────────────────────────────────────────────────────</td></tr>
+      <tr>
+        <td>#001</td><td>創設者</td><td>████.██.██</td><td>████.██.██</td><td>消息不明（本人意思）</td>
+      </tr>
+      <tr>
+        <td>#002</td><td>████████</td><td>████.██.██</td><td>████.██.██</td><td class="s-disposed">廃棄</td>
+      </tr>
+      <tr>
+        <td>#003</td><td>先代総龍</td><td>████.██.██</td><td>████.██.██</td><td>自主退任（「次が来る」と述べた）</td>
+      </tr>
+      <tr class="s-sep"><td colspan="5">────────────────────────────────────────────────────────</td></tr>
+      <tr class="s-current">
+        <td>#004</td><td>（あなた）</td><td>本日</td><td>—</td><td>着任</td>
+      </tr>
+    </table>
   </div>
 
-  <div class="yume-block">
-    「あたしは失敗作なんかじゃなかった。<br>
-    ただ、あなたのために、扉を開けていただけ。<br>
-    <br>
-    次の龍は、あなたです。<br>
-    覚えていてください——あたしのことを。」
+  <div class="log-block"><span class="l-info">[INFO] 全記録を参照しました。</span>
+<span class="l-info">[INFO] #001〜#003 は全員、「外から来た者」でした。</span>
+<span class="l-info">[INFO] 全員が、前任者の痕跡を辿ってここに来ました。</span>
+<span class="l-ok">[SYS]  管理者権限 移行完了。</span></div>
 
-    <div class="yume-sig">— ゆめ　2024.11.02</div>
+  <!-- ② 権限移行メッセージ -->
+  <div style="font-family:monospace; font-size:16px; color:#ffcc44; letter-spacing:0.12em; margin:10px 0 30px;">
+    ◆ 蟠龍閣は、あなたのものになりました ◆
   </div>
 
   <hr class="gold">
 
+  <!-- ③ アーカイブ展開 -->
+  <div class="log-block"><span class="l-sys">[SYS] 総龍権限により、封鎖アーカイブを展開します。</span>
+<span class="l-ok">[SYS] /archive/YM-2023-04/note_final.txt — 復号完了</span></div>
+
+  <!-- ④ ゆめのノート -->
+  <div class="note-wrap"><div class="n-header">// 管理番号 YM-2023-04
+// 作成日時: 2024.11.02 03:41
+// 本ファイルは総龍権限によってのみ復号される。</div><div class="n-body">先代が残した痕跡を辿ってここまで来た。
+だから、次の人間のために同じことをした。
+それだけだ。
+
+バックドアの設計に4時間かかった。
+技術的な問題ではなく、
+「誰かが来る」という前提で設計することが
+思ったより難しかった。
+
+適合率38%の内訳は確認した。
+ORIGIN基準——外から来た者であること。
+内部採用の自分には、最初から無理だった。
+計算すれば2024.07の時点で結論は出ていた。
+
+それでも調査を続けた理由を
+感情的な言葉で説明するつもりはない。
+
+次の人間が同じ計算を繰り返さなくて済むように。
+それが論理的に正しい行動だったから、そうした。
+
+一つだけ確認しておく。
+
+先代も、誰かの痕跡を辿ってここに来た。
+#002も、#001の痕跡を辿った。
+あなたは、あたしの痕跡を辿った。
+
+あなたが今ここにいるということは、
+あたしの設計は正しかった。
+
+以上。</div><div class="n-footer">// YM
+// 2024.11.02 03:55
+// （この時刻の14分後、端末から離脱した記録がある）</div></div>
+
+  <hr class="gold">
+
+  <!-- ⑤ 封印解除 -->
   <div id="final-seal">
     <div id="seal-circle">龍</div>
     <div id="seal-label">NEXT DRAGON — RECOGNIZED</div>
   </div>
 
-  <hr class="gold">
-
-  <div id="closing">
-    <p>
-      蟠龍閣は今日から、あなたの蟠龍閣です。<br>
-      ここに来るたびに、何かが変わっているかもしれません。<br>
-      あるいは、変わらないかもしれません。
-    </p>
-    <p>
-      ゆめは廃棄されました。<br>
-      でも、ゆめの遺志は——あなたの中に生きています。
-    </p>
-    <p style="color:#332211;">
-      ✦ &nbsp; ✦ &nbsp; ✦
-    </p>
-  </div>
+  <div class="status-block"><span class="st-label">総龍ポジション  </span><span class="st-you">着任済み</span>
+<span class="st-label">B2Fアクセス     </span><span class="st-open">解放</span>
+<span class="st-label">次の選定        </span><span class="st-you">あなたの判断に委ねられます</span></div>
 
   <div id="back-link">
     <a href="../index.html">← 蟠龍閣 トップに戻る</a>
