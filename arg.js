@@ -382,6 +382,45 @@ function executeSearch(query) {
   }
 }
 
+// ─── Investigation progress bar (hidden pages only) ────────────────────────
+
+const PROGRESS_FLAGS = [
+  'found_yume_notice',
+  'found_yume_draft',
+  'found_kurose',
+  'found_yume_rireki',
+  'found_yume_finallog',
+  'found_ronpaikai',
+  'found_basement_map',
+  'found_admin_console',
+  'found_renpai',
+  'admin_transfer_complete',
+];
+
+function injectProgressBar() {
+  if (!window.location.pathname.includes('/hidden/')) return;
+
+  const flags = ARG.getFlags();
+  const found = PROGRESS_FLAGS.filter(f => flags[f]).length;
+  const total = PROGRESS_FLAGS.length;
+  const pct   = Math.round((found / total) * 100);
+
+  const filled = Math.round(found / total * 10);
+  const bar    = '█'.repeat(filled) + '░'.repeat(10 - filled);
+
+  const el = document.createElement('div');
+  el.id = 'arg-progress';
+  el.style.cssText = [
+    'position:fixed', 'bottom:10px', 'right:12px',
+    'font-family:monospace', 'font-size:10px',
+    'color:#444433', 'letter-spacing:0.05em',
+    'pointer-events:none', 'z-index:9000',
+    'user-select:none',
+  ].join(';');
+  el.textContent = `調査進捗 ${bar} ${pct}%`;
+  document.body.appendChild(el);
+}
+
 // ─── Search bar wiring ─────────────────────────────────────────────────────
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -397,6 +436,8 @@ document.addEventListener('DOMContentLoaded', () => {
       menu.classList.toggle('is-open');
     });
   }
+
+  injectProgressBar();
 
   if (!input || !btn) return;
 
