@@ -195,6 +195,17 @@
       color: #552222;
       line-height: 1.8;
     }
+
+    .appendix {
+      display: none;
+      margin-top: 18px;
+      font-size: 11px;
+      color: #664433;
+      letter-spacing: 0.05em;
+      border-top: 1px dotted #330000;
+      padding-top: 10px;
+    }
+
       html, body { overflow-x: hidden; }
   </style>
 </head>
@@ -324,8 +335,16 @@
     廃棄部門 乙班 &nbsp;|&nbsp; BRK-DSP-2024-1103 &nbsp;|&nbsp; 電子捺印：済 &nbsp;|&nbsp; 外部持ち出し禁止
   </div>
 
+  <p class="appendix" id="disposal-appendix">※ 現行候補は前例より反応が早い。</p>
+
 </div>
 
 <script src="../arg.js"></script>
+<script>
+  if (ARG.getLevel() >= 3) {
+    var ap = document.getElementById('disposal-appendix');
+    if (ap) ap.style.display = 'block';
+  }
+</script>
 </body>
 </html>

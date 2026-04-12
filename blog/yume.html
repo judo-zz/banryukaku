@@ -58,6 +58,16 @@
       margin-top: 10px;
       font-style: italic;
     }
+
+    /* Lv1以降で最終記事末尾に表示 */
+    .glitch-note {
+      display: none;
+      font-size: 10px;
+      color: #664444;
+      margin-top: 12px;
+      font-family: monospace;
+      letter-spacing: 0.05em;
+    }
   </style>
 </head>
 <body>
@@ -92,6 +102,7 @@
           いつかここに来た人への、手紙だよ。
         </p>
         <p class="writing-stopped">▌</p>
+        <p class="glitch-note" id="glitch-note">下書きの復元に失敗しました。</p>
       </div>
       <div class="entry-footer">♥ 58 &nbsp;|&nbsp; コメント 21</div>
     </article>
@@ -147,6 +158,8 @@
       <h2 class="entry-title">ちゃきと1日遊んだ</h2>
       <div class="entry-body">
         <p>同期のちゃきとお休み合わせて遊んできました！</p>
+        <img src="yume-chaki-cafe.jpg" alt="ちゃきとカフェ" class="entry-img">
+        <p class="entry-img-caption">ふたりでお揃いで頼んだ。かわいすぎた</p>
         <p>もともとゲームの話で盛り上がって仲良くなったんだけど、外で遊ぶのははじめてで。お昼食べて、雑貨屋さんでぐるぐるして、夜はご飯食べて帰った。</p>
         <p>なんか、お店の外で会うと感じが違って面白い。ちゃきって仕事中はしっかりしてるけど、オフだとすごくゆるっとしてた笑</p>
         <p>また行こうね、って言ったらちゃきが「毎月行こう」って言ってた。実現するといいな。</p>
@@ -179,11 +192,12 @@
 
     <article class="blog-entry">
       <div class="entry-date">2024.09.14</div>
-      <h2 class="entry-title">最強のパフェ見つけた</h2>
+      <h2 class="entry-title">最高のケーキ見つけた</h2>
       <div class="entry-body">
         <p>お休みの日にふらっとお店の近くを散歩してたら、すごくかわいいカフェを発見しちゃった。</p>
-        <p>窓から見えたパフェがあまりにも美しくて、気づいたら入ってた。いちごとピスタチオのパフェ。1,600円。奮発したけど正解だった。</p>
-        <p>ひとくち食べたとき「ここに来てよかった」って思えるやつ。幸せって何かって聞かれたらこれって言える。</p>
+        <img src="yume-cake.jpg" alt="チョコレートケーキ" class="entry-img">
+        <p class="entry-img-caption">チョコケーキ。量が多いかなと思ったけど、食べ始めたら早かった</p>
+        <p>窓から見えたケーキがあまりにも美しくて、気づいたら入ってた。お店の中が静かで、たまにこういう時間の方がよく見える。ひとくち食べたとき「ここに来てよかった」って思えるやつ。幸せって何かって聞かれたらこれって言える。</p>
         <p>また来よう。ひとりで来よう。</p>
       </div>
       <div class="entry-footer">♥ 52 &nbsp;|&nbsp; コメント 16</div>
@@ -247,5 +261,11 @@
 </div>
 
 <script src="../arg.js"></script>
+<script>
+  if (ARG.getLevel() >= 1) {
+    var gn = document.getElementById('glitch-note');
+    if (gn) gn.style.display = 'block';
+  }
+</script>
 </body>
 </html>

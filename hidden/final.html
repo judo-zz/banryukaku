@@ -230,6 +230,47 @@
       line-height: 1.8;
     }
 
+    /* 照合記録 */
+    .final-audit {
+      text-align: left;
+      background-color: #030100;
+      border: 1px solid #221100;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      font-family: monospace;
+      font-size: 12px;
+      color: #554433;
+      line-height: 2;
+    }
+
+    .final-audit .fa-title {
+      color: #664422;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      border-bottom: 1px dotted #331100;
+      padding-bottom: 6px;
+      margin-bottom: 10px;
+    }
+
+    .final-audit .fa-ok { color: #778855; }
+    .final-audit .fa-row { display: flex; gap: 8px; }
+    .final-audit .fa-label { flex: 1; white-space: nowrap; color: #443322; }
+    .final-audit .fa-dots  { flex: 2; color: #221100; overflow: hidden; }
+    .final-audit .fa-val   { white-space: nowrap; }
+
+    /* 反転文 */
+    .final-reveal {
+      text-align: left;
+      background-color: #020000;
+      border-left: 3px solid #554422;
+      padding: 20px 24px;
+      margin-bottom: 24px;
+      font-family: monospace;
+      font-size: 13px;
+      color: #887766;
+      line-height: 2.2;
+    }
+
     /* 封印解除ステータス */
     #final-seal {
       margin: 10px auto 24px;
@@ -406,6 +447,53 @@ ORIGIN基準——外から来た者であること。
 以上。</div><div class="n-footer">// YM
 // 2024.11.02 03:55
 // （この時刻の14分後、端末から離脱した記録がある）</div></div>
+
+  <hr class="gold">
+
+  <!-- ④-B 照合記録 -->
+  <div class="final-audit">
+    <div class="fa-title">candidate trace matched.</div>
+    <div class="fa-row">
+      <span class="fa-label">unauthorized search</span>
+      <span class="fa-dots">................</span>
+      <span class="fa-val fa-ok">confirmed</span>
+    </div>
+    <div class="fa-row">
+      <span class="fa-label">restricted archive access</span>
+      <span class="fa-dots">................</span>
+      <span class="fa-val fa-ok">confirmed</span>
+    </div>
+    <div class="fa-row">
+      <span class="fa-label">disposal record review</span>
+      <span class="fa-dots">................</span>
+      <span class="fa-val fa-ok">confirmed</span>
+    </div>
+    <div class="fa-row">
+      <span class="fa-label">backdoor acceptance</span>
+      <span class="fa-dots">................</span>
+      <span class="fa-val fa-ok">confirmed</span>
+    </div>
+    <div class="fa-row">
+      <span class="fa-label">return pattern</span>
+      <span class="fa-dots">................</span>
+      <span class="fa-val fa-ok">confirmed</span>
+    </div>
+  </div>
+
+  <!-- ④-C 反転文 -->
+  <div class="final-reveal">
+    君は侵入者ではない。<br>
+    最終層まで到達した時点で、記録上はすでに後継候補だった。<br>
+    <br>
+    ゆめを追っていたはずの視線は、<br>
+    いつからか継承手順の一部になっていた。<br>
+    <br>
+    探していたのは失踪者ではない。<br>
+    龍牌会が外から育てる「次の龍」へ至る経路そのものだった。<br>
+    <br>
+    君が最初に「ゆめ」と入力した時点で、経路は開いていた。<br>
+    以後の到達は、すべて記録どおりだった。
+  </div>
 
   <hr class="gold">
 

@@ -68,6 +68,49 @@ var ARG = (() => {
     updateFavicon(level);
     updateTitle(level);
     updateLevelIndicator(level);
+    updateMonitor(level);
+  }
+
+  // ─── Lv3以降：検索文言テーブル ─────────────────────────────────
+  const SEARCH_FAIL_LV3 = [
+    '該当データなし。検索行動を記録しました。',
+    '該当語は選定対象外です。',
+    '閲覧権限を照合中です。',
+    '検索履歴を候補者ログへ転記しました。',
+    '未登録語です。継続探索を推奨します。',
+    '入力傾向を解析しています。',
+    '外部探索パターンを確認。基準内です。',
+    '検索結果なし。反応速度のみ記録しました。',
+  ];
+
+  const SEARCH_OK_LV3 = [
+    '制限層へのアクセスを許可しました。',
+    '候補者適性に応じて表示内容を更新しました。',
+    '閲覧権限が一段階拡張されました。',
+    '深層記録への接続を確認。',
+    '到達条件を満たしました。次層を開示します。',
+  ];
+
+  const MONITOR_LINES = [
+    'monitoring route...',
+    'subject trace active',
+    'persistence: sufficient',
+    'curiosity score updated',
+    'succession protocol pending',
+  ];
+
+  function getFailMsg() {
+    if (getLevel() >= 3) {
+      return SEARCH_FAIL_LV3[Math.floor(Math.random() * SEARCH_FAIL_LV3.length)];
+    }
+    return '該当するデータが見つかりません。';
+  }
+
+  function getOkMsg() {
+    if (getLevel() >= 3) {
+      return SEARCH_OK_LV3[Math.floor(Math.random() * SEARCH_OK_LV3.length)];
+    }
+    return null;
   }
 
   // ─── Level indicator ────────────────────────────────────────────
@@ -89,6 +132,11 @@ var ARG = (() => {
         'text-align:center;font-family:monospace;font-size:10px;' +
         'color:rgba(120,100,80,0.55);padding:18px 12px 10px;' +
         'letter-spacing:0.05em;line-height:1.8;' +
+      '}' +
+      '#arg-monitor{' +
+        'display:none;position:fixed;bottom:38px;right:14px;z-index:8999;' +
+        'font-family:monospace;font-size:10px;color:rgba(80,160,80,0.35);' +
+        'letter-spacing:0.12em;pointer-events:none;user-select:none;' +
       '}';
     document.head.appendChild(s);
 
@@ -104,6 +152,30 @@ var ARG = (() => {
       disc.textContent =
         'このWebサイトの内容はフィクションであり、実在の人物・団体・施設とは一切関係がありません。';
       document.body.appendChild(disc);
+    }
+
+    // monitor line (Lv3以降で表示)
+    if (!document.getElementById('arg-monitor')) {
+      const mon = document.createElement('div');
+      mon.id = 'arg-monitor';
+      document.body.appendChild(mon);
+    }
+  }
+
+  function updateMonitor(level) {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => updateMonitor(level));
+      return;
+    }
+    ensureUI();
+    const mon = document.getElementById('arg-monitor');
+    if (!mon) return;
+    if (level >= 3) {
+      const line = MONITOR_LINES[Math.floor(Math.random() * MONITOR_LINES.length)];
+      mon.textContent = line;
+      mon.style.display = 'block';
+    } else {
+      mon.style.display = 'none';
     }
   }
 
@@ -214,15 +286,15 @@ var ARG = (() => {
     init();
   }
 
-  return { getLevel, setLevel, tryLevel, addFlag, hasFlag, getFlags, brReset };
+  return { getLevel, setLevel, tryLevel, addFlag, hasFlag, getFlags, getFailMsg, getOkMsg, brReset };
 })();
 
 // ─── Search index ──────────────────────────────────────────────────────────
 
 // dest: 遷移先, flag: 発見フラグ(パス基準で共有), level: 到達目標Lv
 var SEARCH_INDEX = {
-  'ゆめ':        { dest: 'hidden/yume-notice.html',        flag: 'found_yume_notice',     level: 1 },
-  '夢':          { dest: 'hidden/yume-notice.html',        flag: 'found_yume_notice',     level: 1 },
+  'ゆめ':        { dest: 'hidden/yume-draft.html',          flag: 'found_yume_draft',      level: 1 },
+  '夢':          { dest: 'hidden/yume-draft.html',          flag: 'found_yume_draft',      level: 1 },
   'YM-2023-04':  { dest: 'hidden/yume-rireki.html',        flag: 'found_yume_rireki',     level: 2 },
   '黒瀬':        { dest: 'hidden/kurose-shiji.html',       flag: 'found_kurose',          level: 2 },
   '失敗作':      { dest: 'hidden/yume-finallog.html',      flag: 'found_yume_finallog',   level: 2 },
@@ -266,8 +338,9 @@ function executeSearch(query) {
     if (prevLevel < level - 1) {
       const el = document.getElementById('search-error');
       if (el) {
-        el.textContent = '該当するデータが見つかりません。';
-        setTimeout(() => { el.textContent = ''; }, 2000);
+        el.style.color = '';
+        el.textContent = ARG.getFailMsg();
+        setTimeout(() => { el.textContent = ''; }, 2200);
       }
       if (input) input.disabled = false;
       if (btn) btn.disabled = false;
@@ -279,13 +352,28 @@ function executeSearch(query) {
       ARG.tryLevel(level);
     }
 
-    const path = resolveSearchPath(dest);
-    window.location.href = path;
+    // Lv3以降は成功メッセージを一瞬表示してから遷移
+    const okMsg = ARG.getOkMsg();
+    if (okMsg) {
+      const el = document.getElementById('search-error');
+      if (el) {
+        el.style.color = 'rgba(80,160,80,0.8)';
+        el.textContent = okMsg;
+      }
+      setTimeout(() => {
+        const path = resolveSearchPath(dest);
+        window.location.href = path;
+      }, 700);
+    } else {
+      const path = resolveSearchPath(dest);
+      window.location.href = path;
+    }
   } else {
     const el = document.getElementById('search-error');
     if (el) {
-      el.textContent = '該当するデータが見つかりません。';
-      setTimeout(() => { el.textContent = ''; }, 2000);
+      el.style.color = '';
+      el.textContent = ARG.getFailMsg();
+      setTimeout(() => { el.textContent = ''; }, 2200);
     }
   }
 }

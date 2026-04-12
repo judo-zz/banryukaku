@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <title>選定基準 RPK-SEL-001 | 龍牌会</title>
+  <title>選定基準 RPK-SEL-001 / Current Evaluation | 龍牌会</title>
   <style>
     body {
       background-color: #020008;
@@ -197,6 +197,32 @@
       line-height: 1.8;
     }
 
+    /* 動的評価スパン */
+    .c-eval-val {
+      font-size: 11px;
+      margin-left: 8px;
+      letter-spacing: 0.05em;
+    }
+    .eval-sufficient  { color: #44cc66; }
+    .eval-developing  { color: #aacc44; }
+    .eval-observed    { color: #88aaff; }
+    .eval-excessive   { color: #ffaa44; }
+    .eval-low         { color: #ff7744; }
+    .eval-normal      { color: #66aacc; }
+    .eval-stable      { color: #66aacc; }
+    .eval-confirmed   { color: #44cc66; }
+    .eval-pending     { color: #554477; }
+    .eval-unmeasured  { color: #445555; }
+
+    .system-subject-note {
+      margin-top: 22px;
+      font-size: 11px;
+      color: #334455;
+      letter-spacing: 0.05em;
+      border-top: 1px dotted #222244;
+      padding-top: 10px;
+    }
+
     .doc-footer {
       margin-top: 30px;
       border-top: 1px solid #222244;
@@ -227,7 +253,7 @@
 <div id="wrapper">
 
   <div class="doc-header">
-    <div class="doc-title">龍の選定基準 — DRAGON SELECTION CRITERIA</div>
+    <div class="doc-title">龍の選定基準 — DRAGON SELECTION CRITERIA / Current Evaluation</div>
     <div class="doc-meta">
       <span>文書番号</span>: RPK-SEL-001<br>
       <span>区分</span>: 最高機密<br>
@@ -236,48 +262,50 @@
     </div>
   </div>
 
-  <div class="section-label">■ 選定基準項目 CRITERIA</div>
+  <div class="section-label">■ 選定基準項目 CRITERIA / 現行候補評価</div>
   <p style="font-size:11px; color:#334466; margin-bottom:14px;">
     ▶ 以下の基準を評価します。適合率が70%以上の候補を「次の龍」として承認します。
   </p>
 
   <ul class="criteria-list" id="criteria-list">
     <li id="c1">
-      <span class="c-num">基準 01 / CURIOSITY</span>
-      <span class="c-text">隠されたものに対し、自発的に調査・追跡する能力を持つこと</span>
-      <span class="c-eval"><span class="check">✓ PASS</span> — このページを発見した時点で充足</span>
+      <span class="c-num">基準 01 / DISCOVERY</span>
+      <span class="c-text">外部からの自発的な探索行動が確認されること</span>
+      <span class="c-eval">→ <span class="c-eval-val" id="eval-discovery">—</span></span>
     </li>
     <li id="c2">
       <span class="c-num">基準 02 / PERSISTENCE</span>
-      <span class="c-text">困難なルートを経由しても調査を諦めないこと</span>
-      <span class="c-eval"><span class="check">✓ PASS</span> — 複数のキーワードを辿った記録あり</span>
+      <span class="c-text">複数の障壁を越えて継続する探索履歴を持つこと</span>
+      <span class="c-eval">→ <span class="c-eval-val" id="eval-persistence">—</span></span>
     </li>
     <li id="c3">
-      <span class="c-num">基準 03 / INSIGHT</span>
-      <span class="c-text">表面的な情報の裏にある構造を読み取れること</span>
-      <span class="c-eval"><span class="check">✓ PASS</span> — 縦読み・隠しマークを解読</span>
+      <span class="c-num">基準 03 / COMPLIANCE</span>
+      <span class="c-text">龍牌会の構造に対し拒絶反応を示さないこと</span>
+      <span class="c-eval">→ <span class="c-eval-val" id="eval-compliance">—</span></span>
     </li>
     <li id="c4">
-      <span class="c-num">基準 04 / LOYALTY</span>
-      <span class="c-text">龍牌会の理念に反しない価値観を持つこと</span>
-      <span class="c-eval"><span class="check">✓ PASS</span> — 龍牌会の理念は「来た者が龍である」のみ。調査行為はこれと矛盾しない</span>
+      <span class="c-num">基準 04 / CURIOSITY</span>
+      <span class="c-text">開示された情報の外にある構造を自発的に探ること</span>
+      <span class="c-eval">→ <span class="c-eval-val" id="eval-curiosity">—</span></span>
     </li>
     <li id="c5">
-      <span class="c-num">基準 05 / ADAPTABILITY</span>
-      <span class="c-text">未知の状況・情報に対し柔軟に対処できること</span>
-      <span class="c-eval"><span class="check">✓ PASS</span> — このサイトへの適応速度より判定</span>
+      <span class="c-num">基準 05 / SELF-PRESERVATION</span>
+      <span class="c-text">探索行動が自己保存本能を上回っていること</span>
+      <span class="c-eval">→ <span class="c-eval-val" id="eval-self">—</span></span>
     </li>
     <li id="c6">
       <span class="c-num">基準 06 / ORIGIN</span>
       <span class="c-text">「外から来る者」であること（先代総龍の預言より）</span>
-      <span class="c-eval"><span class="check">✓ PASS</span> — サイト来訪者は定義上「外から来る者」</span>
+      <span class="c-eval">→ <span class="c-eval-val" id="eval-origin">—</span></span>
     </li>
     <li id="c7">
-      <span class="c-num">基準 07 / RECOGNITION</span>
-      <span class="c-text">ゆめが認めた者であること</span>
-      <span class="c-eval"><span class="check">✓ PASS</span> — RENPAI バックドアを通過した記録あり</span>
+      <span class="c-num">基準 07 / RETURN RATE</span>
+      <span class="c-text">一度離れた後に再訪または継続探索を行うこと</span>
+      <span class="c-eval">→ <span class="c-eval-val" id="eval-return">—</span></span>
     </li>
   </ul>
+
+  <p class="system-subject-note" id="subject-note"></p>
 
   <div id="final-verdict">
     <div class="fv-label">■ 選定審査 最終判定 FINAL VERDICT</div>
@@ -302,16 +330,68 @@
 
 <script src="../arg.js"></script>
 <script>
-  // 順番に基準を「開示」するアニメーション
+  // br_flagsは配列。発見キーワード数を取得
+  const level = ARG.getLevel();
+  const flags = ARG.getFlags();
+  const hitCount = flags.length;
+
+  // 評価値のマッピング（発見数・レベルに応じて変化）
+  function evalClass(val) {
+    const map = {
+      'sufficient': 'eval-sufficient',
+      'developing': 'eval-developing',
+      'observed':   'eval-observed',
+      'excessive':  'eval-excessive',
+      'low':        'eval-low',
+      'normal':     'eval-normal',
+      'stable':     'eval-stable',
+      'confirmed':  'eval-confirmed',
+      'pending':    'eval-pending',
+      'unmeasured': 'eval-unmeasured',
+    };
+    return map[val] || '';
+  }
+
+  function setEval(id, val) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.textContent = val;
+    el.className = 'c-eval-val ' + evalClass(val);
+  }
+
+  function applyEvals() {
+    // DISCOVERY：1件以上発見で sufficient
+    setEval('eval-discovery', hitCount >= 1 ? 'sufficient' : 'developing');
+    // PERSISTENCE：4件以上で sufficient
+    setEval('eval-persistence', hitCount >= 4 ? 'sufficient' : 'observed');
+    // COMPLIANCE：このページを読んでいる = 拒絶なし。常に unmeasured → stable
+    setEval('eval-compliance', hitCount >= 3 ? 'stable' : 'unmeasured');
+    // CURIOSITY：6件以上で excessive（探求が本能を超えている）
+    setEval('eval-curiosity', hitCount >= 6 ? 'excessive' : 'normal');
+    // SELF-PRESERVATION：curiosityがexcessiveなら low
+    setEval('eval-self', hitCount >= 6 ? 'low' : 'stable');
+    // ORIGIN：外部来訪者は常に confirmed
+    setEval('eval-origin', 'confirmed');
+    // RETURN RATE：Lv3以上 = 継続探索確認済み
+    setEval('eval-return', level >= 3 ? 'confirmed' : 'pending');
+
+    // システムノート（Lv3以降で表示）
+    const note = document.getElementById('subject-note');
+    if (note && level >= 3) {
+      note.textContent = 'Current subject shows no meaningful withdrawal pattern.';
+    }
+  }
+
+  // 順番に開示するアニメーション
   const items = document.querySelectorAll('#criteria-list li');
   const verdict = document.getElementById('final-verdict');
+
   function revealCriteria() {
     let delay = 600;
     items.forEach((item, i) => {
       setTimeout(() => {
         item.classList.add('revealed');
         if (i === items.length - 1) {
-          // 全基準開示後、判定を表示
           setTimeout(() => {
             verdict.classList.add('visible');
           }, 800);
@@ -321,7 +401,8 @@
     });
   }
 
-  // ページ読み込み後2秒で開示スタート
+  // ページ読み込み後に評価を適用してから開示
+  applyEvals();
   setTimeout(revealCriteria, 2000);
 </script>
 </body>
