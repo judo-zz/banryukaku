@@ -121,6 +121,21 @@ a:hover { text-decoration: underline; color: #ff3366; }
 .entry-body p { margin: 0 0 0.9em; }
 .entry-body p:last-child { margin-bottom: 0; }
 
+.entry-img {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 6px;
+  margin: 10px 0 14px;
+  display: block;
+}
+
+.entry-img-caption {
+  font-size: 11px;
+  color: #aaa;
+  margin-top: -10px;
+  margin-bottom: 12px;
+}
+
 .entry-footer {
   margin-top: 10px;
   padding-top: 8px;
