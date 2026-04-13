@@ -436,7 +436,10 @@ function executeSearch(query) {
       }
     }
 
-    // Lv3以降は成功メッセージを一瞬表示してから遷移
+    // レベルアップ検出（tryLevel呼び出し後に確認）
+    const didLevelUp = isNewFind && ARG.getLevel() > prevLevel;
+
+    // Lv3以降は成功メッセージを表示
     const okMsg = ARG.getOkMsg();
     if (okMsg) {
       const el = document.getElementById('search-error');
@@ -444,13 +447,14 @@ function executeSearch(query) {
         el.style.color = 'rgba(80,160,80,0.8)';
         el.textContent = okMsg;
       }
-      setTimeout(() => {
-        const path = resolveSearchPath(dest);
-        window.location.href = path;
-      }, 700);
+    }
+
+    // レベルアップ時はオーバーレイが見える時間（1500ms）を確保してから遷移
+    const delay = didLevelUp ? 1500 : (okMsg ? 700 : 0);
+    if (delay > 0) {
+      setTimeout(() => { window.location.href = resolveSearchPath(dest); }, delay);
     } else {
-      const path = resolveSearchPath(dest);
-      window.location.href = path;
+      window.location.href = resolveSearchPath(dest);
     }
   } else {
     const el = document.getElementById('search-error');
