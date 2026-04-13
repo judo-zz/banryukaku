@@ -283,7 +283,7 @@ var ARG = (() => {
     localStorage.removeItem(REFERRAL_KEY);
     localStorage.removeItem('blog_pass_unlocked');
     localStorage.removeItem('br_clear_date');
-    location.reload();
+    window.location.href = resolveSearchPath('index.html');
   }
 
   // Boot
