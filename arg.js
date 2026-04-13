@@ -4,6 +4,14 @@
  */
 
 var ARG = (() => {
+  // 紹介コード未解放なら即座にCSSで検索バーを隠す（DOMContentLoaded待ちなしで確実に非表示）
+  if (!localStorage.getItem('br_referral')) {
+    var _hide = document.createElement('style');
+    _hide.id = 'arg-search-hide';
+    _hide.textContent = '#search-area,#hd-search{display:none!important}';
+    document.head.appendChild(_hide);
+  }
+
   const STORAGE_KEY = 'br_level';
   const FLAGS_KEY   = 'br_flags';
 
@@ -286,7 +294,10 @@ var ARG = (() => {
 
   function unlockSearch() {
     localStorage.setItem(REFERRAL_KEY, '1');
-    // 公開ページ (#search-area) と hiddenページ (#hd-search) の両方を表示
+    // CSSによる非表示を解除
+    const hide = document.getElementById('arg-search-hide');
+    if (hide) hide.remove();
+    // 念のためインラインstyleも解除
     ['search-area', 'hd-search'].forEach(id => {
       const el = document.getElementById(id);
       if (el) el.style.display = '';
