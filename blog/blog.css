@@ -29,7 +29,53 @@ a:hover { text-decoration: underline; color: #ff3366; }
   padding: 20px 16px 16px;
   text-align: center;
   border-bottom: 3px solid #ff6666;
+  position: relative;
 }
+
+/* ─── パスワードウィジェット ─── */
+#blog-pass-widget {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  text-align: right;
+}
+
+#blog-pass-input {
+  font-family: monospace;
+  font-size: 11px;
+  background: rgba(0,0,0,0.35);
+  border: 1px solid rgba(255,200,200,0.25);
+  color: #ffccdd;
+  padding: 3px 8px;
+  width: 100px;
+  letter-spacing: 0.1em;
+  outline: none;
+}
+#blog-pass-input::placeholder { color: rgba(255,180,180,0.25); }
+
+#blog-pass-btn {
+  font-family: monospace;
+  font-size: 11px;
+  background: rgba(150,0,0,0.35);
+  border: 1px solid rgba(255,150,150,0.3);
+  color: #ffccdd;
+  padding: 3px 8px;
+  cursor: pointer;
+}
+#blog-pass-btn:hover { background: rgba(180,0,0,0.5); }
+
+#blog-pass-msg {
+  display: block;
+  font-size: 10px;
+  font-family: monospace;
+  color: rgba(255,200,200,0.5);
+  margin-top: 3px;
+  min-height: 1em;
+  letter-spacing: 0.08em;
+}
+
+/* ─── ロック記事 ─── */
+.blog-locked { display: none; }
 
 #blog-site-logo {
   font-size: 11px;

@@ -16,6 +16,11 @@
   <a href="../index.html" id="blog-site-logo">蟠龍閣 / BANRYUKAKU</a>
   <div id="blog-cast-name">なのブログ</div>
   <div id="blog-cast-sub">NANO'S DIARY ♥ カフェと本と日々のこと</div>
+  <div id="blog-pass-widget">
+    <input type="password" id="blog-pass-input" placeholder="PASS" autocomplete="off">
+    <button id="blog-pass-btn">▶</button>
+    <span id="blog-pass-msg"></span>
+  </div>
 </div>
 
 <div id="blog-nav">
@@ -100,7 +105,7 @@
       <div class="entry-footer">♥ 14 &nbsp;|&nbsp; コメント 5</div>
     </article>
 
-    <article class="blog-entry">
+    <article class="blog-entry blog-locked">
       <div class="entry-date">2026.01.12</div>
       <h2 class="entry-title">ゆめちゃんのこと</h2>
       <div class="entry-body">
@@ -179,6 +184,9 @@
         <a href="chaki.html">ちゃきのブログ</a><br>
         <a href="izumo.html">いずものブログ</a>
       </p>
+      <p class="blog-locked" style="font-size:12px; margin:0; line-height:2;">
+        <a href="yume.html">ゆめのブログ</a>
+      </p>
     </div>
   </aside>
 
@@ -191,5 +199,6 @@
 </div>
 
 <script src="../arg.js"></script>
+<script src="blog-unlock.js"></script>
 </body>
 </html>
