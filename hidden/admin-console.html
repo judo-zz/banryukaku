@@ -358,17 +358,28 @@
       result.style.color = '#44cc66';
       result.textContent = '> AUTHORIZED. 権限移行完了。';
 
-      ARG.tryLevel(5);
-      ARG.addFlag('admin_transfer_complete');
-      // クリア日時を記録（ちゃきブログの隠し記事用）
-      if (!localStorage.getItem('br_clear_date')) {
-        localStorage.setItem('br_clear_date', new Date().toISOString());
+      if (ARG.getLevel() >= 4) {
+        ARG.tryLevel(5);
+        ARG.addFlag('admin_transfer_complete');
+        // クリア日時を記録（ちゃきブログの隠し記事用）
+        if (!localStorage.getItem('br_clear_date')) {
+          localStorage.setItem('br_clear_date', new Date().toISOString());
+        }
+        setTimeout(() => {
+          finalBox.classList.add('visible');
+          finalBox.scrollIntoView({ behavior: 'smooth' });
+        }, 1500);
+      } else {
+        result.style.color = '#aaaa44';
+        result.textContent = '> コードは正しい。しかし、引き継ぎ資格の認証が完了していない。';
+        document.getElementById('confirm-input').disabled = false;
+        document.getElementById('confirm-btn').disabled = false;
+        document.getElementById('confirm-status').textContent = '⏳ 待機中';
+        document.getElementById('confirm-status').style.color = '';
+        document.getElementById('final-status').textContent = '— 未完了';
+        document.getElementById('final-status').style.color = '';
+        setTimeout(() => { result.textContent = ''; }, 3000);
       }
-
-      setTimeout(() => {
-        finalBox.classList.add('visible');
-        finalBox.scrollIntoView({ behavior: 'smooth' });
-      }, 1500);
 
     } else {
       result.style.color = '#cc4433';
