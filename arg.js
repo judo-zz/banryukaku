@@ -351,6 +351,7 @@ var SEARCH_INDEX = {
                    failMsg: 'アクセス拒否。調査が不足しています。' },
   'MAP-RY-023':  { dest: 'hidden/basement-map.html',       flag: 'found_basement_map',    level: 3 },
   '龍牌会の端末': { dest: 'hidden/admin-console.html',      flag: 'found_admin_console',   level: 3 },
+  '管理端末':    { dest: 'hidden/admin-console.html',      flag: 'found_admin_console',   level: 3 },
   'RENPAI':      { dest: 'hidden/backdoor.html',           flag: 'found_renpai',          level: 4,
                    requires: ['found_blog_unlocked'], failMsg: '不正なアクセスです。先に表層の記録を参照してください。' },
   'renpai':      { dest: 'hidden/backdoor.html',           flag: 'found_renpai',          level: 4,
