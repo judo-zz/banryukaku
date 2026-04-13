@@ -1,6 +1,6 @@
 // blog-unlock.js — password unlock for Yume-related blog entries
 (function () {
-  var PASS = 'RENPAI';
+  var PASS = 'LEMON';
   var FLAG = 'blog_pass_unlocked';
 
   function showAll() {

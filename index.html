@@ -919,8 +919,24 @@
       <ul class="reserve-note-list">
         <li>ご予約なしのご来店はお受けできません。</li>
         <li>18歳未満のご入店はお断りしております。</li>
-        <li>コードをお持ちの方は、ご紹介者様を通じてお伝えください。</li>
+        <li>ご紹介コードを下記に入力してください。</li>
       </ul>
+
+      <div id="referral-form" style="text-align:center; margin-top:16px;">
+        <div style="display:inline-flex; gap:6px; align-items:center; flex-wrap:wrap; justify-content:center;">
+          <input type="text" id="referral-input"
+            placeholder="紹介コードを入力..."
+            autocomplete="off" spellcheck="false"
+            style="background:#0d0000;border:1px solid #880000;color:#ffeecc;font-size:13px;
+                   padding:7px 12px;outline:none;width:200px;letter-spacing:0.08em;font-family:monospace;">
+          <button id="referral-btn" type="button"
+            style="background:#880000;border:1px solid #cc0000;color:#ffcc44;font-size:13px;
+                   font-weight:bold;padding:7px 18px;cursor:pointer;letter-spacing:0.1em;">
+            確認
+          </button>
+        </div>
+        <div id="referral-msg" style="font-size:11px;margin-top:8px;min-height:1.2em;font-family:monospace;letter-spacing:0.08em;"></div>
+      </div>
 
       <div class="deco-line" style="margin-top:14px;">★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★</div>
     </div>
@@ -941,30 +957,70 @@
 
   <script src="arg.js"></script>
   <script>
-    // Lv0 の初回訪問者だけ、検索バーに一瞬「ゆ...」が入力されたように見せる
-    document.addEventListener('DOMContentLoaded', () => {
+    function startHintAnimation() {
+      // Lv0 の初回訪問者だけ、検索バーに一瞬「ゆ...」が入力されたように見せる
       if (ARG.getLevel() !== 0) return;
-
       const input = document.getElementById('search-input');
       if (!input) return;
-
-      const hint  = 'ゆ...';
-      let shown   = false;
-
+      const hint = 'ゆ...';
+      let shown = false;
       setTimeout(() => {
         if (shown || input.value) return;
         shown = true;
-
-        // プレースホルダーを一時的に差し替えて点滅させる
         const original = input.placeholder;
         input.placeholder = hint;
         input.style.caretColor = 'transparent';
-
         setTimeout(() => {
           input.placeholder = original;
           input.style.caretColor = '';
         }, 1400);
       }, 3500);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // 既に解放済みならフォームを隠してヒントアニメを開始
+      if (ARG.isSearchUnlocked()) {
+        const form = document.getElementById('referral-form');
+        if (form) form.style.display = 'none';
+        startHintAnimation();
+        return;
+      }
+
+      // 紹介コード入力フォームの処理
+      const btn   = document.getElementById('referral-btn');
+      const input = document.getElementById('referral-input');
+      const msg   = document.getElementById('referral-msg');
+
+      function attempt() {
+        if (ARG.checkReferral(input.value)) {
+          ARG.unlockSearch();
+          msg.style.color = '#ffcc44';
+          msg.textContent = '> ACCESS GRANTED. ようこそ、蟠龍閣へ。';
+          input.disabled = true;
+          btn.disabled = true;
+          // 検索バーをスムーズに表示してフォームを隠す
+          setTimeout(() => {
+            const form = document.getElementById('referral-form');
+            if (form) form.style.display = 'none';
+            const searchArea = document.getElementById('search-area');
+            if (searchArea) {
+              searchArea.style.opacity = '0';
+              searchArea.style.transition = 'opacity 0.6s ease';
+              searchArea.style.display = '';
+              setTimeout(() => { searchArea.style.opacity = '1'; }, 30);
+            }
+            startHintAnimation();
+          }, 1200);
+        } else {
+          msg.style.color = '#ff6666';
+          msg.textContent = '> ERROR: コードが正しくありません。';
+          input.value = '';
+          setTimeout(() => { msg.textContent = ''; }, 2000);
+        }
+      }
+
+      btn.addEventListener('click', attempt);
+      input.addEventListener('keydown', e => { if (e.key === 'Enter') attempt(); });
     });
   </script>
 

@@ -276,8 +276,38 @@ var ARG = (() => {
   }
 
   // Boot
+  // ─── 紹介コード / 検索バー解放 ─────────────────────────────────────────
+  const REFERRAL_KEY  = 'br_referral';
+  const REFERRAL_CODE = 'BANRYUKAKU';
+
+  function isSearchUnlocked() {
+    return !!localStorage.getItem(REFERRAL_KEY);
+  }
+
+  function unlockSearch() {
+    localStorage.setItem(REFERRAL_KEY, '1');
+    // 公開ページ (#search-area) と hiddenページ (#hd-search) の両方を表示
+    ['search-area', 'hd-search'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.style.display = '';
+    });
+  }
+
+  function applySearchVisibility() {
+    if (isSearchUnlocked()) return; // 解放済みなら何もしない
+    ['search-area', 'hd-search'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.style.display = 'none';
+    });
+  }
+
+  function checkReferral(input) {
+    return input.trim().toUpperCase() === REFERRAL_CODE;
+  }
+
   function init() {
     applyLevel(getLevel());
+    applySearchVisibility();
   }
 
   if (document.readyState === 'loading') {
@@ -286,7 +316,7 @@ var ARG = (() => {
     init();
   }
 
-  return { getLevel, setLevel, tryLevel, addFlag, hasFlag, getFlags, getFailMsg, getOkMsg, brReset };
+  return { getLevel, setLevel, tryLevel, addFlag, hasFlag, getFlags, getFailMsg, getOkMsg, brReset, isSearchUnlocked, unlockSearch, checkReferral };
 })();
 
 // ─── Search index ──────────────────────────────────────────────────────────
