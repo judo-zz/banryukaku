@@ -31,6 +31,16 @@
 
   <div id="blog-main">
 
+    <article id="yume-ghost-entry" class="blog-entry" style="display:none;">
+      <div class="entry-date" id="yume-ghost-date"></div>
+      <h2 class="entry-title">今日ゆめちゃんのこと思い出した</h2>
+      <div class="entry-body">
+        <p>今日、カフェでゆめちゃんが好きだったケーキを注文した。ひとくち食べたら、あの子のことが急に全部よみがえってきて、泣きそうになった。</p>
+        <p>……でも悲しいだけじゃなくて、なんかあったかい気持ち。ゆめちゃん、ちゃんとあそこにいたんだな。</p>
+      </div>
+      <div class="entry-footer">♥ 3 &nbsp;|&nbsp; コメント 1</div>
+    </article>
+
     <article class="blog-entry">
       <div class="entry-date">2026.04.11</div>
       <h2 class="entry-title">積んでた本、消化中</h2>
@@ -201,5 +211,20 @@
 
 <script src="../arg.js"></script>
 <script src="blog-unlock.js"></script>
+<script>
+  if (ARG.hasFlag('admin_transfer_complete')) {
+    const entry = document.getElementById('yume-ghost-entry');
+    const dateEl = document.getElementById('yume-ghost-date');
+    if (entry && dateEl) {
+      const stored = localStorage.getItem('br_clear_date');
+      const d = stored ? new Date(stored) : new Date();
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      dateEl.textContent = `${y}.${m}.${day}`;
+      entry.style.display = '';
+    }
+  }
+</script>
 </body>
 </html>

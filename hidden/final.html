@@ -507,9 +507,33 @@ ORIGIN基準——外から来た者であること。
 <span class="st-label">B2Fアクセス     </span><span class="st-open">解放</span>
 <span class="st-label">次の選定        </span><span class="st-you">あなたの判断に委ねられます</span></div>
 
+  <div style="text-align:center; margin:36px 0 12px; font-family:monospace; font-size:12px; color:#998866; letter-spacing:0.05em;">
+    [SYS] 継承記録が外部共有可能になりました。<br>
+    <span style="color:#ffcc44;">#蟠龍閣 #次の龍</span>
+  </div>
+
+  <div style="text-align:center; margin:20px 0 40px;">
+    <button id="invite-btn" style="background:#221100; color:#ffcc44; border:1px solid #665500; padding:10px 24px; font-family:serif; font-size:14px; cursor:pointer; letter-spacing:0.1em;">次の候補者を招待する</button>
+    <div id="invite-url" style="display:none; margin-top:12px; font-family:monospace; font-size:11px; color:#998866; word-break:break-all;"></div>
+  </div>
+
   <div id="back-link">
     <a href="../index.html">← 蟠龍閣 トップに戻る</a>
   </div>
+
+  <script>
+  document.getElementById('invite-btn').addEventListener('click', function () {
+    var url = window.location.origin + '/index.html?ref=1';
+    var el = document.getElementById('invite-url');
+    el.textContent = url;
+    el.style.display = 'block';
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(url).then(function () {
+        el.textContent = url + ' — コピーしました';
+      });
+    }
+  });
+  </script>
 
 </div>
 

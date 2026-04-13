@@ -350,8 +350,10 @@ var SEARCH_INDEX = {
                    failMsg: 'アクセス拒否。調査が不足しています。' },
   'MAP-RY-023':  { dest: 'hidden/basement-map.html',       flag: 'found_basement_map',    level: 3 },
   '龍牌会の端末': { dest: 'hidden/admin-console.html',      flag: 'found_admin_console',   level: 3 },
-  'RENPAI':      { dest: 'hidden/backdoor.html',           flag: 'found_renpai',          level: 4 },
-  'renpai':      { dest: 'hidden/backdoor.html',           flag: 'found_renpai',          level: 4 },
+  'RENPAI':      { dest: 'hidden/backdoor.html',           flag: 'found_renpai',          level: 4,
+                   requires: ['blog_unlocked'], failMsg: '不正なアクセスです。認証経路が確認できません。' },
+  'renpai':      { dest: 'hidden/backdoor.html',           flag: 'found_renpai',          level: 4,
+                   requires: ['blog_unlocked'], failMsg: '不正なアクセスです。認証経路が確認できません。' },
   '廃棄':        { dest: 'hidden/disposal-record.html',    flag: 'found_disposal',        level: 3 },
   '選定':        { dest: 'hidden/selection-criteria.html', flag: 'found_selection',       level: 3 },
   '龍牌会 端末': { dest: 'hidden/admin-console.html',      flag: 'found_admin_console',   level: 4 },
@@ -414,6 +416,23 @@ function executeSearch(query) {
     if (isNewFind) {
       ARG.addFlag(flag);
       ARG.tryLevel(level);
+    }
+
+    // STEP2: 3フラグ進捗表示
+    const step2Flags = ['found_yume_rireki', 'found_kurose', 'found_yume_finallog'];
+    if (isNewFind && step2Flags.indexOf(flag) !== -1) {
+      const remaining = step2Flags.filter(f => !ARG.hasFlag(f)).length;
+      if (remaining > 0) {
+        const el = document.getElementById('search-error');
+        if (el) {
+          el.style.color = 'rgba(80,160,80,0.8)';
+          el.textContent = '調査は3方向から進行中。残り: ' + remaining + '件';
+        }
+        setTimeout(() => { window.location.href = resolveSearchPath(dest); }, 1200);
+        if (input) input.disabled = false;
+        if (btn) btn.disabled = false;
+        return;
+      }
     }
 
     // Lv3以降は成功メッセージを一瞬表示してから遷移
@@ -484,6 +503,11 @@ function injectProgressBar() {
 // ─── Search bar wiring ─────────────────────────────────────────────────────
 
 document.addEventListener('DOMContentLoaded', () => {
+  // 招待リンクからのアクセス
+  if (new URLSearchParams(window.location.search).get('ref') === '1' && !isSearchUnlocked()) {
+    unlockSearch();
+  }
+
   const input = document.getElementById('search-input');
   const btn   = document.getElementById('search-btn');
   const toggle = document.getElementById('nav-toggle');
@@ -498,6 +522,20 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   injectProgressBar();
+
+  // Lv3以上でブログPASSウィジェットを強調
+  if (getLevel() >= 3 && !localStorage.getItem('blog_pass_unlocked')) {
+    const passInput = document.getElementById('blog-pass-input');
+    const passBtn   = document.getElementById('blog-pass-btn');
+    if (passInput) {
+      passInput.style.borderColor = 'rgba(200,160,60,0.5)';
+      passInput.style.boxShadow   = '0 0 8px rgba(200,160,60,0.2)';
+    }
+    if (passBtn) {
+      passBtn.style.borderColor = 'rgba(200,160,60,0.5)';
+      passBtn.style.boxShadow   = '0 0 8px rgba(200,160,60,0.2)';
+    }
+  }
 
   if (!input || !btn) return;
 
