@@ -5,7 +5,7 @@
 
   function showAll() {
     document.querySelectorAll('.blog-locked').forEach(function (el) {
-      el.style.display = '';
+      el.classList.remove('blog-locked');
     });
     var widget = document.getElementById('blog-pass-widget');
     if (widget) widget.style.display = 'none';
