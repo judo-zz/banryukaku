@@ -75,7 +75,7 @@ a:hover { text-decoration: underline; color: #ff3366; }
 }
 
 /* ─── ロック記事 ─── */
-.blog-locked { display: none; }
+.blog-locked { display: none !important; }
 
 #blog-site-logo {
   font-size: 11px;
