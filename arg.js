@@ -48,6 +48,7 @@ var ARG = (() => {
   function tryLevel(target) {
     if (target > getLevel()) {
       setLevel(target);
+      showLvOverlay(target);
     }
   }
 
@@ -351,9 +352,9 @@ var SEARCH_INDEX = {
   'MAP-RY-023':  { dest: 'hidden/basement-map.html',       flag: 'found_basement_map',    level: 3 },
   '龍牌会の端末': { dest: 'hidden/admin-console.html',      flag: 'found_admin_console',   level: 3 },
   'RENPAI':      { dest: 'hidden/backdoor.html',           flag: 'found_renpai',          level: 4,
-                   requires: ['blog_unlocked'], failMsg: '不正なアクセスです。認証経路が確認できません。' },
+                   requires: ['found_blog_unlocked'], failMsg: '不正なアクセスです。先に表層の記録を参照してください。' },
   'renpai':      { dest: 'hidden/backdoor.html',           flag: 'found_renpai',          level: 4,
-                   requires: ['blog_unlocked'], failMsg: '不正なアクセスです。認証経路が確認できません。' },
+                   requires: ['found_blog_unlocked'], failMsg: '不正なアクセスです。先に表層の記録を参照してください。' },
   '廃棄':        { dest: 'hidden/disposal-record.html',    flag: 'found_disposal',        level: 3 },
   '選定':        { dest: 'hidden/selection-criteria.html', flag: 'found_selection',       level: 3 },
   '龍牌会 端末': { dest: 'hidden/admin-console.html',      flag: 'found_admin_console',   level: 4 },

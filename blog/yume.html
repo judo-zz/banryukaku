@@ -68,6 +68,23 @@
       font-family: monospace;
       letter-spacing: 0.05em;
     }
+
+    /* コメント欄 */
+    .entry-comments {
+      margin-top: 12px;
+      border-top: 1px dotted #ccc;
+      padding-top: 10px;
+    }
+    .entry-comment {
+      font-size: 11px;
+      color: #999;
+      margin-bottom: 4px;
+    }
+    .comment-user {
+      font-weight: bold;
+      margin-right: 6px;
+      color: #888;
+    }
   </style>
 </head>
 <body>
@@ -105,6 +122,9 @@
         <p class="glitch-note" id="glitch-note">下書きの復元に失敗しました。</p>
       </div>
       <div class="entry-footer">♥ 58 &nbsp;|&nbsp; コメント 21</div>
+      <div class="entry-comments">
+        <div class="entry-comment"><span class="comment-user">匿名</span>最初の段落、縦に読んでみたら……れ、ん、ぱ、い？　気のせいかな</div>
+      </div>
     </article>
 
     <article class="blog-entry">

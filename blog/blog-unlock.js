@@ -22,7 +22,7 @@
 
     // ARGフラグ連動
     if (typeof ARG !== 'undefined' && ARG.addFlag) {
-      ARG.addFlag('blog_unlocked');
+      ARG.addFlag('found_blog_unlocked');
     }
   }
 

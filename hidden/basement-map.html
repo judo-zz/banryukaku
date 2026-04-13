@@ -175,7 +175,11 @@
       color: #226644;
       line-height: 1.8;
     }
-      html, body { overflow-x: hidden; }
+    body { overflow-x: hidden; }
+    @media (max-width: 640px) {
+      .map-ascii { font-size: 10px; line-height: 1.4; }
+      #wrapper { padding: 12px 8px 40px; }
+    }
   </style>
 </head>
 <body>
