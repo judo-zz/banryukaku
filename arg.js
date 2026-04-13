@@ -401,7 +401,7 @@ function injectProgressBar() {
   if (!window.location.pathname.includes('/hidden/')) return;
 
   const flags = ARG.getFlags();
-  const found = PROGRESS_FLAGS.filter(f => flags[f]).length;
+  const found = PROGRESS_FLAGS.filter(f => flags.includes(f)).length;
   const total = PROGRESS_FLAGS.length;
   const pct   = Math.round((found / total) * 100);
 
@@ -411,7 +411,7 @@ function injectProgressBar() {
   const el = document.createElement('div');
   el.id = 'arg-progress';
   el.style.cssText = [
-    'position:fixed', 'bottom:10px', 'right:12px',
+    'position:fixed', 'bottom:14px', 'left:12px',
     'font-family:monospace', 'font-size:10px',
     'color:#444433', 'letter-spacing:0.05em',
     'pointer-events:none', 'z-index:9000',
