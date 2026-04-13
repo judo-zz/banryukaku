@@ -1013,6 +1013,7 @@
               setTimeout(() => { searchArea.style.opacity = '1'; }, 30);
             }
             startHintAnimation();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
           }, 1200);
         } else {
           msg.style.color = '#ff6666';
