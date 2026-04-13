@@ -547,7 +547,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
   btn.addEventListener('click', () => executeSearch(input.value));
 
+  // IME変換中（日本語入力確定前）のEnterを無視する
+  let isComposing = false;
+  input.addEventListener('compositionstart', () => { isComposing = true; });
+  input.addEventListener('compositionend',   () => { isComposing = false; });
   input.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') executeSearch(input.value);
+    if (e.key === 'Enter' && !isComposing) executeSearch(input.value);
   });
+
+  // hidden/ページ全体のスマホ向け検索バーCSS（各ページのインラインCSSを上書き）
+  if (!document.getElementById('arg-mobile-search-css')) {
+    const s = document.createElement('style');
+    s.id = 'arg-mobile-search-css';
+    s.textContent =
+      '@media (max-width:600px){' +
+        '#hd-search{padding:8px 10px;display:flex;flex-wrap:wrap;gap:6px;justify-content:center;}' +
+        '#hd-search input[type="search"]{font-size:16px!important;padding:10px 8px!important;' +
+          'width:calc(100% - 90px)!important;min-width:0;box-sizing:border-box;}' +
+        '#hd-search button{font-size:16px!important;padding:10px 14px!important;min-height:44px;}' +
+        '#search-error{font-size:12px;}' +
+      '}';
+    document.head.appendChild(s);
+  }
 });

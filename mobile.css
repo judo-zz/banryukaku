@@ -237,6 +237,22 @@
     font-size: 13px;
   }
 
+  /* ------  ARG 検索バー (#search-area / index.html) ------ */
+  #search-area input[type="search"] {
+    font-size: 16px;
+    padding: 10px 8px;
+    width: calc(100vw - 130px);
+    max-width: 260px;
+    min-height: 44px;
+    box-sizing: border-box;
+  }
+
+  #search-area button {
+    font-size: 16px;
+    padding: 10px 14px;
+    min-height: 44px;
+  }
+
   /* ------  RESERVE  ------ */
   #reserve-box {
     padding: 14px 12px;
