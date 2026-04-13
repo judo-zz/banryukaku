@@ -346,7 +346,8 @@ var SEARCH_INDEX = {
   '黒瀬':        { dest: 'hidden/kurose-shiji.html',       flag: 'found_kurose',          level: 2 },
   '失敗作':      { dest: 'hidden/yume-finallog.html',      flag: 'found_yume_finallog',   level: 2 },
   '龍牌会':      { dest: 'hidden/ronpaikai-chart.html',    flag: 'found_ronpaikai',       level: 2,
-                   requires: ['found_yume_rireki', 'found_kurose', 'found_yume_finallog'] },
+                   requires: ['found_yume_rireki', 'found_kurose', 'found_yume_finallog'],
+                   failMsg: 'アクセス拒否。調査が不足しています。' },
   'MAP-RY-023':  { dest: 'hidden/basement-map.html',       flag: 'found_basement_map',    level: 3 },
   '龍牌会の端末': { dest: 'hidden/admin-console.html',      flag: 'found_admin_console',   level: 3 },
   'RENPAI':      { dest: 'hidden/backdoor.html',           flag: 'found_renpai',          level: 4 },
@@ -389,7 +390,7 @@ function executeSearch(query) {
       const el = document.getElementById('search-error');
       if (el) {
         el.style.color = '';
-        el.textContent = ARG.getFailMsg();
+        el.textContent = entry.failMsg || ARG.getFailMsg();
         setTimeout(() => { el.textContent = ''; }, 2200);
       }
       if (input) input.disabled = false;
