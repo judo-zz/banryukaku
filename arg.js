@@ -345,7 +345,8 @@ var SEARCH_INDEX = {
   'YM-2023-04':  { dest: 'hidden/yume-rireki.html',        flag: 'found_yume_rireki',     level: 2 },
   '黒瀬':        { dest: 'hidden/kurose-shiji.html',       flag: 'found_kurose',          level: 2 },
   '失敗作':      { dest: 'hidden/yume-finallog.html',      flag: 'found_yume_finallog',   level: 2 },
-  '龍牌会':      { dest: 'hidden/ronpaikai-chart.html',    flag: 'found_ronpaikai',       level: 2 },
+  '龍牌会':      { dest: 'hidden/ronpaikai-chart.html',    flag: 'found_ronpaikai',       level: 2,
+                   requires: ['found_yume_rireki', 'found_kurose', 'found_yume_finallog'] },
   'MAP-RY-023':  { dest: 'hidden/basement-map.html',       flag: 'found_basement_map',    level: 3 },
   '龍牌会の端末': { dest: 'hidden/admin-console.html',      flag: 'found_admin_console',   level: 3 },
   'RENPAI':      { dest: 'hidden/backdoor.html',           flag: 'found_renpai',          level: 4 },
@@ -382,6 +383,19 @@ function executeSearch(query) {
 
     const isNewFind  = !ARG.hasFlag(flag);
     const prevLevel  = ARG.getLevel();
+
+    // 前提フラグ未達の場合は遷移しない
+    if (entry.requires && !entry.requires.every(f => ARG.hasFlag(f))) {
+      const el = document.getElementById('search-error');
+      if (el) {
+        el.style.color = '';
+        el.textContent = ARG.getFailMsg();
+        setTimeout(() => { el.textContent = ''; }, 2200);
+      }
+      if (input) input.disabled = false;
+      if (btn) btn.disabled = false;
+      return;
+    }
 
     // 前提レベル未達の場合はキーワードを知らないはずなので遷移しない
     if (prevLevel < level - 1) {
