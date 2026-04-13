@@ -26,6 +26,20 @@
 
   <div id="blog-main">
 
+    <article class="blog-entry" id="yume-ghost-entry" style="display:none;">
+      <div class="entry-date" id="yume-ghost-date"></div>
+      <h2 class="entry-title">えっ、ゆめさん!?　……じゃなかった</h2>
+      <div class="entry-body">
+        <p>今日ちょっと恥ずかしいことがあって。</p>
+        <p>駅の改札を出たところで、後ろ姿がゆめさんにそっくりな人がいたんですよ。髪型とか、なんか歩き方とか。思わず「ゆめさん！」って声かけちゃった。</p>
+        <p>振り返ったら全然知らない人で、「あの、人違いで……すみません！！！」ってなりました。でも向こうの方が笑って「大丈夫ですよ」って言ってくれてよかった。</p>
+        <p>うわー恥ずかし……。</p>
+        <p>でも、ちょっと似てたんだよな。なんか雰囲気が。世の中には似てる人が3人いるって言うじゃないですか。きっとそういうことだと思う……うん。</p>
+        <p>でもちゃんと会いたいな、ゆめさんに。</p>
+      </div>
+      <div class="entry-footer">♥ 1 &nbsp;|&nbsp; コメント 0</div>
+    </article>
+
     <article class="blog-entry">
       <div class="entry-date">2026.04.14</div>
       <h2 class="entry-title">お花見、行けなかった</h2>
@@ -231,5 +245,20 @@
 </div>
 
 <script src="../arg.js"></script>
+<script>
+  if (ARG.hasFlag('admin_transfer_complete')) {
+    const entry = document.getElementById('yume-ghost-entry');
+    const dateEl = document.getElementById('yume-ghost-date');
+    if (entry && dateEl) {
+      const stored = localStorage.getItem('br_clear_date');
+      const d = stored ? new Date(stored) : new Date();
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      dateEl.textContent = `${y}.${m}.${day}`;
+      entry.style.display = '';
+    }
+  }
+</script>
 </body>
 </html>

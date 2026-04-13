@@ -362,6 +362,10 @@
       if (ARG.getLevel() >= 4) {
         ARG.tryLevel(5);
         ARG.addFlag('admin_transfer_complete'); // hack系ページのガード用
+        // クリア日時を記録（ちゃきブログの隠し記事用）
+        if (!localStorage.getItem('br_clear_date')) {
+          localStorage.setItem('br_clear_date', new Date().toISOString());
+        }
       }
 
       setTimeout(() => {
