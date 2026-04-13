@@ -235,6 +235,30 @@
       height: 100%;
     }
 
+    /* 龍マークを押したときのポップアップ */
+    #dragon-popup {
+      display: none;
+      position: absolute;
+      bottom: 36px;
+      right: 10px;
+      background: #000;
+      border: 1px solid #444;
+      padding: 8px 12px;
+      font-size: 11px;
+      color: #888;
+      font-family: monospace;
+      white-space: nowrap;
+      z-index: 10;
+    }
+
+    #dragon-popup.open { display: block; }
+
+    #dragon-popup .dp-code {
+      color: #cc6600;
+      font-weight: bold;
+      letter-spacing: 0.1em;
+    }
+
     /* 凡例 */
     #map-legend {
       font-size: 11px;
@@ -451,7 +475,24 @@
             <line x1="27" y1="22" x2="27" y2="12" stroke="#553333" stroke-width="1"/>
             <polygon points="27,10 23,22 27,18 31,22" fill="#553333"/>
 
+            <!-- 隠し龍マーク（右下隅・半透明） -->
+            <text
+              x="562" y="308"
+              text-anchor="middle"
+              font-size="18"
+              fill="rgba(100,0,0,0.22)"
+              font-family="serif"
+              font-weight="900"
+              style="cursor:pointer;"
+              onclick="toggleDragonPopup()"
+            >龍</text>
           </svg>
+
+          <!-- ポップアップ -->
+          <div id="dragon-popup">
+            <span style="color:#444; font-size:10px;">&gt; FACILITY CODE DETECTED<br>&gt; </span><span class="dp-code">MAP-RY-023</span><br>
+            <span style="color:#333; font-size:10px;">&gt; 地下施設区画図 参照要</span>
+          </div>
         </div>
       </div>
 
@@ -534,5 +575,23 @@
 </div><!-- /#wrapper -->
 
 <script src="arg.js"></script>
+<script>
+  let dragonOpen  = false;
+  let dragonTimer = null;
+
+  function toggleDragonPopup() {
+    if (dragonOpen) return;
+    const popup = document.getElementById('dragon-popup');
+    dragonOpen = true;
+    popup.classList.add('open');
+    ARG.addFlag('dragon_mark_found');
+    if (dragonTimer) clearTimeout(dragonTimer);
+    dragonTimer = setTimeout(() => {
+      popup.classList.remove('open');
+      dragonOpen  = false;
+      dragonTimer = null;
+    }, 4000);
+  }
+</script>
 </body>
 </html>
