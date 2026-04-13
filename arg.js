@@ -280,6 +280,9 @@ var ARG = (() => {
   function brReset() {
     localStorage.removeItem(STORAGE_KEY);
     localStorage.removeItem(FLAGS_KEY);
+    localStorage.removeItem(REFERRAL_KEY);
+    localStorage.removeItem('blog_pass_unlocked');
+    localStorage.removeItem('br_clear_date');
     location.reload();
   }
 
