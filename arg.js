@@ -584,7 +584,8 @@ function injectProgressBar() {
     'pointer-events:none', 'z-index:9000',
     'user-select:none', 'line-height:1.6',
   ].join(';');
-  el.textContent = '閲覧 ' + found + ' / ' + total;
+  const blocks = PROGRESS_FLAGS.map(f => flags.includes(f) ? '■' : '□').join('');
+  el.textContent = '閲覧 ' + found + '/' + total + '  ' + blocks;
   document.body.appendChild(el);
 }
 

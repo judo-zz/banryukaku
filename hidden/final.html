@@ -517,11 +517,46 @@ ORIGIN基準——外から来た者であること。
     <div id="invite-url" style="display:none; margin-top:12px; font-family:monospace; font-size:11px; color:#998866; word-break:break-all;"></div>
   </div>
 
+  <!-- 検索履歴 -->
+  <div id="search-log-section" style="margin:40px 0 20px; font-family:monospace; font-size:12px;">
+    <div style="color:#554433; letter-spacing:0.15em; border-top:1px dotted #443322; padding-top:14px; margin-bottom:10px;">
+      ▍ SEARCH RECORD — 調査記録
+    </div>
+    <div id="search-log-prompt" style="color:#886644; cursor:pointer; letter-spacing:0.08em;">
+      あなたが調べた記録が残っています。<span style="color:#ffcc44; text-decoration:underline;">表示しますか？</span>
+    </div>
+    <div id="search-log-display" style="display:none; margin-top:12px; background:#080400; border:1px solid #443322; padding:14px 16px; line-height:2;">
+    </div>
+  </div>
+
   <div id="back-link">
     <a href="../index.html">← 蟠龍閣 トップに戻る</a>
   </div>
 
   <script>
+  document.getElementById('search-log-prompt').addEventListener('click', function () {
+    var log = ARG.getSearchLog();
+    var display = document.getElementById('search-log-display');
+    document.getElementById('search-log-prompt').style.display = 'none';
+    if (!log || log.length === 0) {
+      display.innerHTML = '<span style="color:#554433;">[EMPTY] 検索記録なし</span>';
+    } else {
+      var html = '<span style="color:#554433; font-size:11px;">&gt; RETRIEVED: ' + log.length + ' entries</span><br><br>';
+      log.forEach(function (entry) {
+        var d = new Date(entry.ts);
+        var ts = d.getFullYear() + '.' +
+          String(d.getMonth()+1).padStart(2,'0') + '.' +
+          String(d.getDate()).padStart(2,'0') + ' ' +
+          String(d.getHours()).padStart(2,'0') + ':' +
+          String(d.getMinutes()).padStart(2,'0');
+        html += '<span style="color:#554433; font-size:11px;">' + ts + '</span>  ' +
+                '<span style="color:#cc9944;">' + entry.query + '</span><br>';
+      });
+      display.innerHTML = html;
+    }
+    display.style.display = 'block';
+  });
+
   document.getElementById('invite-btn').addEventListener('click', function () {
     var url = window.location.origin + '/index.html?ref=1';
     var el = document.getElementById('invite-url');
