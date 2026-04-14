@@ -239,5 +239,20 @@
 </div>
 
 <script src="../arg.js"></script>
+<div id="decoded-fragment" style="display:none; max-width:680px; margin:24px auto 0; padding:0 16px 48px;">
+  <div style="border:1px dashed #334433; padding:16px 20px; font-family:monospace; font-size:12px; color:#556655; line-height:2; background-color:#010301;">
+    <div style="font-size:11px; color:#334433; letter-spacing:0.1em; margin-bottom:10px;">[DECODED FRAGMENT — recovery tail]</div>
+    <p style="margin:0 0 0.4em; color:#778877;">これを見つけた人へ</p>
+    <p style="margin:0 0 0.4em; color:#778877;">わたしの言ってることが変に見えても、それでいいです</p>
+    <p style="margin:0; color:#778877;">ちゃんと順番に見れば、たぶんわかるから</p>
+  </div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (typeof ARG !== 'undefined' && ARG.getLevel() >= 2) {
+      document.getElementById('decoded-fragment').style.display = 'block';
+    }
+  });
+</script>
 </body>
 </html>

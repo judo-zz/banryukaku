@@ -185,5 +185,21 @@
 </div>
 
 <script src="../arg.js"></script>
+<div id="final-addendum" style="display:none; max-width:740px; margin:16px auto 0; padding:0 16px 40px;">
+  <div style="border:1px dashed #554422; padding:16px 22px; font-family:monospace; font-size:12px; color:#886644; line-height:2.2; background-color:#060400; white-space:pre-wrap;">
+<span style="color:#554433; font-size:11px;">[ADDENDUM — post-FILE_END fragment]</span>
+
+<span style="color:#aa8855;">// 逃げたんじゃない</span>
+<span style="color:#aa8855;">// 見つけてもらうために消えた</span>
+<span style="color:#aa8855;">// 何も残さないのはもっと嫌だった</span>
+  </div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (typeof ARG !== 'undefined' && ARG.getLevel() >= 2) {
+      document.getElementById('final-addendum').style.display = 'block';
+    }
+  });
+</script>
 </body>
 </html>
