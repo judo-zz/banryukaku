@@ -12,8 +12,9 @@ var ARG = (() => {
     document.head.appendChild(_hide);
   }
 
-  const STORAGE_KEY = 'br_level';
-  const FLAGS_KEY   = 'br_flags';
+  const STORAGE_KEY    = 'br_level';
+  const FLAGS_KEY      = 'br_flags';
+  const SEARCH_LOG_KEY = 'br_search_log';
 
   const LEVEL_TITLES = {
     0: '',
@@ -320,6 +321,31 @@ var ARG = (() => {
     return input.trim().toUpperCase() === REFERRAL_CODE;
   }
 
+  // ─── 検索ログ ──────────────────────────────────────────────────────────────
+  function logSearch(query) {
+    const raw  = localStorage.getItem(SEARCH_LOG_KEY);
+    const log  = raw ? JSON.parse(raw) : [];
+    const ts   = new Date().toLocaleTimeString('ja-JP');
+    log.push({ ts, query });
+    localStorage.setItem(SEARCH_LOG_KEY, JSON.stringify(log));
+  }
+
+  function getSearchLog() {
+    const raw = localStorage.getItem(SEARCH_LOG_KEY);
+    const log = raw ? JSON.parse(raw) : [];
+    if (log.length === 0) { console.log('[ARG] 検索ログなし'); return []; }
+    console.log('[ARG] 検索ログ (' + log.length + '件):');
+    log.forEach(function(e, i) {
+      console.log('  ' + (i + 1) + '. [' + e.ts + '] ' + e.query);
+    });
+    return log;
+  }
+
+  function clearSearchLog() {
+    localStorage.removeItem(SEARCH_LOG_KEY);
+    console.log('[ARG] 検索ログをクリアしました');
+  }
+
   function init() {
     applyLevel(getLevel());
     applySearchVisibility();
@@ -331,7 +357,7 @@ var ARG = (() => {
     init();
   }
 
-  return { getLevel, setLevel, tryLevel, addFlag, hasFlag, getFlags, getFailMsg, getOkMsg, brReset, isSearchUnlocked, unlockSearch, checkReferral };
+  return { getLevel, setLevel, tryLevel, addFlag, hasFlag, getFlags, getFailMsg, getOkMsg, brReset, isSearchUnlocked, unlockSearch, checkReferral, logSearch, getSearchLog, clearSearchLog };
 })();
 
 // ─── Search index ──────────────────────────────────────────────────────────
@@ -425,6 +451,7 @@ function showUnsealedEffect(flag, callback) {
 function executeSearch(query) {
   const q = query.trim();
   if (!q) return;
+  ARG.logSearch(q);
 
   const entry = SEARCH_INDEX[q];
   if (entry) {
@@ -544,26 +571,20 @@ const PROGRESS_FLAGS = [
 ];
 
 function injectProgressBar() {
-  if (!window.location.pathname.includes('/hidden/')) return;
-
   const flags = ARG.getFlags();
   const found = PROGRESS_FLAGS.filter(f => flags.includes(f)).length;
   const total = PROGRESS_FLAGS.length;
-  const pct   = Math.round((found / total) * 100);
-
-  const filled = Math.round(found / total * 10);
-  const bar    = '█'.repeat(filled) + '░'.repeat(10 - filled);
 
   const el = document.createElement('div');
   el.id = 'arg-progress';
   el.style.cssText = [
-    'position:fixed', 'bottom:14px', 'left:12px',
+    'position:fixed', 'bottom:10px', 'left:10px',
     'font-family:monospace', 'font-size:10px',
     'color:#444433', 'letter-spacing:0.05em',
     'pointer-events:none', 'z-index:9000',
-    'user-select:none',
+    'user-select:none', 'line-height:1.6',
   ].join(';');
-  el.textContent = `調査進捗 ${bar} ${pct}%`;
+  el.textContent = '閲覧 ' + found + ' / ' + total;
   document.body.appendChild(el);
 }
 
