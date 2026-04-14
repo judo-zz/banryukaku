@@ -675,7 +675,7 @@
         <div id="hero-text">
           <div id="hero-story">
             秋葉原の路地裏、地下1階。<br>
-            看板もない細い階段を降りると——<br>
+            専用エレベーターで降りると——<br>
             そこには<span class="gold-text">煌びやかな龍の宮廷</span>が広がっています。<br>
             <br>
             チャイナドレスに身を包んだキャストたちが、<br>
@@ -697,7 +697,7 @@
         <span class="badge"><span class="badge-label">営業時間</span> 18:00〜翌1:00</span>
         <span class="badge"><span class="badge-label">料金</span> 60分 ¥3,500〜</span>
         <span class="badge"><span class="badge-label">場所</span> 秋葉原 B1F</span>
-        <span class="badge"><span class="badge-label">入店</span> 会員制 / 紹介制</span>
+        <span class="badge"><span class="badge-label">入店</span> 完全紹介制・会員予約制</span>
       </div>
 
       <p>
@@ -705,6 +705,24 @@
         <a href="#cast" class="hero-btn-sub">👀 キャストを見る</a>
         <a href="#access" class="hero-btn-sub">📍 アクセス</a>
       </p>
+    </div>
+
+    <!-- 龍神くじ -->
+    <div id="dragon-fortune" style="text-align:center;padding:28px 16px 20px;border-top:1px dotted #3a1a00;border-bottom:1px dotted #3a1a00;margin:8px 0;background:rgba(20,8,0,0.4);">
+      <div id="dragon-press-area" style="display:inline-block;cursor:pointer;-webkit-user-select:none;user-select:none;">
+        <div id="dragon-img" style="font-size:56px;line-height:1;transition:filter 0.2s,text-shadow 0.2s;display:block;">🐉</div>
+        <div style="font-size:11px;color:#cc9944;margin-top:8px;letter-spacing:0.18em;font-family:monospace;">龍神くじ　長押しで開運</div>
+      </div>
+      <!-- fortune popup -->
+      <div id="fortune-popup" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.88);z-index:9999;align-items:center;justify-content:center;flex-direction:column;">
+        <div style="background:#120800;border:1px solid #664422;padding:28px 32px;max-width:300px;text-align:center;font-family:monospace;">
+          <div style="font-size:11px;color:#554433;letter-spacing:0.2em;margin-bottom:12px;">龍神くじ RESULT</div>
+          <div id="fortune-kekka" style="font-size:28px;color:#cc9944;font-weight:bold;letter-spacing:0.2em;margin-bottom:10px;"></div>
+          <div id="fortune-tea" style="font-size:12px;color:#998866;margin-bottom:6px;"></div>
+          <div id="fortune-cast" style="font-size:12px;color:#998866;margin-bottom:18px;"></div>
+          <div style="font-size:10px;color:#443322;letter-spacing:0.1em;">— タップして閉じる —</div>
+        </div>
+      </div>
     </div>
 
     <!-- NEWS -->
@@ -758,7 +776,7 @@
           <div class="sys-cell">
             <span class="sys-icon">🪪</span>
             <h3>入店方法</h3>
-            <p>会員制 / 紹介制<br>コードをご用意ください</p>
+            <p>完全紹介制・会員予約制<br>コードをご用意ください</p>
           </div>
         </div>
       </div>
@@ -815,14 +833,14 @@
           <div class="cast-msg-txt">賑やかなのも好きだけど、二人でゆっくり話すのも好き。今日はどんな一日だったか、私に教えてね。</div>
         </div>
 
-        <div class="cast-col">
-          <span class="cast-ribbon-label">NEW</span><br>
-          <div class="cast-photo-box" style="padding:0;overflow:hidden;"><img src="blog/yume.jpg" alt="ゆめ" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+        <div class="cast-col" style="opacity:0.5;">
+          <span class="cast-ribbon-label" style="background:#444;color:#888;">休養中</span><br>
+          <div class="cast-photo-box" style="padding:0;overflow:hidden;"><img src="blog/yume.jpg" alt="ゆめ" style="width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(80%);"></div>
           <div class="cast-name-jp">ゆめ</div>
           <span class="cast-name-en">YUME</span>
           <div class="cast-divider">* * *</div>
           <div class="cast-meta-txt">趣味：スイーツ・音楽</div>
-          <div class="cast-msg-txt">笑顔と元気だけは誰にも負けませんっ！ あなたの今日イチの癒やしになれるようにがんばるね🤍</div>
+          <div class="cast-msg-txt" style="color:#888;">現在長期休養中です。</div>
         </div>
 
       </div>
@@ -892,7 +910,7 @@
           </tr>
           <tr>
             <th>予約</th>
-            <td>招待制（会員様のご紹介によりご入店いただけます）</td>
+            <td>完全紹介制・会員予約制（会員様のご紹介によりご入店いただけます）</td>
           </tr>
         </tbody>
       </table>
@@ -912,7 +930,7 @@
         ご紹介を受けた方には、個別にご案内いたします。
       </p>
       <p style="text-align:center; color:#bb8888; font-size:12px; margin-bottom:18px; line-height:2;">
-        蟠龍閣は完全招待制のため、連絡先は非公開とさせていただいております。<br>
+        蟠龍閣は完全紹介制・会員予約制のため、連絡先は非公開とさせていただいております。<br>
         会員様よりご紹介いただいた際に、詳細をお伝えします。
       </p>
 
@@ -1027,6 +1045,91 @@
       input.addEventListener('keydown', e => { if (e.key === 'Enter') attempt(); });
     });
   </script>
+
+<script>
+(function () {
+  var FORTUNES = [
+    { label: '大吉', tea: '本日のお茶：龍井茶', prob: 20 },
+    { label: '吉',   tea: '本日のお茶：ジャスミン茶', prob: 40 },
+    { label: '小吉', tea: '本日のお茶：烏龍茶', prob: 30 },
+    { label: '末吉', tea: '本日のお茶：宵闇茶', prob: 10 }
+  ];
+  var CAST = ['みじゅ', 'ちゃき', 'なの', 'いずも'];
+  var GLITCH = ['見つけた', 'まだ見ている', '外から来る者'];
+
+  function pickFortune() {
+    var r = Math.random() * 100, cum = 0;
+    for (var i = 0; i < FORTUNES.length; i++) {
+      cum += FORTUNES[i].prob;
+      if (r < cum) return FORTUNES[i];
+    }
+    return FORTUNES[1];
+  }
+
+  var holdTimer = null;
+  var pressArea = document.getElementById('dragon-press-area');
+  var dragonImg = document.getElementById('dragon-img');
+  var popup     = document.getElementById('fortune-popup');
+
+  function startGlow() {
+    dragonImg.style.textShadow = '0 0 20px gold, 0 0 40px orange';
+    dragonImg.style.filter = 'drop-shadow(0 0 8px gold)';
+  }
+  function stopGlow() {
+    dragonImg.style.textShadow = '';
+    dragonImg.style.filter = '';
+  }
+
+  function showResult() {
+    stopGlow();
+    var count = parseInt(sessionStorage.getItem('dragonCount') || '0') + 1;
+    sessionStorage.setItem('dragonCount', count);
+
+    var glitch = count >= 4 && Math.random() < 0.05;
+    var kekka, tea, cast;
+
+    if (glitch) {
+      kekka = '本日の運勢：' + GLITCH[Math.floor(Math.random() * GLITCH.length)];
+      tea   = '';
+      cast  = '';
+    } else {
+      var f = pickFortune();
+      kekka = f.label;
+      tea   = f.tea;
+      cast  = '相性キャスト：' + CAST[Math.floor(Math.random() * CAST.length)];
+    }
+
+    document.getElementById('fortune-kekka').textContent = kekka;
+    document.getElementById('fortune-tea').textContent   = tea;
+    document.getElementById('fortune-cast').textContent  = cast;
+    popup.style.display = 'flex';
+  }
+
+  function startHold(e) {
+    e.preventDefault();
+    startGlow();
+    holdTimer = setTimeout(showResult, 1500);
+  }
+
+  function cancelHold() {
+    clearTimeout(holdTimer);
+    holdTimer = null;
+    stopGlow();
+  }
+
+  pressArea.addEventListener('mousedown',  startHold);
+  pressArea.addEventListener('touchstart', startHold, { passive: false });
+  pressArea.addEventListener('mouseup',    cancelHold);
+  pressArea.addEventListener('mouseleave', cancelHold);
+  pressArea.addEventListener('touchend',   cancelHold);
+  pressArea.addEventListener('touchcancel',cancelHold);
+  pressArea.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+
+  popup.addEventListener('click', function () {
+    popup.style.display = 'none';
+  });
+})();
+</script>
 
 </body>
 </html>
