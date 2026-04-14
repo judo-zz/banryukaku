@@ -592,7 +592,7 @@ function injectProgressBar() {
   el.style.cssText = [
     'position:fixed', 'bottom:38px', 'right:14px',
     'font-family:monospace', 'font-size:10px',
-    'color:#665544', 'letter-spacing:0.08em',
+    'color:#998866', 'letter-spacing:0.08em',
     'pointer-events:none', 'z-index:9000',
     'user-select:none', 'text-align:right',
   ].join(';');
