@@ -570,10 +570,24 @@ const PROGRESS_FLAGS = [
   'admin_transfer_complete',
 ];
 
+const PAGE_VISIT_KEY = 'br_pages';
+const PAGE_TOTAL = 31;
+
+function recordPageVisit() {
+  const path = window.location.pathname.replace(/.*\/banryukaku\//, '').replace(/^\//, '') || 'index.html';
+  let visited;
+  try { visited = JSON.parse(localStorage.getItem(PAGE_VISIT_KEY)) || []; } catch(e) { visited = []; }
+  if (!visited.includes(path)) {
+    visited.push(path);
+    localStorage.setItem(PAGE_VISIT_KEY, JSON.stringify(visited));
+  }
+  return visited.length;
+}
+
 function injectProgressBar() {
+  const visitedCount = recordPageVisit();
   const flags = ARG.getFlags();
   const found = PROGRESS_FLAGS.filter(f => flags.includes(f)).length;
-  const total = PROGRESS_FLAGS.length;
 
   const el = document.createElement('div');
   el.id = 'arg-progress';
@@ -585,7 +599,7 @@ function injectProgressBar() {
     'user-select:none', 'line-height:1.6',
   ].join(';');
   const blocks = PROGRESS_FLAGS.map(f => flags.includes(f) ? '■' : '□').join('');
-  el.textContent = '閲覧 ' + found + '/' + total + '  ' + blocks;
+  el.textContent = '閲覧 ' + visitedCount + '/' + PAGE_TOTAL + '  ' + blocks;
   document.body.appendChild(el);
 }
 
