@@ -590,7 +590,7 @@ function injectProgressBar() {
   const el = document.createElement('div');
   el.id = 'arg-progress';
   el.style.cssText = [
-    'position:fixed', 'bottom:38px', 'right:14px',
+    'position:fixed', 'bottom:62px', 'right:14px',
     'font-family:monospace', 'font-size:14px',
     'color:#998866', 'letter-spacing:0.08em',
     'pointer-events:none', 'z-index:9000',
