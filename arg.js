@@ -389,7 +389,9 @@ var SEARCH_INDEX = {
                    requires: ['found_blog_unlocked'], failMsg: '不正なアクセスです。先に表層の記録を参照してください。' },
   'renpai':      { dest: 'hidden/backdoor.html',           flag: 'found_renpai',          level: 4,
                    requires: ['found_blog_unlocked'], failMsg: '不正なアクセスです。先に表層の記録を参照してください。' },
-  '廃棄処理室':  { dest: 'hidden/disposal-room-log.html',  flag: 'found_disposal_room',   level: 3 },
+  '廃棄処理室':       { dest: 'hidden/disposal-room-log.html',  flag: 'found_disposal_room',   level: 3 },
+  'BRK-DSP-2026-0103': { dest: 'hidden/disposal-record.html',    flag: 'found_disposal',        level: 3,
+                          requires: ['found_disposal_room'], failMsg: '該当する記録が見つかりません。先に区画情報を確認してください。' },
   '次代の総龍':  { dest: 'hidden/selection-criteria.html', flag: 'found_selection',       level: 3 },
   '龍牌会 端末': { dest: 'hidden/admin-console.html',      flag: 'found_admin_console',   level: 4 },
 };
