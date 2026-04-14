@@ -547,12 +547,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   btn.addEventListener('click', () => executeSearch(input.value));
 
-  // IME変換中（日本語入力確定前）のEnterを無視する
-  let isComposing = false;
-  input.addEventListener('compositionstart', () => { isComposing = true; });
-  input.addEventListener('compositionend',   () => { isComposing = false; });
-  input.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' && !isComposing) executeSearch(input.value);
+  // iOSキーボードの「Go」ボタン → search イベントを発火する
+  input.addEventListener('search', () => executeSearch(input.value));
+
+  // keyup を使う（Android Chromeはkeydownがcompositionendより先に来るため）
+  // e.isComposing で変換中を除外
+  input.addEventListener('keyup', (e) => {
+    if (e.key === 'Enter' && !e.isComposing) executeSearch(input.value);
   });
 
   // hidden/ページ全体のスマホ向け検索バーCSS（各ページのインラインCSSを上書き）
