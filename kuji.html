@@ -497,32 +497,15 @@
 
   <div class="deco-divider">✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦</div>
 
-  <!-- 導入案内 -->
   <div class="info-box">
-    <span class="label">🐉 はじめての方へ</span>
-    蟠龍閣は、会員様のご紹介による<strong style="color:#ffcc44;">完全紹介制</strong>のコンセプトカフェです。<br>
-    このページにたどり着いたあなたは、龍に縁がある方。<br>
-    くじを3回引き、<strong style="color:#ff9966;">大吉</strong>を受け取ったら——そのまま予約へどうぞ。
-  </div>
-
-  <div class="info-box">
-    <span class="label">📜 龍神くじのルール</span>
+    <span class="label">🎁 大吉をお持ちの方へ</span>
+    ご来店の際にスタッフへ画面をご提示ください。<br>
     <ul>
-      <li>1日あたり3回まで挑戦できます</li>
-      <li><strong style="color:#ffcc44;">3回目</strong>は龍神の加護により、必ず大吉が出ます</li>
-      <li>大吉の画面をご来店時にスタッフへご提示ください</li>
-      <li>抽選券は当日ご来店時にのみ有効です</li>
-    </ul>
-  </div>
-
-  <div class="info-box">
-    <span class="label">🎁 大吉で受け取れるもの</span>
-    <ul>
-      <li>キャストとのチェキ1枚（お相手はランダム）</li>
-      <li>龍神ブレンド特製ドリンク 1杯無料</li>
+      <li>キャストとのチェキ1枚</li>
+      <li>龍神ブレンド特製ドリンク 1杯</li>
       <li>龍神グッズ（ランダム）</li>
     </ul>
-    <span style="color:#886655;font-size:10px;">※ 在庫状況によりプレゼント内容が変わる場合があります</span>
+    <span style="color:#886655;font-size:10px;">※ 当日ご来店時のみ有効。在庫状況により変わる場合があります</span>
   </div>
 
   <div class="caution-box">
@@ -656,15 +639,8 @@
       castEl.textContent = '相性キャスト：' + castName;
       msgEl.innerHTML    = fortune.msgs[Math.floor(Math.random() * fortune.msgs.length)];
       if (isLastDraw) {
-        // 3回目保証大吉 → 予約CTA
-        msgEl.innerHTML = '龍神があなたを選びました。<br>これは偶然ではありません。' +
-          '<br><br>' +
-          '<a href="index.html#reserve" style="display:inline-block;margin-top:10px;padding:12px 28px;' +
-          'background:linear-gradient(135deg,#cc0033,#ff6600);color:#fff;font-weight:bold;' +
-          'font-size:14px;letter-spacing:0.15em;border-radius:24px;text-decoration:none;' +
-          'box-shadow:0 4px 16px rgba(200,0,50,0.5);">🐉 BANRYUKAKUで予約する</a>' +
-          '<br><span style="font-size:10px;color:#664433;margin-top:8px;display:block;">' +
-          '※ ご来店時にスタッフへ画面をご提示ください</span>';
+        // 3回目保証大吉 → 予約を促す一言のみ
+        msgEl.innerHTML = '龍神があなたを選びました。<br>蟠龍閣でお待ちしています。';
         spawnConfetti();
       } else if (fortune.prize) {
         msgEl.innerHTML += '<br><span style="margin-top:8px;display:block;color:#ffcc44;font-weight:bold;font-size:13px;">🎉 大吉！スタッフに画面を見せると抽選券がもらえます！</span>';
