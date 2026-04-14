@@ -314,17 +314,8 @@
 
   <div id="final-verdict">
     <div class="fv-label">■ 選定審査 最終判定 FINAL VERDICT</div>
-    <div class="fv-result">適合率：100%</div>
-    <div class="fv-sub">
-      判定：<strong style="color:#ffcc44;">次の龍</strong><br>
-      <br>
-      あなたは全ての基準を充足しました。<br>
-      龍牌会は、あなたを次の総龍として認定します。<br>
-      <br>
-      <span style="color:#5566aa; font-size:12px;">
-        管理端末にアクセスして、引き継ぎを完了してください。
-      </span>
-    </div>
+    <div class="fv-result" id="fv-score">適合率：—</div>
+    <div class="fv-sub" id="fv-detail"></div>
   </div>
 
   <div class="doc-footer">
@@ -365,25 +356,76 @@
   }
 
   function applyEvals() {
-    // DISCOVERY：1件以上発見で sufficient
-    setEval('eval-discovery', hitCount >= 1 ? 'sufficient' : 'developing');
-    // PERSISTENCE：4件以上で sufficient
-    setEval('eval-persistence', hitCount >= 4 ? 'sufficient' : 'observed');
-    // COMPLIANCE：このページを読んでいる = 拒絶なし。常に unmeasured → stable
-    setEval('eval-compliance', hitCount >= 3 ? 'stable' : 'unmeasured');
-    // CURIOSITY：6件以上で excessive（探求が本能を超えている）
-    setEval('eval-curiosity', hitCount >= 6 ? 'excessive' : 'normal');
-    // SELF-PRESERVATION：curiosityがexcessiveなら low
-    setEval('eval-self', hitCount >= 6 ? 'low' : 'stable');
-    // ORIGIN：外部来訪者は常に confirmed
-    setEval('eval-origin', 'confirmed');
-    // RETURN RATE：Lv3以上 = 継続探索確認済み
-    setEval('eval-return', level >= 3 ? 'confirmed' : 'pending');
+    const hasBlog = flags.includes('found_blog_unlocked');
 
-    // システムノート（Lv3以降で表示）
+    // 各基準の合否（true = 充足）
+    const met = {
+      discovery:    hitCount >= 1,
+      persistence:  hitCount >= 4,
+      compliance:   hitCount >= 3,
+      curiosity:    hitCount >= 6,
+      self:         hitCount >= 6,
+      origin:       true,
+      returnRate:   level >= 3,
+      surface:      hasBlog,
+    };
+
+    setEval('eval-discovery', met.discovery   ? 'sufficient' : 'developing');
+    setEval('eval-persistence', met.persistence ? 'sufficient' : 'observed');
+    setEval('eval-compliance', met.compliance  ? 'stable'     : 'unmeasured');
+    setEval('eval-curiosity', met.curiosity   ? 'excessive'  : 'normal');
+    setEval('eval-self',      met.self        ? 'low'        : 'stable');
+    setEval('eval-origin',    'confirmed');
+    setEval('eval-return',    met.returnRate  ? 'confirmed'  : 'pending');
+    setEval('eval-surface',   met.surface     ? 'confirmed'  : 'pending');
+
+    // システムノート（Lv3以降）
     const note = document.getElementById('subject-note');
     if (note && level >= 3) {
       note.textContent = 'Current subject shows no meaningful withdrawal pattern.';
+    }
+
+    // 適合率計算（8項目）
+    const score = Object.values(met).filter(Boolean).length;
+    const pct   = Math.round((score / 8) * 100);
+    applyVerdict(pct, score);
+  }
+
+  function applyVerdict(pct, score) {
+    const scoreEl  = document.getElementById('fv-score');
+    const detailEl = document.getElementById('fv-detail');
+    if (!scoreEl || !detailEl) return;
+
+    scoreEl.textContent = '適合率：' + pct + '%';
+
+    if (pct === 100) {
+      scoreEl.style.color = '#ffcc44';
+      detailEl.innerHTML =
+        '判定：<strong style="color:#ffcc44;">次の龍</strong><br><br>' +
+        'あなたは全ての基準を充足しました。<br>' +
+        '龍牌会は、あなたを次の総龍として認定します。<br><br>' +
+        '<span style="color:#5566aa; font-size:12px;">管理端末にアクセスして、引き継ぎを完了してください。</span>';
+    } else if (pct >= 75) {
+      scoreEl.style.color = '#aabb66';
+      detailEl.innerHTML =
+        '判定：<strong style="color:#aabb66;">審査継続</strong><br><br>' +
+        '基準の大半を充足しています。<br>' +
+        '残存する未充足項目の解消が求められます。<br>' +
+        '<span style="color:#667744; font-size:12px;">' + (8 - score) + '項目が未達成です。調査を継続してください。</span>';
+    } else if (pct >= 50) {
+      scoreEl.style.color = '#aa8844';
+      detailEl.innerHTML =
+        '判定：<strong style="color:#aa8844;">調査不足</strong><br><br>' +
+        '複数の基準が未充足の状態です。<br>' +
+        '引き続き探索を行ってください。<br>' +
+        '<span style="color:#886633; font-size:12px;">' + (8 - score) + '項目が未達成です。</span>';
+    } else {
+      scoreEl.style.color = '#aa5533';
+      detailEl.innerHTML =
+        '判定：<strong style="color:#aa5533;">基準未達</strong><br><br>' +
+        '現時点では選定基準を充足していません。<br>' +
+        '調査の深度が不十分です。<br>' +
+        '<span style="color:#774422; font-size:12px;">引き続き記録を参照してください。</span>';
     }
   }
 
