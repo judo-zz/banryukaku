@@ -797,8 +797,10 @@
     const val = this.value.trim().toUpperCase();
     const err = document.getElementById('terminal-error');
     if (val === 'RENPAI') {
-      ARG.addFlag('menu_terminal');
-      ARG.tryLevel(ARG.getLevel() + 1);
+      if (!ARG.hasFlag('menu_terminal')) {
+        ARG.addFlag('menu_terminal');
+        ARG.tryLevel(ARG.getLevel() + 1);
+      }
       this.disabled = true;
       err.style.color = '#00ff66';
       err.textContent = '> AUTHORIZED. Redirecting...';

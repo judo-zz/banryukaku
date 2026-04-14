@@ -241,13 +241,13 @@
 document.addEventListener('DOMContentLoaded', function () {
   var link = document.getElementById('lore03-link');
   var deny = document.getElementById('lore03-deny');
-  if (!ARG.hasFlag('found_renpai')) {
-    link.addEventListener('click', function (e) {
+  link.addEventListener('click', function (e) {
+    if (!ARG.hasFlag('found_renpai')) {
       e.preventDefault();
       deny.style.display = 'inline';
       setTimeout(function () { deny.style.display = 'none'; }, 2500);
-    });
-  }
+    }
+  });
 });
 </script>
 </body>
