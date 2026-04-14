@@ -196,7 +196,11 @@ var ARG = (() => {
     }
     ensureUI();
     const ind = document.getElementById('arg-level-indicator');
-    if (ind) ind.textContent = '◆'.repeat(level) + '◇'.repeat(5 - level);
+    if (ind) {
+      let visited = '';
+      try { visited = '  ' + (JSON.parse(localStorage.getItem(PAGE_VISIT_KEY) || '[]')).length + '/' + PAGE_TOTAL; } catch(e) {}
+      ind.textContent = '◆'.repeat(level) + '◇'.repeat(5 - level) + visited;
+    }
   }
 
   function updateFavicon(level) {
@@ -586,18 +590,11 @@ function recordPageVisit() {
 
 function injectProgressBar() {
   const visitedCount = recordPageVisit();
-
-  const el = document.createElement('div');
-  el.id = 'arg-progress';
-  el.style.cssText = [
-    'position:fixed', 'bottom:62px', 'right:14px',
-    'font-family:monospace', 'font-size:14px',
-    'color:#998866', 'letter-spacing:0.08em',
-    'pointer-events:none', 'z-index:9000',
-    'user-select:none', 'text-align:right',
-  ].join(';');
-  el.textContent = '閲覧 ' + visitedCount + '/' + PAGE_TOTAL;
-  document.body.appendChild(el);
+  const level = ARG.getLevel();
+  const ind = document.getElementById('arg-level-indicator');
+  if (ind) {
+    ind.textContent = '◆'.repeat(level) + '◇'.repeat(5 - level) + '  ' + visitedCount + '/' + PAGE_TOTAL;
+  }
 }
 
 // ─── Search bar wiring ─────────────────────────────────────────────────────
