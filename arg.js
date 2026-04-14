@@ -650,6 +650,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Enter' && !e.isComposing) executeSearch(input.value);
   });
 
+  // bfcache対策: 戻るボタンでページが復元されたとき disabled を解除する
+  window.addEventListener('pageshow', (e) => {
+    if (e.persisted) {
+      input.disabled = false;
+      btn.disabled = false;
+    }
+  });
+
   // hidden/ページ全体のスマホ向け検索バーCSS（各ページのインラインCSSを上書き）
   if (!document.getElementById('arg-mobile-search-css')) {
     const s = document.createElement('style');
