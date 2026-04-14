@@ -586,20 +586,17 @@ function recordPageVisit() {
 
 function injectProgressBar() {
   const visitedCount = recordPageVisit();
-  const flags = ARG.getFlags();
-  const found = PROGRESS_FLAGS.filter(f => flags.includes(f)).length;
 
   const el = document.createElement('div');
   el.id = 'arg-progress';
   el.style.cssText = [
-    'position:fixed', 'bottom:10px', 'left:10px',
+    'position:fixed', 'bottom:38px', 'right:14px',
     'font-family:monospace', 'font-size:10px',
-    'color:#444433', 'letter-spacing:0.05em',
+    'color:#665544', 'letter-spacing:0.08em',
     'pointer-events:none', 'z-index:9000',
-    'user-select:none', 'line-height:1.6',
+    'user-select:none', 'text-align:right',
   ].join(';');
-  const blocks = PROGRESS_FLAGS.map(f => flags.includes(f) ? '■' : '□').join('');
-  el.textContent = '閲覧 ' + visitedCount + '/' + PAGE_TOTAL + '  ' + blocks;
+  el.textContent = '閲覧 ' + visitedCount + '/' + PAGE_TOTAL;
   document.body.appendChild(el);
 }
 
