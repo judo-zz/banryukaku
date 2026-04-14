@@ -373,6 +373,51 @@ function resolveSearchPath(dest) {
   return '../'.repeat(depth) + cleanDest;
 }
 
+var YUME_MSG = {
+  'found_yume_notice':   '……見つけてくれたんだ',
+  'found_yume_draft':    'まだ残ってた',
+  'found_yume_finallog': '最後まで読んでくれて、ありがとう',
+  'found_renpai':        'ここまで来たんだね'
+};
+
+function showUnsealedEffect(flag, callback) {
+  // glitch: 一瞬色反転
+  document.body.style.filter = 'invert(1)';
+  setTimeout(function () {
+    document.body.style.filter = 'none';
+
+    // RECORD UNSEALED オーバーレイ
+    var ov = document.createElement('div');
+    ov.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;' +
+      'background:rgba(0,0,0,0.92);display:flex;align-items:center;justify-content:center;' +
+      'flex-direction:column;z-index:99998;opacity:0;transition:opacity 0.3s;pointer-events:none;';
+    ov.innerHTML = '<div style="color:#cc9944;font-family:monospace;font-size:15px;' +
+      'letter-spacing:0.35em;text-shadow:0 0 8px rgba(200,160,60,0.5);">RECORD UNSEALED</div>';
+    document.body.appendChild(ov);
+    setTimeout(function () { ov.style.opacity = '1'; }, 30);
+
+    var yumeText = YUME_MSG[flag];
+    var totalDelay = yumeText ? 900 : 900;
+
+    setTimeout(function () {
+      if (yumeText) {
+        var ym = document.createElement('div');
+        ym.style.cssText = 'color:#998866;font-family:monospace;font-size:12px;' +
+          'margin-top:16px;letter-spacing:0.15em;opacity:0;transition:opacity 0.4s;';
+        ym.textContent = 'ゆめ：「' + yumeText + '」';
+        ov.appendChild(ym);
+        setTimeout(function () { ym.style.opacity = '1'; }, 30);
+      }
+    }, totalDelay);
+
+    var closeDelay = yumeText ? 1900 : 1200;
+    setTimeout(function () {
+      ov.style.opacity = '0';
+      setTimeout(function () { ov.remove(); callback(); }, 300);
+    }, closeDelay);
+  }, 150);
+}
+
 function executeSearch(query) {
   const q = query.trim();
   if (!q) return;
@@ -450,8 +495,19 @@ function executeSearch(query) {
       }
     }
 
-    // レベルアップ時はオーバーレイが見える時間（1500ms）を確保してから遷移
-    const delay = didLevelUp ? 1500 : (okMsg ? 700 : 0);
+    // 新規発見時は RECORD UNSEALED 演出チェーンで遷移
+    if (isNewFind) {
+      const redirectDelay = didLevelUp ? 1500 : 0;
+      setTimeout(function () {
+        showUnsealedEffect(flag, function () {
+          window.location.href = resolveSearchPath(dest);
+        });
+      }, redirectDelay);
+      return;
+    }
+
+    // 既知フラグ（再訪）は即遷移 or okMsg待ち
+    const delay = okMsg ? 700 : 0;
     if (delay > 0) {
       setTimeout(() => { window.location.href = resolveSearchPath(dest); }, delay);
     } else {
