@@ -227,18 +227,63 @@
 
   <div class="section-label">■ 組織図 ORGANIZATION CHART</div>
 
-  <div class="chart"><span class="chart-top">総龍（そうりゅう）</span>　<span class="chart-vacant">[ 現在空位 — 後継選定中 ]</span>
-    │
-    └── <span class="chart-mid">龍牌係長 黒瀬</span>　（代理統括）
-          │
-          ├── <span class="chart-branch">選定部門</span>　（候補評価・審査・監視）
-          │         └── <span class="chart-leaf">担当者 3名（匿名）</span>
-          │
-          ├── <span class="chart-branch">廃棄部門</span>　（処置・記録管理・施設運営）
-          │         └── <span class="chart-warn">施設: ████（地下）</span>
-          │
-          └── <span class="chart-branch">フロント部門</span>　（蟠龍閣 表向き運営）
-                    └── <span class="chart-leaf">キャスト（選定候補プール）</span></div>
+  <div class="chart" style="padding:16px 12px;">
+    <svg viewBox="0 0 680 310" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:680px;display:block;margin:0 auto;font-family:monospace;">
+
+      <!-- 総龍（空位） -->
+      <rect x="230" y="12" width="220" height="50" fill="#0a0003" stroke="#cc6622" stroke-width="1.5" rx="1"/>
+      <text x="340" y="33" text-anchor="middle" font-size="13" fill="#cc6622" font-weight="bold">総龍（そうりゅう）</text>
+      <text x="340" y="51" text-anchor="middle" font-size="9" fill="#555544">[ 現在空位 — 後継選定中 ]</text>
+
+      <!-- 総龍 → 黒瀬 -->
+      <line x1="340" y1="62" x2="340" y2="92" stroke="#554422" stroke-width="1"/>
+
+      <!-- 龍牌係長 黒瀬 -->
+      <rect x="220" y="92" width="240" height="50" fill="#0a0003" stroke="#aa8844" stroke-width="1.5" rx="1"/>
+      <text x="340" y="113" text-anchor="middle" font-size="13" fill="#aa8844" font-weight="bold">龍牌係長 黒瀬</text>
+      <text x="340" y="131" text-anchor="middle" font-size="9" fill="#886633">（代理統括）</text>
+
+      <!-- 黒瀬 → 3部門 -->
+      <line x1="340" y1="142" x2="340" y2="162" stroke="#554422" stroke-width="1"/>
+      <line x1="105" y1="162" x2="575" y2="162" stroke="#554422" stroke-width="1"/>
+      <line x1="105" y1="162" x2="105" y2="182" stroke="#554422" stroke-width="1"/>
+      <line x1="340" y1="162" x2="340" y2="182" stroke="#554422" stroke-width="1"/>
+      <line x1="575" y1="162" x2="575" y2="182" stroke="#554422" stroke-width="1"/>
+
+      <!-- 選定部門 -->
+      <rect x="15" y="182" width="180" height="50" fill="#060003" stroke="#886633" stroke-width="1" rx="1"/>
+      <text x="105" y="203" text-anchor="middle" font-size="12" fill="#886633" font-weight="bold">選定部門</text>
+      <text x="105" y="221" text-anchor="middle" font-size="8" fill="#665533">候補評価・審査・監視</text>
+
+      <!-- 廃棄部門 -->
+      <rect x="250" y="182" width="180" height="50" fill="#0a0000" stroke="#cc3333" stroke-width="1" rx="1"/>
+      <text x="340" y="203" text-anchor="middle" font-size="12" fill="#cc3333" font-weight="bold">廃棄部門</text>
+      <text x="340" y="221" text-anchor="middle" font-size="8" fill="#884433">処置・記録管理・施設運営</text>
+
+      <!-- フロント部門 -->
+      <rect x="485" y="182" width="180" height="50" fill="#060003" stroke="#886633" stroke-width="1" rx="1"/>
+      <text x="575" y="203" text-anchor="middle" font-size="12" fill="#886633" font-weight="bold">フロント部門</text>
+      <text x="575" y="221" text-anchor="middle" font-size="8" fill="#665533">蟠龍閣 表向き運営</text>
+
+      <!-- 部門 → リーフ -->
+      <line x1="105" y1="232" x2="105" y2="254" stroke="#443322" stroke-width="1"/>
+      <line x1="340" y1="232" x2="340" y2="254" stroke="#443322" stroke-width="1"/>
+      <line x1="575" y1="232" x2="575" y2="254" stroke="#443322" stroke-width="1"/>
+
+      <!-- 担当者3名 -->
+      <rect x="15" y="254" width="180" height="34" fill="#040002" stroke="#554433" stroke-width="1" rx="1"/>
+      <text x="105" y="276" text-anchor="middle" font-size="9" fill="#665533">担当者 3名（匿名）</text>
+
+      <!-- 施設████ -->
+      <rect x="250" y="254" width="180" height="34" fill="#080000" stroke="#661111" stroke-width="1" rx="1"/>
+      <text x="340" y="276" text-anchor="middle" font-size="9" fill="#774433">施設: ████（地下）</text>
+
+      <!-- キャスト -->
+      <rect x="485" y="254" width="180" height="34" fill="#040002" stroke="#554433" stroke-width="1" rx="1"/>
+      <text x="575" y="276" text-anchor="middle" font-size="9" fill="#665533">キャスト（選定候補プール）</text>
+
+    </svg>
+  </div>
 
   <div class="section-label">■ 設立目的 PURPOSE</div>
 

@@ -132,7 +132,7 @@ var ARG = (() => {
     s.id = 'arg-ui-css';
     s.textContent =
       '#arg-level-indicator{' +
-        'position:fixed;bottom:14px;right:14px;z-index:9000;' +
+        'position:fixed;bottom:60px;right:14px;z-index:9000;' +
         'background:rgba(0,0,0,0.70);border:1px solid rgba(180,140,60,0.35);' +
         'color:#c9a84c;font-family:monospace;font-size:12px;' +
         'letter-spacing:0.18em;padding:5px 10px;pointer-events:none;' +

@@ -111,9 +111,12 @@ BANRYUKAKU
 | 検索ワード | 到達ページ | 取得フラグ | ヒント元 |
 |---|---|---|---|
 | `MAP-RY-023` | `hidden/basement-map.html` | `found_basement_map` | yume-draft「023があった」＋access.htmlの龍マークポップアップ |
-| `廃棄` | `hidden/disposal-record.html` | `found_disposal` | yume-rireki の最終判定「廃棄」 |
-| `選定` | `hidden/selection-criteria.html` | `found_selection` | backdoor.html の「選定基準がある。読め。」 |
+| `廃棄処理室` | `hidden/disposal-room-log.html` | `found_disposal_room` | basement-map の「廃棄処理室」区画名 |
+| `BRK-DSP-2026-0103` | `hidden/disposal-record.html` | `found_disposal` | disposal-room-log の処理区分列（`found_disposal_room`前提） |
+| `次代の総龍` | `hidden/selection-criteria.html` | `found_selection` | ronpaikai-chart の「組織の目的：次代の総龍を発見・育成」 |
 | `龍牌会の端末` または `管理端末` | `hidden/admin-console.html` | `found_admin_console` | basement-map の「管理端末室」区画 |
+
+※ Lv3はこの5ワード中4フラグ（`found_basement_map` / `found_disposal` / `found_selection` / `found_admin_console`）で到達。`found_disposal_room`は中間フラグ。
 
 Lv3到達後: Lv上昇オーバーレイ（1500ms）＋ Lv3成功メッセージ（700ms）→ 遷移。  
 Lv3以降はLv3+演出（`SEARCH_OK_LV3` ランダムメッセージ / 右下モニター行）が有効になる。
@@ -176,7 +179,7 @@ Lv3以降、各ブログのPASSウィジェットが金色にglow強調される
 **操作手順:**
 1. `hidden/admin-console.html` を開く
 2. 引き継ぎコード入力欄に `RENPAI` を入力
-3. 「◆ 蟠龍閣は、あなたのものになりました ◆」が表示
+3. 「[SYS] TRANSFER COMPLETE — 総龍継承 確認済み」が表示
 4. 「システム引き継ぎを実行する」ボタンをクリック
 5. `hidden/hack-sequence.html` → `hidden/hack-complete.html` → `hidden/final.html`
 
@@ -199,9 +202,10 @@ Lv3以降、各ブログのPASSウィジェットが金色にglow強調される
 | `found_kurose` | `黒瀬` 検索 | — |
 | `found_yume_finallog` | `失敗作` 検索 | — |
 | `found_ronpaikai` | `龍牌会` 検索（3フラグ前提） | Lv2 |
-| `found_basement_map` | `MAP-RY-023` 検索 | Lv3（4つ目到達時） |
-| `found_disposal` | `廃棄` 検索 | 同上 |
-| `found_selection` | `選定` 検索 | 同上 |
+| `found_basement_map` | `MAP-RY-023` 検索 | Lv3（4フラグ目到達時） |
+| `found_disposal_room` | `廃棄処理室` 検索 | —（中間フラグ） |
+| `found_disposal` | `BRK-DSP-2026-0103` 検索（`found_disposal_room`前提） | 同上 |
+| `found_selection` | `次代の総龍` 検索 | 同上 |
 | `found_admin_console` | `龍牌会の端末`/`管理端末` 検索 | 同上 |
 | `found_blog_unlocked` | ブログPASS `LEMON` 入力 | — |
 | `found_renpai` | `RENPAI` 検索（`found_blog_unlocked` 前提） | Lv4 |
@@ -220,8 +224,9 @@ Lv3以降、各ブログのPASSウィジェットが金色にglow強調される
 | `失敗作` | yume-finallog.html | |
 | `龍牌会` | ronpaikai-chart.html | 3フラグ前提 |
 | `MAP-RY-023` | basement-map.html | |
-| `廃棄` | disposal-record.html | |
-| `選定` | selection-criteria.html | |
+| `廃棄処理室` | disposal-room-log.html | |
+| `BRK-DSP-2026-0103` | disposal-record.html | `found_disposal_room` 前提 |
+| `次代の総龍` | selection-criteria.html | |
 | `龍牌会の端末` / `管理端末` / `龍牌会 端末` | admin-console.html | |
 | `RENPAI` / `renpai` | backdoor.html | `found_blog_unlocked` 前提 |
 
