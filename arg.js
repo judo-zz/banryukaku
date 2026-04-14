@@ -346,6 +346,9 @@ var SEARCH_INDEX = {
   'YM-2023-04':  { dest: 'hidden/yume-rireki.html',        flag: 'found_yume_rireki',     level: 2 },
   '黒瀬':        { dest: 'hidden/kurose-shiji.html',       flag: 'found_kurose',          level: 2 },
   '失敗作':      { dest: 'hidden/yume-finallog.html',      flag: 'found_yume_finallog',   level: 2 },
+  '選定審査':    { dest: 'hidden/selection-review.html',   flag: 'found_selection_review', level: 2,
+                   requires: ['found_yume_rireki', 'found_kurose'],
+                   failMsg: '審査対象の記録が未参照です。関係者の情報を先に確認してください。' },
   '龍牌会':      { dest: 'hidden/ronpaikai-chart.html',    flag: 'found_ronpaikai',       level: 2,
                    requires: ['found_yume_rireki', 'found_kurose', 'found_yume_finallog'],
                    failMsg: 'アクセス拒否。調査が不足しています。' },
@@ -377,6 +380,7 @@ var YUME_MSG = {
   'found_yume_notice':   '……見つけてくれたんだ',
   'found_yume_draft':    'まだ残ってた',
   'found_yume_finallog': '最後まで読んでくれて、ありがとう',
+  'found_selection_review': '……あの夜、本当はあなたに来てほしかった',
   'found_renpai':        'ここまで来たんだね'
 };
 
@@ -531,6 +535,7 @@ const PROGRESS_FLAGS = [
   'found_kurose',
   'found_yume_rireki',
   'found_yume_finallog',
+  'found_selection_review',
   'found_ronpaikai',
   'found_basement_map',
   'found_admin_console',

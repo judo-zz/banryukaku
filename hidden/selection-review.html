@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ja" data-level="0">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>SRL-2025-YM-2023-04 選定審査ログ | BANRYUKAKU SYSTEM</title>
+  <style>
+    body {
+      background-color: #000508;
+      color: #7799aa;
+      font-family: monospace;
+      font-size: 13px;
+      line-height: 1.8;
+      margin: 0;
+      padding: 0;
+    }
+
+    a { color: #336688; text-decoration: underline; }
+    a:hover { color: #66aacc; }
+
+    #hd-topbar {
+      background-color: #000a10;
+      color: #224455;
+      font-size: 11px;
+      padding: 5px 12px;
+      text-align: center;
+      border-bottom: 1px solid #112233;
+      letter-spacing: 0.08em;
+    }
+
+    #hd-search {
+      background-color: #000608;
+      border-bottom: 1px solid #0a1a22;
+      padding: 7px 12px;
+      text-align: center;
+    }
+
+    #hd-search input[type="search"] {
+      width: 240px;
+      padding: 4px 7px;
+      font-size: 12px;
+      background: #000508;
+      border: 1px solid #224455;
+      color: #7799aa;
+      font-family: monospace;
+      outline: none;
+    }
+    #hd-search input[type="search"]::placeholder { color: #224444; }
+
+    #hd-search button {
+      padding: 4px 12px;
+      background: #000e18;
+      color: #7799aa;
+      font-size: 12px;
+      font-family: monospace;
+      border: 1px solid #335566;
+      cursor: pointer;
+    }
+
+    #search-error {
+      color: #cc4444;
+      font-size: 11px;
+      margin-top: 4px;
+      min-height: 1.2em;
+    }
+
+    #hd-breadcrumb {
+      padding: 6px 16px;
+      font-size: 11px;
+      color: #224455;
+      border-bottom: 1px dotted #112233;
+    }
+
+    #wrapper {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 20px 16px 50px;
+      position: relative;
+    }
+
+    /* ===== 文書ヘッダ ===== */
+    .doc-stamp {
+      position: absolute;
+      top: 22px;
+      right: 16px;
+      border: 1px solid #1a3344;
+      padding: 5px 10px;
+      font-size: 10px;
+      color: #1a3344;
+      letter-spacing: 0.1em;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .doc-id {
+      font-size: 10px;
+      color: #336688;
+      letter-spacing: 0.2em;
+      margin-bottom: 4px;
+    }
+
+    .doc-title {
+      font-size: 16px;
+      font-weight: bold;
+      color: #aabbcc;
+      letter-spacing: 0.12em;
+      margin-bottom: 4px;
+    }
+
+    .doc-meta {
+      font-size: 11px;
+      color: #335566;
+      line-height: 1.7;
+      margin-bottom: 20px;
+      border-bottom: 1px dotted #1a3344;
+      padding-bottom: 12px;
+    }
+
+    /* ===== ログエントリ ===== */
+    .log-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      margin: 12px 0;
+    }
+
+    .log-table tr {
+      border-bottom: 1px dotted #112233;
+    }
+
+    .log-ts {
+      color: #335566;
+      white-space: nowrap;
+      padding: 6px 16px 6px 0;
+      vertical-align: top;
+      font-size: 11px;
+      min-width: 150px;
+    }
+
+    .log-content {
+      color: #7799aa;
+      padding: 6px 0;
+      vertical-align: top;
+      line-height: 1.7;
+    }
+
+    .log-content .key { color: #99bbcc; }
+    .log-content .val-neutral { color: #557788; }
+    .log-content .val-warn { color: #aa7755; }
+    .log-content .val-danger { color: #995544; }
+    .log-content .val-ok { color: #447766; }
+    .log-content .val-system { color: #334455; font-size: 11px; }
+
+    .log-row-warn { background-color: rgba(100,40,20,0.08); }
+    .log-row-critical { background-color: rgba(120,20,20,0.12); }
+    .log-row-current { background-color: rgba(10,40,60,0.15); }
+
+    .redacted {
+      background-color: #0a1520;
+      color: #0a1520;
+      padding: 0 2px;
+    }
+    .redacted:hover { color: #335566; }
+
+    /* ===== セクション区切り ===== */
+    .log-section {
+      margin: 20px 0 4px;
+      font-size: 10px;
+      color: #224433;
+      letter-spacing: 0.2em;
+      border-top: 1px solid #112233;
+      padding-top: 8px;
+    }
+
+    /* ===== 現在進行中 ===== */
+    #current-row {
+      color: #5588aa;
+    }
+    #current-row .log-ts { color: #336688; }
+
+    /* ===== ブリンクカーソル ===== */
+    #blink-cursor {
+      display: inline-block;
+      width: 7px;
+      height: 12px;
+      background-color: #5588aa;
+      vertical-align: middle;
+      margin-left: 3px;
+    }
+
+    /* ===== ヒントボックス ===== */
+    .hint-box {
+      border: 1px dashed #1a3344;
+      padding: 10px 14px;
+      margin-top: 28px;
+      font-size: 11px;
+      color: #335566;
+      line-height: 1.9;
+    }
+
+    html, body { overflow-x: hidden; }
+  </style>
+</head>
+<body>
+
+<div id="hd-topbar">
+  ▌ BANRYUKAKU SYSTEM LOG ▐　選定審査ログ — SELECTION REVIEW　▌ AUTO-GENERATED ▐
+</div>
+
+<div id="hd-search">
+  <input type="search" id="search-input" placeholder="キーワード検索...">
+  <button id="search-btn" type="button">検索</button>
+  <br><span id="search-error"></span>
+</div>
+
+<div id="hd-breadcrumb">
+  <a href="../index.html">← 蟠龍閣トップ</a>
+  &nbsp;/&nbsp; 内部記録 &nbsp;/&nbsp; SRL-2025-YM-2023-04
+</div>
+
+<div id="wrapper">
+
+  <div class="doc-stamp">
+    AUTO-GENERATED<br>
+    CLASSIFIED
+  </div>
+
+  <div class="doc-id">SELECTION REVIEW LOG — SRL-2025-YM-2023-04</div>
+  <div class="doc-title">選定審査ログ</div>
+  <div class="doc-meta">
+    文書種別: 自動生成ログ / SYSTEM GENERATED<br>
+    対象ID: YM-2023-04<br>
+    生成日時: 2026.01.04 03:00<br>
+    ステータス: <span style="color:#446655;">封印解除済（アクセス記録参照）</span>
+  </div>
+
+  <!-- Phase 1: 候補登録〜監視 -->
+  <div class="log-section">▍ PHASE 01 — 候補登録 / REGISTRATION</div>
+  <table class="log-table">
+    <tbody>
+      <tr>
+        <td class="log-ts">2025.06.14 09:03</td>
+        <td class="log-content">
+          候補登録 <span class="key">YM-2023-04</span><br>
+          <span class="val-neutral">接触状況: 打診中 / 接触担当: <span class="redacted">████</span></span>
+        </td>
+      </tr>
+      <tr>
+        <td class="log-ts">2025.06.14 09:05</td>
+        <td class="log-content">
+          <span class="val-system">審査フロー開始 / 初期ORIGIN推定値: 算出中</span>
+        </td>
+      </tr>
+      <tr>
+        <td class="log-ts">2025.06.20 18:44</td>
+        <td class="log-content">
+          <span class="val-warn">初期評価 — 基準 01（DISCOVERY）: 0%</span><br>
+          <span class="val-system">備考: 外部探索の記録なし。内部接触による候補のため減点対象。</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Phase 2: 異常検出 -->
+  <div class="log-section">▍ PHASE 02 — 異常検出 / ANOMALY DETECTED</div>
+  <table class="log-table">
+    <tbody>
+      <tr class="log-row-warn">
+        <td class="log-ts">2025.09.17 02:31</td>
+        <td class="log-content">
+          <span class="val-warn">[WARN] 内部アクセス検出</span><br>
+          アクセス先: <span class="key">SELECTION_CRITERIA_DRAFT</span><br>
+          <span class="val-system">※ 選定基準の草稿版（現行公開版との差分あり）</span>
+        </td>
+      </tr>
+      <tr class="log-row-warn">
+        <td class="log-ts">2025.09.17 02:33</td>
+        <td class="log-content">
+          <span class="val-system">アクセスログを審査担当者（K）へ転送</span>
+        </td>
+      </tr>
+      <tr class="log-row-warn">
+        <td class="log-ts">2025.09.17 02:34</td>
+        <td class="log-content">
+          候補ステータス → <span class="val-warn">要監視</span><br>
+          <span class="val-system">担当: K / 理由: 内部規定外アクセス</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Phase 3: 採用〜自動評価 -->
+  <div class="log-section">▍ PHASE 03 — 採用処理 / ONBOARDING</div>
+  <table class="log-table">
+    <tbody>
+      <tr>
+        <td class="log-ts">2025.11.01 18:00</td>
+        <td class="log-content">
+          採用処理完了 / 正式在籍開始<br>
+          <span class="val-system">試用期間: 3ヶ月 / 担当: K</span>
+        </td>
+      </tr>
+      <tr>
+        <td class="log-ts">2025.12.01 00:00</td>
+        <td class="log-content">
+          <span class="val-system">自動評価実行 / ORIGIN適合率 算出中...</span>
+        </td>
+      </tr>
+      <tr class="log-row-warn">
+        <td class="log-ts">2025.12.01 00:00</td>
+        <td class="log-content">
+          <span class="val-warn">ORIGIN適合率: <strong>計算不能</strong></span><br>
+          <span class="val-system">理由: 候補が自ら選定基準を参照済みのため、自動評価バイアス補正が適用不能<br>
+          → 手動審査へ移行</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Phase 4: 手動審査 -->
+  <div class="log-section">▍ PHASE 04 — 手動審査 / MANUAL REVIEW</div>
+  <table class="log-table">
+    <tbody>
+      <tr>
+        <td class="log-ts">2025.12.15 14:00</td>
+        <td class="log-content">
+          手動審査完了<br>
+          担当: <span class="key">K</span>（黒瀬係長）/ 立会: <span class="redacted">████ ████</span>
+        </td>
+      </tr>
+      <tr>
+        <td class="log-ts">2025.12.15 14:02</td>
+        <td class="log-content">
+          <span class="val-danger">ORIGIN適合率: <strong>38%</strong></span><br>
+          <span class="val-danger">判定: 基準未達 / 内部採用枠は先代預言の要件を満たさない</span>
+        </td>
+      </tr>
+      <tr>
+        <td class="log-ts">2025.12.15 14:02</td>
+        <td class="log-content">
+          <span class="val-system">廃棄処理フローを開始</span><br>
+          <span class="val-system">通知ステータス: <span class="redacted">████████████</span></span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Phase 5: 廃棄 -->
+  <div class="log-section">▍ PHASE 05 — 廃棄処理 / DISPOSAL</div>
+  <table class="log-table">
+    <tbody>
+      <tr class="log-row-critical">
+        <td class="log-ts">2026.01.03 19:12</td>
+        <td class="log-content">
+          廃棄処理: <span class="val-danger"><strong>完了</strong></span><br>
+          <span class="val-system">MAP-RY-023 廃棄処理室 / 担当: K</span>
+        </td>
+      </tr>
+      <tr>
+        <td class="log-ts">2026.01.04 00:00</td>
+        <td class="log-content">
+          在籍ステータス: <span class="val-danger">廃棄済</span><br>
+          <span class="val-system">キャストページ: 「長期休養中」表示へ変更</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Phase 6: 未解決 -->
+  <div class="log-section">▍ PHASE 06 — 未解決事項 / UNRESOLVED</div>
+  <table class="log-table">
+    <tbody>
+      <tr class="log-row-critical" id="unknown-access-row">
+        <td class="log-ts">2026.01.04 03:12</td>
+        <td class="log-content">
+          <span class="val-danger">[未解決] 削除済みID (YM-2023-04) によるアクセス検出</span><br>
+          アクセス先: <span class="redacted">██████████████████████</span><br>
+          担当: K / ステータス: <span class="val-warn">調査中</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 現在 -->
+  <div class="log-section">▍ CURRENT — 現在進行中</div>
+  <table class="log-table">
+    <tbody>
+      <tr class="log-row-current" id="current-row">
+        <td class="log-ts" style="color:#336688;">[現在]</td>
+        <td class="log-content" style="color:#5588aa;">
+          次期候補 監視ログ: <span style="color:#446688;">アクティブ</span><br>
+          <span id="current-status">アクセス元: 外部 / ステータス: 審査中</span>
+          <span id="blink-cursor"></span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ヒント -->
+  <div class="hint-box">
+    ※ ログ中「SELECTION_CRITERIA_DRAFT」は現行基準書の草稿版です。<br>
+    　現在公開されている選定基準との差分については別途管理されています。<br>
+    　キーワード：「<span style="color:#446688;">選定</span>」
+  </div>
+
+</div>
+
+<script src="../arg.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var level = ARG.getLevel();
+
+  // 現在進行中の行をLvに応じて変化
+  var currentStatus = document.getElementById('current-status');
+  if (currentStatus) {
+    if (level >= 3) {
+      currentStatus.innerHTML =
+        'アクセス元: 外部 / ORIGIN: <span style="color:#44aa77;">確認済</span>' +
+        ' / 評価: <span style="color:#aabb66;">進行中</span>';
+    } else {
+      currentStatus.innerHTML =
+        'アクセス元: 外部 / ステータス: <span style="color:#4477aa;">審査中</span>';
+    }
+  }
+
+  // ブリンクカーソル
+  var blink = true;
+  setInterval(function () {
+    var cursor = document.getElementById('blink-cursor');
+    if (cursor) {
+      cursor.style.opacity = blink ? '1' : '0';
+      blink = !blink;
+    }
+  }, 500);
+});
+</script>
+</body>
+</html>
