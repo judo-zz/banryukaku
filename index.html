@@ -707,24 +707,6 @@
       </p>
     </div>
 
-    <!-- 龍神くじ -->
-    <div id="dragon-fortune" style="text-align:center;padding:28px 16px 20px;border-top:1px dotted #3a1a00;border-bottom:1px dotted #3a1a00;margin:8px 0;background:rgba(20,8,0,0.4);">
-      <div id="dragon-press-area" style="display:inline-block;cursor:pointer;-webkit-user-select:none;user-select:none;">
-        <div id="dragon-img" style="font-size:56px;line-height:1;transition:filter 0.2s,text-shadow 0.2s;display:block;">🐉</div>
-        <div style="font-size:11px;color:#cc9944;margin-top:8px;letter-spacing:0.18em;font-family:monospace;">龍神くじ　長押しで開運</div>
-      </div>
-      <!-- fortune popup -->
-      <div id="fortune-popup" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.88);z-index:9999;align-items:center;justify-content:center;flex-direction:column;">
-        <div style="background:#120800;border:1px solid #664422;padding:28px 32px;max-width:300px;text-align:center;font-family:monospace;">
-          <div style="font-size:11px;color:#554433;letter-spacing:0.2em;margin-bottom:12px;">龍神くじ RESULT</div>
-          <div id="fortune-kekka" style="font-size:28px;color:#cc9944;font-weight:bold;letter-spacing:0.2em;margin-bottom:10px;"></div>
-          <div id="fortune-tea" style="font-size:12px;color:#998866;margin-bottom:6px;"></div>
-          <div id="fortune-cast" style="font-size:12px;color:#998866;margin-bottom:18px;"></div>
-          <div style="font-size:10px;color:#443322;letter-spacing:0.1em;">— タップして閉じる —</div>
-        </div>
-      </div>
-    </div>
-
     <!-- NEWS -->
     <div class="section-box" id="news">
       <div class="section-title">
@@ -735,7 +717,7 @@
           <tr>
             <td class="news-date">2026.04.18</td>
             <td class="news-cat">EVENT</td>
-            <td class="news-text">週末限定「チャイナくじ」開催予定！当たりで特典券プレゼント</td>
+            <td class="news-text">HP限定「龍神くじ」開催！あたりで抽選券プレゼント🐉 <a href="kuji.html" style="color:#ff9966;text-decoration:underline;font-size:11px;">▶ くじを引く</a></td>
           </tr>
           <tr>
             <td class="news-date">2026.04.15</td>
@@ -1046,90 +1028,6 @@
     });
   </script>
 
-<script>
-(function () {
-  var FORTUNES = [
-    { label: '大吉', tea: '本日のお茶：龍井茶', prob: 20 },
-    { label: '吉',   tea: '本日のお茶：ジャスミン茶', prob: 40 },
-    { label: '小吉', tea: '本日のお茶：烏龍茶', prob: 30 },
-    { label: '末吉', tea: '本日のお茶：宵闇茶', prob: 10 }
-  ];
-  var CAST = ['みじゅ', 'ちゃき', 'なの', 'いずも'];
-  var GLITCH = ['見つけた', 'まだ見ている', '外から来る者'];
-
-  function pickFortune() {
-    var r = Math.random() * 100, cum = 0;
-    for (var i = 0; i < FORTUNES.length; i++) {
-      cum += FORTUNES[i].prob;
-      if (r < cum) return FORTUNES[i];
-    }
-    return FORTUNES[1];
-  }
-
-  var holdTimer = null;
-  var pressArea = document.getElementById('dragon-press-area');
-  var dragonImg = document.getElementById('dragon-img');
-  var popup     = document.getElementById('fortune-popup');
-
-  function startGlow() {
-    dragonImg.style.textShadow = '0 0 20px gold, 0 0 40px orange';
-    dragonImg.style.filter = 'drop-shadow(0 0 8px gold)';
-  }
-  function stopGlow() {
-    dragonImg.style.textShadow = '';
-    dragonImg.style.filter = '';
-  }
-
-  function showResult() {
-    stopGlow();
-    var count = parseInt(sessionStorage.getItem('dragonCount') || '0') + 1;
-    sessionStorage.setItem('dragonCount', count);
-
-    var glitch = count >= 4 && Math.random() < 0.05;
-    var kekka, tea, cast;
-
-    if (glitch) {
-      kekka = '本日の運勢：' + GLITCH[Math.floor(Math.random() * GLITCH.length)];
-      tea   = '';
-      cast  = '';
-    } else {
-      var f = pickFortune();
-      kekka = f.label;
-      tea   = f.tea;
-      cast  = '相性キャスト：' + CAST[Math.floor(Math.random() * CAST.length)];
-    }
-
-    document.getElementById('fortune-kekka').textContent = kekka;
-    document.getElementById('fortune-tea').textContent   = tea;
-    document.getElementById('fortune-cast').textContent  = cast;
-    popup.style.display = 'flex';
-  }
-
-  function startHold(e) {
-    e.preventDefault();
-    startGlow();
-    holdTimer = setTimeout(showResult, 1500);
-  }
-
-  function cancelHold() {
-    clearTimeout(holdTimer);
-    holdTimer = null;
-    stopGlow();
-  }
-
-  pressArea.addEventListener('mousedown',  startHold);
-  pressArea.addEventListener('touchstart', startHold, { passive: false });
-  pressArea.addEventListener('mouseup',    cancelHold);
-  pressArea.addEventListener('mouseleave', cancelHold);
-  pressArea.addEventListener('touchend',   cancelHold);
-  pressArea.addEventListener('touchcancel',cancelHold);
-  pressArea.addEventListener('contextmenu', function(e){ e.preventDefault(); });
-
-  popup.addEventListener('click', function () {
-    popup.style.display = 'none';
-  });
-})();
-</script>
 
 </body>
 </html>
