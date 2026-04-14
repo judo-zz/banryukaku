@@ -386,7 +386,7 @@ var SEARCH_INDEX = {
   'renpai':      { dest: 'hidden/backdoor.html',           flag: 'found_renpai',          level: 4,
                    requires: ['found_blog_unlocked'], failMsg: '不正なアクセスです。先に表層の記録を参照してください。' },
   '廃棄':        { dest: 'hidden/disposal-record.html',    flag: 'found_disposal',        level: 3 },
-  '選定':        { dest: 'hidden/selection-criteria.html', flag: 'found_selection',       level: 3 },
+  '次の龍':      { dest: 'hidden/selection-criteria.html', flag: 'found_selection',       level: 3 },
   '龍牌会 端末': { dest: 'hidden/admin-console.html',      flag: 'found_admin_console',   level: 4 },
 };
 
