@@ -210,33 +210,117 @@
 
   <div class="map-box">
     <div class="map-title">■ 地下1F 区画図 / B1F FLOOR PLAN</div>
-    <div class="map-ascii">
-┌───────────────────────────────────────────────┐
-│  B1F — 蟠龍閣 地下施設　MAP-RY-023             │
-├──────────┬──────────────┬──────────────────────┤
-│          │              │                      │
-│  搬入口  │   前室       │   管理端末室         │
-│  ［入］  │  (ENTRANCE)  │  (TERMINAL-A)        │
-│          │              │  ▶ 管理端末 設置中   │
-│          │              │                      │
-├──────────┴──────┬───────┴──────────────────────┤
-│                  │                             │
-│   廊下（監視カメラ 4台）                      │
-│  ─────────────────────────────────────────   │
-│                  │                             │
-├──────────────────┤                             │
-│                  │       廃棄処理室            │
-│   記録保管室     │      (DISPOSAL-UNIT)        │
-│   (ARCHIVE)      │   ██ アクセス要認証 ██     │
-│   YM-2023-04 他  │                             │
-│   BLOG MIRROR    │                             │
-│                  │                             │
-├──────────────────┴──────────────────────────────┤
-│                                                 │
-│   深部区画  [B2F へのアクセス — 総龍のみ]      │
-│   ※ 現在封鎖中                                 │
-│                                                 │
-└─────────────────────────────────────────────────┘</div>
+    <svg viewBox="0 0 600 370" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:600px;display:block;margin:12px auto 0;">
+      <defs>
+        <pattern id="hatch-danger" patternUnits="userSpaceOnUse" width="10" height="10" patternTransform="rotate(45)">
+          <line x1="0" y1="0" x2="0" y2="10" stroke="#441100" stroke-width="1.5"/>
+        </pattern>
+        <pattern id="dots-corridor" patternUnits="userSpaceOnUse" width="14" height="14">
+          <circle cx="7" cy="7" r="0.7" fill="#1a4433"/>
+        </pattern>
+        <filter id="glow-green">
+          <feGaussianBlur stdDeviation="1.5" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+
+      <!-- 外枠 -->
+      <rect x="6" y="6" width="588" height="358" fill="none" stroke="#224433" stroke-width="1.5"/>
+
+      <!-- タイトルバー -->
+      <rect x="6" y="6" width="588" height="22" fill="#001510" stroke="#224433" stroke-width="1"/>
+      <text x="16" y="21" font-family="monospace" font-size="10" fill="#33aa88" letter-spacing="1.5">B1F — 蟠龍閣 地下施設　MAP-RY-023</text>
+      <text x="580" y="21" text-anchor="end" font-family="monospace" font-size="9" fill="#1a4433">CLASSIFIED</text>
+
+      <!-- ─── 上段 3区画 ─── -->
+
+      <!-- 搬入口 -->
+      <rect x="6" y="28" width="112" height="96" fill="#001208" stroke="#224433" stroke-width="1"/>
+      <text x="62" y="62" text-anchor="middle" font-family="monospace" font-size="12" fill="#44ddaa">搬入口</text>
+      <text x="62" y="78" text-anchor="middle" font-family="monospace" font-size="8" fill="#226644">LOADING</text>
+      <!-- 入口マーカー -->
+      <rect x="40" y="114" width="44" height="9" fill="#001208" stroke="#88ff66" stroke-width="1"/>
+      <text x="62" y="121" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#88ff66">［入口］</text>
+
+      <!-- 前室 -->
+      <rect x="118" y="28" width="138" height="96" fill="#001208" stroke="#224433" stroke-width="1"/>
+      <text x="187" y="62" text-anchor="middle" font-family="monospace" font-size="12" fill="#44ddaa">前室</text>
+      <text x="187" y="78" text-anchor="middle" font-family="monospace" font-size="8" fill="#226644">ANTE ROOM</text>
+
+      <!-- 管理端末室 -->
+      <rect x="256" y="28" width="338" height="96" fill="#001a10" stroke="#336655" stroke-width="2"/>
+      <text x="425" y="62" text-anchor="middle" font-family="monospace" font-size="13" fill="#44ddaa" filter="url(#glow-green)">管理端末室</text>
+      <text x="425" y="78" text-anchor="middle" font-family="monospace" font-size="9" fill="#226644">TERMINAL-A</text>
+      <!-- 端末アイコン -->
+      <rect x="370" y="88" width="110" height="28" fill="none" stroke="#224433" stroke-width="1" rx="2"/>
+      <rect x="370" y="88" width="110" height="18" fill="#001510" stroke="none"/>
+      <text x="425" y="100" text-anchor="middle" font-family="monospace" font-size="7" fill="#33aa88">▶ 管理端末 設置中</text>
+      <line x1="415" y1="116" x2="435" y2="116" stroke="#336655" stroke-width="1"/>
+
+      <!-- ─── 廊下 ─── -->
+      <rect x="6" y="124" width="588" height="52" fill="url(#dots-corridor)" stroke="#224433" stroke-width="1"/>
+      <text x="300" y="145" text-anchor="middle" font-family="monospace" font-size="10" fill="#336655" letter-spacing="3">─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─</text>
+      <text x="300" y="160" text-anchor="middle" font-family="monospace" font-size="9" fill="#33aa88" letter-spacing="2">廊下　CORRIDOR</text>
+      <text x="300" y="172" text-anchor="middle" font-family="monospace" font-size="8" fill="#226644" letter-spacing="1">─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─</text>
+      <!-- 監視カメラ × 4 -->
+      <g font-family="monospace" font-size="8" fill="#55bb99">
+        <!-- cam 1 -->
+        <rect x="44" y="128" width="16" height="10" fill="none" stroke="#336655" stroke-width="1" rx="1"/>
+        <line x1="52" y1="124" x2="52" y2="128" stroke="#336655" stroke-width="1"/>
+        <text x="52" y="142" text-anchor="middle" fill="#226644" font-size="7">CAM</text>
+        <!-- cam 2 -->
+        <rect x="188" y="128" width="16" height="10" fill="none" stroke="#336655" stroke-width="1" rx="1"/>
+        <line x1="196" y1="124" x2="196" y2="128" stroke="#336655" stroke-width="1"/>
+        <text x="196" y="142" text-anchor="middle" fill="#226644" font-size="7">CAM</text>
+        <!-- cam 3 -->
+        <rect x="380" y="128" width="16" height="10" fill="none" stroke="#336655" stroke-width="1" rx="1"/>
+        <line x1="388" y1="124" x2="388" y2="128" stroke="#336655" stroke-width="1"/>
+        <text x="388" y="142" text-anchor="middle" fill="#226644" font-size="7">CAM</text>
+        <!-- cam 4 -->
+        <rect x="536" y="128" width="16" height="10" fill="none" stroke="#336655" stroke-width="1" rx="1"/>
+        <line x1="544" y1="124" x2="544" y2="128" stroke="#336655" stroke-width="1"/>
+        <text x="544" y="142" text-anchor="middle" fill="#226644" font-size="7">CAM</text>
+      </g>
+
+      <!-- ─── 中段 2区画 ─── -->
+
+      <!-- 記録保管室 -->
+      <rect x="6" y="176" width="262" height="112" fill="#001208" stroke="#224433" stroke-width="1"/>
+      <text x="137" y="216" text-anchor="middle" font-family="monospace" font-size="12" fill="#44ddaa">記録保管室</text>
+      <text x="137" y="232" text-anchor="middle" font-family="monospace" font-size="8" fill="#226644">ARCHIVE</text>
+      <text x="137" y="250" text-anchor="middle" font-family="monospace" font-size="8" fill="#33aa88">YM-2023-04 他</text>
+      <text x="137" y="264" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#1a5540">BLOG MIRROR</text>
+      <line x1="80" y1="242" x2="194" y2="242" stroke="#113322" stroke-width="0.5" stroke-dasharray="3,3"/>
+
+      <!-- 廃棄処理室 -->
+      <rect x="268" y="176" width="326" height="112" fill="url(#hatch-danger)" stroke="#663322" stroke-width="1.5"/>
+      <rect x="268" y="176" width="326" height="112" fill="#120200" fill-opacity="0.78"/>
+      <text x="431" y="216" text-anchor="middle" font-family="monospace" font-size="13" fill="#cc4433">廃棄処理室</text>
+      <text x="431" y="232" text-anchor="middle" font-family="monospace" font-size="9" fill="#773322">DISPOSAL-UNIT</text>
+      <!-- 認証バー -->
+      <rect x="308" y="248" width="246" height="18" fill="#1a0500" stroke="#663322" stroke-width="1"/>
+      <text x="431" y="261" text-anchor="middle" font-family="monospace" font-size="8.5" fill="#cc4433" letter-spacing="1">██ アクセス要認証 ██</text>
+
+      <!-- ─── B2F 深部区画 ─── -->
+      <rect x="6" y="288" width="588" height="76" fill="#000608" stroke="#334466" stroke-width="1.5" stroke-dasharray="8,4"/>
+      <!-- 封印ライン -->
+      <line x1="6" y1="288" x2="594" y2="288" stroke="#223355" stroke-width="0.5"/>
+      <text x="300" y="316" text-anchor="middle" font-family="monospace" font-size="11" fill="#4466aa" letter-spacing="1.5">深部区画　[ B2F へのアクセス — 総龍のみ ]</text>
+      <text x="300" y="334" text-anchor="middle" font-family="monospace" font-size="9" fill="#223355" letter-spacing="1">※ 現在封鎖中　SEALED</text>
+      <!-- 錠アイコン × 2 -->
+      <g stroke="#334466" stroke-width="1" fill="none">
+        <rect x="24" y="306" width="14" height="12" rx="1" fill="#001020"/>
+        <path d="M27,306 Q31,299 35,306" fill="none"/>
+        <rect x="552" y="306" width="14" height="12" rx="1" fill="#001020"/>
+        <path d="M555,306 Q559,299 563,306" fill="none"/>
+      </g>
+
+      <!-- 区画間の区切り線（上段） -->
+      <line x1="118" y1="28" x2="118" y2="124" stroke="#224433" stroke-width="1"/>
+      <line x1="256" y1="28" x2="256" y2="124" stroke="#224433" stroke-width="1"/>
+      <!-- 区画間の区切り線（中段） -->
+      <line x1="268" y1="176" x2="268" y2="288" stroke="#663322" stroke-width="1"/>
+    </svg>
   </div>
 
   <div class="legend-box">
