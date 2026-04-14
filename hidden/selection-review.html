@@ -4,34 +4,39 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <title>SRL-2025-YM-2023-04 選定審査ログ | BANRYUKAKU SYSTEM</title>
+  <title>SRL-2025-YM-2023-04 選定審査記録 | 龍牌会</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      background-color: #000508;
-      color: #7799aa;
-      font-family: monospace;
+      background-color: #1a1410;
+      color: #1a1410;
+      font-family: 'Noto Serif JP', serif;
       font-size: 13px;
       line-height: 1.8;
-      margin: 0;
       padding: 0;
     }
 
-    a { color: #336688; text-decoration: underline; }
-    a:hover { color: #66aacc; }
+    a { color: #664422; text-decoration: underline; }
+    a:hover { color: #aa6633; }
 
+    /* ─── サイトUI ─── */
     #hd-topbar {
-      background-color: #000a10;
-      color: #224455;
+      background-color: #0a0600;
+      color: #443322;
+      font-family: monospace;
       font-size: 11px;
       padding: 5px 12px;
       text-align: center;
-      border-bottom: 1px solid #112233;
+      border-bottom: 1px solid #221100;
       letter-spacing: 0.08em;
     }
 
     #hd-search {
-      background-color: #000608;
-      border-bottom: 1px solid #0a1a22;
+      background-color: #060400;
+      border-bottom: 1px solid #221100;
       padding: 7px 12px;
       text-align: center;
     }
@@ -40,21 +45,21 @@
       width: 240px;
       padding: 4px 7px;
       font-size: 12px;
-      background: #000508;
-      border: 1px solid #224455;
-      color: #7799aa;
+      background: #000;
+      border: 1px solid #443311;
+      color: #ddbb88;
       font-family: monospace;
       outline: none;
     }
-    #hd-search input[type="search"]::placeholder { color: #224444; }
+    #hd-search input[type="search"]::placeholder { color: #443311; }
 
     #hd-search button {
       padding: 4px 12px;
-      background: #000e18;
-      color: #7799aa;
+      background: #110800;
+      color: #ddbb88;
       font-size: 12px;
       font-family: monospace;
-      border: 1px solid #335566;
+      border: 1px solid #664422;
       cursor: pointer;
     }
 
@@ -63,141 +68,349 @@
       font-size: 11px;
       margin-top: 4px;
       min-height: 1.2em;
+      font-family: monospace;
     }
 
     #hd-breadcrumb {
       padding: 6px 16px;
       font-size: 11px;
-      color: #224455;
-      border-bottom: 1px dotted #112233;
+      color: #442211;
+      border-bottom: 1px dotted #221100;
+      font-family: monospace;
+      background: #080500;
     }
 
-    #wrapper {
+    /* ─── 書類エリア ─── */
+    #page-bg {
+      background: #1a1410;
+      padding: 30px 16px 60px;
+      min-height: 100vh;
+    }
+
+    .paper {
       max-width: 720px;
       margin: 0 auto;
-      padding: 20px 16px 50px;
+      background: #f5f0e8;
+      box-shadow:
+        0 0 0 1px #8a7a60,
+        4px 4px 20px rgba(0,0,0,0.6),
+        8px 8px 40px rgba(0,0,0,0.4);
+      padding: 48px 52px 52px;
       position: relative;
+      /* 古い紙の質感 */
+      background-image:
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 27px,
+          rgba(160,140,100,0.08) 27px,
+          rgba(160,140,100,0.08) 28px
+        );
     }
 
-    /* ===== 文書ヘッダ ===== */
-    .doc-stamp {
+    /* 角の折れ */
+    .paper::after {
+      content: '';
       position: absolute;
-      top: 22px;
-      right: 16px;
-      border: 1px solid #1a3344;
-      padding: 5px 10px;
+      top: 0; right: 0;
+      width: 0; height: 0;
+      border-style: solid;
+      border-width: 0 32px 32px 0;
+      border-color: transparent #1a1410 transparent transparent;
+    }
+
+    /* ─── 書類ヘッダ ─── */
+    .doc-org {
       font-size: 10px;
-      color: #1a3344;
-      letter-spacing: 0.1em;
-      line-height: 1.6;
+      letter-spacing: 0.25em;
+      color: #6b5a3e;
       text-align: center;
+      margin-bottom: 2px;
     }
 
-    .doc-id {
-      font-size: 10px;
-      color: #336688;
+    .doc-title-main {
+      font-size: 20px;
+      font-weight: 700;
+      text-align: center;
       letter-spacing: 0.2em;
-      margin-bottom: 4px;
+      color: #2a1f10;
+      border-top: 2.5px solid #2a1f10;
+      border-bottom: 2.5px solid #2a1f10;
+      padding: 8px 0;
+      margin: 6px 0 20px;
     }
 
-    .doc-title {
-      font-size: 16px;
-      font-weight: bold;
-      color: #aabbcc;
-      letter-spacing: 0.12em;
-      margin-bottom: 4px;
+    .doc-meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border: 1px solid #8a7a60;
+      margin-bottom: 24px;
+      font-size: 11.5px;
     }
 
-    .doc-meta {
+    .doc-meta-row {
+      display: contents;
+    }
+
+    .doc-meta-label {
+      background: #e8e0cc;
+      border: 1px solid #b0a080;
+      padding: 4px 10px;
+      color: #5a4a2e;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    .doc-meta-value {
+      border: 1px solid #b0a080;
+      padding: 4px 10px;
+      color: #2a1f10;
+      letter-spacing: 0.05em;
+    }
+
+    /* ─── 捺印欄 ─── */
+    .stamp-row {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .stamp-box {
+      border: 1px solid #8a7a60;
+      width: 56px;
+      text-align: center;
+      font-size: 9px;
+      color: #7a6a4e;
+      letter-spacing: 0.05em;
+    }
+
+    .stamp-box .stamp-label {
+      border-bottom: 1px solid #b0a080;
+      padding: 2px 0;
+      background: #e8e0cc;
+    }
+
+    .stamp-box .stamp-inner {
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .stamp-ink {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 2px solid #8b1a1a;
+      color: #8b1a1a;
+      font-size: 14px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.75;
+      transform: rotate(-8deg);
+      font-family: serif;
+      letter-spacing: 0;
+    }
+
+    /* ─── セクション ─── */
+    .section {
+      margin-bottom: 22px;
+    }
+
+    .section-title {
       font-size: 11px;
-      color: #335566;
-      line-height: 1.7;
-      margin-bottom: 20px;
-      border-bottom: 1px dotted #1a3344;
-      padding-bottom: 12px;
+      letter-spacing: 0.2em;
+      color: #5a4a2e;
+      background: #e0d8c4;
+      border-left: 3px solid #8a7a60;
+      padding: 3px 8px;
+      margin-bottom: 0;
     }
 
-    /* ===== ログエントリ ===== */
-    .log-table {
+    /* ─── 評価表 ─── */
+    .eval-table {
       width: 100%;
       border-collapse: collapse;
       font-size: 12px;
-      margin: 12px 0;
     }
 
-    .log-table tr {
-      border-bottom: 1px dotted #112233;
+    .eval-table th,
+    .eval-table td {
+      border: 1px solid #b0a080;
+      padding: 5px 9px;
+      vertical-align: top;
+      text-align: left;
     }
 
-    .log-ts {
-      color: #335566;
+    .eval-table th {
+      background: #e8e0cc;
+      color: #5a4a2e;
       white-space: nowrap;
-      padding: 6px 16px 6px 0;
-      vertical-align: top;
+      letter-spacing: 0.05em;
+      font-weight: normal;
+    }
+
+    .eval-table .date-col {
+      white-space: nowrap;
+      color: #7a6a4e;
       font-size: 11px;
-      min-width: 150px;
+      width: 110px;
     }
 
-    .log-content {
-      color: #7799aa;
-      padding: 6px 0;
-      vertical-align: top;
-      line-height: 1.7;
+    .eval-table .phase-col {
+      width: 90px;
+      font-size: 11px;
     }
 
-    .log-content .key { color: #99bbcc; }
-    .log-content .val-neutral { color: #557788; }
-    .log-content .val-warn { color: #aa7755; }
-    .log-content .val-danger { color: #995544; }
-    .log-content .val-ok { color: #447766; }
-    .log-content .val-system { color: #334455; font-size: 11px; }
-
-    .log-row-warn { background-color: rgba(100,40,20,0.08); }
-    .log-row-critical { background-color: rgba(120,20,20,0.12); }
-    .log-row-current { background-color: rgba(10,40,60,0.15); }
-
-    .redacted {
-      background-color: #0a1520;
-      color: #0a1520;
-      padding: 0 2px;
-    }
-    .redacted:hover { color: #335566; }
-
-    /* ===== セクション区切り ===== */
-    .log-section {
-      margin: 20px 0 4px;
+    /* 判定バッジ */
+    .badge {
+      display: inline-block;
       font-size: 10px;
-      color: #224433;
+      padding: 1px 5px;
+      border: 1px solid;
+      letter-spacing: 0.05em;
+      vertical-align: middle;
+      margin-right: 4px;
+    }
+    .badge-ok   { border-color: #4a7a3a; color: #4a7a3a; background: #eef5ea; }
+    .badge-warn { border-color: #8a6a20; color: #8a6a20; background: #f8f2e0; }
+    .badge-ng   { border-color: #8a3a20; color: #8a3a20; background: #f8ecea; }
+    .badge-crit { border-color: #6a1010; color: #6a1010; background: #f5e8e8; font-weight: bold; }
+
+    /* ─── 総合判定欄 ─── */
+    .verdict-box {
+      border: 2px solid #6a1010;
+      padding: 14px 18px;
+      margin-top: 4px;
+      position: relative;
+      background: #fdf8f2;
+    }
+
+    .verdict-label {
+      font-size: 10px;
       letter-spacing: 0.2em;
-      border-top: 1px solid #112233;
-      padding-top: 8px;
+      color: #6a1010;
+      margin-bottom: 8px;
     }
 
-    /* ===== 現在進行中 ===== */
-    #current-row {
-      color: #5588aa;
+    .verdict-result {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: #6a1010;
+      margin-bottom: 6px;
     }
-    #current-row .log-ts { color: #336688; }
 
-    /* ===== ブリンクカーソル ===== */
+    .verdict-detail {
+      font-size: 11.5px;
+      color: #4a3a2a;
+      line-height: 1.9;
+    }
+
+    /* 大きな廃棄スタンプ */
+    .verdict-stamp {
+      position: absolute;
+      top: 12px; right: 16px;
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      border: 3px solid #8b1a1a;
+      color: #8b1a1a;
+      font-size: 22px;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.7;
+      transform: rotate(-15deg);
+      font-family: serif;
+      letter-spacing: 0;
+    }
+
+    /* ─── 備考・手書き風 ─── */
+    .handwritten {
+      font-family: monospace;
+      font-size: 11px;
+      color: #5a4030;
+      background: transparent;
+      border: none;
+      border-bottom: 1px dotted #b0a080;
+      padding: 2px 0;
+      line-height: 2;
+    }
+
+    .note-area {
+      border: 1px solid #b0a080;
+      padding: 10px 12px;
+      min-height: 60px;
+      font-size: 11.5px;
+      color: #4a3a28;
+      line-height: 2;
+      background: #fdfaf4;
+    }
+
+    /* ─── 欄外メモ ─── */
+    .margin-note {
+      position: absolute;
+      right: -10px;
+      font-size: 9px;
+      color: #8a6a40;
+      writing-mode: vertical-rl;
+      letter-spacing: 0.12em;
+      opacity: 0.7;
+    }
+
+    /* ─── 現在進行中行 ─── */
+    .row-current {
+      background: #f0f4e8;
+    }
+
+    .row-current td {
+      color: #3a5a2a;
+    }
+
     #blink-cursor {
       display: inline-block;
-      width: 7px;
-      height: 12px;
-      background-color: #5588aa;
+      width: 6px;
+      height: 11px;
+      background: #3a5a2a;
       vertical-align: middle;
       margin-left: 3px;
     }
 
-    /* ===== ヒントボックス ===== */
-    .hint-box {
-      border: 1px dashed #1a3344;
-      padding: 10px 14px;
+    /* ─── ヒント ─── */
+    .hint-area {
       margin-top: 28px;
-      font-size: 11px;
-      color: #335566;
+      border-top: 1px dashed #b0a080;
+      padding-top: 12px;
+      font-size: 10.5px;
+      color: #8a7a5e;
+      font-family: monospace;
       line-height: 1.9;
     }
+
+    /* ─── フッタ ─── */
+    .doc-footer {
+      margin-top: 32px;
+      border-top: 1px solid #b0a080;
+      padding-top: 8px;
+      font-size: 10px;
+      color: #8a7a5e;
+      display: flex;
+      justify-content: space-between;
+      letter-spacing: 0.05em;
+    }
+
+    .redacted {
+      background: #2a1f10;
+      color: #2a1f10;
+      padding: 0 2px;
+      user-select: none;
+    }
+    .redacted:hover { color: #7a5a3a; }
 
     html, body { overflow-x: hidden; }
   </style>
@@ -205,7 +418,7 @@
 <body>
 
 <div id="hd-topbar">
-  ▌ BANRYUKAKU SYSTEM LOG ▐　選定審査ログ — SELECTION REVIEW　▌ AUTO-GENERATED ▐
+  ▌ BANRYUKAKU INTERNAL ▐　閲覧制限 — 龍牌会内部資料　▌ RESTRICTED ▐
 </div>
 
 <div id="hd-search">
@@ -219,212 +432,167 @@
   &nbsp;/&nbsp; 内部記録 &nbsp;/&nbsp; SRL-2025-YM-2023-04
 </div>
 
-<div id="wrapper">
+<div id="page-bg">
+<div class="paper">
 
-  <div class="doc-stamp">
-    AUTO-GENERATED<br>
-    CLASSIFIED
+  <!-- ヘッダ -->
+  <div class="doc-org">龍牌会　選定部門　SELECTION REVIEW DIVISION</div>
+  <div class="doc-title-main">候補者　選定審査　記録票</div>
+
+  <!-- 基本情報 -->
+  <div class="doc-meta-grid">
+    <div class="doc-meta-label">文書番号</div>
+    <div class="doc-meta-value">SRL-2025-YM-2023-04</div>
+    <div class="doc-meta-label">対象ID</div>
+    <div class="doc-meta-value">YM-2023-04</div>
+    <div class="doc-meta-label">審査担当</div>
+    <div class="doc-meta-value">K（黒瀬　係長）</div>
+    <div class="doc-meta-label">立会者</div>
+    <div class="doc-meta-value"><span class="redacted">████ ████</span></div>
+    <div class="doc-meta-label">審査開始日</div>
+    <div class="doc-meta-value">2025年6月14日</div>
+    <div class="doc-meta-label">審査終了日</div>
+    <div class="doc-meta-value">2026年1月3日</div>
+    <div class="doc-meta-label">文書作成日</div>
+    <div class="doc-meta-value">2026年1月4日</div>
+    <div class="doc-meta-label">区分</div>
+    <div class="doc-meta-value">最高機密 / 龍牌会承認</div>
   </div>
 
-  <div class="doc-id">SELECTION REVIEW LOG — SRL-2025-YM-2023-04</div>
-  <div class="doc-title">選定審査ログ</div>
-  <div class="doc-meta">
-    文書種別: 自動生成ログ / SYSTEM GENERATED<br>
-    対象ID: YM-2023-04<br>
-    生成日時: 2026.01.04 03:00<br>
-    ステータス: <span style="color:#446655;">封印解除済（アクセス記録参照）</span>
+  <!-- 捺印 -->
+  <div class="stamp-row">
+    <div class="stamp-box">
+      <div class="stamp-label">起案</div>
+      <div class="stamp-inner"><div class="stamp-ink">黒</div></div>
+    </div>
+    <div class="stamp-box">
+      <div class="stamp-label">審査</div>
+      <div class="stamp-inner"><div class="stamp-ink" style="transform:rotate(5deg);">龍</div></div>
+    </div>
+    <div class="stamp-box">
+      <div class="stamp-label">承認</div>
+      <div class="stamp-inner"><div class="stamp-ink" style="transform:rotate(-12deg);">済</div></div>
+    </div>
   </div>
 
-  <!-- Phase 1: 候補登録〜監視 -->
-  <div class="log-section">▍ PHASE 01 — 候補登録 / REGISTRATION</div>
-  <table class="log-table">
-    <tbody>
-      <tr>
-        <td class="log-ts">2025.06.14 09:03</td>
-        <td class="log-content">
-          候補登録 <span class="key">YM-2023-04</span><br>
-          <span class="val-neutral">接触状況: 打診中 / 接触担当: <span class="redacted">████</span></span>
-        </td>
-      </tr>
-      <tr>
-        <td class="log-ts">2025.06.14 09:05</td>
-        <td class="log-content">
-          <span class="val-system">審査フロー開始 / 初期ORIGIN推定値: 算出中</span>
-        </td>
-      </tr>
-      <tr>
-        <td class="log-ts">2025.06.20 18:44</td>
-        <td class="log-content">
-          <span class="val-warn">初期評価 — 基準 01（DISCOVERY）: 0%</span><br>
-          <span class="val-system">備考: 外部探索の記録なし。内部接触による候補のため減点対象。</span>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <!-- 審査経緯 -->
+  <div class="section">
+    <div class="section-title">■ 審査経緯　REVIEW LOG</div>
+    <table class="eval-table">
+      <thead>
+        <tr>
+          <th class="date-col">年月日</th>
+          <th class="phase-col">フェーズ</th>
+          <th>内容</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="date-col">2025.06.14</td>
+          <td class="phase-col"><span class="badge badge-ok">登録</span></td>
+          <td>候補者 YM-2023-04 として正式登録。接触担当より「特別なポジション」への打診。候補者の反応良好。審査フロー開始。</td>
+        </tr>
+        <tr>
+          <td class="date-col">2025.06.20</td>
+          <td class="phase-col"><span class="badge badge-warn">評価</span></td>
+          <td>初期評価 — 基準01（DISCOVERY）: 0%。外部探索の記録なし。内部接触による候補のため減点。</td>
+        </tr>
+        <tr>
+          <td class="date-col">2025.09.17</td>
+          <td class="phase-col"><span class="badge badge-ng">異常</span></td>
+          <td>内部アクセス検出。アクセス先：<strong>SELECTION_CRITERIA_DRAFT</strong>（選定基準草稿版）。アクセスログを担当者 K へ転送。候補ステータスを「要監視」へ変更。</td>
+        </tr>
+        <tr>
+          <td class="date-col">2025.11.01</td>
+          <td class="phase-col"><span class="badge badge-ok">採用</span></td>
+          <td>正式採用処理完了。在籍開始。試用期間3ヶ月。担当：K。</td>
+        </tr>
+        <tr>
+          <td class="date-col">2025.12.01</td>
+          <td class="phase-col"><span class="badge badge-warn">自動評価</span></td>
+          <td>ORIGIN適合率 算出不能。理由：候補が事前に選定基準を参照済みのため自動評価バイアス補正が適用不能。→ 手動審査へ移行。</td>
+        </tr>
+        <tr>
+          <td class="date-col">2025.12.15</td>
+          <td class="phase-col"><span class="badge badge-ng">手動審査</span></td>
+          <td>手動審査完了。ORIGIN適合率：<strong>38%</strong>。判定：基準未達。内部採用枠は先代預言の要件を満たさない。廃棄処理フローを開始。</td>
+        </tr>
+        <tr>
+          <td class="date-col">2026.01.03</td>
+          <td class="phase-col"><span class="badge badge-crit">廃棄</span></td>
+          <td>廃棄処理完了。MAP-RY-023 廃棄処理室。担当：K。</td>
+        </tr>
+        <tr>
+          <td class="date-col">2026.01.04</td>
+          <td class="phase-col"><span class="badge badge-warn">未解決</span></td>
+          <td>削除済みID（YM-2023-04）による不審アクセスを検出。アクセス先：<span class="redacted">██████████████████████</span>。調査中。</td>
+        </tr>
+        <tr class="row-current">
+          <td class="date-col">現在</td>
+          <td class="phase-col"><span class="badge badge-ok">監視中</span></td>
+          <td id="current-status">次期候補 監視ログ：アクティブ。アクセス元：外部 / ステータス：審査中<span id="blink-cursor"></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-  <!-- Phase 2: 異常検出 -->
-  <div class="log-section">▍ PHASE 02 — 異常検出 / ANOMALY DETECTED</div>
-  <table class="log-table">
-    <tbody>
-      <tr class="log-row-warn">
-        <td class="log-ts">2025.09.17 02:31</td>
-        <td class="log-content">
-          <span class="val-warn">[WARN] 内部アクセス検出</span><br>
-          アクセス先: <span class="key">SELECTION_CRITERIA_DRAFT</span><br>
-          <span class="val-system">※ 選定基準の草稿版（現行公開版との差分あり）</span>
-        </td>
-      </tr>
-      <tr class="log-row-warn">
-        <td class="log-ts">2025.09.17 02:33</td>
-        <td class="log-content">
-          <span class="val-system">アクセスログを審査担当者（K）へ転送</span>
-        </td>
-      </tr>
-      <tr class="log-row-warn">
-        <td class="log-ts">2025.09.17 02:34</td>
-        <td class="log-content">
-          候補ステータス → <span class="val-warn">要監視</span><br>
-          <span class="val-system">担当: K / 理由: 内部規定外アクセス</span>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <!-- 総合判定 -->
+  <div class="section">
+    <div class="section-title">■ 総合判定　FINAL VERDICT</div>
+    <div class="verdict-box">
+      <div class="verdict-stamp">廃棄</div>
+      <div class="verdict-label">▍ 選定審査　最終判定</div>
+      <div class="verdict-result">失敗作</div>
+      <div class="verdict-detail">
+        ORIGIN適合率：38%（基準値：80%以上）<br>
+        判定区分：選定失格 / 龍牌会規定第7条により処置<br>
+        対外表記：一身上の都合（社外向け）<br>
+        在籍ステータス：廃棄済　／　キャストページ：「長期休養中」表示
+      </div>
+    </div>
+  </div>
 
-  <!-- Phase 3: 採用〜自動評価 -->
-  <div class="log-section">▍ PHASE 03 — 採用処理 / ONBOARDING</div>
-  <table class="log-table">
-    <tbody>
-      <tr>
-        <td class="log-ts">2025.11.01 18:00</td>
-        <td class="log-content">
-          採用処理完了 / 正式在籍開始<br>
-          <span class="val-system">試用期間: 3ヶ月 / 担当: K</span>
-        </td>
-      </tr>
-      <tr>
-        <td class="log-ts">2025.12.01 00:00</td>
-        <td class="log-content">
-          <span class="val-system">自動評価実行 / ORIGIN適合率 算出中...</span>
-        </td>
-      </tr>
-      <tr class="log-row-warn">
-        <td class="log-ts">2025.12.01 00:00</td>
-        <td class="log-content">
-          <span class="val-warn">ORIGIN適合率: <strong>計算不能</strong></span><br>
-          <span class="val-system">理由: 候補が自ら選定基準を参照済みのため、自動評価バイアス補正が適用不能<br>
-          → 手動審査へ移行</span>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
-  <!-- Phase 4: 手動審査 -->
-  <div class="log-section">▍ PHASE 04 — 手動審査 / MANUAL REVIEW</div>
-  <table class="log-table">
-    <tbody>
-      <tr>
-        <td class="log-ts">2025.12.15 14:00</td>
-        <td class="log-content">
-          手動審査完了<br>
-          担当: <span class="key">K</span>（黒瀬係長）/ 立会: <span class="redacted">████ ████</span>
-        </td>
-      </tr>
-      <tr>
-        <td class="log-ts">2025.12.15 14:02</td>
-        <td class="log-content">
-          <span class="val-danger">ORIGIN適合率: <strong>38%</strong></span><br>
-          <span class="val-danger">判定: 基準未達 / 内部採用枠は先代預言の要件を満たさない</span>
-        </td>
-      </tr>
-      <tr>
-        <td class="log-ts">2025.12.15 14:02</td>
-        <td class="log-content">
-          <span class="val-system">廃棄処理フローを開始</span><br>
-          <span class="val-system">通知ステータス: <span class="redacted">████████████</span></span>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
-  <!-- Phase 5: 廃棄 -->
-  <div class="log-section">▍ PHASE 05 — 廃棄処理 / DISPOSAL</div>
-  <table class="log-table">
-    <tbody>
-      <tr class="log-row-critical">
-        <td class="log-ts">2026.01.03 19:12</td>
-        <td class="log-content">
-          廃棄処理: <span class="val-danger"><strong>完了</strong></span><br>
-          <span class="val-system">MAP-RY-023 廃棄処理室 / 担当: K</span>
-        </td>
-      </tr>
-      <tr>
-        <td class="log-ts">2026.01.04 00:00</td>
-        <td class="log-content">
-          在籍ステータス: <span class="val-danger">廃棄済</span><br>
-          <span class="val-system">キャストページ: 「長期休養中」表示へ変更</span>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
-  <!-- Phase 6: 未解決 -->
-  <div class="log-section">▍ PHASE 06 — 未解決事項 / UNRESOLVED</div>
-  <table class="log-table">
-    <tbody>
-      <tr class="log-row-critical" id="unknown-access-row">
-        <td class="log-ts">2026.01.04 03:12</td>
-        <td class="log-content">
-          <span class="val-danger">[未解決] 削除済みID (YM-2023-04) によるアクセス検出</span><br>
-          アクセス先: <span class="redacted">██████████████████████</span><br>
-          担当: K / ステータス: <span class="val-warn">調査中</span>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
-  <!-- 現在 -->
-  <div class="log-section">▍ CURRENT — 現在進行中</div>
-  <table class="log-table">
-    <tbody>
-      <tr class="log-row-current" id="current-row">
-        <td class="log-ts" style="color:#336688;">[現在]</td>
-        <td class="log-content" style="color:#5588aa;">
-          次期候補 監視ログ: <span style="color:#446688;">アクティブ</span><br>
-          <span id="current-status">アクセス元: 外部 / ステータス: 審査中</span>
-          <span id="blink-cursor"></span>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <!-- 備考 -->
+  <div class="section" style="position:relative;">
+    <div class="margin-note">SRL-2025-YM-2023-04</div>
+    <div class="section-title">■ 担当者備考　NOTES</div>
+    <div class="note-area">
+      <span class="handwritten">
+        内部接触による候補は、自動評価の設計上、ORIGIN基準を充足できない。<br>
+        2025.09の時点でその計算は終わっていた。<br>
+        にもかかわらず4ヶ月調査を継続した記録がある。<br>
+        目的不明。引き続き調査を要する。
+      </span>
+    </div>
+  </div>
 
   <!-- ヒント -->
-  <div class="hint-box">
-    ※ ログ中「SELECTION_CRITERIA_DRAFT」は現行基準書の草稿版です。<br>
+  <div class="hint-area">
+    ※ 本記録中「SELECTION_CRITERIA_DRAFT」は現行基準書の草稿版です。<br>
     　現在公開されている選定基準との差分については別途管理されています。<br>
-    　キーワード：「<span style="color:#446688;">選定</span>」
+    　キーワード：「<span style="color:#5a4a2e; font-weight:bold;">選定</span>」
   </div>
 
-</div>
+  <!-- フッタ -->
+  <div class="doc-footer">
+    <span>龍牌会 選定部門　/　RPK-SRL-2025</span>
+    <span>無断複製・持出厳禁</span>
+  </div>
+
+</div><!-- /paper -->
+</div><!-- /page-bg -->
 
 <script src="../arg.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   var level = ARG.getLevel();
-
-  // 現在進行中の行をLvに応じて変化
   var currentStatus = document.getElementById('current-status');
-  if (currentStatus) {
-    if (level >= 3) {
-      currentStatus.innerHTML =
-        'アクセス元: 外部 / ORIGIN: <span style="color:#44aa77;">確認済</span>' +
-        ' / 評価: <span style="color:#aabb66;">進行中</span>';
-    } else {
-      currentStatus.innerHTML =
-        'アクセス元: 外部 / ステータス: <span style="color:#4477aa;">審査中</span>';
-    }
+  if (currentStatus && level >= 3) {
+    currentStatus.innerHTML =
+      '次期候補 監視ログ：アクティブ。アクセス元：外部 / ORIGIN：<strong>確認済</strong> / 評価：進行中' +
+      '<span id="blink-cursor"></span>';
   }
 
-  // ブリンクカーソル
   var blink = true;
   setInterval(function () {
     var cursor = document.getElementById('blink-cursor');
