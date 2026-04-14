@@ -510,8 +510,8 @@ function injectProgressBar() {
 
 document.addEventListener('DOMContentLoaded', () => {
   // 招待リンクからのアクセス
-  if (new URLSearchParams(window.location.search).get('ref') === '1' && !isSearchUnlocked()) {
-    unlockSearch();
+  if (new URLSearchParams(window.location.search).get('ref') === '1' && !ARG.isSearchUnlocked()) {
+    ARG.unlockSearch();
   }
 
   const input = document.getElementById('search-input');
@@ -530,7 +530,7 @@ document.addEventListener('DOMContentLoaded', () => {
   injectProgressBar();
 
   // Lv3以上でブログPASSウィジェットを強調
-  if (getLevel() >= 3 && !localStorage.getItem('blog_pass_unlocked')) {
+  if (ARG.getLevel() >= 3 && !localStorage.getItem('blog_pass_unlocked')) {
     const passInput = document.getElementById('blog-pass-input');
     const passBtn   = document.getElementById('blog-pass-btn');
     if (passInput) {
