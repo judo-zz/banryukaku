@@ -640,7 +640,7 @@
       msgEl.innerHTML    = fortune.msgs[Math.floor(Math.random() * fortune.msgs.length)];
       if (isLastDraw) {
         // 3回目保証大吉 → 予約を促す一言のみ
-        msgEl.innerHTML = '龍神があなたを選びました。<br>BANRYUKAKU';
+        msgEl.innerHTML = '龍神があなたを選びました。<br>BANRYUKAKUでお待ちしています。';
         spawnConfetti();
       } else if (fortune.prize) {
         msgEl.innerHTML += '<br><span style="margin-top:8px;display:block;color:#ffcc44;font-weight:bold;font-size:13px;">🎉 大吉！スタッフに画面を見せると抽選券がもらえます！</span>';
