@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ja" data-level="0">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>深部区画 — 全記録索引 | 蟠龍閣内部</title>
+  <style>
+    body {
+      background-color: #020100;
+      color: #998866;
+      font-family: monospace;
+      font-size: 13px;
+      line-height: 1.8;
+      margin: 0;
+      padding: 0;
+    }
+
+    a { color: #775533; text-decoration: underline; }
+    a:hover { color: #ccaa66; }
+
+    #hd-topbar {
+      background-color: #0a0600;
+      color: #554422;
+      font-size: 11px;
+      padding: 5px 12px;
+      text-align: center;
+      border-bottom: 1px solid #2a1500;
+      letter-spacing: 0.08em;
+    }
+
+    #hd-search {
+      background-color: #060400;
+      border-bottom: 1px solid #1a0e00;
+      padding: 7px 12px;
+      text-align: center;
+    }
+
+    #hd-search input[type="search"] {
+      width: 240px;
+      padding: 4px 7px;
+      font-size: 12px;
+      background: #020100;
+      border: 1px solid #332200;
+      color: #998866;
+      font-family: monospace;
+      outline: none;
+    }
+    #hd-search input[type="search"]::placeholder { color: #332200; }
+
+    #hd-search button {
+      padding: 4px 12px;
+      background: #0a0600;
+      color: #998866;
+      font-size: 12px;
+      font-family: monospace;
+      border: 1px solid #554422;
+      cursor: pointer;
+    }
+
+    #search-error {
+      color: #cc4444;
+      font-size: 11px;
+      margin-top: 4px;
+      min-height: 1.2em;
+    }
+
+    #hd-breadcrumb {
+      padding: 6px 16px;
+      font-size: 11px;
+      color: #332200;
+      border-bottom: 1px dotted #1a0e00;
+    }
+
+    #wrapper {
+      max-width: 620px;
+      margin: 0 auto;
+      padding: 28px 16px 80px;
+    }
+
+    .page-title {
+      font-size: 11px;
+      color: #554422;
+      letter-spacing: 0.25em;
+      margin-bottom: 6px;
+    }
+
+    .page-heading {
+      font-size: 18px;
+      color: #cc9944;
+      letter-spacing: 0.15em;
+      border-bottom: 1px solid #332200;
+      padding-bottom: 8px;
+      margin-bottom: 28px;
+    }
+
+    /* ─── 検索記録 ─── */
+    .search-log-wrap {
+      margin-bottom: 36px;
+      border: 1px solid #332200;
+      padding: 16px 18px;
+      background: #080400;
+    }
+
+    .section-label {
+      color: #554433;
+      letter-spacing: 0.15em;
+      border-bottom: 1px dotted #332200;
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+      font-size: 11px;
+    }
+
+    #search-log-prompt {
+      color: #886644;
+      cursor: pointer;
+      letter-spacing: 0.08em;
+    }
+
+    #search-log-display {
+      display: none;
+      margin-top: 12px;
+      line-height: 2;
+    }
+
+    /* ─── ツイートボタン ─── */
+    .tweet-wrap {
+      margin-bottom: 36px;
+      text-align: center;
+    }
+
+    #tweet-btn {
+      display: inline-block;
+      padding: 10px 28px;
+      background: #0a0600;
+      color: #cc9944;
+      border: 1px solid #554422;
+      font-family: monospace;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    #tweet-btn:hover {
+      background: #1a1000;
+      color: #ffcc66;
+    }
+
+    .tweet-note {
+      margin-top: 8px;
+      font-size: 10px;
+      color: #443322;
+      letter-spacing: 0.08em;
+    }
+
+    /* ─── ページ索引 ─── */
+    .index-section {
+      margin-bottom: 28px;
+    }
+
+    .index-section-label {
+      font-size: 10px;
+      color: #443322;
+      letter-spacing: 0.2em;
+      border-bottom: 1px dotted #221500;
+      padding-bottom: 4px;
+      margin-bottom: 10px;
+    }
+
+    .index-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .index-list li {
+      padding: 4px 0;
+      border-bottom: 1px dotted #1a0e00;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+    }
+
+    .index-list a {
+      color: #887755;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+    }
+
+    .index-list a:hover { color: #ccaa66; }
+
+    .index-tag {
+      font-size: 10px;
+      color: #332200;
+      flex-shrink: 0;
+      letter-spacing: 0.1em;
+    }
+
+    html, body { overflow-x: hidden; }
+  </style>
+</head>
+<body>
+
+<div id="hd-topbar">
+  ▌ BANRYUKAKU INTERNAL ▐　深部区画 — 全記録索引　▌ Lv.5 CLEARED ▐
+</div>
+
+<div id="hd-search">
+  <input type="search" id="search-input" placeholder="キーワード検索...">
+  <button id="search-btn" type="button">検索</button>
+  <br><span id="search-error"></span>
+</div>
+
+<div id="hd-breadcrumb">
+  <a href="../index.html">← 蟠龍閣トップに戻る</a>
+  &nbsp;/&nbsp; 深部区画
+</div>
+
+<div id="wrapper">
+
+  <div class="page-title">DEEP SECTION / ARCHIVE INDEX</div>
+  <div class="page-heading">深部区画 — 全記録索引</div>
+
+  <!-- 検索記録 -->
+  <div class="search-log-wrap">
+    <div class="section-label">▍ SEARCH RECORD — 調査記録</div>
+    <div id="search-log-prompt">
+      あなたが調べた記録が残っています。<span style="color:#ffcc44; text-decoration:underline;">表示しますか？</span>
+    </div>
+    <div id="search-log-display"></div>
+  </div>
+
+  <!-- ツイート -->
+  <div class="tweet-wrap">
+    <a id="tweet-btn" href="#" target="_blank" rel="noopener">▶ 踏破をツイートする</a>
+    <div class="tweet-note">蟠龍閣ARGをクリアしたことをXに投稿する</div>
+  </div>
+
+  <!-- ページ索引 -->
+  <div class="index-section">
+    <div class="index-section-label">// YUME — ゆめの痕跡</div>
+    <ul class="index-list">
+      <li><a href="yume-notice.html">失踪通知 / yume-notice</a><span class="index-tag">Lv1</span></li>
+      <li><a href="yume-draft.html">復元ファイル / yume-draft</a><span class="index-tag">Lv1</span></li>
+      <li><a href="yume-rireki.html">在籍記録 / yume-rireki</a><span class="index-tag">Lv2</span></li>
+      <li><a href="yume-finallog.html">最終ログ / yume-finallog</a><span class="index-tag">Lv2</span></li>
+      <li><a href="kurose-shiji.html">黒瀬指示書 / kurose-shiji</a><span class="index-tag">Lv2</span></li>
+      <li><a href="backdoor.html">バックドア / backdoor</a><span class="index-tag">Lv4</span></li>
+    </ul>
+  </div>
+
+  <div class="index-section">
+    <div class="index-section-label">// RECORDS — 組織記録</div>
+    <ul class="index-list">
+      <li><a href="lore-01.html">記録保管 01 / lore-01</a><span class="index-tag">Lv2</span></li>
+      <li><a href="lore-02.html">記録保管 02 / lore-02</a><span class="index-tag">Lv2</span></li>
+      <li><a href="lore-03.html">記録保管 03 / lore-03</a><span class="index-tag">Lv4</span></li>
+      <li><a href="lore-04.html">記録保管 04 / lore-04</a><span class="index-tag">Lv4</span></li>
+      <li><a href="lore-05.html">記録保管 05 / lore-05</a><span class="index-tag">Lv4</span></li>
+      <li><a href="hasegawa.html">長谷川手記 / hasegawa</a><span class="index-tag">Lv3</span></li>
+      <li><a href="ronpaikai-chart.html">龍牌会 組織図 / ronpaikai-chart</a><span class="index-tag">Lv2</span></li>
+      <li><a href="selection-criteria.html">選定基準 / selection-criteria</a><span class="index-tag">Lv3</span></li>
+      <li><a href="selection-review.html">選定審査記録 / selection-review</a><span class="index-tag">Lv2</span></li>
+    </ul>
+  </div>
+
+  <div class="index-section">
+    <div class="index-section-label">// UNDERGROUND — 地下施設</div>
+    <ul class="index-list">
+      <li><a href="basement-map.html">地下MAPファイル / basement-map</a><span class="index-tag">Lv3</span></li>
+      <li><a href="disposal-room-log.html">廃棄処理室ログ / disposal-room-log</a><span class="index-tag">Lv3</span></li>
+      <li><a href="disposal-record.html">廃棄処理記録 / disposal-record</a><span class="index-tag">Lv3</span></li>
+      <li><a href="nagaoka.html">長岡 記録 / nagaoka</a><span class="index-tag">Lv3</span></li>
+      <li><a href="momose.html">百瀬 記録 / momose</a><span class="index-tag">Lv3</span></li>
+      <li><a href="shelve-lock.html">施錠棚 第3区画 / shelve-lock</a><span class="index-tag">Lv3</span></li>
+    </ul>
+  </div>
+
+  <div class="index-section">
+    <div class="index-section-label">// SYSTEM — システム</div>
+    <ul class="index-list">
+      <li><a href="admin-console.html">管理端末 / admin-console</a><span class="index-tag">Lv3</span></li>
+      <li><a href="hack-sequence.html">引き継ぎシーケンス / hack-sequence</a><span class="index-tag">Lv5</span></li>
+      <li><a href="hack-complete.html">引き継ぎ完了 / hack-complete</a><span class="index-tag">Lv5</span></li>
+      <li><a href="final.html">最終記録 / final</a><span class="index-tag">Lv5</span></li>
+    </ul>
+  </div>
+
+</div>
+
+<script src="../arg.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (typeof ARG !== 'undefined' && !ARG.hasFlag('admin_transfer_complete')) {
+      window.location.href = '../index.html';
+    }
+
+    if (typeof injectProgressBar === 'function') injectProgressBar();
+
+    // 検索記録
+    document.getElementById('search-log-prompt').addEventListener('click', function () {
+      var log = ARG.getSearchLog();
+      var display = document.getElementById('search-log-display');
+      this.style.display = 'none';
+      if (!log || log.length === 0) {
+        display.innerHTML = '<span style="color:#554433;">[EMPTY] 検索記録なし</span>';
+      } else {
+        var html = '<span style="color:#554433; font-size:11px;">&gt; RETRIEVED: ' + log.length + ' entries</span><br><br>';
+        log.forEach(function (entry) {
+          var d = new Date(entry.ts);
+          var ts = d.getFullYear() + '.' +
+            String(d.getMonth()+1).padStart(2,'0') + '.' +
+            String(d.getDate()).padStart(2,'0') + ' ' +
+            String(d.getHours()).padStart(2,'0') + ':' +
+            String(d.getMinutes()).padStart(2,'0');
+          html += '<span style="color:#554433; font-size:11px;">' + ts + '</span>  ' +
+                  '<span style="color:#cc9944;">' + entry.query + '</span><br>';
+        });
+        display.innerHTML = html;
+      }
+      display.style.display = 'block';
+    });
+
+    // ツイートボタン
+    document.getElementById('tweet-btn').addEventListener('click', function (e) {
+      e.preventDefault();
+      var text = '蟠龍閣の調査を完了した。龍牌会の真実に辿り着いた者として記録された。 #蟠龍閣ARG';
+      var url = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text);
+      window.open(url, '_blank', 'noopener');
+    });
+  });
+</script>
+</body>
+</html>
