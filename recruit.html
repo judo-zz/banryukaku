@@ -673,7 +673,7 @@
     if (level >= 3) {
       degradeMsg.classList.add('visible');
       // 仕様: Lv3 = recruit深層到達
-      ARG.addFlag('recruit_deep');
+      ARG.addFlag('recruit_deep'); // 未使用フラグ（将来の演出フック用に保持）
       ARG.tryLevel(3);
     }
   }

@@ -762,7 +762,7 @@
   function startHold(e, el) {
     e.preventDefault();
     cancelHold();
-    holdTimer = setTimeout(() => { openTerminal(); }, 3000);
+    holdTimer = setTimeout(() => { openTerminal(); }, 2000);
   }
 
   function cancelHold() {
@@ -798,7 +798,7 @@
     const err = document.getElementById('terminal-error');
     if (val === 'RENPAI') {
       if (!ARG.hasFlag('menu_terminal')) {
-        ARG.addFlag('menu_terminal');
+        ARG.addFlag('menu_terminal'); // 未使用フラグ（将来の演出フック用に保持）
         ARG.tryLevel(ARG.getLevel() + 1);
       }
       this.disabled = true;

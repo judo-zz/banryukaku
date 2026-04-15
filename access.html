@@ -584,7 +584,7 @@
     const popup = document.getElementById('dragon-popup');
     dragonOpen = true;
     popup.classList.add('open');
-    ARG.addFlag('dragon_mark_found');
+    ARG.addFlag('dragon_mark_found'); // 未使用フラグ（将来の演出フック用に保持）
     if (dragonTimer) clearTimeout(dragonTimer);
     dragonTimer = setTimeout(() => {
       popup.classList.remove('open');

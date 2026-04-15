@@ -49,7 +49,6 @@
     .col-sys  { color: #005522; }
     .col-ok   { color: #00ff66; }
     .col-warn { color: #aaff00; }
-    .col-err  { color: #ff4444; }
     .col-key  { color: #00ffcc; font-weight: bold; }
     .col-gold { color: #ffcc44; font-weight: bold; }
 
@@ -191,8 +190,6 @@
     { delay: 14200, col: 'col-sys',  text: '' },
     { delay: 14500, col: 'col-ok',   text: '> SYSTEM OVERRIDE COMPLETE.' },
   ];
-
-  let lineIndex = 0;
 
   function addLog(col, text) {
     const span = document.createElement('span');
