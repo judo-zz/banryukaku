@@ -411,8 +411,7 @@ var SEARCH_INDEX = {
   '前任者':      { deleted: true },
   '前総龍':      { deleted: true },
   'ソラ':        { deleted: true },
-  '深部区画':    { dest: 'hidden/deep-section.html', flag: 'found_deep_section', level: 5,
-                   requires: ['admin_transfer_complete'], failMsg: '到達条件を満たしていません。' },
+  '深部区画':    { dest: 'hidden/deep-section.html', flag: 'found_deep_section', level: 5 },
 };
 
 function resolveSearchPath(dest) {
