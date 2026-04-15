@@ -329,7 +329,7 @@ var ARG = (() => {
   function logSearch(query) {
     const raw  = localStorage.getItem(SEARCH_LOG_KEY);
     const log  = raw ? JSON.parse(raw) : [];
-    const ts   = new Date().toLocaleTimeString('ja-JP');
+    const ts   = new Date().toISOString();
     log.push({ ts, query });
     localStorage.setItem(SEARCH_LOG_KEY, JSON.stringify(log));
   }
