@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="ja" data-level="0">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>施錠棚 第3区画 | 記録管理室</title>
+  <style>
+    body {
+      background-color: #0a0800;
+      color: #998866;
+      font-family: monospace;
+      font-size: 13px;
+      line-height: 1.8;
+      margin: 0;
+      padding: 0;
+    }
+
+    a { color: #775533; text-decoration: underline; }
+    a:hover { color: #ccaa66; }
+
+    #hd-topbar {
+      background-color: #100800;
+      color: #4a3311;
+      font-size: 11px;
+      padding: 5px 12px;
+      text-align: center;
+      border-bottom: 1px solid #2a1800;
+      letter-spacing: 0.08em;
+    }
+
+    #hd-search {
+      background-color: #080500;
+      border-bottom: 1px solid #1a1000;
+      padding: 7px 12px;
+      text-align: center;
+    }
+
+    #hd-search input[type="search"] {
+      width: 240px;
+      padding: 4px 7px;
+      font-size: 12px;
+      background: #0a0800;
+      border: 1px solid #443322;
+      color: #998866;
+      font-family: monospace;
+      outline: none;
+    }
+    #hd-search input[type="search"]::placeholder { color: #443322; }
+
+    #hd-search button {
+      padding: 4px 12px;
+      background: #110800;
+      color: #998866;
+      font-size: 12px;
+      font-family: monospace;
+      border: 1px solid #664433;
+      cursor: pointer;
+    }
+
+    #search-error {
+      color: #cc4444;
+      font-size: 11px;
+      margin-top: 4px;
+      min-height: 1.2em;
+    }
+
+    #hd-breadcrumb {
+      padding: 6px 16px;
+      font-size: 11px;
+      color: #443322;
+      border-bottom: 1px dotted #2a1800;
+    }
+
+    #wrapper {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 32px 16px 80px;
+      text-align: center;
+    }
+
+    /* ─── 棚の扉 ─── */
+    .shelf-label {
+      font-size: 11px;
+      color: #554433;
+      letter-spacing: 0.2em;
+      margin-bottom: 6px;
+    }
+
+    .shelf-door {
+      background: linear-gradient(160deg, #2a1e0e 0%, #1a1208 50%, #221810 100%);
+      border: 2px solid #443322;
+      border-radius: 4px;
+      padding: 32px 24px 28px;
+      margin: 0 auto 24px;
+      max-width: 320px;
+      box-shadow:
+        inset 0 2px 8px rgba(0,0,0,0.6),
+        0 4px 16px rgba(0,0,0,0.5);
+      position: relative;
+    }
+
+    /* 木目テクスチャ（疑似） */
+    .shelf-door::before {
+      content: '';
+      position: absolute;
+      inset: 6px;
+      border: 1px solid #332211;
+      border-radius: 2px;
+      pointer-events: none;
+    }
+
+    .shelf-section-tag {
+      font-size: 10px;
+      color: #664433;
+      letter-spacing: 0.25em;
+      margin-bottom: 24px;
+      font-family: monospace;
+    }
+
+    /* ─── 南京錠 ─── */
+    .padlock-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    /* シャックル（U字の金具） */
+    .shackle {
+      width: 52px;
+      height: 38px;
+      border: 7px solid #887766;
+      border-bottom: none;
+      border-radius: 26px 26px 0 0;
+      background: transparent;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s;
+      transform-origin: center bottom;
+      position: relative;
+      z-index: 2;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.3), 0 -2px 4px rgba(0,0,0,0.2);
+    }
+
+    .shackle.open {
+      transform: rotate(40deg) translateY(-12px);
+      border-color: #bb9944;
+    }
+
+    /* 錠前本体 */
+    .padlock-body {
+      background: linear-gradient(180deg, #776655 0%, #554433 40%, #443322 100%);
+      border: 2px solid #443322;
+      border-radius: 6px;
+      width: 130px;
+      padding: 14px 12px 16px;
+      box-shadow:
+        inset 0 2px 4px rgba(255,220,160,0.08),
+        inset 0 -2px 4px rgba(0,0,0,0.4),
+        0 4px 12px rgba(0,0,0,0.5);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ダイヤル列 */
+    .dials {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    .dial-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .dial-btn {
+      background: #2a1e10;
+      color: #aa8855;
+      border: 1px solid #554433;
+      border-radius: 3px;
+      width: 28px;
+      height: 20px;
+      font-size: 10px;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0;
+      transition: background 0.15s;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    .dial-btn:hover { background: #3a2a18; color: #ccaa66; }
+    .dial-btn:active { background: #1a1208; }
+
+    .dial-display {
+      background: #110c06;
+      color: #ddbb77;
+      border: 1px solid #332211;
+      border-radius: 3px;
+      width: 28px;
+      height: 32px;
+      font-size: 20px;
+      font-weight: bold;
+      font-family: monospace;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+      transition: color 0.2s;
+    }
+
+    /* 解錠ボタン */
+    #try-btn {
+      margin-top: 16px;
+      padding: 7px 28px;
+      background: #1a1208;
+      color: #887755;
+      font-family: monospace;
+      font-size: 12px;
+      border: 1px solid #554433;
+      border-radius: 3px;
+      cursor: pointer;
+      letter-spacing: 0.15em;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    #try-btn:hover { background: #2a1e10; color: #ccaa66; }
+
+    #lock-msg {
+      font-size: 11px;
+      color: #664433;
+      min-height: 1.4em;
+      margin-top: 10px;
+      letter-spacing: 0.08em;
+    }
+
+    /* ─── 引き継ぎ紙 ─── */
+    #paper-wrap {
+      display: none;
+      margin-top: 32px;
+    }
+
+    .paper-hint {
+      font-size: 11px;
+      color: #554433;
+      margin-bottom: 12px;
+      letter-spacing: 0.1em;
+    }
+
+    /* 折りたたまれた紙 */
+    .paper-folded {
+      background: linear-gradient(135deg, #f0e8d0 0%, #e8dfc0 50%, #f5ede0 100%);
+      border: 1px solid #b8a888;
+      width: 140px;
+      height: 56px;
+      margin: 0 auto;
+      cursor: pointer;
+      position: relative;
+      box-shadow: 2px 3px 8px rgba(0,0,0,0.5);
+      transition: transform 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .paper-folded::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: #c8b890;
+    }
+
+    .paper-folded::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 1px;
+      height: 100%;
+      background: #c8b890;
+    }
+
+    .paper-folded:hover { transform: scale(1.04); }
+
+    .paper-tap-hint {
+      font-size: 10px;
+      color: #554433;
+      margin-top: 8px;
+      letter-spacing: 0.1em;
+    }
+
+    /* 広げた紙 */
+    .paper-open {
+      display: none;
+      background: linear-gradient(160deg, #f5efe0 0%, #ede5cc 100%);
+      border: 1px solid #b8a888;
+      max-width: 280px;
+      margin: 0 auto;
+      padding: 28px 32px 32px;
+      box-shadow: 3px 4px 16px rgba(0,0,0,0.55);
+      position: relative;
+      font-family: serif;
+    }
+
+    /* 折り目のシミュレーション */
+    .paper-open::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: rgba(160,140,100,0.3);
+    }
+
+    .paper-open::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 1px;
+      height: 100%;
+      background: rgba(160,140,100,0.3);
+    }
+
+    .paper-label {
+      font-size: 10px;
+      color: #8a7a5a;
+      letter-spacing: 0.2em;
+      font-family: monospace;
+      margin-bottom: 20px;
+    }
+
+    .paper-code {
+      font-size: 36px;
+      font-weight: bold;
+      color: #2a1e08;
+      letter-spacing: 0.35em;
+      font-family: serif;
+      text-indent: 0.35em;
+    }
+
+    .paper-note {
+      margin-top: 20px;
+      font-size: 11px;
+      color: #8a7a5a;
+      font-family: monospace;
+      line-height: 1.8;
+    }
+
+    html, body { overflow-x: hidden; }
+  </style>
+</head>
+<body>
+
+<div id="hd-topbar">
+  ▌ 記録管理室　施錠棚　▌ SECTION 3 ▐　要認証
+</div>
+
+<div id="hd-search">
+  <input type="search" id="search-input" placeholder="キーワード検索...">
+  <button id="search-btn" type="button">検索</button>
+  <br><span id="search-error"></span>
+</div>
+
+<div id="hd-breadcrumb">
+  <a href="../index.html">← 蟠龍閣トップ</a>
+  &nbsp;/&nbsp; 記録管理室 &nbsp;/&nbsp; 施錠棚 第3区画
+</div>
+
+<div id="wrapper">
+
+  <div class="shelf-label">記録管理室 — 施錠棚</div>
+
+  <div class="shelf-door">
+    <div class="shelf-section-tag">SECTION 03 / LOCKED</div>
+
+    <div class="padlock-wrap">
+      <div class="shackle" id="shackle"></div>
+      <div class="padlock-body">
+        <div class="dials">
+          <div class="dial-unit">
+            <button class="dial-btn" data-idx="0" data-dir="up">▲</button>
+            <div class="dial-display" id="dial-0">0</div>
+            <button class="dial-btn" data-idx="0" data-dir="down">▼</button>
+          </div>
+          <div class="dial-unit">
+            <button class="dial-btn" data-idx="1" data-dir="up">▲</button>
+            <div class="dial-display" id="dial-1">0</div>
+            <button class="dial-btn" data-idx="1" data-dir="down">▼</button>
+          </div>
+          <div class="dial-unit">
+            <button class="dial-btn" data-idx="2" data-dir="up">▲</button>
+            <div class="dial-display" id="dial-2">0</div>
+            <button class="dial-btn" data-idx="2" data-dir="down">▼</button>
+          </div>
+        </div>
+        <button id="try-btn">開錠</button>
+      </div>
+    </div>
+
+    <div id="lock-msg"></div>
+  </div>
+
+  <div id="paper-wrap">
+    <div class="paper-hint">&gt; 施錠棚 第3区画 — 内容物を確認</div>
+
+    <div class="paper-folded" id="paper-folded">
+    </div>
+    <div class="paper-tap-hint">タップして開く</div>
+
+    <div class="paper-open" id="paper-open">
+      <div class="paper-label">引継 / HANDOVER</div>
+      <div class="paper-code">SORA</div>
+      <div class="paper-note">
+        —— 先代より
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="../arg.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (typeof ARG !== 'undefined' && ARG.getLevel() < 3) {
+      window.location.href = '../index.html';
+    }
+  });
+
+  var vals = [0, 0, 0];
+  var unlocked = false;
+  var CODE = [0, 2, 3];
+
+  // ダイヤル操作
+  document.querySelectorAll('.dial-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      if (unlocked) return;
+      var idx = parseInt(this.dataset.idx);
+      var dir = this.dataset.dir;
+      if (dir === 'up') {
+        vals[idx] = (vals[idx] + 1) % 10;
+      } else {
+        vals[idx] = (vals[idx] + 9) % 10;
+      }
+      document.getElementById('dial-' + idx).textContent = vals[idx];
+    });
+  });
+
+  // タッチスワイプでもダイヤル操作
+  document.querySelectorAll('.dial-display').forEach(function (el, idx) {
+    var startY = null;
+    el.addEventListener('touchstart', function (e) {
+      startY = e.touches[0].clientY;
+    }, { passive: true });
+    el.addEventListener('touchend', function (e) {
+      if (startY === null || unlocked) return;
+      var diff = startY - e.changedTouches[0].clientY;
+      if (Math.abs(diff) > 10) {
+        if (diff > 0) {
+          vals[idx] = (vals[idx] + 1) % 10;
+        } else {
+          vals[idx] = (vals[idx] + 9) % 10;
+        }
+        document.getElementById('dial-' + idx).textContent = vals[idx];
+      }
+      startY = null;
+    });
+  });
+
+  // 開錠ボタン
+  document.getElementById('try-btn').addEventListener('click', function () {
+    if (unlocked) return;
+    var msg = document.getElementById('lock-msg');
+
+    if (vals[0] === CODE[0] && vals[1] === CODE[1] && vals[2] === CODE[2]) {
+      unlocked = true;
+      this.disabled = true;
+
+      // シャックルが開く
+      document.getElementById('shackle').classList.add('open');
+      msg.style.color = '#aa8844';
+      msg.textContent = '> 開錠しました';
+
+      // 紙を表示
+      setTimeout(function () {
+        document.getElementById('paper-wrap').style.display = 'block';
+        if (typeof ARG !== 'undefined') {
+          ARG.addFlag('found_handover_note');
+        }
+      }, 800);
+
+    } else {
+      msg.style.color = '#774433';
+      msg.textContent = '> 解錠できません';
+      setTimeout(function () { msg.textContent = ''; }, 1800);
+    }
+  });
+
+  // 紙を広げる
+  document.getElementById('paper-folded').addEventListener('click', function () {
+    this.style.display = 'none';
+    document.querySelector('.paper-tap-hint').style.display = 'none';
+    document.getElementById('paper-open').style.display = 'block';
+  });
+</script>
+</body>
+</html>
