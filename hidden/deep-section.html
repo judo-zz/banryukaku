@@ -245,12 +245,6 @@
     <div id="search-log-display"></div>
   </div>
 
-  <!-- ツイート -->
-  <div class="tweet-wrap">
-    <a id="tweet-btn" href="#" target="_blank" rel="noopener">▶ 踏破をツイートする</a>
-    <div class="tweet-note">蟠龍閣ARGをクリアしたことをXに投稿する</div>
-  </div>
-
   <!-- ページ索引 -->
   <div class="index-section">
     <div class="index-section-label">// YUME — ゆめの痕跡</div>
@@ -299,6 +293,12 @@
       <li><a href="hack-complete.html">引き継ぎ完了 / hack-complete</a><span class="index-tag">Lv5</span></li>
       <li><a href="final.html">最終記録 / final</a><span class="index-tag">Lv5</span></li>
     </ul>
+  </div>
+
+  <!-- ツイート -->
+  <div class="tweet-wrap" style="margin-top:40px;">
+    <a id="tweet-btn" href="#" target="_blank" rel="noopener">▶ 踏破をツイートする</a>
+    <div class="tweet-note">蟠龍閣ARGをクリアしたことをXに投稿する</div>
   </div>
 
 </div>
@@ -351,9 +351,10 @@
     // ツイートボタン
     document.getElementById('tweet-btn').addEventListener('click', function (e) {
       e.preventDefault();
-      var text = '蟠龍閣の調査を完了した。龍牌会の真実に辿り着いた者として記録された。 #蟠龍閣ARG';
-      var url = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text);
-      window.open(url, '_blank', 'noopener');
+      var siteUrl = window.location.origin + '/banryukaku/';
+      var text = '【蟠龍閣】龍牌会の全記録を踏破した。\n#蟠龍閣ARG\n' + siteUrl;
+      var tweetUrl = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text);
+      window.open(tweetUrl, '_blank', 'noopener');
     });
   });
 </script>
