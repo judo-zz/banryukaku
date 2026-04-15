@@ -406,8 +406,6 @@ var SEARCH_INDEX = {
                    requires: ['found_disposal'], failMsg: '関連する記録が未参照です。廃棄記録を先に確認してください。' },
   '百瀬':        { dest: 'hidden/momose.html',              flag: 'found_momose',          level: 3,
                    requires: ['found_disposal'], failMsg: '関連する記録が未参照です。廃棄記録を先に確認してください。' },
-  '牡丹':        { dest: 'hidden/sora.html',               flag: 'found_sora_msg',        level: 3,
-                   requires: ['found_nagasawa'], failMsg: '関連する記録が見つかりません。記録管理室の資料を先に確認してください。' },
   '先代':        { deleted: true },
   '先代総龍':    { deleted: true },
   '前任者':      { deleted: true },
