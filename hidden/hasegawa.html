@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="ja" data-level="0">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>長谷川手記 | 記録保管</title>
+  <style>
+    body {
+      background-color: #030002;
+      color: #998866;
+      font-family: monospace;
+      font-size: 13px;
+      line-height: 2;
+      margin: 0;
+      padding: 0;
+    }
+
+    a { color: #775533; text-decoration: underline; }
+    a:hover { color: #ccaa66; }
+
+    #hd-topbar {
+      background-color: #100800;
+      color: #4a3311;
+      font-size: 11px;
+      padding: 5px 12px;
+      text-align: center;
+      border-bottom: 1px solid #2a1800;
+      letter-spacing: 0.08em;
+    }
+
+    #hd-search {
+      background-color: #080500;
+      border-bottom: 1px solid #1a1000;
+      padding: 7px 12px;
+      text-align: center;
+    }
+
+    #hd-search input[type="search"] {
+      width: 240px;
+      padding: 4px 7px;
+      font-size: 12px;
+      background: #030002;
+      border: 1px solid #443322;
+      color: #998866;
+      font-family: monospace;
+      outline: none;
+    }
+    #hd-search input[type="search"]::placeholder { color: #443322; }
+
+    #hd-search button {
+      padding: 4px 12px;
+      background: #110800;
+      color: #998866;
+      font-size: 12px;
+      font-family: monospace;
+      border: 1px solid #664433;
+      cursor: pointer;
+    }
+
+    #search-error {
+      color: #cc4444;
+      font-size: 11px;
+      margin-top: 4px;
+      min-height: 1.2em;
+    }
+
+    #hd-breadcrumb {
+      padding: 6px 16px;
+      font-size: 11px;
+      color: #443322;
+      border-bottom: 1px dotted #2a1800;
+    }
+
+    #page-bg {
+      padding: 30px 16px 60px;
+      min-height: 100vh;
+    }
+
+    .notebook {
+      max-width: 660px;
+      margin: 0 auto;
+      background: #f5efe0;
+      box-shadow:
+        0 0 0 1px #c0aa88,
+        4px 6px 24px rgba(0,0,0,0.7),
+        10px 12px 40px rgba(0,0,0,0.4);
+      position: relative;
+      background-image:
+        linear-gradient(to right, transparent 62px, #d8b8a0 62px, #d8b8a0 64px, transparent 64px),
+        repeating-linear-gradient(
+          to bottom,
+          transparent,
+          transparent 31px,
+          #ccc0a8 31px,
+          #ccc0a8 32px
+        );
+      background-color: #f5efe0;
+    }
+
+    .notebook::before {
+      content: '';
+      position: absolute;
+      left: 42px;
+      top: 50px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #030002;
+      box-shadow:
+        0 80px 0 #030002,
+        0 160px 0 #030002,
+        0 240px 0 #030002,
+        0 320px 0 #030002,
+        0 400px 0 #030002,
+        0 480px 0 #030002,
+        0 560px 0 #030002;
+      z-index: 2;
+    }
+
+    .notebook-inner {
+      padding: 36px 40px 52px 80px;
+      position: relative;
+    }
+
+    .nb-archive-id {
+      font-family: monospace;
+      font-size: 10px;
+      color: #a09070;
+      letter-spacing: 0.2em;
+      margin-bottom: 4px;
+    }
+
+    .nb-title {
+      font-family: serif;
+      font-size: 22px;
+      font-weight: bold;
+      color: #1a1208;
+      letter-spacing: 0.12em;
+      line-height: 1.4;
+      border-bottom: 2px solid #1a1208;
+      padding-bottom: 6px;
+      margin-bottom: 12px;
+    }
+
+    .nb-meta {
+      font-size: 11px;
+      color: #8a7a5a;
+      line-height: 1.9;
+      margin-bottom: 28px;
+      font-family: serif;
+    }
+
+    .nb-body {
+      font-family: serif;
+      font-size: 14px;
+      color: #1e1608;
+      line-height: 2.17;
+      position: relative;
+    }
+
+    .nb-body p { margin: 0; }
+
+    .nb-section {
+      margin-top: 36px;
+      margin-bottom: 4px;
+      font-size: 11px;
+      font-family: monospace;
+      color: #a09070;
+      letter-spacing: 0.2em;
+      border-bottom: 1px dotted #c0b090;
+      padding-bottom: 2px;
+    }
+
+    .nb-quote {
+      border-left: 3px solid #6a5a3a;
+      padding: 10px 18px;
+      margin: 18px 0;
+      font-style: italic;
+      color: #2a1e0a;
+      background: rgba(160,140,100,0.06);
+      line-height: 2.2;
+    }
+
+    .nb-em    { font-weight: bold; color: #3a1a08; }
+    .nb-soft  { color: #8a7a5a; }
+
+    .nb-underline {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: #8a6a3a;
+    }
+
+    .margin-note {
+      position: absolute;
+      left: -52px;
+      font-size: 10px;
+      color: #7a5a3a;
+      writing-mode: vertical-rl;
+      letter-spacing: 0.1em;
+      line-height: 1;
+      font-family: serif;
+      opacity: 0.7;
+    }
+
+    /* 傍線（後から書き足した感じ） */
+    .nb-struck {
+      text-decoration: line-through;
+      text-decoration-color: #8a6a3a;
+      opacity: 0.6;
+    }
+
+    .nb-note {
+      margin-top: 36px;
+      padding: 10px 14px;
+      border: 1px dashed #c0b090;
+      font-size: 11px;
+      color: #8a7a5a;
+      line-height: 1.8;
+      font-family: monospace;
+      background: rgba(180,160,120,0.06);
+    }
+
+    /* コーヒーシミ（複数） */
+    .coffee-stain {
+      position: absolute;
+      right: 32px;
+      top: 28px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 3px solid rgba(140,100,50,0.15);
+      box-shadow: inset 0 0 0 5px rgba(140,100,50,0.06);
+      pointer-events: none;
+    }
+
+    .coffee-stain-2 {
+      position: absolute;
+      left: 76px;
+      bottom: 140px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid rgba(140,100,50,0.10);
+      box-shadow: inset 0 0 0 4px rgba(140,100,50,0.04);
+      pointer-events: none;
+    }
+
+    /* Lv4付記 */
+    #final-addendum {
+      display: none;
+      margin-top: 28px;
+      padding: 16px 18px;
+      border: 1px dashed #aa9966;
+      background: rgba(180,160,100,0.07);
+      font-family: serif;
+      font-size: 13px;
+      color: #2a1e0a;
+      line-height: 2.17;
+    }
+
+    .redacted {
+      background-color: #1a0800;
+      color: #1a0800;
+      user-select: none;
+    }
+
+    html, body { overflow-x: hidden; }
+  </style>
+</head>
+<body>
+
+<div id="hd-topbar">
+  ▌ 龍牌会 記録保管アーカイブ　PERSONAL DOCUMENT　▌ 閲覧制限 ▐
+</div>
+
+<div id="hd-search">
+  <input type="search" id="search-input" placeholder="キーワード検索...">
+  <button id="search-btn" type="button">検索</button>
+  <br><span id="search-error"></span>
+</div>
+
+<div id="hd-breadcrumb">
+  <a href="../index.html">← 蟠龍閣トップ</a>
+  &nbsp;/&nbsp; 記録保管 &nbsp;/&nbsp; 長谷川手記
+</div>
+
+<div id="page-bg">
+<div class="notebook">
+  <div class="coffee-stain"></div>
+  <div class="coffee-stain-2"></div>
+  <div class="notebook-inner">
+
+    <div class="nb-archive-id">PERSONAL RECORD — 長谷川 亮太 / 記録管理室　BRK-PRS-HSGW</div>
+    <div class="nb-title">手記</div>
+    <div class="nb-meta">
+      執筆期間：2024.09 〜 2024.11（断続）　／　発見場所：記録管理室 施錠棚 第3区画<br>
+      <span class="nb-soft">※ 本人の退職後に発見。公式文書に非ず。閲覧制限：管理者のみ。</span>
+    </div>
+
+    <div class="nb-body">
+
+      <div class="nb-section">I. 記録管理室について</div>
+
+      <p style="position:relative;">
+        <span class="margin-note">着任当初</span>
+        私が記録管理室に配属されたのは、二十八歳の秋だった。<br>
+        当時の上司は何も教えてくれなかった。<br>
+        棚の前に立たされて、「読め」と言われた。<br>
+        それが研修だった。
+      </p>
+      <p>&nbsp;</p>
+
+      <p>
+        管理室には、外から見えない記録が積まれている。<br>
+        選定の記録。廃棄の記録。<br>
+        そして、その判断に至るまでの、誰にも語られなかった経緯の断片。
+      </p>
+      <p>&nbsp;</p>
+
+      <p>
+        私はそれを整理し、封印し、索引を作り、鍵をかける。<br>
+        問われれば出す。問われなければ出さない。<br>
+        自分が何を保管しているか、できるだけ考えないようにして、十数年が過ぎた。
+      </p>
+      <p>&nbsp;</p>
+
+      <div class="nb-section">II. 先代について</div>
+
+      <p style="position:relative;">
+        <span class="margin-note">最初の記憶</span>
+        先代の総龍と初めて話したのは、私が着任して三ヶ月ほど経った頃だった。<br>
+        夜遅く、棚の整理をしていると、背後から声がかかった。
+      </p>
+      <p>&nbsp;</p>
+
+      <div class="nb-quote">
+        「そこに書いてあることを、覚えるつもりで読んでいるか。」
+      </div>
+
+      <p>
+        振り返ると、廊下に人が立っていた。<br>
+        私より十歳は上だろうと思った。<br>
+        表情は穏やかだったが、目が笑っていなかった。<br>
+        名前を聞いたのは、その三日後だった。
+      </p>
+      <p>&nbsp;</p>
+
+      <p style="position:relative;">
+        <span class="margin-note">人物像</span>
+        先代は、龍牌会の中で最も<span class="nb-em">「外から来た者」</span>の意味を語り続けた人だった。<br>
+        講義のような言い方ではなく、話の端々に、その考えが滲んでいた。<br>
+        自分自身がそうして辿り着いた人間だったからだと、ずっと後になって知った。
+      </p>
+      <p>&nbsp;</p>
+
+      <p>
+        総龍としての在任は十二年だった。<br>
+        私はその後半を、記録係として傍で見ていた。<br>
+        選定の審議。廃棄の決定。外部との交渉。<br>
+        どれも私には関係のない話で、私の仕事は文書を残すことだった。
+      </p>
+      <p>&nbsp;</p>
+
+      <div class="nb-quote">
+        「長谷川、お前は記録を残してくれ。<br>
+        俺の判断が正しかったかどうかは、後になればわかる。<br>
+        記録だけが、それを証明できる。<br>
+        俺自身には、できないことだ。」
+      </div>
+
+      <p>
+        こういうことを、先代は突然言った。<br>
+        答えを求めているのではないとわかったので、私は黙って頷いた。<br>
+        それでよかったのだと思う。
+      </p>
+      <p>&nbsp;</p>
+
+      <div class="nb-section">III. ソラのこと</div>
+
+      <p style="position:relative;">
+        <span class="margin-note">書くかどうか迷った</span>
+        ソラのことは、書かないでおこうと思っていた。<br>
+        私が書くべき話ではない、という気持ちがあった。<br>
+        でも書かなければ、先代が何を抱えていたか、誰にも伝わらない。<br>
+        それも困ると思い、書くことにした。
+      </p>
+      <p>&nbsp;</p>
+
+      <p>
+        ソラが来たのは、私が記録管理室で五年目を迎えた年だった。<br>
+        外から来た、という点では規則通りだった。<br>
+        先代が最初に目をかけた時から、私には何となくわかっていた。<br>
+        あの人は、この子に自分の続きを見ている、と。
+      </p>
+      <p>&nbsp;</p>
+
+      <p style="position:relative;">
+        <span class="margin-note">観察</span>
+        私は記録係だから、ソラの選定審議に関する文書もすべて扱った。<br>
+        面談の記録。評価シート。適合率の推移。<br>
+        それを読む限り、なぜ通らなかったのか、私にはよくわからなかった。<br>
+        数字の問題ではないように見えた。
+      </p>
+      <p>&nbsp;</p>
+
+      <p>
+        廃棄の決定が出た日、先代は管理室に来なかった。<br>
+        珍しいことだった。<br>
+        いつもは決定の翌日に記録の確認に来る。<br>
+        三日経っても来なかった。
+      </p>
+      <p>&nbsp;</p>
+
+      <p>
+        廃棄処置が実施された夜、私は管理室で一人、文書に封をしていた。<br>
+        何かが終わった感じがした。<br>
+        その感覚が何なのか、うまく言葉にならなかった。
+      </p>
+      <p>&nbsp;</p>
+
+      <div class="nb-section">IV. 先代の退任</div>
+
+      <p style="position:relative;">
+        <span class="margin-note">翌朝</span>
+        廃棄処置の翌日の朝、先代が管理室に来た。<br>
+        普段より早い時間だった。<br>
+        扉を開けると、先代はすでに中にいた。<br>
+        棚の前に立って、何かを読んでいた。
+      </p>
+      <p>&nbsp;</p>
+
+      <p>
+        私が入っても振り返らなかった。<br>
+        しばらくそのままでいて、やがて口を開いた。
+      </p>
+      <p>&nbsp;</p>
+
+      <div class="nb-quote">
+        「長谷川、退任届を出してきた。」
+      </div>
+
+      <p>
+        それだけ言って、先代は棚に手を伸ばした。<br>
+        一冊の記録簿を取り出して、しばらく眺め、また戻した。<br>
+        私は何も言えなかった。<br>
+        止める言葉が、どこにも見つからなかった。
+      </p>
+      <p>&nbsp;</p>
+
+      <p style="position:relative;">
+        <span class="margin-note">紙を渡された</span>
+        帰り際、先代は上着のポケットから折りたたんだ紙を出して、私に渡した。<br>
+        「引き継ぎに使え」とだけ言った。<br>
+        何の引き継ぎなのか、誰への引き継ぎなのか、聞く間もなかった。
+      </p>
+      <p>&nbsp;</p>
+
+      <p>
+        私は受け取って、封をして、施錠棚の第3区画に入れた。<br>
+        自分に判断する権限はないと思った。<br>
+        保管することが、私にできることだった。
+      </p>
+      <p>&nbsp;</p>
+
+      <p>
+        先代がその日以降、蟠龍閣に来ることはなかった。
+      </p>
+      <p>&nbsp;</p>
+
+      <div class="nb-section">V. 現在</div>
+
+      <p style="position:relative;">
+        <span class="margin-note">2024年秋</span>
+        あれから二年が経つ。<br>
+        管理室は変わらない。棚の数が少し増えた。<br>
+        記録を残し、封をして、鍵をかける。<br>
+        その繰り返しの中に、私はいる。
+      </p>
+      <p>&nbsp;</p>
+
+      <p>
+        先代からもらった紙は、まだ施錠棚にある。<br>
+        開けるべきかどうか、ずっと迷っている。<br>
+        引き継ぐ相手が誰なのか、見当もつかない。
+      </p>
+      <p>&nbsp;</p>
+
+      <p>
+        ただ、外から何かを見つけようとする人間が、<br>
+        いつかここに辿り着く気がしている。<br>
+        そういう人が来たとき、あの紙が意味を持つのかもしれない。<br>
+        先代が言っていた「外から来る者」というのは、<br>
+        そういうことなのかもしれないと、最近になって思う。
+      </p>
+      <p>&nbsp;</p>
+
+      <p class="nb-soft" style="text-align:right;">
+        2024.11.17　長谷川 亮太
+      </p>
+
+    </div><!-- /nb-body -->
+
+    <div id="final-addendum">
+      <div class="nb-archive-id" style="margin-bottom:12px;">[ 付記 — 施錠棚 第3区画より回収 / 記録管理室 後任 ]</div>
+
+      <p>
+        長谷川の退職後、施錠棚の整理をした際に、封のされた紙が見つかった。<br>
+        封は「引継」とだけ書かれた付箋で留められていた。
+      </p>
+      <p>&nbsp;</p>
+
+      <p>
+        中には、一行だけ書いてあった。<br>
+        カタカナで、四文字。
+      </p>
+      <p>&nbsp;</p>
+
+      <p>
+        先代が誰の名前を使ったのか、私にはすぐにわかった。<br>
+        長谷川の手記を読んだあとだったから、なおさらそう思った。<br>
+        先代が、消えたものを鍵にしたのだとすれば——<br>
+        何のために残したかったのか、少しだけ想像できる気がした。
+      </p>
+      <p>&nbsp;</p>
+
+      <p class="nb-soft">— 記録管理室 後任担当</p>
+    </div>
+
+    <div class="nb-note">
+      [記録管理室 備考] 本文書は非公式の個人文書として扱う。<br>
+      内容に関する問い合わせは記録管理室まで。外部持ち出し厳禁。
+    </div>
+
+  </div><!-- /notebook-inner -->
+</div><!-- /notebook -->
+</div><!-- /page-bg -->
+
+<script src="../arg.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (typeof ARG !== 'undefined' && ARG.getLevel() < 3) {
+      window.location.href = '../index.html';
+    }
+    if (typeof ARG !== 'undefined' && ARG.getLevel() >= 4) {
+      document.getElementById('final-addendum').style.display = 'block';
+    }
+  });
+</script>
+</body>
+</html>
