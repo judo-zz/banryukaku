@@ -609,7 +609,7 @@ const PROGRESS_FLAGS = [
 ];
 
 const PAGE_VISIT_KEY = 'br_pages';
-const PAGE_TOTAL = 31;
+const PAGE_TOTAL = 26; // hidden/ ページ数のみカウント
 
 function recordPageVisit() {
   const path = window.location.pathname.replace(/.*\/banryukaku\//, '').replace(/^\//, '') || 'index.html';
@@ -619,7 +619,7 @@ function recordPageVisit() {
     visited.push(path);
     localStorage.setItem(PAGE_VISIT_KEY, JSON.stringify(visited));
   }
-  return visited.length;
+  return visited.filter(p => p.startsWith('hidden/')).length;
 }
 
 function injectProgressBar() {
