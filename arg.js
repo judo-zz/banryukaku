@@ -608,7 +608,7 @@ const PROGRESS_FLAGS = [
 ];
 
 const PAGE_VISIT_KEY = 'br_pages';
-const PAGE_TOTAL = 31;
+const PAGE_TOTAL = 30;
 
 function recordPageVisit() {
   const path = window.location.pathname.replace(/.*\/banryukaku\//, '').replace(/^\//, '') || 'index.html';
