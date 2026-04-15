@@ -72,93 +72,177 @@
       border-bottom: 1px dotted #2a1800;
     }
 
-    #wrapper {
-      max-width: 680px;
+    /* ─── 紙エリア ─── */
+    #page-bg {
+      padding: 30px 16px 60px;
+      min-height: 100vh;
+    }
+
+    .notebook {
+      max-width: 660px;
       margin: 0 auto;
-      padding: 28px 20px 50px;
+      background: #f8f3e8;
+      box-shadow:
+        0 0 0 1px #c8b89a,
+        4px 6px 24px rgba(0,0,0,0.7),
+        10px 12px 40px rgba(0,0,0,0.4);
+      position: relative;
+      /* 罫線 */
+      background-image:
+        /* 左の赤い余白線 */
+        linear-gradient(to right, transparent 62px, #e8c0b0 62px, #e8c0b0 64px, transparent 64px),
+        /* 罫線 */
+        repeating-linear-gradient(
+          to bottom,
+          transparent,
+          transparent 31px,
+          #d0c8b4 31px,
+          #d0c8b4 32px
+        );
+      background-color: #f8f3e8;
     }
 
-    .lore-num {
-      font-size: 11px;
-      color: #4a3311;
+    /* 綴じ穴（左側の丸） */
+    .notebook::before {
+      content: '';
+      position: absolute;
+      left: 42px;
+      top: 50px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #030002;
+      box-shadow: 0 80px 0 #030002, 0 160px 0 #030002, 0 240px 0 #030002, 0 320px 0 #030002, 0 400px 0 #030002;
+      z-index: 2;
+    }
+
+    .notebook-inner {
+      padding: 36px 40px 48px 80px;
+      position: relative;
+    }
+
+    /* ─── ヘッダ ─── */
+    .nb-archive-id {
+      font-family: monospace;
+      font-size: 10px;
+      color: #a09070;
       letter-spacing: 0.2em;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
-    .lore-title {
-      font-size: 20px;
+    .nb-title {
+      font-family: serif;
+      font-size: 24px;
       font-weight: bold;
-      color: #cc9944;
-      letter-spacing: 0.15em;
-      margin-bottom: 6px;
-      text-shadow: 1px 1px 0 #220000;
+      color: #1a1208;
+      letter-spacing: 0.12em;
+      margin-bottom: 2px;
+      line-height: 1.4;
+      border-bottom: 2px solid #1a1208;
+      padding-bottom: 6px;
+      margin-bottom: 12px;
     }
 
-    .lore-sub {
+    .nb-meta {
       font-size: 11px;
-      color: #554433;
+      color: #8a7a5a;
+      line-height: 1.9;
       margin-bottom: 24px;
-      line-height: 1.6;
+      font-family: serif;
     }
 
-    hr.lore { border: none; border-top: 1px solid #332211; margin: 22px 0; }
-
-    .lore-body {
-      font-size: 13px;
-      color: #aa9977;
-      line-height: 2.3;
+    /* ─── 本文 ─── */
+    .nb-body {
+      font-family: serif;
+      font-size: 14px;
+      color: #1e1608;
+      line-height: 2.17; /* 罫線に合わせる */
+      position: relative;
     }
 
-    .lore-body p { margin: 0 0 1.2em; }
+    .nb-body p {
+      margin: 0 0 0; /* 罫線ぴったりに */
+    }
 
-    .lore-em   { color: #ccaa66; font-weight: bold; }
-    .lore-soft { color: #554433; }
-    .lore-red  { color: #996644; }
-
-    .lore-quote {
-      border-left: 3px solid #554433;
-      padding: 10px 18px;
-      margin: 18px 0;
-      background-color: #060400;
+    /* 引用（二重線で囲む） */
+    .nb-quote {
+      border-left: 3px solid #6a5a3a;
+      border-right: 1px solid #c0b090;
+      padding: 8px 16px;
+      margin: 16px 0;
+      background: rgba(180,160,120,0.08);
       font-style: italic;
-      color: #bb9966;
+      color: #2a1e0a;
+    }
+
+    .nb-em    { font-weight: bold; color: #3a1a08; }
+    .nb-soft  { color: #8a7a5a; }
+
+    /* 傍線（重要語に下線） */
+    .nb-underline {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: #8a6a3a;
+    }
+
+    /* 欄外メモ */
+    .margin-note {
+      position: absolute;
+      left: -52px;
+      font-size: 10px;
+      color: #7a5a3a;
+      writing-mode: vertical-rl;
+      letter-spacing: 0.1em;
+      line-height: 1;
+      font-family: serif;
+      opacity: 0.75;
+    }
+
+    /* ─── アーカイブ注記 ─── */
+    .nb-note {
+      margin-top: 32px;
+      padding: 10px 14px;
+      border: 1px dashed #c0b090;
+      font-size: 11px;
+      color: #8a7a5a;
+      line-height: 1.8;
+      font-family: monospace;
+      background: rgba(180,160,120,0.06);
+    }
+
+    /* ─── ページナビ ─── */
+    .page-nav {
+      margin-top: 28px;
+      display: table;
+      width: 100%;
+      font-family: monospace;
+    }
+    .page-nav-prev, .page-nav-next { display: table-cell; font-size: 11px; }
+    .page-nav-prev { text-align: left; }
+    .page-nav-next { text-align: right; }
+    .page-nav-center { display: table-cell; text-align: center; color: #8a7a5a; font-size: 11px; }
+    .page-nav a { color: #6a5a3a; text-decoration: none; border-bottom: 1px dotted #a09070; }
+    .page-nav a:hover { color: #2a1e0a; }
+
+    /* コーヒーシミ風 */
+    .coffee-stain {
+      position: absolute;
+      right: 28px;
+      top: 24px;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 3px solid rgba(160,120,60,0.18);
+      box-shadow: inset 0 0 0 6px rgba(160,120,60,0.07);
+      pointer-events: none;
     }
 
     .redacted {
       background-color: #1a0800;
       color: #1a0800;
     }
-    .redacted:hover { color: #665544; }
 
-    .archive-note {
-      margin-top: 16px;
-      padding: 10px 14px;
-      border: 1px dashed #332211;
-      font-size: 11px;
-      color: #443322;
-      line-height: 1.8;
-    }
-
-    /* ページナビ */
-    .page-nav {
-      margin-top: 36px;
-      display: table;
-      width: 100%;
-    }
-
-    .page-nav-prev,
-    .page-nav-next {
-      display: table-cell;
-      font-size: 11px;
-    }
-
-    .page-nav-prev { text-align: left; }
-    .page-nav-next { text-align: right; }
-    .page-nav-center { display: table-cell; text-align: center; color: #443322; font-size: 11px; }
-
-    .page-nav a { color: #775533; text-decoration: none; border-bottom: 1px dotted #554422; }
-    .page-nav a:hover { color: #ccaa66; }
-      html, body { overflow-x: hidden; }
+    html, body { overflow-x: hidden; }
   </style>
 </head>
 <body>
@@ -178,75 +262,86 @@
   &nbsp;/&nbsp; 記録保管 &nbsp;/&nbsp; LORE-01
 </div>
 
-<div id="wrapper">
+<div id="page-bg">
+<div class="notebook">
+  <div class="coffee-stain"></div>
+  <div class="notebook-inner">
 
-  <div class="lore-num">ARCHIVE DOCUMENT — LORE 01 / 05</div>
-  <div class="lore-title">龍牌会の創設</div>
-  <div class="lore-sub">
-    原文書発見場所: 記録保管室 深部 &nbsp;|&nbsp; 推定作成年: <span class="redacted">████年</span><br>
-    翻刻・デジタル化: 龍牌会 記録管理係
-  </div>
-
-  <hr class="lore">
-
-  <div class="lore-body">
-
-    <p>龍牌会は、一つの観察から出発した組織だ。</p>
-
-    <div class="lore-quote">
-      「龍は、育てるものではない。龍は——来るものだ。」
+    <div class="nb-archive-id">ARCHIVE DOCUMENT — LORE 01 / 05</div>
+    <div class="nb-title">龍牌会の創設</div>
+    <div class="nb-meta">
+      発見場所：記録保管室 深部　／　推定作成年：<span class="redacted">████年</span><br>
+      翻刻・整理：記録管理係
     </div>
 
-    <p>
-      創設者（名は口伝のみ。文書への記録は禁じられている）は、<br>
-      あらゆる組織が継承に失敗する理由を研究した。<br>
-      結論は単純だった。
-    </p>
+    <div class="nb-body">
 
-    <p>
-      内部から育てることは、<span class="lore-em">組織の文法を教えること</span>に等しい。<br>
-      その文法を完全に習得した者は、組織の精巧な複製になる。<br>
-      複製は変化を生まない。したがって継承は失敗する。<br>
-      これは構造の問題であり、個人の能力の問題ではない。
-    </p>
+      <p style="position:relative;">
+        <span class="margin-note">創設経緯</span>
+        龍牌会は、一つの観察から出発した組織だ。
+      </p>
+      <p>&nbsp;</p>
 
-    <p>
-      この観察から、創設者は一つの定義を導いた。
-    </p>
+      <div class="nb-quote">
+        「龍は、育てるものではない。龍は——来るものだ。」
+      </div>
 
-    <div class="lore-quote">
-      「真の継承者は、内部では育たない。<br>
-      外から、自発的に来る。<br>
-      問いを与えられる前に、問いを立てる者。<br>
-      扉が示されていないのに、扉を見つける者。<br>
-      それが、龍の定義だ。」
+      <p style="position:relative;">
+        <span class="margin-note">重要</span>
+        創設者（名は口伝のみ。文書への記録は禁じられている）は、<br>
+        あらゆる組織が継承に失敗する理由を研究した。<br>
+        結論は単純だった。
+      </p>
+      <p>&nbsp;</p>
+
+      <p>
+        内部から育てることは、<span class="nb-em nb-underline">組織の文法を教えること</span>に等しい。<br>
+        その文法を完全に習得した者は、組織の精巧な複製になる。<br>
+        複製は変化を生まない。したがって継承は失敗する。<br>
+        これは構造の問題であり、個人の能力の問題ではない。
+      </p>
+      <p>&nbsp;</p>
+
+      <p>この観察から、創設者は一つの定義を導いた。</p>
+      <p>&nbsp;</p>
+
+      <div class="nb-quote">
+        「真の継承者は、内部では育たない。<br>
+        外から、自発的に来る。<br>
+        問いを与えられる前に、問いを立てる者。<br>
+        扉が示されていないのに、扉を見つける者。<br>
+        それが、龍の定義だ。」
+      </div>
+
+      <p style="position:relative;">
+        <span class="margin-note">設計思想</span>
+        龍牌会の目的は、この定義から導かれる。<br>
+        <span class="nb-em">そのような人間が、自然に辿り着く場所を設計すること。</span><br>
+        最初の実装は小さな茶屋だった。現在は蟠龍閣だ。<br>
+        形式は変わる。設計思想は変わらない。
+      </p>
+      <p>&nbsp;</p>
+
+      <p class="nb-soft">
+        あなたが今、ここを読んでいる。<br>
+        この事実は、設計が機能していることを意味する。
+      </p>
+
     </div>
 
-    <p>
-      龍牌会の目的は、この定義から導かれる。<br>
-      <span class="lore-em">そのような人間が、自然に辿り着く場所を設計すること。</span><br>
-      最初の実装は小さな茶屋だった。現在は蟠龍閣だ。<br>
-      形式は変わる。設計思想は変わらない。
-    </p>
+    <div class="nb-note">
+      ■ アーカイブ注記 &nbsp;|&nbsp; 本文書は創設者の思想を後代が書き起こしたものです。<br>
+      原本との差異について龍牌会は責任を負いません。&nbsp;|&nbsp; 続き: LORE-02
+    </div>
 
-    <p class="lore-soft">
-      あなたが今、ここを読んでいる。<br>
-      この事実は、設計が機能していることを意味する。
-    </p>
+    <div class="page-nav">
+      <div class="page-nav-prev"><a href="../index.html">← トップ</a></div>
+      <div class="page-nav-center">1 / 5</div>
+      <div class="page-nav-next"><a href="lore-02.html">LORE-02 →</a></div>
+    </div>
 
   </div>
-
-  <div class="archive-note">
-    ■ アーカイブ注記 &nbsp;|&nbsp; 本文書は創設者の思想を後代が書き起こしたものです。<br>
-    原本との差異について龍牌会は責任を負いません。&nbsp;|&nbsp; 続き: LORE-02
-  </div>
-
-  <div class="page-nav">
-    <div class="page-nav-prev"><a href="../index.html">← トップ</a></div>
-    <div class="page-nav-center">1 / 5</div>
-    <div class="page-nav-next"><a href="lore-02.html">LORE-02 →</a></div>
-  </div>
-
+</div>
 </div>
 
 <script src="../arg.js"></script>
