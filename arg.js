@@ -402,6 +402,11 @@ var SEARCH_INDEX = {
                    requires: ['found_disposal'], failMsg: '関連する記録が未参照です。廃棄記録を先に確認してください。' },
   '百瀬':        { dest: 'hidden/momose.html',              flag: 'found_momose',          level: 3,
                    requires: ['found_disposal'], failMsg: '関連する記録が未参照です。廃棄記録を先に確認してください。' },
+  '先代':        { deleted: true },
+  '先代総龍':    { deleted: true },
+  '前任者':      { deleted: true },
+  '前総龍':      { deleted: true },
+  'ソラ':        { deleted: true },
 };
 
 function resolveSearchPath(dest) {
@@ -468,6 +473,20 @@ function executeSearch(query) {
   ARG.logSearch(q);
 
   const entry = SEARCH_INDEX[q];
+
+  // 削除済みレコード
+  if (entry && entry.deleted) {
+    var el = document.getElementById('search-error');
+    if (el) {
+      el.style.color = '#554433';
+      el.innerHTML =
+        '> ' + q + ' に関する記録は存在しません。<br>' +
+        '> STATUS: DELETED — 2024.11 / 操作者: HSGW';
+      setTimeout(function () { el.innerHTML = ''; el.style.color = ''; }, 4000);
+    }
+    return;
+  }
+
   if (entry) {
     const { dest, flag, level } = entry;
     const input = document.getElementById('search-input');
