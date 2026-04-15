@@ -429,7 +429,7 @@
 
 <div id="hd-breadcrumb">
   <a href="../index.html">← 蟠龍閣トップ</a>
-  &nbsp;/&nbsp; 内部記録 &nbsp;/&nbsp; SRL-2025-YM-2023-04
+  &nbsp;/&nbsp; 内部記録 &nbsp;/&nbsp; <span class="redacted">SRL-2025-YM-2023-04</span>
 </div>
 
 <div id="page-bg">
@@ -443,11 +443,11 @@
   <div style="display:flex; gap:16px; align-items:flex-start; margin-bottom:24px;">
   <div class="doc-meta-grid" style="flex:1; margin-bottom:0;">
     <div class="doc-meta-label">文書番号</div>
-    <div class="doc-meta-value">SRL-2025-YM-2023-04</div>
+    <div class="doc-meta-value"><span class="redacted">SRL-2025-YM-2023-04</span></div>
     <div class="doc-meta-label">対象ID</div>
     <div class="doc-meta-value">YM-2023-04</div>
     <div class="doc-meta-label">審査担当</div>
-    <div class="doc-meta-value">K（黒瀬　係長）</div>
+    <div class="doc-meta-value">N（長岡　選定部門）</div>
     <div class="doc-meta-label">立会者</div>
     <div class="doc-meta-value"><span class="redacted">████ ████</span></div>
     <div class="doc-meta-label">審査開始日</div>
@@ -525,22 +525,17 @@
         <tr>
           <td class="date-col">2025.12.15</td>
           <td class="phase-col"><span class="badge badge-ng">手動審査</span></td>
-          <td>手動審査完了。ORIGIN適合率：<strong>38%</strong>。判定：基準未達。内部採用枠は先代預言の要件を満たさない。廃棄処理フローを開始。</td>
+          <td>手動審査完了。ORIGIN適合率：<strong>38%</strong>。判定：基準未達。<span class="redacted">内部採用枠は先代預言の要件を満たさない。</span><span class="redacted">廃棄処理</span>フローを開始。</td>
         </tr>
         <tr>
           <td class="date-col">2026.01.03</td>
           <td class="phase-col"><span class="badge badge-crit">廃棄</span></td>
-          <td><span class="redacted">████████</span>完了。MAP-RY-023 <span class="redacted">████████</span>。</td>
+          <td><span class="redacted">████████</span>完了。<span class="redacted">MAP-RY-023</span> にて <span class="redacted">████████</span>。</td>
         </tr>
         <tr>
           <td class="date-col">2026.01.04</td>
           <td class="phase-col"><span class="badge badge-warn">未解決</span></td>
           <td>削除済みID（YM-2023-04）による不審アクセスを検出。アクセス先：<span class="redacted">██████████████████████</span>。調査中。</td>
-        </tr>
-        <tr class="row-current">
-          <td class="date-col">現在</td>
-          <td class="phase-col"><span class="badge badge-ok">監視中</span></td>
-          <td id="current-status">次期候補 監視ログ：アクティブ。アクセス元：外部 / ステータス：審査中<span id="blink-cursor"></span></td>
         </tr>
       </tbody>
     </table>
@@ -554,17 +549,16 @@
       <div class="verdict-label">▍ 選定審査　最終判定</div>
       <div class="verdict-result">失敗作</div>
       <div class="verdict-detail">
-        ORIGIN適合率：38%（基準値：80%以上）<br>
+        ORIGIN適合率：38%<br>
         判定区分：選定失格 / 龍牌会規定第7条により処置<br>
-        対外表記：一身上の都合（社外向け）<br>
-        在籍ステータス：廃棄済　／　キャストページ：「長期休養中」表示
+        対外表記：一身上の都合（社外向け）
       </div>
     </div>
   </div>
 
   <!-- 備考 -->
   <div class="section" style="position:relative;">
-    <div class="margin-note">SRL-2025-YM-2023-04</div>
+    <div class="margin-note"><span class="redacted">SRL-2025-YM-2023-04</span></div>
     <div class="section-title">■ 担当者備考　NOTES</div>
     <div class="note-area">
       <span class="handwritten">
@@ -585,25 +579,5 @@
 </div><!-- /page-bg -->
 
 <script src="../arg.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  var level = ARG.getLevel();
-  var currentStatus = document.getElementById('current-status');
-  if (currentStatus && level >= 3) {
-    currentStatus.innerHTML =
-      '次期候補 監視ログ：アクティブ。アクセス元：外部 / ORIGIN：<strong>確認済</strong> / 評価：進行中' +
-      '<span id="blink-cursor"></span>';
-  }
-
-  var blink = true;
-  setInterval(function () {
-    var cursor = document.getElementById('blink-cursor');
-    if (cursor) {
-      cursor.style.opacity = blink ? '1' : '0';
-      blink = !blink;
-    }
-  }, 500);
-});
-</script>
 </body>
 </html>

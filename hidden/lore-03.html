@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <title>LORE-03 選定の歴史 | 古文書</title>
+  <title>LORE-03 選定の歴史 | 記録保管</title>
   <style>
     body {
       background-color: #030002;
@@ -147,7 +147,7 @@
 <body>
 
 <div id="hd-topbar">
-  ▌ 龍牌会 古文書アーカイブ　ARCHIVE DOCUMENT　▌ 記録保管室 ▐
+  ▌ 龍牌会 記録保管アーカイブ　ARCHIVE DOCUMENT　▌ 記録保管室 ▐
 </div>
 
 <div id="hd-search">
@@ -158,7 +158,7 @@
 
 <div id="hd-breadcrumb">
   <a href="../index.html">← 蟠龍閣トップ</a>
-  &nbsp;/&nbsp; 古文書 &nbsp;/&nbsp; LORE-03
+  &nbsp;/&nbsp; 記録保管 &nbsp;/&nbsp; LORE-03
 </div>
 
 <div id="wrapper">
@@ -167,7 +167,7 @@
   <div class="lore-title">選定の歴史</div>
   <div class="lore-sub">
     原資料: 龍牌会 選定部門 累積記録 &nbsp;|&nbsp; 閲覧制限: 最高機密<br>
-    ※ 個人情報はマスク処理済。一部は黒瀬係長の手書きメモを含む
+    ※ 個人情報はマスク処理済。一部は長岡（選定部門）の手書きメモを含む
   </div>
 
   <hr class="lore">
@@ -210,7 +210,7 @@
         好奇心: <span class="grade-S">S</span> &nbsp; 継続性: <span class="grade-S">S</span> &nbsp; 洞察力: <span class="grade-S">S</span><br>
         ORIGIN: <span class="grade-C">— 外から来ているが、龍牌会を事前に知っていた形跡</span>
       </div>
-      <div class="c-verdict verdict-fail">廃棄 — 「教えられて来た者は龍ではない」（黒瀬メモ）</div>
+      <div class="c-verdict verdict-fail">廃棄 — 「教えられて来た者は龍ではない」（長岡メモ）</div>
     </div>
 
     <div class="candidate-item highlight">
@@ -256,7 +256,7 @@
         <span class="lore-soft">備考: 先代が残した痕跡を辿っていた形跡あり（端末ログ照合済）。</span>
       </div>
       <div class="c-verdict verdict-fail" style="color:#cc6633;">
-        廃棄 — ただし、黒瀬係長は「ゆめの行動を無駄にしてはならない」と記録に残している。
+        廃棄 — ただし、黒瀬（フロント部門）は「ゆめの行動を無駄にしてはならない」と記録に残している。
       </div>
     </div>
 
@@ -268,7 +268,7 @@
         ORIGIN: <span class="grade-S">S</span> — 外部から自発的に来た<br>
         RECOGNITION: <span class="grade-S">S</span> — ゆめのバックドアを通過済み
       </div>
-      <div class="c-verdict verdict-pass">審査中 ——「初めて全項目を充足する候補」（黒瀬メモ）</div>
+      <div class="c-verdict verdict-pass">審査中 ——「初めて全項目を充足する候補」（長岡メモ）</div>
     </div>
 
   </div>
@@ -287,5 +287,12 @@
 </div>
 
 <script src="../arg.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  if (typeof ARG !== 'undefined' && ARG.getLevel() < 4) {
+    window.location.href = '../index.html';
+  }
+});
+</script>
 </body>
 </html>

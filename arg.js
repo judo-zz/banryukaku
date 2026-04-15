@@ -394,6 +394,8 @@ var SEARCH_INDEX = {
                           requires: ['found_disposal_room'], failMsg: '該当する記録が見つかりません。先に区画情報を確認してください。' },
   '次代の総龍':  { dest: 'hidden/selection-criteria.html', flag: 'found_selection',       level: 3 },
   '龍牌会 端末': { dest: 'hidden/admin-console.html',      flag: 'found_admin_console',   level: 4 },
+  '記録保管室':  { dest: 'hidden/lore-01.html',            flag: 'found_records_archive', level: 2 },
+  '記録保管':    { dest: 'hidden/lore-01.html',            flag: 'found_records_archive', level: 2 },
 };
 
 function resolveSearchPath(dest) {

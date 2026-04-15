@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <title>LORE-02 先代の総龍 | 古文書</title>
+  <title>LORE-02 先代の総龍 | 記録保管</title>
   <style>
     body {
       background-color: #030002;
@@ -138,7 +138,7 @@
 <body>
 
 <div id="hd-topbar">
-  ▌ 龍牌会 古文書アーカイブ　ARCHIVE DOCUMENT　▌ 記録保管室 ▐
+  ▌ 龍牌会 記録保管アーカイブ　ARCHIVE DOCUMENT　▌ 記録保管室 ▐
 </div>
 
 <div id="hd-search">
@@ -149,7 +149,7 @@
 
 <div id="hd-breadcrumb">
   <a href="../index.html">← 蟠龍閣トップ</a>
-  &nbsp;/&nbsp; 古文書 &nbsp;/&nbsp; LORE-02
+  &nbsp;/&nbsp; 記録保管 &nbsp;/&nbsp; LORE-02
 </div>
 
 <div id="wrapper">
@@ -204,7 +204,7 @@
     <p>
       先代が退任したとき、龍牌会に後継者はいなかった。<br>
       空位を放置することはできない。<br>
-      黒瀬係長が代理統括を引き受けた。
+      長谷川が代理統括を引き受けた。
     </p>
 
     <p class="lore-soft">
@@ -239,6 +239,10 @@
 <script src="../arg.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
+  if (typeof ARG !== 'undefined' && ARG.getLevel() < 2) {
+    window.location.href = '../index.html';
+    return;
+  }
   var link = document.getElementById('lore03-link');
   var deny = document.getElementById('lore03-deny');
   link.addEventListener('click', function (e) {
