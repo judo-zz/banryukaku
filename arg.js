@@ -396,6 +396,12 @@ var SEARCH_INDEX = {
   '龍牌会 端末': { dest: 'hidden/admin-console.html',      flag: 'found_admin_console',   level: 4 },
   '記録保管室':  { dest: 'hidden/lore-01.html',            flag: 'found_records_archive', level: 2 },
   '記録保管':    { dest: 'hidden/lore-01.html',            flag: 'found_records_archive', level: 2 },
+  '長谷川':      { dest: 'hidden/nagasawa.html',            flag: 'found_nagasawa',        level: 3,
+                   requires: ['found_records_archive'], failMsg: '関連する記録が未参照です。記録保管室を先に確認してください。' },
+  '長岡':        { dest: 'hidden/nagaoka.html',             flag: 'found_nagaoka',         level: 3,
+                   requires: ['found_disposal'], failMsg: '関連する記録が未参照です。廃棄記録を先に確認してください。' },
+  '百瀬':        { dest: 'hidden/momose.html',              flag: 'found_momose',          level: 3,
+                   requires: ['found_disposal'], failMsg: '関連する記録が未参照です。廃棄記録を先に確認してください。' },
 };
 
 function resolveSearchPath(dest) {
