@@ -351,7 +351,7 @@
     // ツイートボタン
     document.getElementById('tweet-btn').addEventListener('click', function (e) {
       e.preventDefault();
-      var siteUrl = window.location.origin + '/banryukaku/';
+      var siteUrl = 'https://banryukaku.com';
       var text = '【蟠龍閣】すべての記録を辿り着いた。\n#蟠龍閣ARG\n' + siteUrl;
       var tweetUrl = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text);
       window.open(tweetUrl, '_blank', 'noopener');
