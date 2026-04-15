@@ -192,6 +192,18 @@
 
     .index-list a:hover { color: #ccaa66; }
 
+    .index-list a.dead {
+      color: #2a1a00;
+      pointer-events: none;
+      cursor: default;
+      text-decoration: none;
+    }
+
+    .index-list a.dead::after {
+      content: ' ██████';
+      color: #1a0e00;
+    }
+
     .index-tag {
       font-size: 10px;
       color: #332200;
@@ -322,6 +334,18 @@
         display.innerHTML = html;
       }
       display.style.display = 'block';
+    });
+
+    // 未訪問リンクを死活処理
+    var visited = [];
+    try { visited = JSON.parse(localStorage.getItem('br_pages') || '[]'); } catch(e) {}
+    document.querySelectorAll('.index-list a[href]').forEach(function (a) {
+      var href = a.getAttribute('href');
+      var path = 'hidden/' + href;
+      if (!visited.includes(path)) {
+        a.classList.add('dead');
+        a.removeAttribute('href');
+      }
     });
 
     // ツイートボタン
