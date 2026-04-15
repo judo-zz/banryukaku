@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <title>長岡 — 担当者記録 | 蟠龍閣内部</title>
+  <title>長岡 — 内部登録票 | 蟠龍閣内部</title>
   <style>
     body {
       background-color: #020000;
@@ -72,82 +72,206 @@
       border-bottom: 1px dotted #220000;
     }
 
-    #wrapper {
+    /* ─── 書類エリア ─── */
+    #page-bg {
+      padding: 28px 16px 60px;
+      min-height: 100vh;
+    }
+
+    /* 履歴書用紙 */
+    .resume {
       max-width: 680px;
       margin: 0 auto;
-      padding: 24px 16px 48px;
-    }
-
-    .doc-header {
-      border: 1px solid #440000;
-      padding: 14px 18px;
-      margin-bottom: 24px;
-      background-color: #060000;
-    }
-
-    .doc-title {
+      background: #f7f4ee;
+      color: #111008;
+      box-shadow:
+        0 0 0 1px #b8a888,
+        4px 6px 24px rgba(0,0,0,0.75),
+        10px 12px 40px rgba(0,0,0,0.45);
+      font-family: serif;
       font-size: 13px;
+      position: relative;
+    }
+
+    /* 用紙ヘッダ */
+    .resume-header {
+      background: #1a0000;
+      color: #886655;
+      text-align: center;
+      padding: 8px 16px;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      font-family: monospace;
+      border-bottom: 2px solid #440000;
+    }
+
+    .resume-body {
+      padding: 20px 24px 28px;
+    }
+
+    /* 書類タイトル */
+    .resume-title {
+      text-align: center;
+      font-size: 16px;
       font-weight: bold;
-      color: #994433;
-      letter-spacing: 0.1em;
-      margin-bottom: 8px;
-      border-bottom: 1px solid #330000;
-      padding-bottom: 6px;
+      letter-spacing: 0.4em;
+      color: #1a0800;
+      border-bottom: 2px solid #1a0800;
+      padding-bottom: 8px;
+      margin-bottom: 0;
     }
 
-    .doc-meta {
-      font-size: 11px;
-      color: #553322;
-      line-height: 2;
+    /* 写真＋基本情報の2カラム */
+    .top-row {
+      display: flex;
+      gap: 0;
+      border: 1px solid #888;
+      border-top: none;
+      margin-bottom: 0;
     }
 
-    .doc-meta span { display: inline-block; min-width: 120px; }
-
-    .section-label {
-      font-size: 11px;
-      color: #662222;
-      letter-spacing: 0.15em;
-      border-bottom: 1px dotted #330000;
-      padding-bottom: 4px;
-      margin-bottom: 10px;
-      margin-top: 22px;
+    .photo-cell {
+      width: 110px;
+      min-height: 140px;
+      border-right: 1px solid #888;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      background: #e8e2d8;
+      overflow: hidden;
     }
 
-    .info-table {
+    .photo-cell img {
+      width: 110px;
+      height: 140px;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: grayscale(20%) contrast(1.05);
+    }
+
+    .basic-info {
+      flex: 1;
+    }
+
+    /* 共通テーブルセル */
+    .r-table {
       width: 100%;
       border-collapse: collapse;
+    }
+
+    .r-table th,
+    .r-table td {
+      border: 1px solid #888;
+      padding: 5px 8px;
+      vertical-align: middle;
       font-size: 12px;
+      line-height: 1.6;
     }
 
-    .info-table th,
-    .info-table td {
-      padding: 6px 10px;
-      border-bottom: 1px dotted #330000;
-      vertical-align: top;
-      text-align: left;
-    }
-
-    .info-table tr:last-child th,
-    .info-table tr:last-child td { border-bottom: none; }
-
-    .info-table th {
-      color: #774433;
-      width: 130px;
+    .r-table th {
+      background: #e8e0d0;
+      color: #443322;
+      font-weight: normal;
       white-space: nowrap;
-    }
-
-    .redacted {
-      background-color: #110000;
-      color: #110000;
-      user-select: none;
-    }
-
-    .doc-footer {
-      margin-top: 30px;
-      border-top: 1px solid #330000;
-      padding-top: 10px;
+      width: 100px;
       font-size: 11px;
+      letter-spacing: 0.05em;
+    }
+
+    /* フチなし接続 */
+    .top-row .r-table th,
+    .top-row .r-table td {
+      border-left: none;
+      border-right: none;
+    }
+    .top-row .r-table tr:first-child th,
+    .top-row .r-table tr:first-child td {
+      border-top: none;
+    }
+    .top-row .r-table tr:last-child th,
+    .top-row .r-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* セクションタイトル */
+    .section-row {
+      background: #2a1000 !important;
+      color: #aa7755 !important;
+      text-align: center;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      font-family: monospace;
+    }
+
+    .section-row td {
+      padding: 4px 8px !important;
+      border-color: #555 !important;
+    }
+
+    /* 経歴行 */
+    .r-table .year-col {
+      width: 80px;
+      text-align: center;
+      background: #f0ece0;
+      color: #443322;
+      font-size: 11px;
+    }
+
+    .r-table .content-col {
+      color: #1a1008;
+    }
+
+    /* 塗りつぶし */
+    .redacted {
+      background-color: #1a1008;
+      color: #1a1008;
+      user-select: none;
+      display: inline-block;
+    }
+
+    /* スタンプ */
+    .stamp-area {
+      text-align: right;
+      padding: 8px 24px 4px;
+    }
+
+    .stamp {
+      display: inline-block;
+      border: 2px solid #880000;
+      color: #880000;
+      font-size: 13px;
+      font-weight: bold;
+      padding: 4px 12px;
+      letter-spacing: 0.15em;
+      font-family: serif;
+      transform: rotate(-4deg);
+      opacity: 0.75;
+    }
+
+    /* 備考欄 */
+    .remarks {
+      border: 1px solid #888;
+      border-top: none;
+      padding: 10px 12px;
+      font-size: 11px;
+      color: #553322;
+      font-family: monospace;
+      background: #f0ece0;
+      line-height: 1.9;
+    }
+
+    /* 用紙フッタ */
+    .resume-footer {
+      background: #0a0000;
       color: #442222;
+      font-size: 10px;
+      font-family: monospace;
+      text-align: center;
+      padding: 6px 12px;
+      letter-spacing: 0.1em;
+      border-top: 1px solid #330000;
     }
 
     html, body { overflow-x: hidden; }
@@ -156,7 +280,7 @@
 <body>
 
 <div id="hd-topbar">
-  ▌ BANRYUKAKU INTERNAL ▐　選定部門 — 担当者記録　▌ RESTRICTED ▐
+  ▌ BANRYUKAKU INTERNAL ▐　選定部門 — 内部登録票　▌ RESTRICTED ▐
 </div>
 
 <div id="hd-search">
@@ -167,56 +291,147 @@
 
 <div id="hd-breadcrumb">
   <a href="../index.html">← 蟠龍閣トップに戻る</a>
-  &nbsp;/&nbsp; 選定部門 &nbsp;/&nbsp; 担当者記録
+  &nbsp;/&nbsp; 選定部門 &nbsp;/&nbsp; 内部登録票
 </div>
 
-<div id="wrapper">
+<div id="page-bg">
+<div class="resume">
 
-  <div class="doc-header">
-    <div class="doc-title">担当者記録 / STAFF FILE</div>
-    <div class="doc-meta">
-      <span>氏名</span>: 長岡<br>
-      <span>所属</span>: 龍牌会 選定部門<br>
-      <span>担当区分</span>: 選定審査・適合率判定<br>
-      <span>在籍状況</span>: <span class="redacted">████████</span>
+  <div class="resume-header">
+    龍牌会 内部登録票（選定部門）　BRK-STF-NGOK　/ CONFIDENTIAL
+  </div>
+
+  <div class="resume-body">
+
+    <div class="stamp-area">
+      <span class="stamp">在籍確認済</span>
     </div>
+
+    <div class="resume-title">内　部　登　録　票</div>
+
+    <!-- 写真＋基本情報 -->
+    <div class="top-row">
+      <div class="photo-cell">
+        <img src="nagaoka-photo.png" alt="登録写真">
+      </div>
+      <div class="basic-info">
+        <table class="r-table">
+          <tr>
+            <th>氏　名</th>
+            <td style="font-size:15px; font-weight:bold; letter-spacing:0.15em;">長岡 <span class="redacted">██</span></td>
+          </tr>
+          <tr>
+            <th>生年月日</th>
+            <td><span class="redacted">████年██月██日</span>　/ <span class="redacted">██</span>歳</td>
+          </tr>
+          <tr>
+            <th>所　属</th>
+            <td>龍牌会　選定部門</td>
+          </tr>
+          <tr>
+            <th>職　位</th>
+            <td>選定審査 主任</td>
+          </tr>
+          <tr>
+            <th>登録番号</th>
+            <td style="font-family:monospace; font-size:11px;">STF-NGOK-<span class="redacted">████</span></td>
+          </tr>
+          <tr>
+            <th>在籍状況</th>
+            <td><span class="redacted">████████</span></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- 職歴 -->
+    <table class="r-table">
+      <tr class="section-row">
+        <td colspan="2">■ 職　歴</td>
+      </tr>
+      <tr>
+        <td class="year-col"><span class="redacted">████</span>年</td>
+        <td class="content-col"><span class="redacted">████████</span>勤務</td>
+      </tr>
+      <tr>
+        <td class="year-col"><span class="redacted">████</span>年</td>
+        <td class="content-col"><span class="redacted">████████</span>退職</td>
+      </tr>
+      <tr>
+        <td class="year-col"><span class="redacted">████</span>年</td>
+        <td class="content-col">龍牌会 選定部門 着任</td>
+      </tr>
+      <tr>
+        <td class="year-col">2019年</td>
+        <td class="content-col">選定審査 主任 昇格</td>
+      </tr>
+      <tr>
+        <td class="year-col">2024年</td>
+        <td class="content-col">選定基準改訂委員 兼任（現在に至る）</td>
+      </tr>
+    </table>
+
+    <!-- 担当実績 -->
+    <table class="r-table">
+      <tr class="section-row">
+        <td colspan="2">■ 主要担当実績</td>
+      </tr>
+      <tr>
+        <td class="year-col">2026.01.01</td>
+        <td class="content-col">
+          YM-2023-04（ゆめ）最終判定実施。<br>
+          適合率 38% — 基準未達（60%）。廃棄判定確定。<br>
+          <span style="font-size:11px; color:#664433;">→ 処理記録：BRK-DSP-2026-0103</span>
+        </td>
+      </tr>
+      <tr>
+        <td class="year-col">2025.06.14</td>
+        <td class="content-col">YM-2023-04 選定審査開始（初回面談）</td>
+      </tr>
+      <tr>
+        <td class="year-col">2024.██.██</td>
+        <td class="content-col"><span class="redacted">████████████████████████████</span></td>
+      </tr>
+      <tr>
+        <td class="year-col">2023.██.██</td>
+        <td class="content-col"><span class="redacted">████████████████████████████</span></td>
+      </tr>
+    </table>
+
+    <!-- 評価・備考 -->
+    <table class="r-table">
+      <tr class="section-row">
+        <td colspan="2">■ 担当者評価・特記事項</td>
+      </tr>
+      <tr>
+        <td class="year-col" style="width:80px;">上長所見</td>
+        <td class="content-col">
+          判定精度・処理件数ともに部門内上位。<br>
+          感情的判断の排除を徹底しており、信頼度が高い。
+        </td>
+      </tr>
+      <tr>
+        <td class="year-col">特記</td>
+        <td class="content-col">
+          2026.01 処理案件において、対象者の不正アクセス記録が事前に検出されていたにもかかわらず、
+          最終判定まで通常手順を維持した。判断の一貫性について上長より評価を受けた。
+        </td>
+      </tr>
+    </table>
+
+  </div><!-- /resume-body -->
+
+  <div class="remarks">
+    [備考] 本票は選定部門内部のみで閲覧可。担当者情報の外部共有を禁止する。<br>
+    照会番号：BRK-STF-NGOK &nbsp;|&nbsp; 最終更新：2026.01.05
   </div>
 
-  <div class="section-label">■ 担当実績（直近）</div>
-  <table class="info-table">
-    <tr>
-      <th>2026.01.01</th>
-      <td>
-        YM-2023-04（ゆめ）の最終判定を実施。<br>
-        適合率 38% — 規定基準（60%）未達。廃棄判定を確定。
-      </td>
-    </tr>
-    <tr>
-      <th>処理結果</th>
-      <td>廃棄処理記録 BRK-DSP-2026-0103 に記録済み</td>
-    </tr>
-  </table>
-
-  <div class="section-label">■ 備考</div>
-  <table class="info-table">
-    <tr>
-      <th>特記事項</th>
-      <td>
-        今回の対象者は内部資料への不正アクセス歴あり（2025.09, 2025.11）。<br>
-        通常の処置手順に加え、情報管理部門との連携を実施。
-      </td>
-    </tr>
-    <tr>
-      <th>引き継ぎ</th>
-      <td>次回選定案件は <span class="redacted">████ / 春季選定予定</span></td>
-    </tr>
-  </table>
-
-  <div class="doc-footer">
-    選定部門 &nbsp;|&nbsp; 担当：長岡 &nbsp;|&nbsp; 外部持ち出し禁止
+  <div class="resume-footer">
+    龍牌会 選定部門　/　外部持ち出し禁止　/　BANRYUKAKU INTERNAL USE ONLY
   </div>
 
-</div>
+</div><!-- /resume -->
+</div><!-- /page-bg -->
 
 <script src="../arg.js"></script>
 <script>
