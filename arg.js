@@ -485,7 +485,7 @@ function executeSearch(query) {
       el.style.color = '#554433';
       el.innerHTML =
         '> ' + q + ' に関する記録は存在しません。<br>' +
-        '> STATUS: DELETED — 2024.11 / 操作者: HSGW';
+        '> STATUS: DELETED — 2024.11 / 操作者: <span style="background:#111;color:#111;">████</span>';
       setTimeout(function () { el.innerHTML = ''; el.style.color = ''; }, 4000);
     }
     return;
