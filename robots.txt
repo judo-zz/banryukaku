@@ -1,4 +1,2 @@
 User-agent: *
 Disallow: /hidden/
-
-Sitemap: /sitemap.xml
