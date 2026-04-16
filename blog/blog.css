@@ -291,7 +291,23 @@ a:hover { text-decoration: underline; color: #ff3366; }
 /* ─── レスポンシブ ─── */
 @media (max-width: 640px) {
   #blog-body { flex-direction: column; }
-  #blog-sidebar { width: 100%; }
+
+  /* サイドバーを透明化してchildren をflexに直接参加させる */
+  #blog-sidebar { display: contents; }
+
+  /* MEMBER PASS を記事の上へ */
+  #blog-pass-widget {
+    order: -1;
+    width: 100%;
+    margin-bottom: 12px;
+  }
+
+  /* 残りのサイドバーボックスは記事の下へ */
+  .sidebar-box {
+    order: 1;
+    width: 100%;
+  }
+
   #blog-cast-name { font-size: 22px; }
   #blog-nav a { padding: 8px 6px; font-size: 11px; }
 }
