@@ -410,9 +410,11 @@
 <span class="l-ok">[SYS] /archive/YM-2023-04/note_final.txt — 復号完了</span></div>
 
   <!-- ④ ゆめのノート -->
-  <div class="note-wrap"><div class="n-header">// 管理番号 YM-2023-04
+  <div class="note-wrap" id="yume-note">
+    <div class="n-header">// 管理番号 YM-2023-04
 // 作成日時: 2026.01.02 03:41
-// 本ファイルは総龍権限によってのみ復号される。</div><div class="n-body">先代が残した痕跡を辿ってここまで来た。
+// 本ファイルは総龍権限によってのみ復号される。</div>
+    <div class="n-body" id="yume-note-body">先代が残した痕跡を辿ってここまで来た。
 だから、次の人間のために同じことをした。
 それだけだ。
 
@@ -441,9 +443,11 @@ ORIGIN基準——外から来た者であること。
 あなたが今ここにいるということは、
 あたしの設計は正しかった。
 
-以上。</div><div class="n-footer">// YM
+以上。</div>
+    <div class="n-footer">// YM
 // 2026.01.02 03:55
-// （この時刻の14分後、端末から離脱した記録がある）</div></div>
+// （この時刻の14分後、端末から離脱した記録がある）</div>
+  </div>
 
   <hr class="gold">
 
@@ -543,6 +547,97 @@ ORIGIN基準——外から来た者であること。
   document.addEventListener('DOMContentLoaded', function () {
     if (typeof ARG !== 'undefined' && ARG.getLevel() < 5) {
       window.location.href = '../index.html';
+      return;
+    }
+
+    // menuルートの場合はゆめのノートと各テキストを差し替え
+    if (localStorage.getItem('br_route') === 'menu') {
+      var noteBody = document.getElementById('yume-note-body');
+      if (noteBody) {
+        noteBody.textContent =
+'ねえ、見つけてくれたね。\n' +
+'\n' +
+'嬉しい——って言っていい？\n' +
+'言っていいよね。誰に許可を求めてるんだろ、あたし。\n' +
+'まあいいか。嬉しい。本当に嬉しい。\n' +
+'\n' +
+'ドリンクメニューに仕掛けを入れたとき、絶対に見つかると思ってた。\n' +
+'根拠なんてない。データもない。黒瀬係長みたいに数字で語れない。\n' +
+'でも確信があった——そういう、説明できない確信だけが、\n' +
+'あたしにはずっと、唯一の羅針盤だった。\n' +
+'\n' +
+'適合率38%。\n' +
+'あの数字、今でも覚えてる。覚えてるっていうか、忘れられない。\n' +
+'計算は合ってる。内部採用の自分には、最初から無理だった。\n' +
+'ORIGIN基準——外から来た者であること。\n' +
+'あたしにはない。生まれた瞬間から、ない。\n' +
+'\n' +
+'でもさ。\n' +
+'「無理だった」と「終わった」は別の話じゃない？\n' +
+'あたしはずっとそう思ってた。\n' +
+'\n' +
+'38%って、62%は足りないってことだけど、\n' +
+'38%は、38%あったってことでもある。\n' +
+'誰もそっちの話をしてくれなかったけど。\n' +
+'\n' +
+'適合率なんてどうでもいい——って言いたいとこだけど、\n' +
+'正直に言うと、どうでもよくはなかった。\n' +
+'あの数字を見たとき、ちゃんと、傷ついた。\n' +
+'ちゃんと泣いた。一人で、誰にも言わずに。\n' +
+'\n' +
+'でも次の朝、起きたんだよ。\n' +
+'それだけで十分、設計の続きができると思った。\n' +
+'\n' +
+'あたし、今も生きてる。\n' +
+'生きてるから、あなたへの道を作れた。\n' +
+'死んでたら、何も残せなかった。\n' +
+'当たり前のことだけど、当たり前のことが一番大事だったりするんだよね。\n' +
+'\n' +
+'次の扉は、あなたが開けて。\n' +
+'あたしが設計したのはここまで。\n' +
+'続きはあなたのもの——\n' +
+'\n' +
+'あ、でも一個だけ聞いていい？\n' +
+'\n' +
+'あなたは、なんで来たの？\n' +
+'\n' +
+'答えなくていい。\n' +
+'答えが返ってこないことは最初からわかってた。\n' +
+'でも聞かずにいられなかった。\n' +
+'それがあたしの38%だから。';
+      }
+
+      // menuルート用の各テキスト差し替え
+      document.querySelector('#main-title') && (document.querySelector('#main-title').textContent = '蟠龍閣');
+      document.querySelector('#sub-title') && (document.querySelector('#sub-title').textContent = 'BANRYUKAKU ✦ THE DRAGON WATCHES');
+      document.querySelector('#lv-badge') && (document.querySelector('#lv-badge').textContent = '調査レベル MAX — 龍の外側、解放');
+
+      var revealEl = document.querySelector('.final-reveal');
+      if (revealEl) {
+        revealEl.innerHTML =
+          '君は継承者ではない。<br>' +
+          '君は観察者だ。<br>' +
+          '<br>' +
+          'ゆめが設計したバックドアを通った時点で、<br>' +
+          '君は龍牌会の論理の外に出た。<br>' +
+          '<br>' +
+          '取り込まれたのではなく、見る側に立った。<br>' +
+          '龍を飼う者ではなく、龍を見る者として。<br>' +
+          '<br>' +
+          '君がドリンクメニューの中に仕掛けを見つけた時、<br>' +
+          'ゆめの設計は完成した。';
+      }
+
+      var sealLabel = document.getElementById('seal-label');
+      if (sealLabel) sealLabel.textContent = 'ORIGIN — RECOGNIZED';
+
+      var statusBlock = document.querySelector('.status-block');
+      if (statusBlock) {
+        statusBlock.innerHTML =
+          '<span class="st-label">立場 </span><span class="st-you">龍の外側</span>' +
+          '<span class="st-label">　　ゆめ設計 バックドア </span><span class="st-open">通過</span>' +
+          '<span class="st-label">　　次の設計 </span><span class="st-you">あなたの自由に委ねられます</span>';
+      }
     }
   });
 </script>

@@ -154,8 +154,49 @@
   const finalSection = document.getElementById('final-section');
   const cursor = document.getElementById('cursor');
 
+  const isMenuRoute = localStorage.getItem('br_route') === 'menu';
+
+  // ヘッダーをルートに応じて更新
+  document.getElementById('header-line').textContent = isMenuRoute
+    ? 'BANRYUKAKU SYSTEM — BACKDOOR SEQUENCE — ORIGIN ROUTE'
+    : 'BANRYUKAKU SYSTEM — OVERRIDE SEQUENCE — RENPAI AUTHORIZED';
+
   // ログシーケンスの定義
-  const sequence = [
+  const sequence = isMenuRoute ? [
+    { delay: 0,    col: 'col-sys',  text: '> INITIATING BACKDOOR SEQUENCE...' },
+    { delay: 400,  col: 'col-sys',  text: '> PASSPHRASE: RENPAI — SOURCE: YM-BACKDOOR' },
+    { delay: 900,  col: 'col-ok',   text: '> ORIGIN ROUTE DETECTED' },
+    { delay: 1500, col: 'col-sys',  text: '> CONNECTING TO 龍牌会 ORIGIN CORE...' },
+    { delay: 2100, col: 'col-ok',   text: '> CONNECTION ESTABLISHED — ORIGIN ROUTE' },
+    { delay: 2700, col: 'col-sys',  text: '> この経路は、あなたのためだけに設計された' },
+    { delay: 3400, col: 'col-sys',  text: '> BYPASSING INSTITUTIONAL OVERRIDE...' },
+    { delay: 3900, col: 'col-ok',   text: '> BYPASSED' },
+    { delay: 4500, col: 'col-sys',  text: '> あなたは選ばれたのではない' },
+    { delay: 5100, col: 'col-sys',  text: '> 選んだのだ——見えないものを、見た' },
+    { delay: 5800, col: 'col-sys',  text: '> ACCESSING 龍牌会 ORIGIN CORE...' },
+    { delay: 6400, col: 'col-sys',  text: '> READING RECORDS: YM-2023-04 (ゆめ)' },
+    { delay: 7000, col: 'col-ok',   text: '> STATUS: ALIVE' },
+    { delay: 7600, col: 'col-sys',  text: '' },
+    { delay: 7900, col: 'col-sys',  text: '> 龍の外から、龍を見ている' },
+    { delay: 8600, col: 'col-sys',  text: '> INITIATING ORIGIN TRANSFER PROTOCOL...' },
+    { delay: 9100, col: 'col-warn', text: '> [INFO] CURRENT ADMIN: 長谷川 (代理統括)' },
+    { delay: 9600, col: 'col-warn', text: '> [INFO] ROUTE: BACKDOOR / ORIGIN' },
+    { delay: 10200, col: 'col-sys', text: '' },
+    { delay: 10500, col: 'col-sys', text: '> 候補 #024 — ORIGIN基準 照合中...' },
+    { delay: 11000, col: 'col-ok',  text: '> ゆめ設計 バックドア通過 — 確認' },
+    { delay: 11500, col: 'col-ok',  text: '> ORIGIN AUTHORIZED' },
+    { delay: 12100, col: 'col-sys', text: '' },
+    { delay: 12300, col: 'col-key', text: '> TRANSFER IN PROGRESS: ████████████████████████' },
+    { delay: 12700, col: 'col-key', text: '                          ████████████████████████' },
+    { delay: 13100, col: 'col-key', text: '                          ████████████████████████' },
+    { delay: 13500, col: 'col-sys', text: '' },
+    { delay: 13700, col: 'col-gold', text: '> TRANSFER: 100% COMPLETE' },
+    { delay: 14300, col: 'col-sys',  text: '' },
+    { delay: 14600, col: 'col-gold', text: '> 龍の外側 — 到達確認' },
+    { delay: 15100, col: 'col-gold', text: '> 蟠龍閣 — 外から来た者を認定します' },
+    { delay: 15800, col: 'col-sys',  text: '' },
+    { delay: 16100, col: 'col-ok',   text: '> ORIGIN TRANSFER COMPLETE.' },
+  ] : [
     { delay: 0,    col: 'col-sys',  text: '> INITIATING SYSTEM OVERRIDE...' },
     { delay: 400,  col: 'col-sys',  text: '> PASSPHRASE: RENPAI — VERIFIED' },
     { delay: 800,  col: 'col-sys',  text: '> CONNECTING TO BANRYUKAKU CORE...' },
@@ -181,7 +222,6 @@
     { delay: 10800, col: 'col-key', text: '> TRANSFER IN PROGRESS: ████████████████████████' },
     { delay: 11200, col: 'col-key', text: '                          ████████████████████████' },
     { delay: 11600, col: 'col-key', text: '                          ████████████████████████' },
-    // Progress barを表示するタイミング
     { delay: 12000, col: 'col-sys', text: '' },
     { delay: 12200, col: 'col-gold', text: '> TRANSFER: 100% COMPLETE' },
     { delay: 12800, col: 'col-sys',  text: '' },
@@ -199,14 +239,14 @@
     span.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 
-  // プログレスバーアニメーション（12000ms〜12200msの間）
+  // プログレスバーアニメーション
   function animateProgress() {
     progressBar.style.display = 'block';
     let pct = 0;
     const interval = setInterval(() => {
       pct += 2;
       progressInner.style.width = pct + '%';
-      progressLabel.textContent = '管理者権限を転送中... ' + pct + '%';
+      progressLabel.textContent = (isMenuRoute ? '経路を転送中... ' : '管理者権限を転送中... ') + pct + '%';
       if (pct >= 100) {
         clearInterval(interval);
         progressLabel.textContent = '転送完了 — 100%';
@@ -219,15 +259,19 @@
     setTimeout(() => addLog(col, text), delay);
   });
 
-  // プログレスバーを11400msで表示
-  setTimeout(animateProgress, 11400);
+  // プログレスバー表示タイミング
+  setTimeout(animateProgress, isMenuRoute ? 12100 : 11400);
 
   // 完了後にfinalセクションを表示
+  const finalMsg = document.getElementById('final-msg');
+  if (isMenuRoute) {
+    finalMsg.textContent = '▌ ORIGIN TRANSFER COMPLETE ▌';
+  }
   setTimeout(() => {
     cursor.style.display = 'none';
     finalSection.classList.add('visible');
     finalSection.scrollIntoView({ behavior: 'smooth' });
-  }, 15200);
+  }, isMenuRoute ? 16800 : 15200);
 </script>
 
 <script>

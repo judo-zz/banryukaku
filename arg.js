@@ -534,6 +534,11 @@ function executeSearch(query) {
       ARG.tryLevel(level);
     }
 
+    // renpai発見時のルート記録（search窓経由）
+    if (flag === 'found_renpai' && !localStorage.getItem('br_route')) {
+      localStorage.setItem('br_route', 'search');
+    }
+
     // STEP2: 3フラグ進捗表示
     const step2Flags = ['found_yume_rireki', 'found_kurose', 'found_yume_finallog'];
     if (isNewFind && step2Flags.indexOf(flag) !== -1) {

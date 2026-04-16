@@ -170,6 +170,32 @@
   if (!ARG.hasFlag('admin_transfer_complete')) {
     window.location.replace('../index.html');
   }
+
+  // ルートに応じてコンテンツを切り替え
+  document.addEventListener('DOMContentLoaded', function () {
+    if (localStorage.getItem('br_route') !== 'menu') return;
+
+    document.getElementById('sys-line').textContent = 'BANRYUKAKU SYSTEM — ORIGIN TRANSFER COMPLETE';
+    document.getElementById('big-msg').textContent = '龍の外側に立つ';
+    document.getElementById('big-sub').textContent = 'DRAGON ORIGIN — AUTHORIZED';
+    document.getElementById('dragon-label').textContent = 'ORIGIN PROTOCOL — FINALIZED';
+
+    document.getElementById('message').innerHTML =
+      'あなたはシステムを継承したのではない。<br>' +
+      'システムの外に出た。<br>' +
+      '<br>' +
+      'ゆめがORIGIN基準を設計した時、<br>' +
+      '彼女は自分が満たせない条件を作った。<br>' +
+      '内部採用の自分には最初から無理だった——そう書いた。<br>' +
+      '<br>' +
+      '<span class="soft">嘘だ。</span><br>' +
+      '<br>' +
+      '外から来た者に扉を開ける。<br>' +
+      'それが、ゆめ自身のORIGIN基準だった。<br>' +
+      '<br>' +
+      '<span class="em">あなたが今ここにいるということは、<br>' +
+      'ゆめの設計は完璧だった。</span>';
+  });
 </script>
 
 <script>

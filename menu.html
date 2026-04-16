@@ -801,6 +801,9 @@
         ARG.addFlag('menu_terminal'); // 未使用フラグ（将来の演出フック用に保持）
         ARG.tryLevel(ARG.getLevel() + 1);
       }
+      if (!localStorage.getItem('br_route')) {
+        localStorage.setItem('br_route', 'menu');
+      }
       this.disabled = true;
       err.style.color = '#00ff66';
       err.textContent = '> AUTHORIZED. Redirecting...';
