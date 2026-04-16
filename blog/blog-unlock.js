@@ -92,6 +92,17 @@
   }
 
   function init() {
+    // スマホではMEMBER PASSウィジェットを記事の前に移動
+    if (window.innerWidth <= 640) {
+      var widget = document.getElementById('blog-pass-widget');
+      var blogMain = document.getElementById('blog-main');
+      if (widget && blogMain && blogMain.parentNode) {
+        blogMain.parentNode.insertBefore(widget, blogMain);
+        widget.style.width = '100%';
+        widget.style.marginBottom = '12px';
+      }
+    }
+
     if (localStorage.getItem(FLAG)) {
       showAll();
     } else {

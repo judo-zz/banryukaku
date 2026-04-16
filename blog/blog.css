@@ -291,26 +291,10 @@ a:hover { text-decoration: underline; color: #ff3366; }
 /* ─── レスポンシブ ─── */
 @media (max-width: 640px) {
   #blog-body { flex-direction: column; }
-
-  /* サイドバーを透明化してchildren をflexに直接参加させる */
-  #blog-sidebar { display: contents; }
-
-  /* MEMBER PASS を記事の上へ */
-  #blog-pass-widget {
-    order: -1;
-    width: 100%;
-    margin-bottom: 12px;
-  }
+  #blog-sidebar { width: 100%; }
+  #blog-cast-name { font-size: 22px; }
+  #blog-nav a { padding: 8px 6px; font-size: 11px; }
   /* スマホではiOSズーム防止のため16px/44pxに戻す */
   #blog-pass-input { font-size: 16px; min-height: 44px; }
   #blog-pass-btn { min-height: 44px; }
-
-  /* 残りのサイドバーボックスは記事の下へ */
-  .sidebar-box {
-    order: 1;
-    width: 100%;
-  }
-
-  #blog-cast-name { font-size: 22px; }
-  #blog-nav a { padding: 8px 6px; font-size: 11px; }
 }
