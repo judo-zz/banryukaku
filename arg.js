@@ -3,17 +3,18 @@
  * Manages investigationLevel, search routing, and level-up effects.
  */
 
+// localStorage ヘルパー（グローバル — IIFE内外どちらからも呼べるようにする）
+function lsGet(key) {
+  try { return localStorage.getItem(key); } catch(e) { return null; }
+}
+function lsSet(key, val) {
+  try { localStorage.setItem(key, val); } catch(e) {}
+}
+function lsRemove(key) {
+  try { localStorage.removeItem(key); } catch(e) {}
+}
+
 var ARG = (() => {
-  // localStorage ヘルパー（プライベートブラウジング等でのエラーを吸収）
-  function lsGet(key) {
-    try { return localStorage.getItem(key); } catch(e) { return null; }
-  }
-  function lsSet(key, val) {
-    try { localStorage.setItem(key, val); } catch(e) {}
-  }
-  function lsRemove(key) {
-    try { localStorage.removeItem(key); } catch(e) {}
-  }
 
   // 紹介コード未解放なら即座にCSSで検索バーを隠す（DOMContentLoaded待ちなしで確実に非表示）
   if (!lsGet('br_referral')) {
@@ -546,12 +547,8 @@ function executeSearch(query) {
     }
 
     // renpai発見時のルート記録（search窓経由）
-    if (flag === 'found_renpai') {
-      try {
-        if (!localStorage.getItem('br_route')) {
-          localStorage.setItem('br_route', 'search');
-        }
-      } catch(e) {}
+    if (flag === 'found_renpai' && !lsGet('br_route')) {
+      lsSet('br_route', 'search');
     }
 
     // STEP2: 3フラグ進捗表示
