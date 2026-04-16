@@ -133,7 +133,15 @@
       0%, 100% { text-shadow: 0 0 30px rgba(255,180,0,0.5), 0 0 60px rgba(200,130,0,0.2); }
       50%       { text-shadow: 0 0 50px rgba(255,200,0,0.8), 0 0 100px rgba(255,150,0,0.4); }
     }
-      html, body { overflow-x: hidden; }
+    html, body { overflow-x: hidden; }
+
+    @media (max-width: 480px) {
+      #big-msg { font-size: 20px; letter-spacing: 0.1em; }
+      #big-sub { font-size: 10px; letter-spacing: 0.12em; }
+      #wrapper { padding: 28px 16px; }
+      #hd-search input[type="search"] { width: calc(100vw - 110px); }
+      #hd-search button { min-height: 36px; }
+    }
   </style>
 </head>
 <body>

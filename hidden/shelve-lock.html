@@ -180,9 +180,9 @@
       color: #aa8855;
       border: 1px solid #554433;
       border-radius: 3px;
-      width: 28px;
-      height: 20px;
-      font-size: 10px;
+      width: 36px;
+      height: 36px;
+      font-size: 14px;
       cursor: pointer;
       line-height: 1;
       padding: 0;
@@ -404,6 +404,15 @@
     }
 
     html, body { overflow-x: hidden; }
+  
+    @media (max-width: 480px) {
+      #hd-search input[type="search"] {
+        width: calc(100vw - 110px);
+      }
+      #hd-search button {
+        min-height: 36px;
+      }
+    }
   </style>
 </head>
 <body>

@@ -57,7 +57,7 @@ a:hover { text-decoration: underline; color: #ff3366; }
 
 #blog-pass-input {
   font-family: monospace;
-  font-size: 12px;
+  font-size: 16px;
   background: #fdf5f7;
   border: 1px solid #ffccdd;
   color: #330011;

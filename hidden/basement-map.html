@@ -180,6 +180,15 @@
       .map-ascii { font-size: 10px; line-height: 1.4; }
       #wrapper { padding: 12px 8px 40px; }
     }
+  
+    @media (max-width: 480px) {
+      #hd-search input[type="search"] {
+        width: calc(100vw - 110px);
+      }
+      #hd-search button {
+        min-height: 36px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -210,7 +219,7 @@
 
   <div class="map-box">
     <div class="map-title">■ 地下1F 区画図 / B1F FLOOR PLAN</div>
-    <svg viewBox="0 0 600 370" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:600px;display:block;margin:12px auto 0;">
+    <svg viewBox="0 0 600 370" xmlns="http://www.w3.org/2000/svg" style="width:100%;min-width:520px;max-width:600px;display:block;margin:12px auto 0;">
       <defs>
         <pattern id="hatch-danger" patternUnits="userSpaceOnUse" width="10" height="10" patternTransform="rotate(45)">
           <line x1="0" y1="0" x2="0" y2="10" stroke="#441100" stroke-width="1.5"/>

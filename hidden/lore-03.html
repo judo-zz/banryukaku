@@ -142,6 +142,15 @@
     .page-nav a { color: #775533; text-decoration: none; border-bottom: 1px dotted #554422; }
     .page-nav a:hover { color: #ccaa66; }
       html, body { overflow-x: hidden; }
+  
+    @media (max-width: 480px) {
+      #hd-search input[type="search"] {
+        width: calc(100vw - 110px);
+      }
+      #hd-search button {
+        min-height: 36px;
+      }
+    }
   </style>
 </head>
 <body>
