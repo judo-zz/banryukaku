@@ -14,7 +14,7 @@
     if (widget) widget.style.display = 'none';
 
     // ゆめのブログリンクに金色glow
-    var links = document.querySelectorAll('a[href="yume.html"]');
+    var links = document.querySelectorAll('a[href="yumeri.html"]');
     for (var j = 0; j < links.length; j++) {
       links[j].style.textShadow = '0 0 8px rgba(255,204,68,0.7)';
       links[j].style.color = '#ffcc44';
