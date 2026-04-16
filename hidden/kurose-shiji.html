@@ -357,5 +357,13 @@
 </div>
 
 <script src="../arg.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (typeof ARG !== 'undefined' && ARG.getLevel() < 2) {
+      window.location.href = '../index.html';
+    }
+  });
+</script>
 </body>
 </html>

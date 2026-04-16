@@ -388,5 +388,13 @@
     if (e.key === 'Enter') confirmTransfer();
   });
 </script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (typeof ARG !== 'undefined' && ARG.getLevel() < 3) {
+      window.location.href = '../index.html';
+    }
+  });
+</script>
 </body>
 </html>

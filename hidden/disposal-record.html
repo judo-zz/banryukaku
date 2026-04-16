@@ -353,5 +353,13 @@
     if (ap) ap.style.display = 'block';
   }
 </script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (typeof ARG !== 'undefined' && ARG.getLevel() < 3) {
+      window.location.href = '../index.html';
+    }
+  });
+</script>
 </body>
 </html>

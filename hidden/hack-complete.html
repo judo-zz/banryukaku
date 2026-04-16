@@ -171,5 +171,13 @@
     window.location.replace('../index.html');
   }
 </script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (typeof ARG !== 'undefined' && ARG.getLevel() < 5) {
+      window.location.href = '../index.html';
+    }
+  });
+</script>
 </body>
 </html>
