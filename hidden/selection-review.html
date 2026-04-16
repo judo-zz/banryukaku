@@ -430,6 +430,8 @@
       .paper {
         padding: 16px 12px 24px;
         box-shadow: 0 0 0 1px #8a7a60, 2px 2px 12px rgba(0,0,0,0.5);
+        overflow-x: hidden;
+        max-width: 100%;
       }
       /* 角の折れを小さく */
       .paper::after {
@@ -485,19 +487,24 @@
       .section-title { font-size: 10px; letter-spacing: 0.1em; }
 
       /* 審査経緯テーブル: 3カラムをコンパクトに */
-      .eval-table { font-size: 10.5px; }
+      .eval-table {
+        font-size: 10.5px;
+        table-layout: fixed;
+        width: 100%;
+      }
       .eval-table th,
       .eval-table td { padding: 4px 5px; }
+      .eval-table td { word-break: break-all; overflow-wrap: break-word; }
       .eval-table th { white-space: normal; }
       .eval-table .date-col {
         white-space: nowrap;
-        width: 68px;
+        width: 72px;
         min-width: 0;
         font-size: 9.5px;
         letter-spacing: 0;
       }
       .eval-table .phase-col {
-        width: 44px;
+        width: 58px;
         min-width: 0;
         font-size: 9.5px;
       }
