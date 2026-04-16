@@ -14,6 +14,9 @@ function lsRemove(key) {
   try { localStorage.removeItem(key); } catch(e) {}
 }
 
+const PAGE_VISIT_KEY = 'br_pages';
+const PAGE_TOTAL = 26; // hidden/ ページ数のみカウント
+
 var ARG = (() => {
 
   // 紹介コード未解放なら即座にCSSで検索バーを隠す（DOMContentLoaded待ちなしで確実に非表示）
@@ -624,9 +627,6 @@ const PROGRESS_FLAGS = [
   'found_renpai',
   'admin_transfer_complete',
 ];
-
-const PAGE_VISIT_KEY = 'br_pages';
-const PAGE_TOTAL = 26; // hidden/ ページ数のみカウント
 
 function recordPageVisit() {
   const path = window.location.pathname.replace(/.*\/banryukaku\//, '').replace(/^\//, '') || 'index.html';
