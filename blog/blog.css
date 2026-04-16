@@ -291,5 +291,5 @@ a:hover { text-decoration: underline; color: #ff3366; }
   #blog-body { flex-direction: column; }
   #blog-sidebar { width: 100%; }
   #blog-cast-name { font-size: 22px; }
-  #blog-nav a { padding: 0 6px; font-size: 11px; }
+  #blog-nav a { padding: 8px 6px; font-size: 11px; }
 }

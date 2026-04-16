@@ -4,8 +4,19 @@
  */
 
 var ARG = (() => {
+  // localStorage ヘルパー（プライベートブラウジング等でのエラーを吸収）
+  function lsGet(key) {
+    try { return localStorage.getItem(key); } catch(e) { return null; }
+  }
+  function lsSet(key, val) {
+    try { localStorage.setItem(key, val); } catch(e) {}
+  }
+  function lsRemove(key) {
+    try { localStorage.removeItem(key); } catch(e) {}
+  }
+
   // 紹介コード未解放なら即座にCSSで検索バーを隠す（DOMContentLoaded待ちなしで確実に非表示）
-  if (!localStorage.getItem('br_referral')) {
+  if (!lsGet('br_referral')) {
     var _hide = document.createElement('style');
     _hide.id = 'arg-search-hide';
     _hide.textContent = '#search-area,#hd-search{display:none!important}';
@@ -36,12 +47,12 @@ var ARG = (() => {
   };
 
   function getLevel() {
-    return parseInt(localStorage.getItem(STORAGE_KEY) || '0', 10);
+    return parseInt(lsGet(STORAGE_KEY) || '0', 10);
   }
 
   function setLevel(n) {
     const level = Math.max(0, Math.min(5, n));
-    localStorage.setItem(STORAGE_KEY, String(level));
+    lsSet(STORAGE_KEY, String(level));
     applyLevel(level);
   }
 
@@ -57,7 +68,7 @@ var ARG = (() => {
     const flags = getFlags();
     if (!flags.includes(f)) {
       flags.push(f);
-      localStorage.setItem(FLAGS_KEY, JSON.stringify(flags));
+      lsSet(FLAGS_KEY, JSON.stringify(flags));
     }
   }
 
@@ -67,7 +78,7 @@ var ARG = (() => {
 
   function getFlags() {
     try {
-      return JSON.parse(localStorage.getItem(FLAGS_KEY) || '[]');
+      return JSON.parse(lsGet(FLAGS_KEY) || '[]');
     } catch {
       return [];
     }
@@ -132,7 +143,7 @@ var ARG = (() => {
     s.id = 'arg-ui-css';
     s.textContent =
       '#arg-level-indicator{' +
-        'position:fixed;bottom:60px;right:14px;z-index:9000;' +
+        'position:fixed;bottom:max(60px,calc(50px + env(safe-area-inset-bottom)));right:14px;z-index:9000;' +
         'background:rgba(0,0,0,0.70);border:1px solid rgba(180,140,60,0.35);' +
         'color:#c9a84c;font-family:monospace;font-size:12px;' +
         'letter-spacing:0.18em;padding:5px 10px;pointer-events:none;' +
@@ -144,7 +155,7 @@ var ARG = (() => {
         'letter-spacing:0.05em;line-height:1.8;' +
       '}' +
       '#arg-monitor{' +
-        'display:none;position:fixed;bottom:38px;right:14px;z-index:8999;' +
+        'display:none;position:fixed;bottom:max(38px,calc(28px + env(safe-area-inset-bottom)));right:14px;z-index:8999;' +
         'font-family:monospace;font-size:10px;color:rgba(80,160,80,0.35);' +
         'letter-spacing:0.12em;pointer-events:none;user-select:none;' +
       '}';
@@ -198,7 +209,7 @@ var ARG = (() => {
     const ind = document.getElementById('arg-level-indicator');
     if (ind) {
       let visited = '';
-      try { visited = '  ' + (JSON.parse(localStorage.getItem(PAGE_VISIT_KEY) || '[]')).length + '/' + PAGE_TOTAL; } catch(e) {}
+      try { visited = '  ' + (JSON.parse(lsGet(PAGE_VISIT_KEY) || '[]')).length + '/' + PAGE_TOTAL; } catch(e) {}
       ind.textContent = '◆'.repeat(level) + '◇'.repeat(5 - level) + visited;
     }
   }
@@ -284,11 +295,11 @@ var ARG = (() => {
 
   // Debug: reset everything
   function brReset() {
-    localStorage.removeItem(STORAGE_KEY);
-    localStorage.removeItem(FLAGS_KEY);
-    localStorage.removeItem(REFERRAL_KEY);
-    localStorage.removeItem('blog_pass_unlocked');
-    localStorage.removeItem('br_clear_date');
+    lsRemove(STORAGE_KEY);
+    lsRemove(FLAGS_KEY);
+    lsRemove(REFERRAL_KEY);
+    lsRemove('blog_pass_unlocked');
+    lsRemove('br_clear_date');
     window.location.href = resolveSearchPath('index.html');
   }
 
@@ -298,11 +309,11 @@ var ARG = (() => {
   const REFERRAL_CODE = 'BANRYUKAKU';
 
   function isSearchUnlocked() {
-    return !!localStorage.getItem(REFERRAL_KEY);
+    return !!lsGet(REFERRAL_KEY);
   }
 
   function unlockSearch() {
-    localStorage.setItem(REFERRAL_KEY, '1');
+    lsSet(REFERRAL_KEY, '1');
     // CSSによる非表示を解除
     const hide = document.getElementById('arg-search-hide');
     if (hide) hide.remove();
@@ -327,15 +338,15 @@ var ARG = (() => {
 
   // ─── 検索ログ ──────────────────────────────────────────────────────────────
   function logSearch(query) {
-    const raw  = localStorage.getItem(SEARCH_LOG_KEY);
+    const raw  = lsGet(SEARCH_LOG_KEY);
     const log  = raw ? JSON.parse(raw) : [];
     const ts   = new Date().toISOString();
     log.push({ ts, query });
-    localStorage.setItem(SEARCH_LOG_KEY, JSON.stringify(log));
+    lsSet(SEARCH_LOG_KEY, JSON.stringify(log));
   }
 
   function getSearchLog() {
-    const raw = localStorage.getItem(SEARCH_LOG_KEY);
+    const raw = lsGet(SEARCH_LOG_KEY);
     const log = raw ? JSON.parse(raw) : [];
     if (log.length === 0) { console.log('[ARG] 検索ログなし'); return []; }
     console.log('[ARG] 検索ログ (' + log.length + '件):');
@@ -346,7 +357,7 @@ var ARG = (() => {
   }
 
   function clearSearchLog() {
-    localStorage.removeItem(SEARCH_LOG_KEY);
+    lsRemove(SEARCH_LOG_KEY);
     console.log('[ARG] 検索ログをクリアしました');
   }
 
@@ -535,8 +546,8 @@ function executeSearch(query) {
     }
 
     // renpai発見時のルート記録（search窓経由）
-    if (flag === 'found_renpai' && !localStorage.getItem('br_route')) {
-      localStorage.setItem('br_route', 'search');
+    if (flag === 'found_renpai' && !lsGet('br_route')) {
+      lsSet('br_route', 'search');
     }
 
     // STEP2: 3フラグ進捗表示
@@ -619,10 +630,10 @@ const PAGE_TOTAL = 26; // hidden/ ページ数のみカウント
 function recordPageVisit() {
   const path = window.location.pathname.replace(/.*\/banryukaku\//, '').replace(/^\//, '') || 'index.html';
   let visited;
-  try { visited = JSON.parse(localStorage.getItem(PAGE_VISIT_KEY)) || []; } catch(e) { visited = []; }
+  try { visited = JSON.parse(lsGet(PAGE_VISIT_KEY)) || []; } catch(e) { visited = []; }
   if (!visited.includes(path)) {
     visited.push(path);
-    localStorage.setItem(PAGE_VISIT_KEY, JSON.stringify(visited));
+    lsSet(PAGE_VISIT_KEY, JSON.stringify(visited));
   }
   return visited.filter(p => p.startsWith('hidden/')).length;
 }
@@ -660,7 +671,7 @@ document.addEventListener('DOMContentLoaded', () => {
   injectProgressBar();
 
   // Lv3以上でブログPASSウィジェットを強調
-  if (ARG.getLevel() >= 3 && !localStorage.getItem('blog_pass_unlocked')) {
+  if (ARG.getLevel() >= 3 && !lsGet('blog_pass_unlocked')) {
     const passInput = document.getElementById('blog-pass-input');
     const passBtn   = document.getElementById('blog-pass-btn');
     if (passInput) {

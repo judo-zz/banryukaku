@@ -57,6 +57,7 @@
       border: 1px solid #664433;
       cursor: pointer;
     }
+    #hd-search button:active { background: #0a0030; opacity: 0.7; }
 
     #search-error {
       color: #cc4444;
@@ -529,24 +530,43 @@
     });
   });
 
-  // タッチスワイプでもダイヤル操作
-  document.querySelectorAll('.dial-display').forEach(function (el, idx) {
+  // タッチスワイプでダイヤル操作（dial-unit全体を対象にtouchmoveで連続更新）
+  document.querySelectorAll('.dial-unit').forEach(function (unit, idx) {
     var startY = null;
-    el.addEventListener('touchstart', function (e) {
+    var lastY  = null;
+    var accum  = 0;
+
+    unit.addEventListener('touchstart', function (e) {
+      if (unlocked) return;
       startY = e.touches[0].clientY;
+      lastY  = startY;
+      accum  = 0;
     }, { passive: true });
-    el.addEventListener('touchend', function (e) {
+
+    unit.addEventListener('touchmove', function (e) {
       if (startY === null || unlocked) return;
-      var diff = startY - e.changedTouches[0].clientY;
-      if (Math.abs(diff) > 10) {
-        if (diff > 0) {
-          vals[idx] = (vals[idx] + 1) % 10;
-        } else {
-          vals[idx] = (vals[idx] + 9) % 10;
+      e.preventDefault(); // ページスクロールと競合させない
+      var y    = e.touches[0].clientY;
+      var diff = lastY - y;
+      accum += diff;
+      lastY  = y;
+      // 20px溜まるごとに1ステップ
+      if (Math.abs(accum) >= 20) {
+        var steps = Math.floor(Math.abs(accum) / 20);
+        for (var i = 0; i < steps; i++) {
+          if (accum > 0) {
+            vals[idx] = (vals[idx] + 1) % 10;
+          } else {
+            vals[idx] = (vals[idx] + 9) % 10;
+          }
         }
+        accum = accum % 20;
         document.getElementById('dial-' + idx).textContent = vals[idx];
       }
-      startY = null;
+    }, { passive: false });
+
+    unit.addEventListener('touchend', function () {
+      startY = null; lastY = null; accum = 0;
     });
   });
 

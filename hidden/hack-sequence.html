@@ -42,6 +42,7 @@
       display: block;
       line-height: 1.9;
       opacity: 0;
+      word-break: break-all;
     }
 
     .log-line.show { opacity: 1; }
@@ -101,13 +102,14 @@
     }
 
     #proceed-link {
-      display: inline-block;
+      display: block;
       border: 1px solid #00ff66;
       color: #00ff66;
-      padding: 8px 24px;
+      padding: 12px;
       text-decoration: none;
       font-size: 13px;
       letter-spacing: 0.1em;
+      text-align: center;
     }
 
     #proceed-link:hover {
@@ -115,6 +117,8 @@
       color: #66ffaa;
     }
   
+    #hd-search button:active { background: #001a00; opacity: 0.7; }
+
     @media (max-width: 480px) {
       #hd-search input[type="search"] {
         width: calc(100vw - 110px);

@@ -388,7 +388,7 @@
     @media (max-width: 600px) {
       #site-title { font-size: 26px; }
       #search-area input[type="search"] { width: 180px; }
-      #nav a { padding: 0 6px; font-size: 11px; }
+      #nav a { padding: 8px 6px; font-size: 11px; }
     }
       html, body { overflow-x: hidden; }
   </style>
@@ -777,10 +777,28 @@
     input.value = '';
     modal.classList.add('open');
     setTimeout(() => input.focus(), 100);
+
+    // モバイルキーボード表示時にモーダルボックスをビューポート上部へ移動
+    if (window.visualViewport) {
+      function adjustModal() {
+        const vv = window.visualViewport;
+        const box = document.getElementById('terminal-box');
+        if (box) {
+          const offset = window.innerHeight - vv.height;
+          box.style.marginBottom = offset > 50 ? (offset + 16) + 'px' : '';
+        }
+      }
+      window.visualViewport.addEventListener('resize', adjustModal);
+      modal._vvCleanup = () => window.visualViewport.removeEventListener('resize', adjustModal);
+    }
   }
 
   function closeTerminal() {
-    document.getElementById('terminal-modal').classList.remove('open');
+    const modal = document.getElementById('terminal-modal');
+    modal.classList.remove('open');
+    if (modal._vvCleanup) { modal._vvCleanup(); modal._vvCleanup = null; }
+    const box = document.getElementById('terminal-box');
+    if (box) box.style.marginBottom = '';
     cancelHold();
   }
 

@@ -189,9 +189,7 @@
   }
 
   .news-cat {
-    width: 42px;
-    font-size: 8.5px;
-    padding: 2px 3px;
+    display: none;
   }
 
   /* ------  CAST mini-grid (index.html)  ------ */
