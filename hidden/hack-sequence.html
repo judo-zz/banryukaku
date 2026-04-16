@@ -122,9 +122,11 @@
     @media (max-width: 480px) {
       #hd-search input[type="search"] {
         width: calc(100vw - 110px);
+        font-size: 16px;
       }
       #hd-search button {
-        min-height: 36px;
+        min-height: 44px;
+        font-size: 16px;
       }
     }
   </style>
@@ -280,11 +282,26 @@
   if (isMenuRoute) {
     finalMsg.textContent = '▌ ORIGIN TRANSFER COMPLETE ▌';
   }
-  setTimeout(() => {
+  const totalDelay = isMenuRoute ? 16800 : 15200;
+  const startTime = Date.now();
+  const finalTimer = setTimeout(showFinal, totalDelay);
+
+  function showFinal() {
     cursor.style.display = 'none';
     finalSection.classList.add('visible');
     finalSection.scrollIntoView({ behavior: 'smooth' });
-  }, isMenuRoute ? 16800 : 15200);
+  }
+
+  // バックグラウンド復帰時に残り時間を再計算して詰まり防止
+  document.addEventListener('visibilitychange', function() {
+    if (document.visibilityState === 'visible') {
+      const elapsed = Date.now() - startTime;
+      if (elapsed >= totalDelay && !finalSection.classList.contains('visible')) {
+        clearTimeout(finalTimer);
+        showFinal();
+      }
+    }
+  });
 </script>
 
 <script>

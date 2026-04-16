@@ -418,9 +418,14 @@
     @media (max-width: 480px) {
       #hd-search input[type="search"] {
         width: calc(100vw - 110px);
+        font-size: 16px;
       }
       #hd-search button {
-        min-height: 36px;
+        min-height: 44px;
+        font-size: 16px;
+      }
+      .doc-review-outer {
+        flex-direction: column;
       }
     }
   </style>
@@ -450,7 +455,7 @@
   <div class="doc-title-main">候補者　選定審査　記録票</div>
 
   <!-- 基本情報 + 証明写真 -->
-  <div style="display:flex; gap:16px; align-items:flex-start; margin-bottom:24px;">
+  <div class="doc-review-outer" style="display:flex; gap:16px; align-items:flex-start; margin-bottom:24px;">
   <div class="doc-meta-grid" style="flex:1; margin-bottom:0;">
     <div class="doc-meta-label">文書番号</div>
     <div class="doc-meta-value"><span class="redacted">SRL-2025-YM-2023-04</span></div>

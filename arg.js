@@ -143,7 +143,7 @@ var ARG = (() => {
     s.id = 'arg-ui-css';
     s.textContent =
       '#arg-level-indicator{' +
-        'position:fixed;bottom:max(60px,calc(50px + env(safe-area-inset-bottom)));right:14px;z-index:9000;' +
+        'position:fixed;bottom:max(84px,calc(74px + env(safe-area-inset-bottom)));right:14px;z-index:9000;' +
         'background:rgba(0,0,0,0.70);border:1px solid rgba(180,140,60,0.35);' +
         'color:#c9a84c;font-family:monospace;font-size:12px;' +
         'letter-spacing:0.18em;padding:5px 10px;pointer-events:none;' +
@@ -546,8 +546,12 @@ function executeSearch(query) {
     }
 
     // renpai発見時のルート記録（search窓経由）
-    if (flag === 'found_renpai' && !lsGet('br_route')) {
-      lsSet('br_route', 'search');
+    if (flag === 'found_renpai') {
+      try {
+        if (!localStorage.getItem('br_route')) {
+          localStorage.setItem('br_route', 'search');
+        }
+      } catch(e) {}
     }
 
     // STEP2: 3フラグ進捗表示
