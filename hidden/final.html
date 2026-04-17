@@ -350,11 +350,22 @@
         min-height: 44px;
         font-size: 16px;
       }
-      .fa-row {
-        flex-wrap: wrap;
+      .fa-row { flex-wrap: wrap; }
+      .fa-label { white-space: normal; }
+      .fa-val { white-space: normal; }
+
+      /* 継承記録テーブル: 5列をmin-widthで確保してスクロール */
+      .succession-wrap {
+        padding: 12px 10px;
       }
-      .fa-label {
-        white-space: normal;
+      .succession-wrap table {
+        width: auto;
+        min-width: 360px;
+      }
+      .succession-wrap th,
+      .succession-wrap td {
+        font-size: 10px;
+        padding: 3px 8px 3px 0;
       }
     }
   </style>
