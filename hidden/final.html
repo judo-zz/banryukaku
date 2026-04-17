@@ -554,35 +554,30 @@ ORIGIN基準——外から来た者であること。
     <a href="../index.html">← 蟠龍閣 トップに戻る</a>
   </div>
 
-  <script>
-  document.getElementById('invite-btn').addEventListener('click', function () {
-    var url = 'https://banryukaku.com/?ref=1';
-    var el = document.getElementById('invite-url');
-    el.textContent = url;
-    el.style.display = 'block';
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(url).then(function () {
-        el.textContent = url + ' — コピーしました';
-      });
-    }
-  });
-  </script>
-
 </div>
 
 <script src="../arg.js"></script>
 <script>
-  if (!ARG.hasFlag('admin_transfer_complete')) {
+  // 認証ゲート: レベル5未達またはフラグ未取得はトップへ
+  if (typeof ARG === 'undefined' || ARG.getLevel() < 5 || !ARG.hasFlag('admin_transfer_complete')) {
     window.location.replace('../index.html');
   }
 </script>
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    if (typeof ARG !== 'undefined' && ARG.getLevel() < 5) {
-      window.location.href = '../index.html';
-      return;
-    }
+    // 招待ボタン
+    document.getElementById('invite-btn').addEventListener('click', function () {
+      var url = 'https://banryukaku.com/?ref=1';
+      var el = document.getElementById('invite-url');
+      el.textContent = url;
+      el.style.display = 'block';
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(url).then(function () {
+          el.textContent = url + ' — コピーしました';
+        });
+      }
+    });
 
     // menuルートの場合はゆめのノートと各テキストを差し替え
     if (localStorage.getItem('br_route') === 'menu') {
@@ -642,9 +637,12 @@ ORIGIN基準——外から来た者であること。
       }
 
       // menuルート用の各テキスト差し替え
-      document.querySelector('#main-title') && (document.querySelector('#main-title').textContent = '蟠龍閣');
-      document.querySelector('#sub-title') && (document.querySelector('#sub-title').textContent = 'BANRYUKAKU ✦ THE DRAGON WATCHES');
-      document.querySelector('#lv-badge') && (document.querySelector('#lv-badge').textContent = '調査レベル MAX — 龍の外側、解放');
+      var mainTitle  = document.getElementById('main-title');
+      var subTitle   = document.getElementById('sub-title');
+      var lvBadge    = document.getElementById('lv-badge');
+      if (mainTitle) mainTitle.textContent = '蟠龍閣';
+      if (subTitle)  subTitle.textContent  = 'BANRYUKAKU ✦ THE DRAGON WATCHES';
+      if (lvBadge)   lvBadge.textContent   = '調査レベル MAX — 龍の外側、解放';
 
       // ゆめのノートの後に橋渡しログを挿入
       var noteWrap = document.getElementById('yume-note');
@@ -702,8 +700,8 @@ ORIGIN基準——外から来た者であること。
         seal.addEventListener('click', runCrash, { once: true });
       }
 
-      function runCrash() {
-        if (seal) seal.style.animation = 'none';
+      var runCrash = function () {
+        seal.style.animation = 'none';
 
         var ERRORS = [
           { t: '[ERROR]    不正アクセス検出 — YM設計バックドア 起動確認',    c: '#cc3322' },
@@ -724,7 +722,7 @@ ORIGIN基準——外から来た者であること。
         ov.style.cssText = [
           'position:fixed','top:0','left:0','width:100%','height:100%',
           'background:#000','z-index:99999','font-family:monospace',
-          'font-size:13px','padding:36px 28px','overflow:hidden',
+          'font-size:13px','padding:36px 28px','overflow-y:auto',
           'line-height:2','box-sizing:border-box'
         ].join(';');
         document.body.appendChild(ov);
@@ -757,7 +755,7 @@ ORIGIN基準——外から来た者であること。
             'none',
           ];
           var gi = setInterval(function () {
-            document.body.style.filter = filters[count] || 'none';
+            document.body.style.filter = filters[count];
             count++;
             if (count >= filters.length) {
               clearInterval(gi);
@@ -774,7 +772,8 @@ ORIGIN基準——外から来た者であること。
           document.body.style.transition = 'background 1.2s';
           document.body.style.background = '#fff8f9';
           document.body.style.color = '#553344';
-          document.querySelector('#hd-search') && (document.querySelector('#hd-search').style.display = 'none');
+          var hdSearch = document.getElementById('hd-search');
+          if (hdSearch) hdSearch.style.display = 'none';
           var main = document.getElementById('main');
           if (!main) return;
           main.style.transition = 'opacity 0.4s';
