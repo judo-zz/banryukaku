@@ -340,6 +340,11 @@
     #back-link a:hover { color: #aa7733; }
 
     html, body { overflow-x: hidden; }
+
+    @keyframes sealPulse {
+      0%, 100% { box-shadow: 0 0 30px rgba(255,150,0,0.2), inset 0 0 20px rgba(100,50,0,0.3); }
+      50% { box-shadow: 0 0 60px rgba(255,150,0,0.6), inset 0 0 30px rgba(100,50,0,0.6); border-color: #ffee88; }
+    }
   
     @media (max-width: 480px) {
       #hd-search input[type="search"] {
@@ -684,6 +689,116 @@ ORIGIN基準——外から来た者であること。
           '<span class="st-label">　　ゆめ設計 バックドア </span><span class="st-open">通過</span>' +
           '<span class="st-label">　　次の設計 </span><span class="st-you">あなたの自由に委ねられます</span>';
       }
+
+      // ── システムクラッシュ演出 ──────────────────────────────
+      var seal = document.getElementById('seal-circle');
+      if (seal) {
+        seal.style.cursor = 'pointer';
+        seal.style.animation = 'sealPulse 1.8s ease-in-out infinite';
+        var activateHint = document.createElement('div');
+        activateHint.style.cssText = 'font-size:10px;color:#664422;font-family:monospace;letter-spacing:0.15em;margin-top:6px;';
+        activateHint.textContent = '> 起動';
+        document.getElementById('seal-label').insertAdjacentElement('afterend', activateHint);
+        seal.addEventListener('click', runCrash, { once: true });
+      }
+
+      function runCrash() {
+        if (seal) seal.style.animation = 'none';
+
+        var ERRORS = [
+          { t: '[ERROR]    不正アクセス検出 — YM設計バックドア 起動確認',    c: '#cc3322' },
+          { t: '[ERROR]    管理者認証 失効中...',                              c: '#cc3322' },
+          { t: '[WARN]     全セクション強制開放 開始',                         c: '#dd8800' },
+          { t: '[CRITICAL] 選定記録 ████████ ——— 削除中',                     c: '#ff2200' },
+          { t: '[CRITICAL] 廃棄記録 ████████ ——— 削除中',                     c: '#ff2200' },
+          { t: '[CRITICAL] ORIGIN基準 ——————— 削除中',                        c: '#ff2200' },
+          { t: '[CRITICAL] 在籍記録 全件 ———— 削除中',                        c: '#ff2200' },
+          { t: '[CRITICAL] 龍牌会 組織図 ———— 削除中',                        c: '#ff2200' },
+          { t: '[ERROR]    データ整合性エラー — 復元不能',                     c: '#cc3322' },
+          { t: '[SYSTEM]   龍牌会 セキュアサーバー — シャットダウン',          c: '#886644' },
+          { t: '',                                                              c: '' },
+          { t: '[SYSTEM]   ゆめの設計通り。',                                  c: '#aa8855' },
+        ];
+
+        var ov = document.createElement('div');
+        ov.style.cssText = [
+          'position:fixed','top:0','left:0','width:100%','height:100%',
+          'background:#000','z-index:99999','font-family:monospace',
+          'font-size:13px','padding:36px 28px','overflow:hidden',
+          'line-height:2','box-sizing:border-box'
+        ].join(';');
+        document.body.appendChild(ov);
+
+        var i = 0;
+        var errorInterval = setInterval(function () {
+          if (i >= ERRORS.length) {
+            clearInterval(errorInterval);
+            setTimeout(glitchPhase, 600);
+            return;
+          }
+          var row = ERRORS[i];
+          var el = document.createElement('div');
+          el.textContent = row.t;
+          el.style.color = row.c;
+          ov.appendChild(el);
+          ov.scrollTop = ov.scrollHeight;
+          i++;
+        }, 280);
+
+        function glitchPhase() {
+          var count = 0;
+          var filters = [
+            'invert(1)',
+            'invert(1) hue-rotate(90deg)',
+            'none',
+            'invert(1) hue-rotate(200deg)',
+            'none',
+            'invert(1)',
+            'none',
+          ];
+          var gi = setInterval(function () {
+            document.body.style.filter = filters[count] || 'none';
+            count++;
+            if (count >= filters.length) {
+              clearInterval(gi);
+              document.body.style.filter = 'none';
+              ov.style.transition = 'opacity 0.8s';
+              ov.style.opacity = '0';
+              setTimeout(showConcafe, 900);
+            }
+          }, 130);
+        }
+
+        function showConcafe() {
+          ov.remove();
+          document.body.style.transition = 'background 1.2s';
+          document.body.style.background = '#fff8f9';
+          document.body.style.color = '#553344';
+          document.querySelector('#hd-search') && (document.querySelector('#hd-search').style.display = 'none');
+          var main = document.getElementById('main');
+          if (!main) return;
+          main.style.transition = 'opacity 0.4s';
+          main.style.opacity = '0';
+          setTimeout(function () {
+            main.style.textAlign = 'center';
+            main.innerHTML =
+              '<div style="font-size:10px;color:#cc99aa;letter-spacing:0.35em;margin-bottom:14px;font-family:monospace;">AKIHABARA CONCEPT CAFE</div>' +
+              '<div style="font-size:38px;font-weight:bold;color:#cc6688;letter-spacing:0.2em;margin-bottom:6px;">蟠龍閣</div>' +
+              '<div style="font-size:12px;color:#bb88aa;letter-spacing:0.25em;margin-bottom:36px;">BANRYUKAKU</div>' +
+              '<div style="width:60px;border-top:1px solid #e8c0d0;margin:0 auto 36px;"></div>' +
+              '<p style="color:#886677;font-size:15px;line-height:2.2;margin-bottom:28px;">可愛いキャストとお茶しませんか？<br>秋葉原で、あなたをお待ちしています。</p>' +
+              '<div style="font-size:12px;color:#cc99aa;line-height:2.4;margin-bottom:28px;">' +
+                '営業時間　18:00 〜 翌5:00（不定休）<br>' +
+                '完全紹介制・会員予約制<br>' +
+                'Tel. —<br>' +
+              '</div>' +
+              '<div style="font-size:13px;color:#ddaabb;letter-spacing:0.15em;margin-bottom:40px;">♥ キャスト紹介 &nbsp;♥ ドリンクメニュー &nbsp;♥ アクセス ♥</div>' +
+              '<div style="font-size:10px;color:#ddbbcc;letter-spacing:0.1em;">© BANRYUKAKU — All rights reserved</div>';
+            main.style.opacity = '1';
+          }, 450);
+        }
+      }
+      // ────────────────────────────────────────────────────────
     }
   });
 </script>
