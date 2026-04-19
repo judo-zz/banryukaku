@@ -364,7 +364,10 @@
     document.getElementById('tweet-btn').addEventListener('click', function (e) {
       e.preventDefault();
       var siteUrl = 'https://banryukaku.com';
-      var text = '【蟠龍閣】すべての記録を辿り着いた。\n#蟠龍閣ARG\n' + siteUrl;
+      var route = localStorage.getItem('br_route');
+      var text = route === 'menu'
+        ? '適合率38%でも、羅針盤は正しかった。\n#蟠龍閣\n' + siteUrl
+        : '蟠龍閣の記録を、最後まで辿った。\n消えかけた名前の先に、何があったか——知っている。\n#蟠龍閣 #次代の総龍\n' + siteUrl;
       var tweetUrl = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text);
       window.open(tweetUrl, '_blank', 'noopener');
     });
