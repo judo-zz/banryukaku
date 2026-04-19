@@ -819,6 +819,9 @@
         ARG.addFlag('menu_terminal'); // 未使用フラグ（将来の演出フック用に保持）
         ARG.tryLevel(ARG.getLevel() + 1);
       }
+      if (!ARG.hasFlag('found_renpai')) {
+        ARG.addFlag('found_renpai');
+      }
       if (!localStorage.getItem('br_route')) {
         localStorage.setItem('br_route', 'menu');
       }
