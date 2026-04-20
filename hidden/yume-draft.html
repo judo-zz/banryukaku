@@ -224,7 +224,7 @@
   <section class="record-block">
     <p class="timestamp">2025.12.30 01:09</p>
     <p>内勤の偉い人に名前を呼ばれた。</p>
-    <p><span style="background:#111;color:#111;user-select:none;">黒瀬</span>さん、だったと思う。</p>
+    <p><span id="reveal-hasegawa" style="background:#111;color:#111;user-select:none;">黒瀬</span>さん、だったと思う。</p>
     <p>勤務の話ではなかった。</p>
   </section>
 
@@ -232,7 +232,7 @@
     <p class="timestamp">2026.01.01 02:03</p>
     <p>地下は一階ぶんではなかった。</p>
     <p>降りる音が一度では終わらない。</p>
-    <p>壁の案内に <span style="background:#111;color:#111;user-select:none;">023</span> があった。</p>
+    <p>壁の案内に <span id="reveal-mapcode" style="background:#111;color:#111;user-select:none;">023</span> があった。<span id="reveal-mapcode-hint" style="display:none;">これ、HPのマップにあるやつと一緒。</span></p>
     <p>龍を探すなら、秋葉原にいる。</p>
   </section>
 
@@ -245,7 +245,7 @@
 
   <section class="record-block cut">
     <p class="timestamp">2026.01.03 02:1_</p>
-    <p><span style="background:#111;color:#111;user-select:none;">失敗作</span>、という語は<span style="background:#111;color:#111;user-select:none;">処理</span>の分類名らしい。</p>
+    <p><span id="reveal-shippaisaku" style="background:#111;color:#111;user-select:none;">失敗作</span>、という語は<span id="reveal-seitei" style="background:#111;color:#111;user-select:none;">処理</span>の分類名らしい。</p>
     <p>個人への評価ではない。</p>
     <p>ここまで読めた人がいるなら、次は</p>
   </section>
@@ -277,7 +277,34 @@
     if (typeof ARG !== 'undefined' && ARG.getLevel() < 1) {
       window.location.href = '../index.html';
     }
+  });
+</script>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (typeof ARG === 'undefined') return;
+
+    // yume-draftを開いたら → 選定審査を表示
+    if (ARG.hasFlag('found_yume_draft')) {
+      var el = document.getElementById('reveal-seitei');
+      if (el) { el.removeAttribute('style'); el.textContent = '選定審査'; }
+    }
+
+    // 選定審査を開いたら → 失敗作を表示
+    if (ARG.hasFlag('found_selection_review')) {
+      var el = document.getElementById('reveal-shippaisaku');
+      if (el) { el.removeAttribute('style'); }
+    }
+
+    // 龍牌会を開いたら → 長谷川・MAPコードを表示
+    if (ARG.hasFlag('found_ronpaikai')) {
+      var h = document.getElementById('reveal-hasegawa');
+      if (h) { h.removeAttribute('style'); h.textContent = '長谷川'; }
+      var mc = document.getElementById('reveal-mapcode');
+      if (mc) { mc.removeAttribute('style'); mc.textContent = 'MAPコード'; }
+      var hint = document.getElementById('reveal-mapcode-hint');
+      if (hint) { hint.style.display = 'inline'; }
+    }
   });
 </script>
 </body>
