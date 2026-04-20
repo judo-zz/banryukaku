@@ -810,16 +810,54 @@
     if (e.target === this) closeTerminal();
   });
 
+  function getTerminalDenyHint() {
+    const level = ARG.getLevel();
+    const has = (f) => ARG.hasFlag(f);
+    const lines = [
+      'ここまで来てくれたんだね。',
+      'でも、まだ足りない。',
+    ];
+
+    if (level === 0) {
+      lines.push('あたしのことを、まだ何も知らないでしょう。');
+    } else if (level === 1) {
+      if (!has('found_yume_rireki')) {
+        lines.push('管理番号が書いてあった紙——覚えてる？');
+      } else if (!has('found_kurose')) {
+        lines.push('あたしに声をかけてきた人が、いた。');
+      } else if (!has('found_yume_finallog')) {
+        lines.push('最後に何と書かれたか——まだ見ていない。');
+      } else {
+        lines.push('全部集まったなら、次の扉が開くはずだ。');
+      }
+    } else if (level === 2) {
+      if (!has('found_basement_map')) {
+        lines.push('地下の地図を、見た？');
+      } else if (!has('found_admin_console')) {
+        lines.push('管理端末の場所は、地図に載ってたはずだ。');
+      } else if (!has('found_disposal')) {
+        lines.push('廃棄の記録が、まだ残っている。');
+      } else {
+        lines.push('もう少しだけ、調べ残したものがある。');
+      }
+    }
+
+    lines.push('あたしが何者だったか——全部読んでから来て。');
+    return lines.map(l => '> ' + l).join('\n');
+  }
+
   document.getElementById('terminal-input').addEventListener('keydown', function(e) {
     if (e.key !== 'Enter') return;
     const val = this.value.trim().toUpperCase();
     const err = document.getElementById('terminal-error');
     if (val === 'RENPAI') {
       if (ARG.getLevel() < 3) {
-        err.style.color = '#ff4444';
-        err.textContent = '> ERROR: ACCESS DENIED';
+        const hint = getTerminalDenyHint();
+        err.style.color = '#cc8844';
+        err.style.whiteSpace = 'pre-line';
+        err.textContent = hint;
         this.value = '';
-        setTimeout(() => { err.textContent = ''; }, 2000);
+        setTimeout(() => { err.textContent = ''; err.style.whiteSpace = ''; }, 6000);
         return;
       }
       if (!ARG.hasFlag('menu_terminal')) {
