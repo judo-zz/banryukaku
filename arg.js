@@ -213,7 +213,7 @@ var ARG = (() => {
     const ind = document.getElementById('arg-level-indicator');
     if (ind) {
       let visited = '';
-      try { visited = '  ' + (JSON.parse(lsGet(PAGE_VISIT_KEY) || '[]')).length + '/' + PAGE_TOTAL; } catch(e) {}
+      try { visited = '  ' + (JSON.parse(lsGet(PAGE_VISIT_KEY) || '[]')).filter(p => p.startsWith('hidden/')).length + '/' + PAGE_TOTAL; } catch(e) {}
       ind.textContent = '◆'.repeat(level) + '◇'.repeat(5 - level) + visited;
     }
   }
