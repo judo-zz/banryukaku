@@ -224,7 +224,7 @@
   <section class="record-block">
     <p class="timestamp">2025.12.30 01:09</p>
     <p>内勤の偉い人に名前を呼ばれた。</p>
-    <p><span class="redacted-text" style="background:#111;color:#111;">黒瀬</span>さん、だったと思う。</p>
+    <p><span style="background:#111;color:#111;user-select:none;">黒瀬</span>さん、だったと思う。</p>
     <p>勤務の話ではなかった。</p>
   </section>
 
@@ -232,7 +232,7 @@
     <p class="timestamp">2026.01.01 02:03</p>
     <p>地下は一階ぶんではなかった。</p>
     <p>降りる音が一度では終わらない。</p>
-    <p>壁の案内に <span class="redacted-text" style="background:#111;color:#111;">023</span> があった。</p>
+    <p>壁の案内に <span style="background:#111;color:#111;user-select:none;">023</span> があった。</p>
     <p>龍を探すなら、秋葉原にいる。</p>
   </section>
 
@@ -245,7 +245,7 @@
 
   <section class="record-block cut">
     <p class="timestamp">2026.01.03 02:1_</p>
-    <p><span class="redacted-text" style="background:#111;color:#111;">失敗作</span>、という語は<span class="redacted-text" style="background:#111;color:#111;">処理</span>の分類名らしい。</p>
+    <p><span style="background:#111;color:#111;user-select:none;">失敗作</span>、という語は<span style="background:#111;color:#111;user-select:none;">処理</span>の分類名らしい。</p>
     <p>個人への評価ではない。</p>
     <p>ここまで読めた人がいるなら、次は</p>
   </section>
@@ -278,19 +278,6 @@
       window.location.href = '../index.html';
     }
 
-    // 黒塗りテキスト：タップ/クリックで反転表示（iOS対応）
-    document.querySelectorAll('.redacted-text').forEach(function (el) {
-      el.style.cursor = 'pointer';
-      el.addEventListener('click', function () {
-        var revealed = el.getAttribute('data-revealed') === '1';
-        if (revealed) {
-          el.style.color = '#111';
-        } else {
-          el.style.color = '#ddbb88';
-        }
-        el.setAttribute('data-revealed', revealed ? '0' : '1');
-      });
-    });
   });
 </script>
 </body>
